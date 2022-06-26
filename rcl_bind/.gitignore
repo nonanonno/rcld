@@ -1,0 +1,17 @@
+.dub
+docs.json
+__dummy.html
+docs/
+/rcl_bind
+rcl_bind.so
+rcl_bind.dylib
+rcl_bind.dll
+rcl_bind.a
+rcl_bind.lib
+rcl_bind-test-*
+*.exe
+*.o
+*.obj
+*.lst
+*.a
+generate_rcl/.editorconfig
