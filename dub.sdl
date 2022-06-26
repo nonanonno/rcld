@@ -3,3 +3,26 @@ description "ROS2 client library for Dlang"
 authors "nonanonno"
 copyright "Copyright © 2022, nonanonno"
 license "Apache-2.0"
+subPackage "./rcl_bind"
+versions "$ROS_DISTRO"
+
+configuration "library" {
+    targetType "library"
+    dependency "rcld:rcl_bind" version="*"
+    excludedSourceFiles "source/test_helper.d"
+}
+
+configuration "unittest" {
+    targetType "library"
+    dependency "rcld:rcl_bind" version="*"
+    dependency "silly" version="~>1.1.1"
+    dependency "dshould" version="~>1.5.0"
+}
+
+configuration "clean" {
+    targetType "none"
+    preGenerateCommands "dub clean"
+    preGenerateCommands "find . -name '.dub' -type d | xargs rm -rf"
+    preGenerateCommands "find . -name '*.a' | xargs rm -rf"
+    preGenerateCommands "find . -name '*-unittest' | xargs rm -rf"
+}
