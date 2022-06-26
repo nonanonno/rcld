@@ -1,0 +1,5 @@
+name "rcld"
+description "ROS2 client library for Dlang"
+authors "nonanonno"
+copyright "Copyright © 2022, nonanonno"
+license "Apache-2.0"

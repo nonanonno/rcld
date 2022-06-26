@@ -3,7 +3,7 @@
     "build": {
         "dockerfile": "../docker/Dockerfile",
         "args": {
-            "ROS_DISTRO": "humble",
+            "ROS_DISTRO": "galactic",
             "DC": "ldc-1.29.0"
         }
     },
@@ -11,7 +11,12 @@
     "userEnvProbe": "interactiveShell",
     "features": {
         "git": "latest",
-        "common": "latest"
+        "common": "latest",
+        "docker-from-docker": {
+            "version": "latest",
+            "moby": true,
+            "dockerDashComposeVersion": "v1"
+        }
     },
     "extensions": [
         "webfreak.code-d",
@@ -19,5 +24,5 @@
         "vadimcn.vscode-lldb",
         "editorconfig.editorconfig"
     ],
-    "postCreateCommand": "bash .devcontainer/postCreateCommand.sh"
+    "postCreateCommand": "bash .devcontainer/postCreateCommand.sh",
 }
