@@ -2,7 +2,9 @@ module rcld.context;
 
 import core.runtime;
 import rcl;
-import std.exception;
+import rcld.util;
+
+version (unittest) import std.exception;
 
 class InitOptions
 {
@@ -12,12 +14,12 @@ class InitOptions
     {
         _allocator = allocator;
         _options = rcl_get_zero_initialized_init_options();
-        enforce(rcl_init_options_init(&_options, _allocator) == RCL_RET_OK);
+        safeCall(rcl_init_options_init(&_options, _allocator));
     }
 
     ~this()
     {
-        rcl_init_options_fini(&_options);
+        safeCall(rcl_init_options_fini(&_options));
     }
 
     /**
@@ -25,7 +27,7 @@ class InitOptions
      */
     This setDomainId(size_t domainId)
     {
-        enforce(rcl_init_options_set_domain_id(&_options, domainId) == RCL_RET_OK);
+        safeCall(rcl_init_options_set_domain_id(&_options, domainId));
         return this;
     }
     /**
@@ -34,7 +36,7 @@ class InitOptions
     This useDefaultDomainId()
     {
         size_t domainId = RCL_DEFAULT_DOMAIN_ID;
-        enforce(rcl_get_default_domain_id(&domainId) == RCL_RET_OK);
+        safeCall(rcl_get_default_domain_id(&domainId));
         return setDomainId(domainId);
     }
 
@@ -62,20 +64,26 @@ class Context
     {
         _options = options;
         _context = rcl_context_t();
-        enforce(rcl_init(args.argc, args.argv, _options.getInitOptionsRef(), &_context) == RCL_RET_OK);
+        safeCall(rcl_init(args.argc, args.argv, _options.getInitOptionsRef(), &_context));
     }
 
     ~this()
     {
-        if (rcl_context_is_valid(&_context))
+        if (isValid())
         {
-            rcl_context_fini(&_context);
+            shutdown();
+            safeCall(rcl_context_fini(&_context));
         }
+    }
+
+    bool isValid() const
+    {
+        return rcl_context_is_valid(&_context);
     }
 
     void shutdown()
     {
-        enforce(rcl_shutdown(&_context) == RCL_RET_OK);
+        safeCall(rcl_shutdown(&_context));
     }
 
     rcl_context_t* getRclContextRef()
@@ -83,16 +91,21 @@ class Context
         return &_context;
     }
 
-    size_t getDomainId()
+    size_t getDomainId() const
     {
         size_t domainId;
-        enforce(rcl_context_get_domain_id(&_context, &domainId) == RCL_RET_OK);
+        safeCall(rcl_context_get_domain_id(constHandle(), &domainId));
         return domainId;
     }
 
 private:
     rcl_context_t _context;
     InitOptions _options;
+
+    rcl_context_t* constHandle() const
+    {
+        return cast(rcl_context_t*)&_context;
+    }
 }
 
 @("construct")

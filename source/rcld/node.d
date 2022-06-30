@@ -2,8 +2,10 @@ module rcld.node;
 
 import rcl;
 import rcld.context;
-import std.exception;
 import std.string;
+import rcld.util;
+
+version (unittest) import std.exception;
 
 class Node
 {
@@ -14,19 +16,19 @@ class Node
         scope (exit)
             rcl_node_options_fini(&options);
 
-        enforce(rcl_node_init(
+        safeCall(rcl_node_init(
                 &_handle, name.toStringz,
                 namespace.toStringz,
                 context.getRclContextRef(),
                 &options
-        ) == RCL_RET_OK);
+        ));
     }
 
     ~this()
     {
         if (rcl_node_is_valid(&_handle))
         {
-            rcl_node_fini(&_handle);
+            safeCall(rcl_node_fini(&_handle));
         }
     }
 
