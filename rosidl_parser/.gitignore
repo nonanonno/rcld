@@ -1,0 +1,16 @@
+.dub
+docs.json
+__dummy.html
+docs/
+/rosidl_parser
+rosidl_parser.so
+rosidl_parser.dylib
+rosidl_parser.dll
+rosidl_parser.a
+rosidl_parser.lib
+rosidl_parser-test-*
+*.exe
+*.o
+*.obj
+*.lst
+/dub.selections.json
