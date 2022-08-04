@@ -1,0 +1,8 @@
+name "test_helper"
+description "test_helper"
+authors "nonanonno"
+copyright "Copyright © 2021, nonanonno"
+license "Apache-2.0"
+dependency "pegged" version="~>0.4.5"
+stringImportPaths "ament/install/test_msgs/share/test_msgs"
+preGenerateCommands "bash ament/setup.sh"

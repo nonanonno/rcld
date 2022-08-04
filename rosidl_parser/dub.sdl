@@ -1,16 +1,17 @@
 name "rosidl_parser"
-description "A rosidl parser"
+description "Parser for .idl ROS interface files."
 authors "nonanonno"
-copyright "Copyright © 2022, nonanonno"
+copyright "Copyright © 2021, nonanonno"
 license "Apache-2.0"
-dependency "pegged" version="~>0.4.6"
-
+dependency "dxml" version="~>0.4.3"
+dependency "pegged" version="~>0.4.5"
+dependency "silly" version="~>1.1.1"
+stringImportPaths "resources"
+subPackage "../test_helper"
 configuration "library" {
     targetType "library"
 }
-
 configuration "unittest" {
+    dependency ":test_helper" version=">=0.0.0"
     targetType "library"
-    dependency "silly" version="~>1.1.1"
-    dependency "dshould" version="~>1.5.0"
 }
