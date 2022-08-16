@@ -97,7 +97,10 @@ auto parseAsAction(string text)
 
     assert(p.data.messages.length == 3);
 
-    return IdlFile!Action(p.data.includes, p.data.typedefMap, new Action(p.data.messages.values));
+    auto action = new Action(p.data.messages.values);
+
+    return IdlFile!Action(p.data.includes ~ action.implicitIncludes.map!(i => cast(Include) i)
+            .array, p.data.typedefMap, action);
 }
 
 @("parseAsAction") unittest
@@ -429,7 +432,7 @@ private:
     Annotation getAnnotationAppl(in ParseTree p)
     {
         auto name = p.getAt("ScopedName").getData;
-        if (p.has("AnnotationAPplPArams"))
+        if (p.has("AnnotationApplParams"))
         {
             return Annotation(name, p.getAt("AnnotationApplParams").getData);
         }
