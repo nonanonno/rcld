@@ -1,0 +1,57 @@
+{{#messages}}
+struct {{name}}
+{
+    {{#members}}
+    {{type}} {{name}}{{#default?}} = {{{value}}}{{/default?}};
+    {{/members}}
+
+    {{#constants}}
+    enum {{type}} {{name}} = {{{value}}};
+    {{/constants}}
+
+    alias CType = {{c_name}};
+    alias CArrayType = {{c_array_name}};
+
+    static const(rosidl_message_type_support_t)* getTypesupport() @nogc nothrow
+    {
+        return rosidl_typesupport_c__get_message_type_support_handle__{{c_name}}();
+    }
+
+    static CType * createC() @nogc nothrow
+    {
+        return {{c_name}}__create();
+    }
+
+    static void destroyC(ref CType * msg) @nogc nothrow
+    {
+        {{c_name}}__destroy(msg);
+        msg = null;
+    }
+
+    static CArrayType * createC(size_t size) @nogc nothrow
+    {
+        return {{c_array_name}}__create(size);
+    }
+
+    static void destroyC(ref CArrayType * array) @nogc nothrow
+    {
+        {{c_array_name}}__destroy(array);
+        array = null;
+    }
+
+    static void convert(in {{name}} src, ref {{name}}.CType dst)
+    {
+        {{#members}}
+        {{{assign_d_to_c}}}
+        {{/members}}
+    }
+
+    static void convert(in {{name}}.CType src, ref {{name}} dst)
+    {
+        {{#members}}
+        {{{assign_c_to_d}}}
+        {{/members}}
+    }
+}
+
+{{/messages}}

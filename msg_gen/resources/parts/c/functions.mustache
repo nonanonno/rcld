@@ -1,0 +1,13 @@
+{{#messages}}
+// for {{name}}
+bool {{c_name}}__init({{c_name}} * msg);
+void {{c_name}}__fini({{c_name}} * msg);
+{{c_name}} * {{c_name}}__create();
+void {{c_name}}__destroy({{c_name}} * msg);
+
+bool {{c_array_name}}__init({{c_array_name}} * array, size_t size);
+void {{c_array_name}}__fini({{c_array_name}} * array);
+{{c_array_name}} * {{c_array_name}}__create(size_t size);
+void {{c_array_name}}__destroy({{c_array_name}} * array);
+
+{{/messages}}

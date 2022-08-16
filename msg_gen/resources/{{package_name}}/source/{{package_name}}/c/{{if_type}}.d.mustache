@@ -1,0 +1,14 @@
+module {{package_name}}.c.{{if_type}};
+
+import core.stdc.stdint;
+import rcl;
+{{#dependencies}}
+import {{package_name}}.c.{{if_type}};
+{{/dependencies}}
+
+extern (C):
+@nogc:
+nothrow:
+{{{c_structs}}}
+{{{c_functions}}}
+{{{c_typesupports}}}

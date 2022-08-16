@@ -1,0 +1,15 @@
+.dub
+docs.json
+__dummy.html
+docs/
+/msg_gen
+msg_gen.so
+msg_gen.dylib
+msg_gen.dll
+msg_gen.a
+msg_gen.lib
+msg_gen-test-*
+*.exe
+*.o
+*.obj
+*.lst

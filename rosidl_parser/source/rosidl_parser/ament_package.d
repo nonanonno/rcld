@@ -9,6 +9,9 @@ import std.array;
 import std.algorithm;
 import dxml.dom;
 
+import rosidl_parser.definition;
+import rosidl_parser.parser;
+
 /**
  * Ament package manifest.
  */
@@ -20,6 +23,14 @@ struct Manifest
     string version_;
     /// Install directory which contains `include`, `lib` and `share`.
     string installDirectory;
+    /// License term
+    string license;
+    /// Extracted messages
+    IdlFile!Message[] messages;
+    /// Extracted services
+    IdlFile!Service[] services;
+    /// Extracted actions
+    IdlFile!Action[] actions;
     /// Extracted message files
     string[] messageFiles;
     /// Extracted service files
@@ -63,6 +74,14 @@ Manifest[] findROSIDLPackages(string amentPrefix)
         Manifest manifest;
         manifest.packageName = pkg.getFirst("name").getData;
         manifest.version_ = pkg.getFirst("version").getData;
+        if (pkg.has("license"))
+        {
+            manifest.license = pkg.getFirst("license").getData;
+        }
+        else
+        {
+            manifest.license = "";
+        }
         manifest.installDirectory = amentPrefix;
         // TODO: need to parse subdirectory's files
         if (buildPath(dir, "msg").exists)
@@ -80,6 +99,10 @@ Manifest[] findROSIDLPackages(string amentPrefix)
             manifest.actionFiles = dirEntries(buildPath(dir, "action"), "*.idl", SpanMode.shallow)
                 .map!(d => d.name).array;
         }
+
+        manifest.messages = manifest.messageFiles.map!(f => parseAsMessage(readText(f))).array;
+        manifest.services = manifest.serviceFiles.map!(f => parseAsService(readText(f))).array;
+        manifest.actions = manifest.actionFiles.map!(f => parseAsAction(readText(f))).array;
         manifests ~= manifest;
 
     }

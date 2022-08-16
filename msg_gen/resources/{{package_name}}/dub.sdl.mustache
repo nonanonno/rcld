@@ -1,0 +1,9 @@
+name "{{package_name}}"
+license "{{license}}"
+versions "$ROS_DISTRO"
+dependency "rcld:rcl_bind" version="*"
+{{#dependencies}}
+dependency "{{name}}" version="*"
+{{/dependencies}}
+lflags "-L{{install_directory}}/lib"
+libs "{{package_name}}__rosidl_typesupport_c" "{{package_name}}__rosidl_generator_c"

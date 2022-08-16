@@ -1,0 +1,17 @@
+{{#messages}}
+// for {{name}}
+struct {{c_name}}
+{
+    {{#members}}
+    {{c_type}} {{name}};
+    {{/members}}
+}
+
+struct {{c_array_name}}
+{
+    {{c_name}} *data;
+    size_t size;
+    size_t capacity;
+}
+
+{{/messages}}

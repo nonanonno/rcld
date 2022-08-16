@@ -6,6 +6,7 @@ license "Apache-2.0"
 subPackage "./rcl_bind"
 subPackage "./rosidl_parser"
 subPackage "./test_helper"
+subPackage "./msg_gen"
 versions "$ROS_DISTRO"
 
 configuration "library" {

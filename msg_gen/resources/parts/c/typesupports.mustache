@@ -1,0 +1,11 @@
+{{#messages}}
+const(rosidl_message_type_support_t) * rosidl_typesupport_c__get_message_type_support_handle__{{c_name}}();
+{{/messages}}
+
+{{#services}}
+const(rosidl_service_type_support_t) * rosidl_typesupport_c__get_service_type_support_handle__{{c_name}}();
+{{/services}}
+
+{{#actions}}
+const(rosidl_action_type_support_t) * rosidl_typesupport_c__get_action_type_support_handle__{{c_name}}();
+{{/actions}}
