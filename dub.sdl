@@ -4,6 +4,8 @@ authors "nonanonno"
 copyright "Copyright © 2022, nonanonno"
 license "Apache-2.0"
 subPackage "./rcl_bind"
+subPackage "./rosidl_parser"
+subPackage "./test_helper"
 versions "$ROS_DISTRO"
 
 configuration "library" {
@@ -17,6 +19,7 @@ configuration "unittest" {
     dependency "rcld:rcl_bind" version="*"
     dependency "silly" version="~>1.1.1"
     dependency "dshould" version="~>1.5.0"
+    targetPath ".dub/unittest"
 }
 
 configuration "clean" {
