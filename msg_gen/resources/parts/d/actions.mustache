@@ -1,0 +1,17 @@
+{{#actions}}
+struct {{name}}
+{
+    alias Goal = {{name}}_Goal;
+    alias Result = {{name}}_Result;
+    alias Feedback = {{name}}_Feedback;
+    alias SendGoal = {{name}}_SendGoal;
+    alias GetResult = {{name}}_GetResult;
+    alias FeedbackMessage = {{name}}_FeedbackMessage;
+
+    static const(rosidl_action_type_support_t) * getTypesupport() @nogc nothrow
+    {
+        return rosidl_typesupport_c__get_action_type_support_handle__{{c_name}}();
+    }
+}
+
+{{/actions}}

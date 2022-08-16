@@ -1,0 +1,13 @@
+module {{package_name}}.{{if_type}};
+
+import std.string;
+import std.utf;
+import rcl;
+import {{package_name}}.c.{{if_type}};
+{{#dependencies}}
+import {{package_name}}.{{if_type}};
+{{/dependencies}}
+
+{{{d_actions}}}
+{{{d_services}}}
+{{{d_messages}}}

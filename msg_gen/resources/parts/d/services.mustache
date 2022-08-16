@@ -1,0 +1,13 @@
+{{#services}}
+struct {{name}}
+{
+    alias Request = {{name}}_Request;
+    alias Response = {{name}}_Response;
+
+    static const(rosidl_service_type_support_t)* getTypesupport() @nogc nothrow
+    {
+        return rosidl_typesupport_c__get_service_type_support_handle__{{c_name}}();
+    }
+}
+
+{{/services}}
