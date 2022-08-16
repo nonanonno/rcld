@@ -5,13 +5,14 @@ copyright "Copyright © 2021, nonanonno"
 license "Apache-2.0"
 dependency "dxml" version="~>0.4.3"
 dependency "pegged" version="~>0.4.5"
-dependency "silly" version="~>1.1.1"
 stringImportPaths "resources"
-subPackage "../test_helper"
 configuration "library" {
     targetType "library"
+    targetName "rosidl_parser"
 }
 configuration "unittest" {
-    dependency ":test_helper" version=">=0.0.0"
+    dependency "rcld:test_helper" version=">=0.0.0" path="../"
+    dependency "silly" version="~>1.1.1"
     targetType "library"
+    targetPath ".dub/unittest"
 }

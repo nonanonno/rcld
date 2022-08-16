@@ -10,3 +10,4 @@ docs/
 *.obj
 *.lst
 ament/install
+dub.selections.json
