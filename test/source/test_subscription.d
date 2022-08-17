@@ -12,6 +12,7 @@ import test_helper.utils;
 import rcld;
 import std_msgs.msg;
 
+@("check if the topic created by the subscription can be found")
 unittest
 {
     auto ns = uniqueString;
@@ -34,7 +35,7 @@ unittest
     }
     assert(found);
 
-    assert(spawnShell(format(`ros2 topic pub /%s/chatter std_msgs/msg/String '{data: "hello"}' -1`, ns))
+    assert(spawnShell(format(`ros2 topic pub /%s/chatter std_msgs/msg/String '{data: "hello"}' -1 > /dev/null`, ns))
             .wait == 0);
 
     String msg;

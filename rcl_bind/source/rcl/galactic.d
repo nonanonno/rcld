@@ -1212,8 +1212,6 @@ version (galactic)
  */
         rmw_context_t* rcl_context_get_rmw_context(rcl_context_t*) @nogc nothrow;
 
-        alias __key_t = int;
-
         extern __gshared const(const(char)*) RCL_DOMAIN_ID_ENV_VAR;
         /// Determine the default domain ID, based on the environment.
         /**
@@ -1223,6 +1221,8 @@ version (galactic)
  * \returns #RCL_RET_OK.
  */
         int rcl_get_default_domain_id(c_ulong*) @nogc nothrow;
+
+        alias __key_t = int;
         /// Enumeration of all of the publisher events that may fire.
         enum rcl_publisher_event_type_t
         {
@@ -1374,6 +1374,670 @@ version (galactic)
  * \return `true` if `event` is valid, otherwise `false`
  */
         bool rcl_event_is_valid(const(rcl_event_t)*) @nogc nothrow;
+        /// A structure that contains topic names and types.
+        alias rcl_names_and_types_t = rmw_names_and_types_t;
+        /// A structure that encapsulates the node name, node namespace,
+        /// topic type, gid, and qos_profile or publishers and subscriptions
+        /// for a topic.
+        alias rcl_topic_endpoint_info_t = rmw_topic_endpoint_info_t;
+        /// An array of topic endpoint information.
+        alias rcl_topic_endpoint_info_array_t = rmw_topic_endpoint_info_array_t;
+
+        alias __daddr_t = int;
+        /// Return a list of topic names and types for publishers associated with a node.
+        /**
+ * The `node` parameter must point to a valid node.
+ *
+ * The `topic_names_and_types` parameter must be allocated and zero initialized.
+ * This function allocates memory for the returned list of names and types and so it is the
+ * callers responsibility to pass `topic_names_and_types` to rcl_names_and_types_fini()
+ * when it is no longer needed.
+ * Failing to do so will result in leaked memory.
+ *
+ * There may be some demangling that occurs when listing the names from the middleware
+ * implementation.
+ * If the `no_demangle` argument is set to `true`, then this will be avoided and the names will be
+ * returned as they appear to the middleware.
+ *
+ * \see rmw_get_topic_names_and_types for more details on no_demangle
+ *
+ * The returned names are not automatically remapped by this function.
+ * Attempting to create publishers or subscribers using names returned by this function may not
+ * result in the desired topic name being used depending on the remap rules in use.
+ *
+ * <hr>
+ * Attribute          | Adherence
+ * ------------------ | -------------
+ * Allocates Memory   | Yes
+ * Thread-Safe        | No
+ * Uses Atomics       | No
+ * Lock-Free          | Maybe [1]
+ * <i>[1] implementation may need to protect the data structure with a lock</i>
+ *
+ * \param[in] node the handle to the node being used to query the ROS graph
+ * \param[in] allocator allocator to be used when allocating space for strings
+ * \param[in] no_demangle if true, list all topics without any demangling
+ * \param[in] node_name the node name of the topics to return
+ * \param[in] node_namespace the node namespace of the topics to return
+ * \param[out] topic_names_and_types list of topic names and their types
+ * \return #RCL_RET_OK if the query was successful, or
+ * \return #RCL_RET_NODE_INVALID if the node is invalid, or
+ * \return #RCL_RET_INVALID_ARGUMENT if any arguments are invalid, or
+ * \return #RCL_RET_NODE_INVALID_NAME if the node name is invalid, or
+ * \return #RCL_RET_NODE_INVALID_NAMESPACE if the node namespace is invalid, or
+ * \return #RCL_RET_NODE_NAME_NON_EXISTENT if the node name wasn't found, or
+ * \return #RCL_RET_ERROR if an unspecified error occurs.
+ */
+        int rcl_get_publisher_names_and_types_by_node(const(rcl_node_t)*,
+                rcutils_allocator_t*, bool, const(char)*, const(char)*, rmw_names_and_types_t*) @nogc nothrow;
+        /// Return a list of topic names and types for subscriptions associated with a node.
+        /**
+ * The `node` parameter must point to a valid node.
+ *
+ * The `topic_names_and_types` parameter must be allocated and zero initialized.
+ * This function allocates memory for the returned list of names and types and so it is the
+ * callers responsibility to pass `topic_names_and_types` to rcl_names_and_types_fini()
+ * when it is no longer needed.
+ * Failing to do so will result in leaked memory.
+ *
+ * \see rcl_get_publisher_names_and_types_by_node for details on the `no_demangle` parameter.
+ *
+ * The returned names are not automatically remapped by this function.
+ * Attempting to create publishers or subscribers using names returned by this function may not
+ * result in the desired topic name being used depending on the remap rules in use.
+ *
+ * <hr>
+ * Attribute          | Adherence
+ * ------------------ | -------------
+ * Allocates Memory   | Yes
+ * Thread-Safe        | No
+ * Uses Atomics       | No
+ * Lock-Free          | Maybe [1]
+ * <i>[1] implementation may need to protect the data structure with a lock</i>
+ *
+ * \param[in] node the handle to the node being used to query the ROS graph
+ * \param[in] allocator allocator to be used when allocating space for strings
+ * \param[in] no_demangle if true, list all topics without any demangling
+ * \param[in] node_name the node name of the topics to return
+ * \param[in] node_namespace the node namespace of the topics to return
+ * \param[out] topic_names_and_types list of topic names and their types
+ * \return #RCL_RET_OK if the query was successful, or
+ * \return #RCL_RET_NODE_INVALID if the node is invalid, or
+ * \return #RCL_RET_INVALID_ARGUMENT if any arguments are invalid, or
+ * \return #RCL_RET_NODE_INVALID_NAME if the node name is invalid, or
+ * \return #RCL_RET_NODE_INVALID_NAMESPACE if the node namespace is invalid, or
+ * \return #RCL_RET_NODE_NAME_NON_EXISTENT if the node name wasn't found, or
+ * \return #RCL_RET_ERROR if an unspecified error occurs.
+ */
+        int rcl_get_subscriber_names_and_types_by_node(const(rcl_node_t)*,
+                rcutils_allocator_t*, bool, const(char)*, const(char)*, rmw_names_and_types_t*) @nogc nothrow;
+        /// Return a list of service names and types associated with a node.
+        /**
+ * The `node` parameter must point to a valid node.
+ *
+ * The `service_names_and_types` parameter must be allocated and zero initialized.
+ * This function allocates memory for the returned list of names and types and so it is the
+ * callers responsibility to pass `service_names_and_types` to rcl_names_and_types_fini()
+ * when it is no longer needed.
+ * Failing to do so will result in leaked memory.
+ *
+ * \see rcl_get_publisher_names_and_types_by_node for details on the `no_demangle` parameter.
+ *
+ * The returned names are not automatically remapped by this function.
+ * Attempting to create service clients using names returned by this function may not
+ * result in the desired service name being used depending on the remap rules in use.
+ *
+ * <hr>
+ * Attribute          | Adherence
+ * ------------------ | -------------
+ * Allocates Memory   | Yes
+ * Thread-Safe        | No
+ * Uses Atomics       | No
+ * Lock-Free          | Maybe [1]
+ * <i>[1] implementation may need to protect the data structure with a lock</i>
+ *
+ * \param[in] node the handle to the node being used to query the ROS graph
+ * \param[in] allocator allocator to be used when allocating space for strings
+ * \param[in] node_name the node name of the services to return
+ * \param[in] node_namespace the node namespace of the services to return
+ * \param[out] service_names_and_types list of service names and their types
+ * \return #RCL_RET_OK if the query was successful, or
+ * \return #RCL_RET_NODE_INVALID if the node is invalid, or
+ * \return #RCL_RET_INVALID_ARGUMENT if any arguments are invalid, or
+ * \return #RCL_RET_NODE_INVALID_NAME if the node name is invalid, or
+ * \return #RCL_RET_NODE_INVALID_NAMESPACE if the node namespace is invalid, or
+ * \return #RCL_RET_NODE_NAME_NON_EXISTENT if the node name wasn't found, or
+ * \return #RCL_RET_ERROR if an unspecified error occurs.
+ */
+        int rcl_get_service_names_and_types_by_node(const(rcl_node_t)*,
+                rcutils_allocator_t*, const(char)*, const(char)*, rmw_names_and_types_t*) @nogc nothrow;
+        /// Return a list of service client names and types associated with a node.
+        /**
+ * The `node` parameter must point to a valid node.
+ *
+ * The `service_names_and_types` parameter must be allocated and zero initialized.
+ * This function allocates memory for the returned list of names and types and so it is the
+ * callers responsibility to pass `service_names_and_types` to rcl_names_and_types_fini()
+ * when it is no longer needed.
+ * Failing to do so will result in leaked memory.
+ *
+ * \see rcl_get_publisher_names_and_types_by_node for details on the `no_demangle` parameter.
+ *
+ * The returned names are not automatically remapped by this function.
+ * Attempting to create service servers using names returned by this function may not
+ * result in the desired service name being used depending on the remap rules in use.
+ *
+ * <hr>
+ * Attribute          | Adherence
+ * ------------------ | -------------
+ * Allocates Memory   | Yes
+ * Thread-Safe        | No
+ * Uses Atomics       | No
+ * Lock-Free          | Maybe [1]
+ * <i>[1] implementation may need to protect the data structure with a lock</i>
+ *
+ * \param[in] node the handle to the node being used to query the ROS graph
+ * \param[in] allocator allocator to be used when allocating space for strings
+ * \param[in] node_name the node name of the services to return
+ * \param[in] node_namespace the node namespace of the services to return
+ * \param[out] service_names_and_types list of service client names and their types
+ * \return #RCL_RET_OK if the query was successful, or
+ * \return #RCL_RET_NODE_INVALID if the node is invalid, or
+ * \return #RCL_RET_INVALID_ARGUMENT if any arguments are invalid, or
+ * \return #RCL_RET_NODE_INVALID_NAME if the node name is invalid, or
+ * \return #RCL_RET_NODE_INVALID_NAMESPACE if the node namespace is invalid, or
+ * \return #RCL_RET_NODE_NAME_NON_EXISTENT if the node name wasn't found, or
+ * \return #RCL_RET_ERROR if an unspecified error occurs.
+ */
+        int rcl_get_client_names_and_types_by_node(const(rcl_node_t)*,
+                rcutils_allocator_t*, const(char)*, const(char)*, rmw_names_and_types_t*) @nogc nothrow;
+        /// Return a list of topic names and their types.
+        /**
+ * The `node` parameter must point to a valid node.
+ *
+ * The `topic_names_and_types` parameter must be allocated and zero initialized.
+ * This function allocates memory for the returned list of names and types and so it is the
+ * callers responsibility to pass `topic_names_and_types` to rcl_names_and_types_fini()
+ * when it is no longer needed.
+ * Failing to do so will result in leaked memory.
+ *
+ * \see rcl_get_publisher_names_and_types_by_node for details on the `no_demangle` parameter.
+ *
+ * The returned names are not automatically remapped by this function.
+ * Attempting to create publishers or subscribers using names returned by this function may not
+ * result in the desired topic name being used depending on the remap rules in use.
+ *
+ * <hr>
+ * Attribute          | Adherence
+ * ------------------ | -------------
+ * Allocates Memory   | Yes
+ * Thread-Safe        | No
+ * Uses Atomics       | No
+ * Lock-Free          | Maybe [1]
+ * <i>[1] implementation may need to protect the data structure with a lock</i>
+ *
+ * \param[in] node the handle to the node being used to query the ROS graph
+ * \param[in] allocator allocator to be used when allocating space for strings
+ * \param[in] no_demangle if true, list all topics without any demangling
+ * \param[out] topic_names_and_types list of topic names and their types
+ * \return #RCL_RET_OK if the query was successful, or
+ * \return #RCL_RET_NODE_INVALID if the node is invalid, or
+ * \return #RCL_RET_INVALID_ARGUMENT if any arguments are invalid, or
+ * \return #RCL_RET_NODE_INVALID_NAME if the node name is invalid, or
+ * \return #RCL_RET_NODE_INVALID_NAMESPACE if the node namespace is invalid, or
+ * \return #RCL_RET_ERROR if an unspecified error occurs.
+ */
+        int rcl_get_topic_names_and_types(const(rcl_node_t)*,
+                rcutils_allocator_t*, bool, rmw_names_and_types_t*) @nogc nothrow;
+        /// Return a list of service names and their types.
+        /**
+ * The `node` parameter must point to a valid node.
+ *
+ * The `service_names_and_types` parameter must be allocated and zero initialized.
+ * This function allocates memory for the returned list of names and types and so it is the
+ * callers responsibility to pass `service_names_and_types` to rcl_names_and_types_fini()
+ * when it is no longer needed.
+ * Failing to do so will result in leaked memory.
+ *
+ * The returned names are not automatically remapped by this function.
+ * Attempting to create clients or services using names returned by this function may not result in
+ * the desired service name being used depending on the remap rules in use.
+ *
+ * <hr>
+ * Attribute          | Adherence
+ * ------------------ | -------------
+ * Allocates Memory   | Yes
+ * Thread-Safe        | No
+ * Uses Atomics       | No
+ * Lock-Free          | Maybe [1]
+ * <i>[1] implementation may need to protect the data structure with a lock</i>
+ *
+ * \param[in] node the handle to the node being used to query the ROS graph
+ * \param[in] allocator allocator to be used when allocating space for strings
+ * \param[out] service_names_and_types list of service names and their types
+ * \return #RCL_RET_OK if the query was successful, or
+ * \return #RCL_RET_NODE_INVALID if the node is invalid, or
+ * \return #RCL_RET_INVALID_ARGUMENT if any arguments are invalid, or
+ * \return #RCL_RET_ERROR if an unspecified error occurs.
+ */
+        int rcl_get_service_names_and_types(const(rcl_node_t)*,
+                rcutils_allocator_t*, rmw_names_and_types_t*) @nogc nothrow;
+        /// Initialize a rcl_names_and_types_t object.
+        /**
+ * This function initializes the string array for the names and allocates space
+ * for all the string arrays for the types according to the given size, but
+ * it does not initialize the string array for each set of types.
+ * However, the string arrays for each set of types is zero initialized.
+ *
+ * <hr>
+ * Attribute          | Adherence
+ * ------------------ | -------------
+ * Allocates Memory   | Yes
+ * Thread-Safe        | No
+ * Uses Atomics       | No
+ * Lock-Free          | Yes
+ *
+ * \param[inout] names_and_types object to be initialized
+ * \param[in] size the number of names and sets of types to be stored
+ * \param[in] allocator to be used to allocate and deallocate memory
+ * \return #RCL_RET_OK on success, or
+ * \return #RCL_RET_INVALID_ARGUMENT if any arguments are invalid, or
+ * \return #RCL_RET_BAD_ALLOC if memory allocation fails, or
+ * \return #RCL_RET_ERROR when an unspecified error occurs.
+ */
+        int rcl_names_and_types_init(rmw_names_and_types_t*, c_ulong, rcutils_allocator_t*) @nogc nothrow;
+        /// Finalize a rcl_names_and_types_t object.
+        /**
+ * The object is populated when given to one of the rcl_get_*_names_and_types()
+ * functions.
+ * This function reclaims any resources allocated during population.
+ *
+ * The `names_and_types` parameter must not be `NULL`, and must point to an
+ * already allocated rcl_names_and_types_t struct that was previously
+ * passed to a successful rcl_get_*_names_and_types() function call.
+ *
+ * <hr>
+ * Attribute          | Adherence
+ * ------------------ | -------------
+ * Allocates Memory   | Yes
+ * Thread-Safe        | No
+ * Uses Atomics       | No
+ * Lock-Free          | Yes
+ *
+ * \param[inout] names_and_types struct to be finalized
+ * \return #RCL_RET_OK if successful, or
+ * \return #RCL_RET_INVALID_ARGUMENT if any arguments are invalid, or
+ * \return #RCL_RET_ERROR if an unspecified error occurs.
+ */
+        int rcl_names_and_types_fini(rmw_names_and_types_t*) @nogc nothrow;
+        /// Return a list of available nodes in the ROS graph.
+        /**
+ * The `node` parameter must point to a valid node.
+ *
+ * The `node_names` parameter must be allocated and zero initialized.
+ * `node_names` is the output for this function, and contains allocated memory.
+ * Use rcutils_get_zero_initialized_string_array() for initializing an empty
+ * rcutils_string_array_t struct.
+ * This `node_names` struct should therefore be passed to rcutils_string_array_fini()
+ * when it is no longer needed.
+ * Failing to do so will result in leaked memory.
+ *
+ * Example:
+ *
+ * ```c
+ * rcutils_string_array_t node_names =
+ *   rcutils_get_zero_initialized_string_array();
+ * rcl_ret_t ret = rcl_get_node_names(node, &node_names);
+ * if (ret != RCL_RET_OK) {
+ *   // ... error handling
+ * }
+ * // ... use the node_names struct, and when done:
+ * rcutils_ret_t rcutils_ret = rcutils_string_array_fini(&node_names);
+ * if (rcutils_ret != RCUTILS_RET_OK) {
+ *   // ... error handling
+ * }
+ * ```
+ *
+ * <hr>
+ * Attribute          | Adherence
+ * ------------------ | -------------
+ * Allocates Memory   | Yes
+ * Thread-Safe        | No
+ * Uses Atomics       | No
+ * Lock-Free          | Maybe [1]
+ * <i>[1] implementation may need to protect the data structure with a lock</i>
+ *
+ * \param[in] node the handle to the node being used to query the ROS graph
+ * \param[in] allocator used to control allocation and deallocation of names
+ * \param[out] node_names struct storing discovered node names
+ * \param[out] node_namespaces struct storing discovered node namespaces
+ * \return #RCL_RET_OK if the query was successful, or
+ * \return #RCL_RET_BAD_ALLOC if an error occurred while allocating memory, or
+ * \return #RCL_RET_INVALID_ARGUMENT if any arguments are invalid, or
+ * \return #RCL_RET_NODE_INVALID_NAME if a node with an invalid name is detected, or
+ * \return #RCL_RET_NODE_INVALID_NAMESPACE if a node with an invalid namespace is detected, or
+ * \return #RCL_RET_ERROR if an unspecified error occurs.
+ */
+        int rcl_get_node_names(const(rcl_node_t)*, rcutils_allocator_t,
+                rcutils_string_array_t*, rcutils_string_array_t*) @nogc nothrow;
+        /// Return a list of available nodes in the ROS graph, including their enclave names.
+        /**
+ * An rcl_get_node_names() equivalent, but including in its output the enclave
+ * name the node is using.
+ *
+ * <hr>
+ * Attribute          | Adherence
+ * ------------------ | -------------
+ * Allocates Memory   | Yes
+ * Thread-Safe        | No
+ * Uses Atomics       | No
+ * Lock-Free          | Maybe [1]
+ * <i>[1] RMW implementation in use may need to protect the data structure with a lock</i>
+ *
+ * \param[in] node the handle to the node being used to query the ROS graph
+ * \param[in] allocator used to control allocation and deallocation of names
+ * \param[out] node_names struct storing discovered node names
+ * \param[out] node_namespaces struct storing discovered node namespaces
+ * \param[out] enclaves struct storing discovered node enclaves
+ * \return #RCL_RET_OK if the query was successful, or
+ * \return #RCL_RET_BAD_ALLOC if an error occurred while allocating memory, or
+ * \return #RCL_RET_INVALID_ARGUMENT if any arguments are invalid, or
+ * \return #RCL_RET_ERROR if an unspecified error occurs.
+ */
+        int rcl_get_node_names_with_enclaves(const(rcl_node_t)*, rcutils_allocator_t,
+                rcutils_string_array_t*, rcutils_string_array_t*, rcutils_string_array_t*) @nogc nothrow;
+        /// Return the number of publishers on a given topic.
+        /**
+ * The `node` parameter must point to a valid node.
+ *
+ * The `topic_name` parameter must not be `NULL`, and must not be an empty string.
+ * It should also follow the topic name rules.
+ * \todo TODO(wjwwood): link to the topic name rules.
+ *
+ * The `count` parameter must point to a valid bool.
+ * The `count` parameter is the output for this function and will be set.
+ *
+ * In the event that error handling needs to allocate memory, this function
+ * will try to use the node's allocator.
+ *
+ * The topic name is not automatically remapped by this function.
+ * If there is a publisher created with topic name `foo` and remap rule `foo:=bar` then calling
+ * this with `topic_name` set to `bar` will return a count of 1, and with `topic_name` set to `foo`
+ * will return a count of 0.
+ * /sa rcl_remap_topic_name()
+ *
+ * <hr>
+ * Attribute          | Adherence
+ * ------------------ | -------------
+ * Allocates Memory   | No
+ * Thread-Safe        | No
+ * Uses Atomics       | No
+ * Lock-Free          | Maybe [1]
+ * <i>[1] implementation may need to protect the data structure with a lock</i>
+ *
+ * \param[in] node the handle to the node being used to query the ROS graph
+ * \param[in] topic_name the name of the topic in question
+ * \param[out] count number of publishers on the given topic
+ * \return #RCL_RET_OK if the query was successful, or
+ * \return #RCL_RET_NODE_INVALID if the node is invalid, or
+ * \return #RCL_RET_INVALID_ARGUMENT if any arguments are invalid, or
+ * \return #RCL_RET_ERROR if an unspecified error occurs.
+ */
+        int rcl_count_publishers(const(rcl_node_t)*, const(char)*, c_ulong*) @nogc nothrow;
+        /// Return the number of subscriptions on a given topic.
+        /**
+ * The `node` parameter must point to a valid node.
+ *
+ * The `topic_name` parameter must not be `NULL`, and must not be an empty string.
+ * It should also follow the topic name rules.
+ * \todo TODO(wjwwood): link to the topic name rules.
+ *
+ * The `count` parameter must point to a valid bool.
+ * The `count` parameter is the output for this function and will be set.
+ *
+ * In the event that error handling needs to allocate memory, this function
+ * will try to use the node's allocator.
+ *
+ * The topic name is not automatically remapped by this function.
+ * If there is a subscriber created with topic name `foo` and remap rule `foo:=bar` then calling
+ * this with `topic_name` set to `bar` will return a count of 1, and with `topic_name` set to `foo`
+ * will return a count of 0.
+ * /sa rcl_remap_topic_name()
+ *
+ * <hr>
+ * Attribute          | Adherence
+ * ------------------ | -------------
+ * Allocates Memory   | No
+ * Thread-Safe        | No
+ * Uses Atomics       | No
+ * Lock-Free          | Maybe [1]
+ * <i>[1] implementation may need to protect the data structure with a lock</i>
+ *
+ * \param[in] node the handle to the node being used to query the ROS graph
+ * \param[in] topic_name the name of the topic in question
+ * \param[out] count number of subscriptions on the given topic
+ * \return #RCL_RET_OK if the query was successful, or
+ * \return #RCL_RET_NODE_INVALID if the node is invalid, or
+ * \return #RCL_RET_INVALID_ARGUMENT if any arguments are invalid, or
+ * \return #RCL_RET_ERROR if an unspecified error occurs.
+ */
+        int rcl_count_subscribers(const(rcl_node_t)*, const(char)*, c_ulong*) @nogc nothrow;
+        /// Wait for there to be a specified number of publishers on a given topic.
+        /**
+ * The `node` parameter must point to a valid node.
+ * The nodes graph guard condition is used by this function, and therefore the caller should
+ * take care not to use the guard condition concurrently in any other wait sets.
+ *
+ * The `allocator` parameter must point to a valid allocator.
+ *
+ * The `topic_name` parameter must not be `NULL`, and must not be an empty string.
+ * It should also follow the topic name rules.
+ *
+ * This function blocks and will return when the number of publishers for `topic_name`
+ * is greater than or equal to the `count` parameter, or the specified `timeout` is reached.
+ *
+ * The `timeout` parameter is in nanoseconds.
+ * The timeout is based on system time elapsed.
+ * A negative value disables the timeout (i.e. this function blocks until the number of
+ * publishers is greater than or equals to `count`).
+ *
+ * The `success` parameter must point to a valid bool.
+ * The `success` parameter is the output for this function and will be set.
+ *
+ * <hr>
+ * Attribute          | Adherence
+ * ------------------ | -------------
+ * Allocates Memory   | Yes
+ * Thread-Safe        | No
+ * Uses Atomics       | No
+ * Lock-Free          | Maybe [1]
+ * <i>[1] implementation may need to protect the data structure with a lock</i>
+ *
+ * \param[in] node the handle to the node being used to query the ROS graph
+ * \param[in] allocator to allocate space for the rcl_wait_set_t used to wait for graph events
+ * \param[in] topic_name the name of the topic in question
+ * \param[in] count number of publishers to wait for
+ * \param[in] timeout maximum duration to wait for publishers
+ * \param[out] success `true` if the number of publishers is equal to or greater than count, or
+ *   `false` if a timeout occurred waiting for publishers.
+ * \return #RCL_RET_OK if there was no errors, or
+ * \return #RCL_RET_NODE_INVALID if the node is invalid, or
+ * \return #RCL_RET_INVALID_ARGUMENT if any arguments are invalid, or
+ * \return #RCL_RET_TIMEOUT if a timeout occurs before the number of publishers is detected, or
+ * \return #RCL_RET_ERROR if an unspecified error occurred.
+ */
+        int rcl_wait_for_publishers(const(rcl_node_t)*, rcutils_allocator_t*,
+                const(char)*, const(c_ulong), c_long, bool*) @nogc nothrow;
+        /// Wait for there to be a specified number of subscribers on a given topic.
+        /**
+ * \see rcl_wait_for_publishers
+ *
+ * <hr>
+ * Attribute          | Adherence
+ * ------------------ | -------------
+ * Allocates Memory   | Yes
+ * Thread-Safe        | No
+ * Uses Atomics       | No
+ * Lock-Free          | Maybe [1]
+ * <i>[1] implementation may need to protect the data structure with a lock</i>
+ *
+ * \param[in] node the handle to the node being used to query the ROS graph
+ * \param[in] allocator to allocate space for the rcl_wait_set_t used to wait for graph events
+ * \param[in] topic_name the name of the topic in question
+ * \param[in] count number of subscribers to wait for
+ * \param[in] timeout maximum duration to wait for subscribers
+ * \param[out] success `true` if the number of subscribers is equal to or greater than count, or
+ *   `false` if a timeout occurred waiting for subscribers.
+ * \return #RCL_RET_OK if there was no errors, or
+ * \return #RCL_RET_NODE_INVALID if the node is invalid, or
+ * \return #RCL_RET_INVALID_ARGUMENT if any arguments are invalid, or
+ * \return #RCL_RET_TIMEOUT if a timeout occurs before the number of subscribers is detected, or
+ * \return #RCL_RET_ERROR if an unspecified error occurred.
+ */
+        int rcl_wait_for_subscribers(const(rcl_node_t)*,
+                rcutils_allocator_t*, const(char)*, const(c_ulong), c_long, bool*) @nogc nothrow;
+        /// Return a list of all publishers to a topic.
+        /**
+ * The `node` parameter must point to a valid node.
+ *
+ * The `topic_name` parameter must not be `NULL`.
+ *
+ * When the `no_mangle` parameter is `true`, the provided `topic_name` should be a valid topic name
+ * for the middleware (useful when combining ROS with native middleware (e.g. DDS) apps).
+ * When the `no_mangle` parameter is `false`, the provided `topic_name` should follow
+ * ROS topic name conventions.
+ * In either case, the topic name should always be fully qualified.
+ *
+ * Each element in the `publishers_info` array will contain the node name, node namespace,
+ * topic type, gid and the qos profile of the publisher.
+ * It is the responsibility of the caller to ensure that `publishers_info` parameter points
+ * to a valid struct of type rcl_topic_endpoint_info_array_t.
+ * The `count` field inside the struct must be set to 0 and the `info_array` field inside
+ * the struct must be set to null.
+ * \see rmw_get_zero_initialized_topic_endpoint_info_array
+ *
+ * The `allocator` will be used to allocate memory to the `info_array` member
+ * inside of `publishers_info`.
+ * Moreover, every const char * member inside of
+ * rmw_topic_endpoint_info_t will be assigned a copied value on allocated memory.
+ * \see rmw_topic_endpoint_info_set_node_name and the likes.
+ * However, it is the responsibility of the caller to
+ * reclaim any allocated resources to `publishers_info` to avoid leaking memory.
+ * \see rmw_topic_endpoint_info_array_fini
+ *
+ * <hr>
+ * Attribute          | Adherence
+ * ------------------ | -------------
+ * Allocates Memory   | Yes
+ * Thread-Safe        | No
+ * Uses Atomics       | No
+ * Lock-Free          | Maybe [1]
+ * <i>[1] implementation may need to protect the data structure with a lock</i>
+ *
+ * \param[in] node the handle to the node being used to query the ROS graph
+ * \param[in] allocator allocator to be used when allocating space for
+ *            the array inside publishers_info
+ * \param[in] topic_name the name of the topic in question
+ * \param[in] no_mangle if `true`, `topic_name` needs to be a valid middleware topic name,
+ *            otherwise it should be a valid ROS topic name
+ * \param[out] publishers_info a struct representing a list of publisher information
+ * \return #RCL_RET_OK if the query was successful, or
+ * \return #RCL_RET_NODE_INVALID if the node is invalid, or
+ * \return #RCL_RET_INVALID_ARGUMENT if any arguments are invalid, or
+ * \return #RCL_RET_BAD_ALLOC if memory allocation fails, or
+ * \return #RCL_RET_ERROR if an unspecified error occurs.
+ */
+        int rcl_get_publishers_info_by_topic(const(rcl_node_t)*, rcutils_allocator_t*,
+                const(char)*, bool, rmw_topic_endpoint_info_array_t*) @nogc nothrow;
+        /// Return a list of all subscriptions to a topic.
+        /**
+ * The `node` parameter must point to a valid node.
+ *
+ * The `topic_name` parameter must not be `NULL`.
+ *
+ * When the `no_mangle` parameter is `true`, the provided `topic_name` should be a valid topic name
+ * for the middleware (useful when combining ROS with native middleware (e.g. DDS) apps).
+ * When the `no_mangle` parameter is `false`, the provided `topic_name` should follow
+ * ROS topic name conventions.
+ * In either case, the topic name should always be fully qualified.
+ *
+ * Each element in the `subscriptions_info` array will contain the node name, node namespace,
+ * topic type, gid and the qos profile of the subscription.
+ * It is the responsibility of the caller to ensure that `subscriptions_info` parameter points
+ * to a valid struct of type rcl_topic_endpoint_info_array_t.
+ * The `count` field inside the struct must be set to 0 and the `info_array` field inside
+ * the struct must be set to null.
+ * \see rmw_get_zero_initialized_topic_endpoint_info_array
+ *
+ * The `allocator` will be used to allocate memory to the `info_array` member
+ * inside of `subscriptions_info`.
+ * Moreover, every const char * member inside of
+ * rmw_topic_endpoint_info_t will be assigned a copied value on allocated memory.
+ * \see rmw_topic_endpoint_info_set_node_name and the likes.
+ * However, it is the responsibility of the caller to
+ * reclaim any allocated resources to `subscriptions_info` to avoid leaking memory.
+ * \see rmw_topic_endpoint_info_array_fini
+ *
+ * <hr>
+ * Attribute          | Adherence
+ * ------------------ | -------------
+ * Allocates Memory   | Yes
+ * Thread-Safe        | No
+ * Uses Atomics       | No
+ * Lock-Free          | Maybe [1]
+ * <i>[1] implementation may need to protect the data structure with a lock</i>
+ *
+ * \param[in] node the handle to the node being used to query the ROS graph
+ * \param[in] allocator allocator to be used when allocating space for
+ *            the array inside publishers_info
+ * \param[in] topic_name the name of the topic in question
+ * \param[in] no_mangle if `true`, `topic_name` needs to be a valid middleware topic name,
+ *            otherwise it should be a valid ROS topic name
+ * \param[out] subscriptions_info a struct representing a list of subscriptions information
+ * \return #RCL_RET_OK if the query was successful, or
+ * \return #RCL_RET_NODE_INVALID if the node is invalid, or
+ * \return #RCL_RET_INVALID_ARGUMENT if any arguments are invalid, or
+ * \return #RCL_RET_BAD_ALLOC if memory allocation fails, or
+ * \return #RCL_RET_ERROR if an unspecified error occurs.
+ */
+        int rcl_get_subscriptions_info_by_topic(const(rcl_node_t)*,
+                rcutils_allocator_t*, const(char)*, bool, rmw_topic_endpoint_info_array_t*) @nogc nothrow;
+        /// Check if a service server is available for the given service client.
+        /**
+ * This function will return true for `is_available` if there is a service server
+ * available for the given client.
+ *
+ * The `node` parameter must point to a valid node.
+ *
+ * The `client` parameter must point to a valid client.
+ *
+ * The given client and node must match, i.e. the client must have been created
+ * using the given node.
+ *
+ * The `is_available` parameter must not be `NULL`, and must point a bool variable.
+ * The result of the check will be stored in the `is_available` parameter.
+ *
+ * In the event that error handling needs to allocate memory, this function
+ * will try to use the node's allocator.
+ *
+ * <hr>
+ * Attribute          | Adherence
+ * ------------------ | -------------
+ * Allocates Memory   | Yes
+ * Thread-Safe        | No
+ * Uses Atomics       | No
+ * Lock-Free          | Maybe [1]
+ * <i>[1] implementation may need to protect the data structure with a lock</i>
+ *
+ * \param[in] node the handle to the node being used to query the ROS graph
+ * \param[in] client the handle to the service client being queried
+ * \param[out] is_available set to true if there is a service server available, else false
+ * \return #RCL_RET_OK if the check was made successfully (regardless of the service readiness), or
+ * \return #RCL_RET_NODE_INVALID if the node is invalid, or
+ * \return #RCL_RET_INVALID_ARGUMENT if any arguments are invalid, or
+ * \return #RCL_RET_ERROR if an unspecified error occurs.
+ */
+        int rcl_service_server_is_available(const(rcl_node_t)*, const(rcl_client_t)*, bool*) @nogc nothrow;
         struct rcl_guard_condition_impl_t;
         /// Options available for a rcl guard condition.
         struct rcl_guard_condition_options_t
@@ -1562,6 +2226,8 @@ version (galactic)
  * \return rmw guard condition handle if successful, otherwise `NULL`
  */
         rmw_guard_condition_t* rcl_guard_condition_get_rmw_handle(const(rcl_guard_condition_t)*) @nogc nothrow;
+
+        alias __suseconds_t = c_long;
         /// Initialization of rcl.
         /**
  * This function can be run any number of times, so long as the given context
@@ -1635,8 +2301,6 @@ version (galactic)
  * \return #RCL_RET_ERROR if an unspecified error occur.
  */
         int rcl_shutdown(rcl_context_t*) @nogc nothrow;
-
-        alias __daddr_t = int;
         struct rcl_init_options_impl_t;
         /// Encapsulation of init options and implementation defined init options.
         struct rcl_init_options_t
@@ -1932,7 +2596,9 @@ version (galactic)
         int rcl_log_levels_add_logger_setting(rcl_log_levels_t*,
                 const(char)*, RCUTILS_LOG_SEVERITY) @nogc nothrow;
 
-        alias __suseconds_t = c_long;
+        alias __useconds_t = uint;
+
+        alias __time_t = c_long;
         /// Handle for a rcl guard condition.
         struct rcl_guard_condition_t
         {
@@ -2372,8 +3038,6 @@ version (galactic)
  */
         int rcl_node_resolve_name(const(rcl_node_t)*, const(char)*,
                 rcutils_allocator_t, bool, bool, char**) @nogc nothrow;
-
-        alias __useconds_t = uint;
         /// Structure which encapsulates the options for creating a rcl_node_t.
         struct rcl_node_options_t
         {
@@ -2439,6 +3103,8 @@ version (galactic)
  * \return #RCL_RET_ERROR if an unspecified error occurs.
  */
         int rcl_node_options_fini(rcl_node_options_t*) @nogc nothrow;
+
+        alias __id_t = uint;
         struct rcl_publisher_impl_t;
         /// Structure which encapsulates a ROS Publisher.
         struct rcl_publisher_t
@@ -2962,8 +3628,6 @@ version (galactic)
  * can allocate a ROS message instance.
  */
         bool rcl_publisher_can_loan_messages(const(rcl_publisher_t)*) @nogc nothrow;
-
-        alias __time_t = c_long;
         struct rcl_service_impl_t;
         /// Structure which encapsulates a ROS Service.
         struct rcl_service_t
@@ -3317,6 +3981,8 @@ version (galactic)
  * \return `true` if `service` is valid, otherwise `false`
  */
         bool rcl_service_is_valid(const(rcl_service_t)*) @nogc nothrow;
+
+        alias __rlim64_t = c_ulong;
         struct rcl_subscription_impl_t;
         /// Structure which encapsulates a ROS Subscription.
         struct rcl_subscription_t
@@ -3810,11 +4476,9 @@ version (galactic)
  */
         bool rcl_subscription_can_loan_messages(const(rcl_subscription_t)*) @nogc nothrow;
 
-        alias __id_t = uint;
-
-        alias __rlim64_t = c_ulong;
-
         alias __rlim_t = c_ulong;
+
+        alias __clock_t = c_long;
         /// A single point in time, measured in nanoseconds since the Unix epoch.
         alias rcl_time_point_value_t = c_long;
         /// A duration of time, measured in nanoseconds.
@@ -4844,8 +5508,6 @@ version (galactic)
         /// The type that holds an rcl return code.
         alias rcl_ret_t = int;
 
-        alias __clock_t = c_long;
-
         struct __fsid_t
         {
 
@@ -4871,16 +5533,22 @@ version (galactic)
         alias __uid_t = uint;
 
         alias __dev_t = c_ulong;
-        /// typedef for rmw_serialized_message_t;
-        alias rcl_serialized_message_t = rcutils_uint8_array_t;
 
         alias __uintmax_t = c_ulong;
 
         alias __intmax_t = c_long;
+        /// typedef for rmw_serialized_message_t;
+        alias rcl_serialized_message_t = rcutils_uint8_array_t;
 
         alias __u_quad_t = c_ulong;
 
         alias __quad_t = c_long;
+
+        alias __uint_least64_t = c_ulong;
+
+        alias __int_least64_t = c_long;
+
+        alias __uint_least32_t = uint;
         struct rcl_wait_set_impl_t;
         /// Container for subscription's, guard condition's, etc to be waited on.
         struct rcl_wait_set_t
@@ -5254,7 +5922,7 @@ version (galactic)
  */
         bool rcl_wait_set_is_valid(const(rcl_wait_set_t)*) @nogc nothrow;
 
-        alias __uint_least64_t = c_ulong;
+        alias __int_least32_t = int;
         /// Array of bool values
         alias rcl_bool_array_t = rcl_bool_array_s;
         /// Array of bool values
@@ -5350,7 +6018,7 @@ version (galactic)
             rcutils_allocator_t allocator;
         }
 
-        alias __int_least64_t = c_long;
+        alias __uint_least16_t = ushort;
         /// Encapsulation of an allocator.
         /**
  * The default allocator uses malloc(), free(), calloc(), and realloc().
@@ -5428,9 +6096,9 @@ version (galactic)
  */
         bool rcutils_allocator_is_valid(const(rcutils_allocator_t)*) @nogc nothrow;
 
-        alias __uint_least32_t = uint;
+        alias __int_least16_t = short;
 
-        alias __int_least32_t = int;
+        alias __uint_least8_t = ubyte;
         /// Emulate the behavior of [reallocf](https://linux.die.net/man/3/reallocf).
         /**
  * This function will return `NULL` if the allocator is `NULL` or has `NULL` for
@@ -5441,12 +6109,6 @@ version (galactic)
  */
         void* rcutils_reallocf(void*, c_ulong, rcutils_allocator_t*) @nogc nothrow;
 
-        alias __uint_least16_t = ushort;
-
-        alias __int_least16_t = short;
-
-        alias __uint_least8_t = ubyte;
-
         alias __int_least8_t = byte;
 
         alias __uint64_t = c_ulong;
@@ -5456,6 +6118,12 @@ version (galactic)
         alias __uint32_t = uint;
 
         alias __int32_t = int;
+
+        alias __uint16_t = ushort;
+
+        alias __int16_t = short;
+
+        alias __uint8_t = ubyte;
         /// Struct wrapping a fixed-size c string used for returning the formatted error string.
         struct rcutils_error_string_t
         {
@@ -5528,15 +6196,15 @@ version (galactic)
  */
         void rcutils_set_error_state(const(char)*, const(char)*, c_ulong) @nogc nothrow;
 
-        alias __uint16_t = ushort;
-
-        alias __int16_t = short;
-
-        alias __uint8_t = ubyte;
-
         alias __int8_t = byte;
 
         alias __u_long = c_ulong;
+
+        alias __u_int = uint;
+
+        alias __u_short = ushort;
+
+        alias __u_char = ubyte;
         /// Return `true` if the error is set, otherwise `false`.
         bool rcutils_error_is_set() @nogc nothrow;
         /// Return an rcutils_error_state_t which was set with rcutils_set_error_state().
@@ -5562,12 +6230,6 @@ version (galactic)
         rcutils_error_string_t rcutils_get_error_string() @nogc nothrow;
         /// Reset the error state by clearing any previously set error state.
         void rcutils_reset_error() @nogc nothrow;
-
-        alias __u_int = uint;
-
-        alias __u_short = ushort;
-
-        alias __u_char = ubyte;
         /// The flag if the logging system has been initialized.
         extern __gshared bool g_rcutils_logging_initialized;
         /// Initialize the logging system using the specified allocator.
@@ -6127,6 +6789,34 @@ version (galactic)
         /// Format a string with va_list for arguments, see rcutils_snprintf().
         int rcutils_vsnprintf(char*, c_ulong, const(char)*, va_list*) @nogc nothrow;
 
+        struct __pthread_rwlock_arch_t
+        {
+
+            uint __readers;
+
+            uint __writers;
+
+            uint __wrphase_futex;
+
+            uint __writers_futex;
+
+            uint __pad3;
+
+            uint __pad4;
+
+            int __cur_writer;
+
+            int __shared;
+
+            byte __rwelision;
+
+            ubyte[7] __pad1;
+
+            c_ulong __pad2;
+
+            uint __flags;
+        }
+
         bool rcutils_fault_injection_is_test_complete() @nogc nothrow;
         /**
  * \brief Atomically set the fault injection counter.
@@ -6166,34 +6856,6 @@ version (galactic)
  */
         c_long _rcutils_fault_injection_maybe_fail() @nogc nothrow;
 
-        struct __pthread_rwlock_arch_t
-        {
-
-            uint __readers;
-
-            uint __writers;
-
-            uint __wrphase_futex;
-
-            uint __writers_futex;
-
-            uint __pad3;
-
-            uint __pad4;
-
-            int __cur_writer;
-
-            int __shared;
-
-            byte __rwelision;
-
-            ubyte[7] __pad1;
-
-            c_ulong __pad2;
-
-            uint __flags;
-        }
-
         struct __pthread_mutex_s
         {
 
@@ -6219,6 +6881,10 @@ version (galactic)
         alias uint32_t = uint;
 
         alias uint16_t = ushort;
+
+        alias uint8_t = ubyte;
+
+        alias int64_t = c_long;
         /// A single point in time, measured in nanoseconds since the Unix epoch.
         alias rcutils_time_point_value_t = c_long;
         /// A duration of time, measured in nanoseconds.
@@ -6335,7 +7001,9 @@ version (galactic)
  */
         int rcutils_time_point_value_as_seconds_string(const(c_long)*, char*, c_ulong) @nogc nothrow;
 
-        alias uint8_t = ubyte;
+        alias int32_t = int;
+
+        alias int16_t = short;
         struct rcutils_array_list_impl_t;
         /// The structure holding the metadata for an array list.
         struct rcutils_array_list_t
@@ -6344,7 +7012,7 @@ version (galactic)
             rcutils_array_list_impl_t* impl;
         }
 
-        alias int64_t = c_long;
+        alias int8_t = byte;
         /// Return an empty array_list struct.
         /**
  * This function returns an empty and zero initialized array_list struct.
@@ -6542,8 +7210,6 @@ version (galactic)
  * \return #RCUTILS_RET_ERROR if an unknown error occurs.
  */
         int rcutils_array_list_get_size(const(rcutils_array_list_t)*, c_ulong*) @nogc nothrow;
-
-        alias int32_t = int;
         /// The structure holding the metadata for a char array.
         struct rcutils_char_array_t
         {
@@ -6707,8 +7373,6 @@ version (galactic)
  * \return #RCUTILS_RET_ERROR if an unexpected error occurs.
  */
         int rcutils_char_array_strcpy(rcutils_char_array_t*, const(char)*) @nogc nothrow;
-
-        alias int16_t = short;
         struct rcutils_hash_map_impl_t;
         /// The structure holding the metadata for a hash map.
         struct rcutils_hash_map_t
@@ -6719,8 +7383,6 @@ version (galactic)
 
         alias rcutils_hash_map_key_hasher_t = c_ulong function(const(void)*);
         alias rcutils_hash_map_key_cmp_t = int function(const(void)*, const(void)*);
-
-        alias int8_t = byte;
         /// A hashing function for a null terminated c string.
         /**
  * A hashing function for a null terminated c string.
@@ -7035,6 +7697,14 @@ version (galactic)
         }
 
         alias pthread_spinlock_t = int;
+
+        union pthread_rwlockattr_t
+        {
+
+            char[8] __size;
+
+            c_long __align;
+        }
         /// The structure holding the metadata for a string array.
         struct rcutils_string_array_t
         {
@@ -7173,10 +7843,12 @@ version (galactic)
  */
         int rcutils_string_array_sort(rcutils_string_array_t*) @nogc nothrow;
 
-        union pthread_rwlockattr_t
+        union pthread_rwlock_t
         {
 
-            char[8] __size;
+            __pthread_rwlock_arch_t __data;
+
+            char[56] __size;
 
             c_long __align;
         }
@@ -7576,16 +8248,6 @@ version (galactic)
  */
         int rcutils_uint8_array_resize(rcutils_uint8_array_t*, c_ulong) @nogc nothrow;
 
-        union pthread_rwlock_t
-        {
-
-            __pthread_rwlock_arch_t __data;
-
-            char[56] __size;
-
-            c_long __align;
-        }
-
         union pthread_cond_t
         {
 
@@ -7605,6 +8267,16 @@ version (galactic)
 
             c_long __align;
         }
+
+        union pthread_attr_t
+        {
+
+            char[56] __size;
+
+            c_long __align;
+        }
+
+        alias pthread_once_t = int;
 
         struct rmw_qos_incompatible_event_status_t
         {
@@ -7629,13 +8301,7 @@ version (galactic)
         /// Event state for a publisher's 'RMW_EVENT_OFFERED_QOS_INCOMPATIBLE' events.
         alias rmw_offered_qos_incompatible_event_status_t = rmw_qos_incompatible_event_status_t;
 
-        union pthread_attr_t
-        {
-
-            char[56] __size;
-
-            c_long __align;
-        }
+        alias pthread_key_t = uint;
         /// QoS Liveliness Changed information provided by a subscription.
         struct rmw_liveliness_changed_status_t
         {
@@ -7676,8 +8342,6 @@ version (galactic)
             int total_count_change;
         }
 
-        alias pthread_once_t = int;
-
         struct rmw_message_lost_status_t
         {
             /// Total number of messages lost.
@@ -7686,7 +8350,13 @@ version (galactic)
             c_ulong total_count_change;
         }
 
-        alias pthread_key_t = uint;
+        union pthread_condattr_t
+        {
+
+            char[4] __size;
+
+            int __align;
+        }
         /// QoS Deadline Missed information provided by a publisher.
         struct rmw_offered_deadline_missed_status_t
         {
@@ -7712,6 +8382,78 @@ version (galactic)
             int total_count;
             /// The incremental number of deadlines detected since the status was read.
             int total_count_change;
+        }
+        /// Return all topic names and types in the ROS graph.
+        /**
+ * This function returns an array of all topic names and types in the ROS graph
+ * i.e. for which a publisher and/or a subscription exists, as discovered so far
+ * by the given local node.
+ *
+ * Unless `no_demangle` is true, some demangling and filtering may take place when
+ * listing topics as implemented by the middleware.
+ * Whether demangling applies or not, and how it applies, depends on the underlying
+ * implementation.
+ * See http://design.ros2.org/articles/topic_and_service_names.html for an example
+ * on how it is used in DDS and RTPS based implementations.
+ *
+ * <hr>
+ * Attribute          | Adherence
+ * ------------------ | -------------
+ * Allocates Memory   | Yes
+ * Thread-Safe        | Yes
+ * Uses Atomics       | Maybe [1]
+ * Lock-Free          | Maybe [1]
+ * <i>[1] rmw implementation defined, check the implementation documentation</i>
+ *
+ * \par Runtime behavior
+ *   To query the ROS graph is a synchronous operation.
+ *   It is also non-blocking, but it is not guaranteed to be lock-free.
+ *   Generally speaking, implementations may synchronize access to internal resources using
+ *   locks but are not allowed to wait for events with no guaranteed time bound (barring
+ *   the effects of starvation due to OS scheduling).
+ *
+ * \par Thread-safety
+ *   Nodes are thread-safe objects, and so are all operations on them except for finalization.
+ *   Therefore, it is safe to query the ROS graph using the same node concurrently.
+ *   However, when querying topic names and types:
+ *   - Access to the array of names and types is not synchronized.
+ *     It is not safe to read or write `topic_names_and_types`
+ *     while rmw_get_topic_names_and_types() uses it.
+ *   - The default allocators are thread-safe objects, but any custom `allocator` may not be.
+ *     Check your allocator documentation for further reference.
+ *
+ * \pre Given `node` must be a valid node handle, as returned by rmw_create_node().
+ * \pre Given `topic_names_and_types` must be a zero-initialized array of names and types,
+ *   as returned by rmw_get_zero_initialized_names_and_types().
+ *
+ * \param[in] node Node to query the ROS graph.
+ * \param[in] allocator Allocator to be used when populating the `topic_names_and_types` array.
+ * \param[in] no_demangle Whether to demangle all topic names following ROS conventions or not.
+ * \param[out] topic_names_and_types Array of topic names and their types,
+ *   populated on success but left unchanged on failure.
+ *   If populated, it is up to the caller to finalize this array later on
+ *   using rmw_names_and_types_fini().
+ * \return `RMW_RET_OK` if the query was successful, or
+ * \return `RMW_RET_INVALID_ARGUMENT` if `node` is NULL, or
+ * \return `RMW_RET_INVALID_ARGUMENT` if `allocator` is not valid, by rcutils_allocator_is_valid()
+ *   definition, or
+ * \return `RMW_RET_INVALID_ARGUMENT` if `topic_names_and_types` is NULL, or
+ * \return `RMW_RET_INVALID_ARGUMENT` if `topic_names_and_types` is not a
+ *   zero-initialized array, or
+ * \return `RMW_RET_INCORRECT_RMW_IMPLEMENTATION` if the `node` implementation
+ *   identifier does not match this implementation, or
+ * \return `RMW_RET_BAD_ALLOC` if memory allocation fails, or
+ * \return `RMW_RET_ERROR` if an unspecified error occurs.
+ */
+        int rmw_get_topic_names_and_types(const(rmw_node_t)*,
+                rcutils_allocator_t*, bool, rmw_names_and_types_t*) @nogc nothrow;
+
+        union pthread_mutexattr_t
+        {
+
+            char[4] __size;
+
+            int __align;
         }
 
         struct rmw_context_impl_t;
@@ -7832,14 +8574,7 @@ version (galactic)
  */
         int rmw_context_fini(rmw_context_t*) @nogc nothrow;
 
-        union pthread_condattr_t
-        {
-
-            char[4] __size;
-
-            int __align;
-        }
-
+        alias pthread_t = c_ulong;
         struct rmw_init_options_impl_t;
         /// Options structure used during rmw_init().
         struct rmw_init_options_t
@@ -7985,16 +8720,6 @@ version (galactic)
         enum RMW_LOCALHOST_ONLY_DEFAULT = rmw_localhost_only_t.RMW_LOCALHOST_ONLY_DEFAULT;
         enum RMW_LOCALHOST_ONLY_ENABLED = rmw_localhost_only_t.RMW_LOCALHOST_ONLY_ENABLED;
         enum RMW_LOCALHOST_ONLY_DISABLED = rmw_localhost_only_t.RMW_LOCALHOST_ONLY_DISABLED;
-
-        union pthread_mutexattr_t
-        {
-
-            char[4] __size;
-
-            int __align;
-        }
-
-        alias pthread_t = c_ulong;
         /// Structure to hold a sequence of ROS messages.
         struct rmw_message_sequence_t
         {
@@ -8060,6 +8785,100 @@ version (galactic)
  * \param[inout] sequence sequence object to be finalized.
  */
         int rmw_message_info_sequence_fini(rmw_message_info_sequence_t*) @nogc nothrow;
+        /// Associative array of topic or service names and types.
+        struct rmw_names_and_types_t
+        {
+            /// Array of names
+            rcutils_string_array_t names;
+            /// Dynamic array of arrays of type names, with the same length as `names`
+            rcutils_string_array_t* types;
+        }
+        /// Return a zero initialized array of names and types.
+        rmw_names_and_types_t rmw_get_zero_initialized_names_and_types() @nogc nothrow;
+        /// Check that the given `names_and_types` array is zero initialized.
+        /**
+ * <hr>
+ * Attribute          | Adherence
+ * ------------------ | -------------
+ * Allocates Memory   | No
+ * Thread-Safe        | Yes
+ * Uses Atomics       | No
+ * Lock-Free          | Yes
+ *
+ * \par Thread-safety
+ *   Access to the array of names and types is read-only, but it is not synchronized.
+ *   Concurrent `names_and_types` reads are safe, but concurrent reads and writes are not.
+ *
+ * \param[in] names_and_types Array to be checked.
+ * \return RMW_RET_OK if array is zero initialized, RMW_RET_INVALID_ARGUMENT otherwise.
+ * \remark This function sets the RMW error state on failure.
+ */
+        int rmw_names_and_types_check_zero(rmw_names_and_types_t*) @nogc nothrow;
+        /// Initialize an array of names and types.
+        /**
+ * This function initializes the string array for the names and allocates space
+ * for all the string arrays for the types according to the given size, but
+ * it does not initialize the string array for each setup of types.
+ * However, the string arrays for each set of types is zero initialized.
+ *
+ * <hr>
+ * Attribute          | Adherence
+ * ------------------ | -------------
+ * Allocates Memory   | Yes
+ * Thread-Safe        | No
+ * Uses Atomics       | No
+ * Lock-Free          | Yes
+ *
+ * \par Thread-safety
+ *   Initialization is a reentrant procedure, but:
+ *   - Access to arrays of names and types is not synchronized.
+ *     It is not safe to read or write `names_and_types` during initialization.
+ *   - The default allocators are thread-safe objects, but any custom `allocator` may not be.
+ *     Check your allocator documentation for further reference.
+ *
+ * \param[inout] names_and_types Array to be initialized on success,
+ *   but left unchanged on failure.
+ * \param[in] size Size of the array.
+ * \param[in] allocator Allocator to be used to populate `names_and_types`.
+ * \returns `RMW_RET_OK` if successful, or
+ * \returns `RMW_RET_INVALID_ARGUMENT` if `names_and_types` is NULL, or
+ * \returns `RMW_RET_INVALID_ARGUMENT` if `names_and_types` is not
+ *   a zero initialized array, or
+ * \returns `RMW_RET_INVALID_ARGUMENT` if `allocator` is invalid,
+ *   by rcutils_allocator_is_valid() definition, or
+ * \returns `RMW_BAD_ALLOC` if memory allocation fails, or
+ * \returns `RMW_RET_ERROR` when an unspecified error occurs.
+ * \remark This function sets the RMW error state on failure.
+ */
+        int rmw_names_and_types_init(rmw_names_and_types_t*, c_ulong, rcutils_allocator_t*) @nogc nothrow;
+        /// Finalize an array of names and types.
+        /**
+ * This function deallocates the string array of names and the array of string arrays of types,
+ * and zero initializes the given array.
+ * If a logical error, such as `RMW_RET_INVALID_ARGUMENT`, ensues, this function will return
+ * early, leaving the given array unchanged.
+ * Otherwise, it will proceed despite errors.
+ *
+ * <hr>
+ * Attribute          | Adherence
+ * ------------------ | -------------
+ * Allocates Memory   | No
+ * Thread-Safe        | No
+ * Uses Atomics       | No
+ * Lock-Free          | Yes
+ *
+ * \par Thread-safety
+ *   Finalization is a reentrant procedure, but access to arrays of names and types
+ *   is not synchronized.
+ *   It is not safe to read or write `names_and_types` during initialization.
+ *
+ * \param[inout] names_and_types Array to be finalized.
+ * \returns `RMW_RET_OK` if successful, or
+ * \returns `RMW_RET_INVALID_ARGUMENT` if `names_and_types` is NULL, or
+ * \returns `RMW_RET_ERROR` when an unspecified error occurs.
+ * \remark This function sets the RMW error state on failure.
+ */
+        int rmw_names_and_types_fini(rmw_names_and_types_t*) @nogc nothrow;
         /// QoS Policy Kinds
         enum rmw_qos_policy_kind_t
         {
@@ -10609,6 +11428,364 @@ version (galactic)
         rmw_time_t rmw_time_from_nsec(const(c_long)) @nogc nothrow;
         /// Ensure that an rmw_time_t does not have nanoseconds > 1 second.
         rmw_time_t rmw_time_normalize(const(rmw_time_t)) @nogc nothrow;
+        /// A data structure that encapsulates the node name, node namespace,
+        /// topic_type, gid, and qos_profile of publishers and subscriptions
+        /// for a topic.
+        struct rmw_topic_endpoint_info_t
+        {
+            /// Name of the node
+            const(char)* node_name;
+            /// Namespace of the node
+            const(char)* node_namespace;
+            /// The associated topic type
+            const(char)* topic_type;
+            /// The endpoint type
+            rmw_endpoint_type_t endpoint_type;
+            /// The GID of the endpoint
+            ubyte[24] endpoint_gid;
+            /// QoS profile of the endpoint
+            rmw_qos_profile_t qos_profile;
+        }
+        /// Return zero initialized topic endpoint info data structure.
+        /**
+ * Endpoint type will be invalid.
+ * Endpoint QoS profile will be the system default.
+ */
+        rmw_topic_endpoint_info_t rmw_get_zero_initialized_topic_endpoint_info() @nogc nothrow;
+        /// Finalize a topic endpoint info data structure.
+        /**
+ * This function deallocates all allocated members of the given data structure,
+ * and then zero initializes it.
+ * If a logical error, such as `RMW_RET_INVALID_ARGUMENT`, ensues, this function
+ * will return early, leaving the given data structure unchanged.
+ * Otherwise, it will proceed despite errors.
+ *
+ * <hr>
+ * Attribute          | Adherence
+ * ------------------ | -------------
+ * Allocates Memory   | No
+ * Thread-Safe        | No
+ * Uses Atomics       | No
+ * Lock-Free          | Yes
+ *
+ * \par Thread-safety
+ *   Finalization is a reentrant procedure, but:
+ *   - Access to the topic endpoint info data structure is not synchronized.
+ *     It is not safe to read or write `topic_endpoint` during finalization.
+ *   - The default allocators are thread-safe objects, but any custom `allocator` may not be.
+ *     Check your allocator documentation for further reference.
+ *
+ * \param[inout] topic_endpoint_info Data structure to be finalized.
+ * \param[in] allocator Allocator used to populate the given `topic_endpoint_info`.
+ * \returns `RMW_RET_OK` if successful, or
+ * \returns `RMW_RET_INVALID_ARGUMENT` if `topic_endpoint_info` is NULL, or
+ * \returns `RMW_RET_INVALID_ARGUMENT` if `allocator` is invalid,
+ *   by rcutils_allocator_is_valid() definition, or
+ * \returns `RMW_RET_ERROR` when an unspecified error occurs.
+ * \remark This function sets the RMW error state on failure.
+ */
+        int rmw_topic_endpoint_info_fini(rmw_topic_endpoint_info_t*, rcutils_allocator_t*) @nogc nothrow;
+        /// Set the topic type in the given topic endpoint info data structure.
+        /**
+ * This functions allocates memory and copies the value of the `topic_type`
+ * argument to set the data structure `topic_type` member.
+ *
+ * <hr>
+ * Attribute          | Adherence
+ * ------------------ | -------------
+ * Allocates Memory   | Yes
+ * Thread-Safe        | No
+ * Uses Atomics       | No
+ * Lock-Free          | Yes
+ *
+ * \par Thread-safety
+ *   Setting a member is a reentrant procedure, but:
+ *   - Access to the topic endpoint info data structure is not synchronized.
+ *     It is not safe to read or write the `topic_type` member of the given `topic_endpoint`
+ *     while setting it.
+ *   - Access to C-style string arguments is read-only but it is not synchronized.
+ *     Concurrent `topic_type` reads are safe, but concurrent reads and writes are not.
+ *   - The default allocators are thread-safe objects, but any custom `allocator` may not be.
+ *     Check your allocator documentation for further reference.
+ *
+ * \pre Given `topic_type` is a valid C-style string i.e. NULL terminated.
+ *
+ * \param[inout] topic_endpoint_info Data structure to be populated.
+ * \param[in] topic_type Type name to be set.
+ * \param[in] allocator Allocator to be used.
+ * \returns `RMW_RET_OK` if successful, or
+ * \returns `RMW_RET_INVALID_ARGUMENT` if `topic_endpoint_info` is NULL, or
+ * \returns `RMW_RET_INVALID_ARGUMENT` if `topic_type` is NULL, or
+ * \returns `RMW_RET_BAD_ALLOC` if memory allocation fails, or
+ * \returns `RMW_RET_ERROR` when an unspecified error occurs.
+ * \remark This function sets the RMW error state on failure.
+ */
+        int rmw_topic_endpoint_info_set_topic_type(rmw_topic_endpoint_info_t*,
+                const(char)*, rcutils_allocator_t*) @nogc nothrow;
+        /// Set the node name in the given topic endpoint info data structure.
+        /**
+ * This functions allocates memory and copies the value of the `node_name`
+ * argument to set the data structure `node_name` member.
+ *
+ * <hr>
+ * Attribute          | Adherence
+ * ------------------ | -------------
+ * Allocates Memory   | Yes
+ * Thread-Safe        | No
+ * Uses Atomics       | No
+ * Lock-Free          | Yes
+ *
+ * \par Thread-safety
+ *   Setting a member is a reentrant procedure, but:
+ *   - Access to the topic endpoint info data structure is not synchronized.
+ *     It is not safe to read or write the `node_name` member of the given `topic_endpoint`
+ *     while setting it.
+ *   - Access to C-style string arguments is read-only but it is not synchronized.
+ *     Concurrent `node_name` reads are safe, but concurrent reads and writes are not.
+ *   - The default allocators are thread-safe objects, but any custom `allocator` may not be.
+ *     Check your allocator documentation for further reference.
+ *
+ * \pre Given `node_name` is a valid C-style string i.e. NULL terminated.
+ *
+ * \param[inout] topic_endpoint_info Data structure to be populated.
+ * \param[in] node_name Node name to be set.
+ * \param[in] allocator Allocator to be used.
+ * \returns `RMW_RET_OK` if successful, or
+ * \returns `RMW_RET_INVALID_ARGUMENT` if `topic_endpoint_info` is NULL, or
+ * \returns `RMW_RET_INVALID_ARGUMENT` if `node_name` is NULL, or
+ * \returns `RMW_RET_BAD_ALLOC` if memory allocation fails, or
+ * \returns `RMW_RET_ERROR` when an unspecified error occurs.
+ * \remark This function sets the RMW error state on failure.
+ */
+        int rmw_topic_endpoint_info_set_node_name(rmw_topic_endpoint_info_t*,
+                const(char)*, rcutils_allocator_t*) @nogc nothrow;
+        /// Set the node namespace in the given topic endpoint info data structure.
+        /**
+ * This functions allocates memory and copies the value of the `node_namespace`
+ * argument to set the data structure `node_namespace` member.
+ *
+ * <hr>
+ * Attribute          | Adherence
+ * ------------------ | -------------
+ * Allocates Memory   | Yes
+ * Thread-Safe        | No
+ * Uses Atomics       | No
+ * Lock-Free          | Yes
+ *
+ * \par Thread-safety
+ *   Setting a member is a reentrant procedure, but:
+ *   - Access to the topic endpoint info data structure is not synchronized.
+ *     It is not safe to read or write the `node_namespace` member of the given `topic_endpoint`
+ *     while setting it.
+ *   - Access to C-style string arguments is read-only but it is not synchronized.
+ *     Concurrent `node_namespace` reads are safe, but concurrent reads and writes are not.
+ *   - The default allocators are thread-safe objects, but any custom `allocator` may not be.
+ *     Check your allocator documentation for further reference.
+ *
+ * \pre Given `node_namespace` is a valid C-style string i.e. NULL terminated.
+ *
+ * \param[inout] topic_endpoint_info Data structure to be populated.
+ * \param[in] node_namespace Node namespace to be set.
+ * \param[in] allocator Allocator to be used.
+ * \returns `RMW_RET_OK` if successful, or
+ * \returns `RMW_RET_INVALID_ARGUMENT` if `topic_endpoint_info` is NULL, or
+ * \returns `RMW_RET_INVALID_ARGUMENT` if `node_namespace` is NULL, or
+ * \returns `RMW_RET_BAD_ALLOC` if memory allocation fails, or
+ * \returns `RMW_RET_ERROR` when an unspecified error occurs.
+ * \remark This function sets the RMW error state on failure.
+ */
+        int rmw_topic_endpoint_info_set_node_namespace(rmw_topic_endpoint_info_t*,
+                const(char)*, rcutils_allocator_t*) @nogc nothrow;
+        /// Set the endpoint type in the given topic endpoint info data structure.
+        /**
+ * This functions assigns the value of the `type` argument to the data structure
+ * `endpoint_type` member.
+ *
+ * <hr>
+ * Attribute          | Adherence
+ * ------------------ | -------------
+ * Allocates Memory   | No
+ * Thread-Safe        | No
+ * Uses Atomics       | No
+ * Lock-Free          | Yes
+ *
+ * \par Thread-safety
+ *   Setting a member is a reentrant procedure, but access to the
+ *   topic endpoint info data structure is not synchronized.
+ *   It is not safe to read or write the `endpoint_type` member of the
+ *   given `topic_endpoint` while setting it.
+ *
+ * \param[inout] topic_endpoint_info Data structure to be populated.
+ * \param[in] type Endpoint type to be set.
+ * \returns `RMW_RET_OK` if successful, or
+ * \returns `RMW_RET_INVALID_ARGUMENT` if `topic_endpoint_info` is NULL, or
+ * \returns `RMW_RET_ERROR` when an unspecified error occurs.
+ * \remark This function sets the RMW error state on failure.
+ */
+        int rmw_topic_endpoint_info_set_endpoint_type(rmw_topic_endpoint_info_t*,
+                rmw_endpoint_type_t) @nogc nothrow;
+        /// Set the endpoint gid in the given topic endpoint info data structure.
+        /**
+ * This functions copies the value of the `gid` argument to the data structure
+ * `endpoint_gid` member.
+ *
+ * <hr>
+ * Attribute          | Adherence
+ * ------------------ | -------------
+ * Allocates Memory   | No
+ * Thread-Safe        | No
+ * Uses Atomics       | No
+ * Lock-Free          | Yes
+ *
+ * \par Thread-safety
+ *   Setting a member is a reentrant procedure, but access to the
+ *   topic endpoint info data structure is not synchronized.
+ *   It is not safe to read or write the `gid` member of the
+ *   given `topic_endpoint` while setting it.
+ *
+ * \param[inout] topic_endpoint_info Data structure to be populated.
+ * \param[in] gid Endpoint gid to be set.
+ * \param[in] size Size of the given `gid`.
+ * \returns `RMW_RET_OK` if successful, or
+ * \returns `RMW_RET_INVALID_ARGUMENT` if `topic_endpoint_info` is NULL, or
+ * \returns `RMW_RET_INVALID_ARGUMENT` if `gid` is NULL, or
+ * \returns `RMW_RET_INVALID_ARGUMENT` if `size` is greater than RMW_GID_STORAGE_SIZE, or
+ * \returns `RMW_RET_ERROR` when an unspecified error occurs.
+ * \remark This function sets the RMW error state on failure.
+ */
+        int rmw_topic_endpoint_info_set_gid(rmw_topic_endpoint_info_t*, const(ubyte)*, c_ulong) @nogc nothrow;
+        /// Set the endpoint QoS profile in the given topic endpoint info data structure.
+        /**
+ * This functions assigns the value of the `qos_profile` argument to the data structure
+ * `qos_profile` member.
+ *
+ * <hr>
+ * Attribute          | Adherence
+ * ------------------ | -------------
+ * Allocates Memory   | No
+ * Thread-Safe        | No
+ * Uses Atomics       | No
+ * Lock-Free          | Yes
+ *
+ * \par Thread-safety
+ *   Setting a member is a reentrant procedure, but access to the
+ *   topic endpoint info data structure is not synchronized.
+ *   It is not safe to read or write the `qos_profile` member of the
+ *   given `topic_endpoint` while setting it.
+ *
+ * \param[inout] topic_endpoint_info Data structure to be populated.
+ * \param[in] qos_profile QoS profile to be set.
+ * \returns `RMW_RET_OK` if successful, or
+ * \returns `RMW_RET_INVALID_ARGUMENT` if `topic_endpoint_info` is NULL, or
+ * \returns `RMW_RET_INVALID_ARGUMENT` if `qos_profile` is NULL, or
+ * \returns `RMW_RET_ERROR` when an unspecified error occurs.
+ * \remark This function sets the RMW error state on failure.
+ */
+        int rmw_topic_endpoint_info_set_qos_profile(rmw_topic_endpoint_info_t*,
+                const(rmw_qos_profile_t)*) @nogc nothrow;
+        /// Array of topic endpoint information
+        struct rmw_topic_endpoint_info_array_t
+        {
+            /// Size of the array.
+            c_ulong size;
+            /// Contiguous storage for topic endpoint information elements.
+            rmw_topic_endpoint_info_t* info_array;
+        }
+        /// Return a zero initialized array of topic endpoint information.
+        rmw_topic_endpoint_info_array_t rmw_get_zero_initialized_topic_endpoint_info_array() @nogc nothrow;
+        /// Check that the given `topic_endpoint_info_array` is zero initialized.
+        /**
+ * <hr>
+ * Attribute          | Adherence
+ * ------------------ | -------------
+ * Allocates Memory   | No
+ * Thread-Safe        | Yes
+ * Uses Atomics       | No
+ * Lock-Free          | Yes
+ *
+ * \par Thread-safety
+ *   Access to the array of topic endpoint information is read-only, but it is not synchronized.
+ *   Concurrent `topic_endpoint_info_array` reads are safe, but concurrent reads
+ *   and writes are not.
+ *
+ * \param[in] topic_endpoint_info_array Array to be checked.
+ * \returns `RMW_RET_OK` if array is zero initialized, or
+ * \returns `RMW_RET_INVALID_ARGUMENT` if `topic_endpoint_info_array` is NULL, or
+ * \returns `RMW_RET_ERROR` if `topic_endpoint_info_array` is not zero initialized.
+ * \remark This function sets the RMW error state on failure.
+ */
+        int rmw_topic_endpoint_info_array_check_zero(rmw_topic_endpoint_info_array_t*) @nogc nothrow;
+        /// Initialize an array of topic endpoint information.
+        /**
+ * This function allocates space to hold `size` topic endpoint information elements.
+ * Both `info_array` and `size` members are updated accordingly.
+ *
+ * <hr>
+ * Attribute          | Adherence
+ * ------------------ | -------------
+ * Allocates Memory   | Yes
+ * Thread-Safe        | No
+ * Uses Atomics       | No
+ * Lock-Free          | Yes
+ *
+ * \par Thread-safety
+ *   Initialization is a reentrant procedure, but:
+ *   - Access to the array of topic endpoint information is not synchronized.
+ *     It is not safe to read or write `topic_endpoint_info_array` during initialization.
+ *   - The default allocators are thread-safe objects, but any custom `allocator` may not be.
+ *     Check your allocator documentation for further reference.
+ *
+ * \param[inout] topic_endpoint_info_array Array to be initialized on success,
+ *   but left unchanged on failure.
+ * \param[in] size Size of the array.
+ * \param[in] allocator Allocator to be used to populate `names_and_types`.
+ * \returns `RMW_RET_OK` if successful, or
+ * \returns `RMW_RET_INVALID_ARGUMENT` if `topic_endpoint_info_array` is NULL, or
+ * \returns `RMW_RET_INVALID_ARGUMENT` if `topic_endpoint_info_array` is not
+ *   a zero initialized array, or
+ * \returns `RMW_RET_INVALID_ARGUMENT` if `allocator` is invalid,
+ *   by rcutils_allocator_is_valid() definition, or
+ * \returns `RMW_BAD_ALLOC` if memory allocation fails, or
+ * \returns `RMW_RET_ERROR` when an unspecified error occurs.
+ * \remark This function sets the RMW error state on failure.
+ */
+        int rmw_topic_endpoint_info_array_init_with_size(rmw_topic_endpoint_info_array_t*,
+                c_ulong, rcutils_allocator_t*) @nogc nothrow;
+        /// Finalize an array of topic endpoint information.
+        /**
+ * This function deallocates the given array storage, and then zero initializes it.
+ * If a logical error, such as `RMW_RET_INVALID_ARGUMENT`, ensues, this function will
+ * return early, leaving the given array unchanged.
+ * Otherwise, it will proceed despite errors.
+ *
+ * <hr>
+ * Attribute          | Adherence
+ * ------------------ | -------------
+ * Allocates Memory   | No
+ * Thread-Safe        | No
+ * Uses Atomics       | No
+ * Lock-Free          | Yes
+ *
+ * \par Thread-safety
+ *   Finalization is a reentrant procedure, but:
+ *   - Access to the array of topic endpoint information is not synchronized.
+ *     It is not safe to read or write `topic_endpoint_info_array` during finalization.
+ *   - The default allocators are thread-safe objects, but any custom `allocator` may not be.
+ *     Check your allocator documentation for further reference.
+ *
+ * \pre Given `allocator` must be the same used to initialize the given `topic_endpoint_info_array`.
+ *
+ * \param[inout] topic_endpoint_info_array object to be finalized.
+ * \param[in] allocator Allocator used to populate the given `topic_endpoint_info_array`.
+ * \returns `RMW_RET_OK` if successful, or
+ * \returns `RMW_RET_INVALID_ARGUMENT` if `topic_endpoint_info_array` is NULL, or
+ * \returns `RMW_RET_INVALID_ARGUMENT` if `allocator` is invalid,
+ *   by rcutils_allocator_is_valid() definition, or
+ * \returns `RMW_RET_ERROR` when an unspecified error occurs.
+ * \remark This function sets the RMW error state on failure.
+ */
+        int rmw_topic_endpoint_info_array_fini(rmw_topic_endpoint_info_array_t*,
+                rcutils_allocator_t*) @nogc nothrow;
         /// Structure which encapsulates an rmw node
         struct rmw_node_t
         {
@@ -11089,6 +12266,8 @@ version (galactic)
         enum RMW_LOG_SEVERITY_WARN = _Anonymous_9.RMW_LOG_SEVERITY_WARN;
         enum RMW_LOG_SEVERITY_ERROR = _Anonymous_9.RMW_LOG_SEVERITY_ERROR;
         enum RMW_LOG_SEVERITY_FATAL = _Anonymous_9.RMW_LOG_SEVERITY_FATAL;
+
+        alias _Float64x = real;
         /// Contains rosidl action type support data.
         struct rosidl_action_type_support_t
         {
@@ -11124,6 +12303,8 @@ version (galactic)
                 .ROSIDL_RUNTIME_C_MSG_INIT_ZERO;
         enum ROSIDL_RUNTIME_C_MSG_INIT_DEFAULTS_ONLY = rosidl_runtime_c__message_initialization
                 .ROSIDL_RUNTIME_C_MSG_INIT_DEFAULTS_ONLY;
+
+        alias _Float32x = double;
         /// Contains rosidl message type support data
         struct rosidl_message_type_support_t
         {
@@ -11160,8 +12341,6 @@ version (galactic)
  */
         const(rosidl_message_type_support_t)* get_message_typesupport_handle_function(
                 const(rosidl_message_type_support_t)*, const(char)*) @nogc nothrow;
-
-        alias _Float64x = real;
 
         struct rosidl_runtime_c__float__Sequence
         {
@@ -11321,15 +12500,15 @@ version (galactic)
 
         alias rosidl_runtime_c__float64__Sequence = rosidl_runtime_c__double__Sequence;
 
-        alias _Float32x = double;
+        alias _Float64 = double;
 
         bool rosidl_runtime_c__float__Sequence__init(rosidl_runtime_c__float__Sequence*, c_ulong) @nogc nothrow;
 
         void rosidl_runtime_c__float__Sequence__fini(rosidl_runtime_c__float__Sequence*) @nogc nothrow;
 
-        bool rosidl_runtime_c__double__Sequence__init(rosidl_runtime_c__double__Sequence*, c_ulong) @nogc nothrow;
-
         void rosidl_runtime_c__double__Sequence__fini(rosidl_runtime_c__double__Sequence*) @nogc nothrow;
+
+        bool rosidl_runtime_c__double__Sequence__init(rosidl_runtime_c__double__Sequence*, c_ulong) @nogc nothrow;
 
         bool rosidl_runtime_c__long_double__Sequence__init(
                 rosidl_runtime_c__long_double__Sequence*, c_ulong) @nogc nothrow;
@@ -11337,26 +12516,26 @@ version (galactic)
         void rosidl_runtime_c__long_double__Sequence__fini(
                 rosidl_runtime_c__long_double__Sequence*) @nogc nothrow;
 
-        void rosidl_runtime_c__char__Sequence__fini(rosidl_runtime_c__char__Sequence*) @nogc nothrow;
-
         bool rosidl_runtime_c__char__Sequence__init(rosidl_runtime_c__char__Sequence*, c_ulong) @nogc nothrow;
 
-        void rosidl_runtime_c__wchar__Sequence__fini(rosidl_runtime_c__wchar__Sequence*) @nogc nothrow;
+        void rosidl_runtime_c__char__Sequence__fini(rosidl_runtime_c__char__Sequence*) @nogc nothrow;
 
         bool rosidl_runtime_c__wchar__Sequence__init(rosidl_runtime_c__wchar__Sequence*, c_ulong) @nogc nothrow;
 
-        void rosidl_runtime_c__boolean__Sequence__fini(rosidl_runtime_c__boolean__Sequence*) @nogc nothrow;
+        void rosidl_runtime_c__wchar__Sequence__fini(rosidl_runtime_c__wchar__Sequence*) @nogc nothrow;
 
         bool rosidl_runtime_c__boolean__Sequence__init(rosidl_runtime_c__boolean__Sequence*,
                 c_ulong) @nogc nothrow;
 
-        void rosidl_runtime_c__octet__Sequence__fini(rosidl_runtime_c__octet__Sequence*) @nogc nothrow;
+        void rosidl_runtime_c__boolean__Sequence__fini(rosidl_runtime_c__boolean__Sequence*) @nogc nothrow;
 
         bool rosidl_runtime_c__octet__Sequence__init(rosidl_runtime_c__octet__Sequence*, c_ulong) @nogc nothrow;
 
-        void rosidl_runtime_c__uint8__Sequence__fini(rosidl_runtime_c__uint8__Sequence*) @nogc nothrow;
+        void rosidl_runtime_c__octet__Sequence__fini(rosidl_runtime_c__octet__Sequence*) @nogc nothrow;
 
         bool rosidl_runtime_c__uint8__Sequence__init(rosidl_runtime_c__uint8__Sequence*, c_ulong) @nogc nothrow;
+
+        void rosidl_runtime_c__uint8__Sequence__fini(rosidl_runtime_c__uint8__Sequence*) @nogc nothrow;
 
         void rosidl_runtime_c__int8__Sequence__fini(rosidl_runtime_c__int8__Sequence*) @nogc nothrow;
 
@@ -11366,25 +12545,25 @@ version (galactic)
 
         bool rosidl_runtime_c__uint16__Sequence__init(rosidl_runtime_c__uint16__Sequence*, c_ulong) @nogc nothrow;
 
-        bool rosidl_runtime_c__int16__Sequence__init(rosidl_runtime_c__int16__Sequence*, c_ulong) @nogc nothrow;
-
         void rosidl_runtime_c__int16__Sequence__fini(rosidl_runtime_c__int16__Sequence*) @nogc nothrow;
 
-        void rosidl_runtime_c__uint32__Sequence__fini(rosidl_runtime_c__uint32__Sequence*) @nogc nothrow;
+        bool rosidl_runtime_c__int16__Sequence__init(rosidl_runtime_c__int16__Sequence*, c_ulong) @nogc nothrow;
 
         bool rosidl_runtime_c__uint32__Sequence__init(rosidl_runtime_c__uint32__Sequence*, c_ulong) @nogc nothrow;
 
-        void rosidl_runtime_c__int32__Sequence__fini(rosidl_runtime_c__int32__Sequence*) @nogc nothrow;
+        void rosidl_runtime_c__uint32__Sequence__fini(rosidl_runtime_c__uint32__Sequence*) @nogc nothrow;
 
         bool rosidl_runtime_c__int32__Sequence__init(rosidl_runtime_c__int32__Sequence*, c_ulong) @nogc nothrow;
 
-        void rosidl_runtime_c__uint64__Sequence__fini(rosidl_runtime_c__uint64__Sequence*) @nogc nothrow;
+        void rosidl_runtime_c__int32__Sequence__fini(rosidl_runtime_c__int32__Sequence*) @nogc nothrow;
 
         bool rosidl_runtime_c__uint64__Sequence__init(rosidl_runtime_c__uint64__Sequence*, c_ulong) @nogc nothrow;
 
-        void rosidl_runtime_c__int64__Sequence__fini(rosidl_runtime_c__int64__Sequence*) @nogc nothrow;
+        void rosidl_runtime_c__uint64__Sequence__fini(rosidl_runtime_c__uint64__Sequence*) @nogc nothrow;
 
         bool rosidl_runtime_c__int64__Sequence__init(rosidl_runtime_c__int64__Sequence*, c_ulong) @nogc nothrow;
+
+        void rosidl_runtime_c__int64__Sequence__fini(rosidl_runtime_c__int64__Sequence*) @nogc nothrow;
         /**
  * \defgroup primitives_sequence_functions__legacy Sequence functions for legacy types for backward compatibility.
  */
@@ -11406,6 +12585,8 @@ version (galactic)
                 c_ulong) @nogc nothrow;
         /** See #ROSIDL_RUNTIME_C__DECLARE_PRIMITIVE_SEQUENCE_FINI(float64) */
         void rosidl_runtime_c__float64__Sequence__fini(rosidl_runtime_c__double__Sequence*) @nogc nothrow;
+
+        alias _Float32 = float;
 
         struct rosidl_runtime_c__Sequence__bound
         {
@@ -11480,8 +12661,6 @@ version (galactic)
  */
         const(rosidl_service_type_support_t)* get_service_typesupport_handle_function(
                 const(rosidl_service_type_support_t)*, const(char)*) @nogc nothrow;
-
-        alias _Float64 = double;
         /// An array of 8-bit characters terminated by a null byte.
         struct rosidl_runtime_c__String
         {
@@ -11524,8 +12703,6 @@ version (galactic)
         rosidl_runtime_c__String__Sequence* rosidl_runtime_c__String__Sequence__create(c_ulong) @nogc nothrow;
         /// Destroy a rosidl_runtime_c__String__Sequence structure.
         void rosidl_runtime_c__String__Sequence__destroy(rosidl_runtime_c__String__Sequence*) @nogc nothrow;
-
-        alias _Float32 = float;
         /// An array of 16-bit characters terminated by a null character.
         struct rosidl_runtime_c__U16String
         {
@@ -11598,6 +12775,10 @@ version (galactic)
 
         int ffsl(c_long) @nogc nothrow;
 
+        int ffs(int) @nogc nothrow;
+
+        char* rindex(const(char)*, int) @nogc nothrow;
+
         alias int_least8_t = byte;
 
         alias int_least16_t = short;
@@ -11632,15 +12813,11 @@ version (galactic)
 
         alias intptr_t = c_long;
 
-        int ffs(int) @nogc nothrow;
-
         alias uintptr_t = c_ulong;
 
         alias intmax_t = c_long;
 
         alias uintmax_t = c_ulong;
-
-        char* rindex(const(char)*, int) @nogc nothrow;
 
         char* index(const(char)*, int) @nogc nothrow;
 
@@ -11672,25 +12849,27 @@ version (galactic)
 
         c_ulong strnlen(const(char)*, c_ulong) @nogc nothrow;
 
+        c_ulong strlen(const(char)*) @nogc nothrow;
+
+        char* strtok_r(char*, const(char)*, char**) @nogc nothrow;
+
         alias off_t = c_long;
 
         alias ssize_t = c_long;
 
         alias fpos_t = _G_fpos_t;
 
-        c_ulong strlen(const(char)*) @nogc nothrow;
-
-        char* strtok_r(char*, const(char)*, char**) @nogc nothrow;
-
         char* __strtok_r(char*, const(char)*, char**) @nogc nothrow;
+
+        char* strtok(char*, const(char)*) @nogc nothrow;
+
+        char* strstr(const(char)*, const(char)*) @nogc nothrow;
 
         extern __gshared _IO_FILE* stdin;
 
         extern __gshared _IO_FILE* stdout;
 
         extern __gshared _IO_FILE* stderr;
-
-        char* strtok(char*, const(char)*) @nogc nothrow;
 
         int remove(const(char)*) @nogc nothrow;
 
@@ -11860,11 +13039,11 @@ version (galactic)
 
         int __overflow(_IO_FILE*, int) @nogc nothrow;
 
-        char* strstr(const(char)*, const(char)*) @nogc nothrow;
-
         char* strpbrk(const(char)*, const(char)*) @nogc nothrow;
 
         c_ulong strspn(const(char)*, const(char)*) @nogc nothrow;
+
+        c_ulong strcspn(const(char)*, const(char)*) @nogc nothrow;
 
         struct div_t
         {
@@ -11882,6 +13061,8 @@ version (galactic)
             c_long rem;
         }
 
+        char* strrchr(const(char)*, int) @nogc nothrow;
+
         struct lldiv_t
         {
 
@@ -11890,7 +13071,7 @@ version (galactic)
             long rem;
         }
 
-        c_ulong strcspn(const(char)*, const(char)*) @nogc nothrow;
+        char* strchr(const(char)*, int) @nogc nothrow;
 
         c_ulong __ctype_get_mb_cur_max() @nogc nothrow;
 
@@ -12120,7 +13301,7 @@ version (galactic)
 
         int getloadavg(double*, int) @nogc nothrow;
 
-        char* strrchr(const(char)*, int) @nogc nothrow;
+        char* strndup(const(char)*, c_ulong) @nogc nothrow;
 
         void* memcpy(void*, const(void)*, c_ulong) @nogc nothrow;
 
@@ -12155,10 +13336,6 @@ version (galactic)
         c_ulong strxfrm_l(char*, const(char)*, c_ulong, __locale_struct*) @nogc nothrow;
 
         char* strdup(const(char)*) @nogc nothrow;
-
-        char* strndup(const(char)*, c_ulong) @nogc nothrow;
-
-        char* strchr(const(char)*, int) @nogc nothrow;
         static if (!is(typeof(_STRING_H)))
         {
             private enum enumMixinStr__STRING_H = `enum _STRING_H = 1;`;
@@ -12588,15 +13765,6 @@ version (galactic)
             }
         }
 
-        static if (!is(typeof(_STRINGS_H)))
-        {
-            private enum enumMixinStr__STRINGS_H = `enum _STRINGS_H = 1;`;
-            static if (is(typeof({ mixin(enumMixinStr__STRINGS_H); })))
-            {
-                mixin(enumMixinStr__STRINGS_H);
-            }
-        }
-
         static if (!is(typeof(UINT_LEAST64_MAX)))
         {
             private enum enumMixinStr_UINT_LEAST64_MAX = `enum UINT_LEAST64_MAX = ( 18446744073709551615UL );`;
@@ -12657,6 +13825,15 @@ version (galactic)
             static if (is(typeof({ mixin(enumMixinStr_INT_LEAST16_MAX); })))
             {
                 mixin(enumMixinStr_INT_LEAST16_MAX);
+            }
+        }
+
+        static if (!is(typeof(_STRINGS_H)))
+        {
+            private enum enumMixinStr__STRINGS_H = `enum _STRINGS_H = 1;`;
+            static if (is(typeof({ mixin(enumMixinStr__STRINGS_H); })))
+            {
+                mixin(enumMixinStr__STRINGS_H);
             }
         }
 
@@ -13040,15 +14217,6 @@ version (galactic)
                 mixin(enumMixinStr__DEFAULT_SOURCE);
             }
         }
-
-        static if (!is(typeof(_BITS_BYTESWAP_H)))
-        {
-            private enum enumMixinStr__BITS_BYTESWAP_H = `enum _BITS_BYTESWAP_H = 1;`;
-            static if (is(typeof({ mixin(enumMixinStr__BITS_BYTESWAP_H); })))
-            {
-                mixin(enumMixinStr__BITS_BYTESWAP_H);
-            }
-        }
         static if (!is(typeof(_FEATURES_H)))
         {
             private enum enumMixinStr__FEATURES_H = `enum _FEATURES_H = 1;`;
@@ -13057,6 +14225,23 @@ version (galactic)
                 mixin(enumMixinStr__FEATURES_H);
             }
         }
+        static if (!is(typeof(_BITS_BYTESWAP_H)))
+        {
+            private enum enumMixinStr__BITS_BYTESWAP_H = `enum _BITS_BYTESWAP_H = 1;`;
+            static if (is(typeof({ mixin(enumMixinStr__BITS_BYTESWAP_H); })))
+            {
+                mixin(enumMixinStr__BITS_BYTESWAP_H);
+            }
+        }
+        static if (!is(typeof(BYTE_ORDER)))
+        {
+            private enum enumMixinStr_BYTE_ORDER = `enum BYTE_ORDER = __BYTE_ORDER;`;
+            static if (is(typeof({ mixin(enumMixinStr_BYTE_ORDER); })))
+            {
+                mixin(enumMixinStr_BYTE_ORDER);
+            }
+        }
+
         static if (!is(typeof(_BITS_ENDIAN_H)))
         {
             private enum enumMixinStr__BITS_ENDIAN_H = `enum _BITS_ENDIAN_H = 1;`;
@@ -13093,6 +14278,15 @@ version (galactic)
             }
         }
 
+        static if (!is(typeof(PDP_ENDIAN)))
+        {
+            private enum enumMixinStr_PDP_ENDIAN = `enum PDP_ENDIAN = 3412;`;
+            static if (is(typeof({ mixin(enumMixinStr_PDP_ENDIAN); })))
+            {
+                mixin(enumMixinStr_PDP_ENDIAN);
+            }
+        }
+
         static if (!is(typeof(__FLOAT_WORD_ORDER)))
         {
             private enum enumMixinStr___FLOAT_WORD_ORDER = `enum __FLOAT_WORD_ORDER = __BYTE_ORDER;`;
@@ -13101,12 +14295,40 @@ version (galactic)
                 mixin(enumMixinStr___FLOAT_WORD_ORDER);
             }
         }
+
+        static if (!is(typeof(BIG_ENDIAN)))
+        {
+            private enum enumMixinStr_BIG_ENDIAN = `enum BIG_ENDIAN = 4321;`;
+            static if (is(typeof({ mixin(enumMixinStr_BIG_ENDIAN); })))
+            {
+                mixin(enumMixinStr_BIG_ENDIAN);
+            }
+        }
+
+        static if (!is(typeof(LITTLE_ENDIAN)))
+        {
+            private enum enumMixinStr_LITTLE_ENDIAN = `enum LITTLE_ENDIAN = 1234;`;
+            static if (is(typeof({ mixin(enumMixinStr_LITTLE_ENDIAN); })))
+            {
+                mixin(enumMixinStr_LITTLE_ENDIAN);
+            }
+        }
+
         static if (!is(typeof(_BITS_ENDIANNESS_H)))
         {
             private enum enumMixinStr__BITS_ENDIANNESS_H = `enum _BITS_ENDIANNESS_H = 1;`;
             static if (is(typeof({ mixin(enumMixinStr__BITS_ENDIANNESS_H); })))
             {
                 mixin(enumMixinStr__BITS_ENDIANNESS_H);
+            }
+        }
+
+        static if (!is(typeof(_ENDIAN_H)))
+        {
+            private enum enumMixinStr__ENDIAN_H = `enum _ENDIAN_H = 1;`;
+            static if (is(typeof({ mixin(enumMixinStr__ENDIAN_H); })))
+            {
+                mixin(enumMixinStr__ENDIAN_H);
             }
         }
 
@@ -13118,6 +14340,25 @@ version (galactic)
                 mixin(enumMixinStr___BYTE_ORDER);
             }
         }
+
+        static if (!is(typeof(static_assert)))
+        {
+            private enum enumMixinStr_static_assert = `enum static_assert = _Static_assert;`;
+            static if (is(typeof({ mixin(enumMixinStr_static_assert); })))
+            {
+                mixin(enumMixinStr_static_assert);
+            }
+        }
+
+        static if (!is(typeof(__ASSERT_FUNCTION)))
+        {
+            private enum enumMixinStr___ASSERT_FUNCTION = `enum __ASSERT_FUNCTION = __extension__ __PRETTY_FUNCTION__;`;
+            static if (is(typeof({ mixin(enumMixinStr___ASSERT_FUNCTION); })))
+            {
+                mixin(enumMixinStr___ASSERT_FUNCTION);
+            }
+        }
+
         static if (!is(typeof(__HAVE_FLOAT16)))
         {
             private enum enumMixinStr___HAVE_FLOAT16 = `enum __HAVE_FLOAT16 = 0;`;
@@ -13230,15 +14471,6 @@ version (galactic)
             }
         }
 
-        static if (!is(typeof(BYTE_ORDER)))
-        {
-            private enum enumMixinStr_BYTE_ORDER = `enum BYTE_ORDER = 1234;`;
-            static if (is(typeof({ mixin(enumMixinStr_BYTE_ORDER); })))
-            {
-                mixin(enumMixinStr_BYTE_ORDER);
-            }
-        }
-
         static if (!is(typeof(__HAVE_FLOATN_NOT_TYPEDEF)))
         {
             private enum enumMixinStr___HAVE_FLOATN_NOT_TYPEDEF = `enum __HAVE_FLOATN_NOT_TYPEDEF = 0;`;
@@ -13250,59 +14482,6 @@ version (galactic)
             }
         }
 
-        static if (!is(typeof(PDP_ENDIAN)))
-        {
-            private enum enumMixinStr_PDP_ENDIAN = `enum PDP_ENDIAN = 3412;`;
-            static if (is(typeof({ mixin(enumMixinStr_PDP_ENDIAN); })))
-            {
-                mixin(enumMixinStr_PDP_ENDIAN);
-            }
-        }
-
-        static if (!is(typeof(BIG_ENDIAN)))
-        {
-            private enum enumMixinStr_BIG_ENDIAN = `enum BIG_ENDIAN = 4321;`;
-            static if (is(typeof({ mixin(enumMixinStr_BIG_ENDIAN); })))
-            {
-                mixin(enumMixinStr_BIG_ENDIAN);
-            }
-        }
-
-        static if (!is(typeof(LITTLE_ENDIAN)))
-        {
-            private enum enumMixinStr_LITTLE_ENDIAN = `enum LITTLE_ENDIAN = 1234;`;
-            static if (is(typeof({ mixin(enumMixinStr_LITTLE_ENDIAN); })))
-            {
-                mixin(enumMixinStr_LITTLE_ENDIAN);
-            }
-        }
-
-        static if (!is(typeof(_ENDIAN_H)))
-        {
-            private enum enumMixinStr__ENDIAN_H = `enum _ENDIAN_H = 1;`;
-            static if (is(typeof({ mixin(enumMixinStr__ENDIAN_H); })))
-            {
-                mixin(enumMixinStr__ENDIAN_H);
-            }
-        }
-
-        static if (!is(typeof(static_assert)))
-        {
-            private enum enumMixinStr_static_assert = `enum static_assert = _Static_assert;`;
-            static if (is(typeof({ mixin(enumMixinStr_static_assert); })))
-            {
-                mixin(enumMixinStr_static_assert);
-            }
-        }
-
-        static if (!is(typeof(__ASSERT_FUNCTION)))
-        {
-            private enum enumMixinStr___ASSERT_FUNCTION = `enum __ASSERT_FUNCTION = __extension__ __PRETTY_FUNCTION__;`;
-            static if (is(typeof({ mixin(enumMixinStr___ASSERT_FUNCTION); })))
-            {
-                mixin(enumMixinStr___ASSERT_FUNCTION);
-            }
-        }
         static if (!is(typeof(__ASSERT_VOID_CAST)))
         {
             private enum enumMixinStr___ASSERT_VOID_CAST = `enum __ASSERT_VOID_CAST = cast( void );`;
@@ -13328,32 +14507,6 @@ version (galactic)
                 mixin(enumMixinStr__ALLOCA_H);
             }
         }
-
-        static if (!is(typeof(__CFLOAT32)))
-        {
-            private enum enumMixinStr___CFLOAT32 = `enum __CFLOAT32 = _Complex float;`;
-            static if (is(typeof({ mixin(enumMixinStr___CFLOAT32); })))
-            {
-                mixin(enumMixinStr___CFLOAT32);
-            }
-        }
-        static if (!is(typeof(__CFLOAT64)))
-        {
-            private enum enumMixinStr___CFLOAT64 = `enum __CFLOAT64 = _Complex double;`;
-            static if (is(typeof({ mixin(enumMixinStr___CFLOAT64); })))
-            {
-                mixin(enumMixinStr___CFLOAT64);
-            }
-        }
-        static if (!is(typeof(__CFLOAT32X)))
-        {
-            private enum enumMixinStr___CFLOAT32X = `enum __CFLOAT32X = _Complex double;`;
-            static if (is(typeof({ mixin(enumMixinStr___CFLOAT32X); })))
-            {
-                mixin(enumMixinStr___CFLOAT32X);
-            }
-        }
-
         static if (!is(typeof(ROSIDL_GENERATOR_C_LOCAL)))
         {
             private enum enumMixinStr_ROSIDL_GENERATOR_C_LOCAL = `enum ROSIDL_GENERATOR_C_LOCAL = __attribute__ ( ( visibility ( "hidden" ) ) );`;
@@ -13374,12 +14527,12 @@ version (galactic)
             }
         }
 
-        static if (!is(typeof(__CFLOAT64X)))
+        static if (!is(typeof(__CFLOAT32)))
         {
-            private enum enumMixinStr___CFLOAT64X = `enum __CFLOAT64X = _Complex long double;`;
-            static if (is(typeof({ mixin(enumMixinStr___CFLOAT64X); })))
+            private enum enumMixinStr___CFLOAT32 = `enum __CFLOAT32 = _Complex float;`;
+            static if (is(typeof({ mixin(enumMixinStr___CFLOAT32); })))
             {
-                mixin(enumMixinStr___CFLOAT64X);
+                mixin(enumMixinStr___CFLOAT32);
             }
         }
 
@@ -13393,21 +14546,37 @@ version (galactic)
                 mixin(enumMixinStr_ROSIDL_GENERATOR_C_EXPORT);
             }
         }
+
+        static if (!is(typeof(__CFLOAT64)))
+        {
+            private enum enumMixinStr___CFLOAT64 = `enum __CFLOAT64 = _Complex double;`;
+            static if (is(typeof({ mixin(enumMixinStr___CFLOAT64); })))
+            {
+                mixin(enumMixinStr___CFLOAT64);
+            }
+        }
+        static if (!is(typeof(__CFLOAT32X)))
+        {
+            private enum enumMixinStr___CFLOAT32X = `enum __CFLOAT32X = _Complex double;`;
+            static if (is(typeof({ mixin(enumMixinStr___CFLOAT32X); })))
+            {
+                mixin(enumMixinStr___CFLOAT32X);
+            }
+        }
+        static if (!is(typeof(__CFLOAT64X)))
+        {
+            private enum enumMixinStr___CFLOAT64X = `enum __CFLOAT64X = _Complex long double;`;
+            static if (is(typeof({ mixin(enumMixinStr___CFLOAT64X); })))
+            {
+                mixin(enumMixinStr___CFLOAT64X);
+            }
+        }
         static if (!is(typeof(RMW_LOCAL)))
         {
             private enum enumMixinStr_RMW_LOCAL = `enum RMW_LOCAL = __attribute__ ( ( visibility ( "hidden" ) ) );`;
             static if (is(typeof({ mixin(enumMixinStr_RMW_LOCAL); })))
             {
                 mixin(enumMixinStr_RMW_LOCAL);
-            }
-        }
-
-        static if (!is(typeof(__HAVE_FLOAT128)))
-        {
-            private enum enumMixinStr___HAVE_FLOAT128 = `enum __HAVE_FLOAT128 = 0;`;
-            static if (is(typeof({ mixin(enumMixinStr___HAVE_FLOAT128); })))
-            {
-                mixin(enumMixinStr___HAVE_FLOAT128);
             }
         }
 
@@ -13419,36 +14588,6 @@ version (galactic)
                 mixin(enumMixinStr_RMW_PUBLIC);
             }
         }
-
-        static if (!is(typeof(__HAVE_DISTINCT_FLOAT128)))
-        {
-            private enum enumMixinStr___HAVE_DISTINCT_FLOAT128 = `enum __HAVE_DISTINCT_FLOAT128 = 0;`;
-            static if (is(typeof({ mixin(enumMixinStr___HAVE_DISTINCT_FLOAT128); })))
-            {
-                mixin(enumMixinStr___HAVE_DISTINCT_FLOAT128);
-            }
-        }
-
-        static if (!is(typeof(__HAVE_FLOAT64X)))
-        {
-            private enum enumMixinStr___HAVE_FLOAT64X = `enum __HAVE_FLOAT64X = 1;`;
-            static if (is(typeof({ mixin(enumMixinStr___HAVE_FLOAT64X); })))
-            {
-                mixin(enumMixinStr___HAVE_FLOAT64X);
-            }
-        }
-
-        static if (!is(typeof(__HAVE_FLOAT64X_LONG_DOUBLE)))
-        {
-            private enum enumMixinStr___HAVE_FLOAT64X_LONG_DOUBLE = `enum __HAVE_FLOAT64X_LONG_DOUBLE = 1;`;
-            static if (is(typeof({
-                        mixin(enumMixinStr___HAVE_FLOAT64X_LONG_DOUBLE);
-                    })))
-            {
-                mixin(enumMixinStr___HAVE_FLOAT64X_LONG_DOUBLE);
-            }
-        }
-
         static if (!is(typeof(RMW_EXPORT)))
         {
             private enum enumMixinStr_RMW_EXPORT = `enum RMW_EXPORT = __attribute__ ( ( visibility ( "default" ) ) );`;
@@ -13487,6 +14626,44 @@ version (galactic)
             }
         }
 
+        static if (!is(typeof(__HAVE_FLOAT128)))
+        {
+            private enum enumMixinStr___HAVE_FLOAT128 = `enum __HAVE_FLOAT128 = 0;`;
+            static if (is(typeof({ mixin(enumMixinStr___HAVE_FLOAT128); })))
+            {
+                mixin(enumMixinStr___HAVE_FLOAT128);
+            }
+        }
+
+        static if (!is(typeof(__HAVE_DISTINCT_FLOAT128)))
+        {
+            private enum enumMixinStr___HAVE_DISTINCT_FLOAT128 = `enum __HAVE_DISTINCT_FLOAT128 = 0;`;
+            static if (is(typeof({ mixin(enumMixinStr___HAVE_DISTINCT_FLOAT128); })))
+            {
+                mixin(enumMixinStr___HAVE_DISTINCT_FLOAT128);
+            }
+        }
+
+        static if (!is(typeof(__HAVE_FLOAT64X)))
+        {
+            private enum enumMixinStr___HAVE_FLOAT64X = `enum __HAVE_FLOAT64X = 1;`;
+            static if (is(typeof({ mixin(enumMixinStr___HAVE_FLOAT64X); })))
+            {
+                mixin(enumMixinStr___HAVE_FLOAT64X);
+            }
+        }
+
+        static if (!is(typeof(__HAVE_FLOAT64X_LONG_DOUBLE)))
+        {
+            private enum enumMixinStr___HAVE_FLOAT64X_LONG_DOUBLE = `enum __HAVE_FLOAT64X_LONG_DOUBLE = 1;`;
+            static if (is(typeof({
+                        mixin(enumMixinStr___HAVE_FLOAT64X_LONG_DOUBLE);
+                    })))
+            {
+                mixin(enumMixinStr___HAVE_FLOAT64X_LONG_DOUBLE);
+            }
+        }
+
         static if (!is(typeof(RMW_QOS_POLICY_LIVELINESS_MANUAL_BY_NODE_DEPRECATED_MSG)))
         {
             private enum enumMixinStr_RMW_QOS_POLICY_LIVELINESS_MANUAL_BY_NODE_DEPRECATED_MSG = `enum RMW_QOS_POLICY_LIVELINESS_MANUAL_BY_NODE_DEPRECATED_MSG = "RMW_QOS_POLICY_LIVELINESS_MANUAL_BY_NODE is deprecated. " "Use RMW_QOS_POLICY_LIVELINESS_MANUAL_BY_TOPIC if manually asserted liveliness is needed.";`;
@@ -13506,7 +14683,6 @@ version (galactic)
                 mixin(enumMixinStr_RMW_GID_STORAGE_SIZE);
             }
         }
-
         static if (!is(typeof(RMW_DURATION_UNSPECIFIED)))
         {
             private enum enumMixinStr_RMW_DURATION_UNSPECIFIED = `enum RMW_DURATION_UNSPECIFIED = { 0L , 0L };`;
@@ -13524,7 +14700,6 @@ version (galactic)
                 mixin(enumMixinStr_RMW_DURATION_INFINITE);
             }
         }
-
         static if (!is(typeof(__GLIBC_USE_LIB_EXT2)))
         {
             private enum enumMixinStr___GLIBC_USE_LIB_EXT2 = `enum __GLIBC_USE_LIB_EXT2 = 0;`;
@@ -13544,6 +14719,7 @@ version (galactic)
                 mixin(enumMixinStr___GLIBC_USE_IEC_60559_BFP_EXT);
             }
         }
+
         static if (!is(typeof(rmw_get_zero_initialized_serialized_message)))
         {
             private enum enumMixinStr_rmw_get_zero_initialized_serialized_message = `enum rmw_get_zero_initialized_serialized_message = rcutils_get_zero_initialized_uint8_array;`;
@@ -13554,28 +14730,6 @@ version (galactic)
                 mixin(enumMixinStr_rmw_get_zero_initialized_serialized_message);
             }
         }
-        static if (!is(typeof(__GLIBC_USE_IEC_60559_BFP_EXT_C2X)))
-        {
-            private enum enumMixinStr___GLIBC_USE_IEC_60559_BFP_EXT_C2X = `enum __GLIBC_USE_IEC_60559_BFP_EXT_C2X = 0;`;
-            static if (is(typeof({
-                        mixin(enumMixinStr___GLIBC_USE_IEC_60559_BFP_EXT_C2X);
-                    })))
-            {
-                mixin(enumMixinStr___GLIBC_USE_IEC_60559_BFP_EXT_C2X);
-            }
-        }
-
-        static if (!is(typeof(__GLIBC_USE_IEC_60559_FUNCS_EXT)))
-        {
-            private enum enumMixinStr___GLIBC_USE_IEC_60559_FUNCS_EXT = `enum __GLIBC_USE_IEC_60559_FUNCS_EXT = 0;`;
-            static if (is(typeof({
-                        mixin(enumMixinStr___GLIBC_USE_IEC_60559_FUNCS_EXT);
-                    })))
-            {
-                mixin(enumMixinStr___GLIBC_USE_IEC_60559_FUNCS_EXT);
-            }
-        }
-
         static if (!is(typeof(RMW_RET_NODE_NAME_NON_EXISTENT)))
         {
             private enum enumMixinStr_RMW_RET_NODE_NAME_NON_EXISTENT = `enum RMW_RET_NODE_NAME_NON_EXISTENT = 203;`;
@@ -13616,6 +14770,28 @@ version (galactic)
             }
         }
 
+        static if (!is(typeof(__GLIBC_USE_IEC_60559_BFP_EXT_C2X)))
+        {
+            private enum enumMixinStr___GLIBC_USE_IEC_60559_BFP_EXT_C2X = `enum __GLIBC_USE_IEC_60559_BFP_EXT_C2X = 0;`;
+            static if (is(typeof({
+                        mixin(enumMixinStr___GLIBC_USE_IEC_60559_BFP_EXT_C2X);
+                    })))
+            {
+                mixin(enumMixinStr___GLIBC_USE_IEC_60559_BFP_EXT_C2X);
+            }
+        }
+
+        static if (!is(typeof(__GLIBC_USE_IEC_60559_FUNCS_EXT)))
+        {
+            private enum enumMixinStr___GLIBC_USE_IEC_60559_FUNCS_EXT = `enum __GLIBC_USE_IEC_60559_FUNCS_EXT = 0;`;
+            static if (is(typeof({
+                        mixin(enumMixinStr___GLIBC_USE_IEC_60559_FUNCS_EXT);
+                    })))
+            {
+                mixin(enumMixinStr___GLIBC_USE_IEC_60559_FUNCS_EXT);
+            }
+        }
+
         static if (!is(typeof(RMW_RET_UNSUPPORTED)))
         {
             private enum enumMixinStr_RMW_RET_UNSUPPORTED = `enum RMW_RET_UNSUPPORTED = 3;`;
@@ -13643,6 +14819,14 @@ version (galactic)
             }
         }
 
+        static if (!is(typeof(RMW_RET_OK)))
+        {
+            private enum enumMixinStr_RMW_RET_OK = `enum RMW_RET_OK = 0;`;
+            static if (is(typeof({ mixin(enumMixinStr_RMW_RET_OK); })))
+            {
+                mixin(enumMixinStr_RMW_RET_OK);
+            }
+        }
         static if (!is(typeof(__GLIBC_USE_IEC_60559_FUNCS_EXT_C2X)))
         {
             private enum enumMixinStr___GLIBC_USE_IEC_60559_FUNCS_EXT_C2X = `enum __GLIBC_USE_IEC_60559_FUNCS_EXT_C2X = 0;`;
@@ -13687,14 +14871,15 @@ version (galactic)
             }
         }
 
-        static if (!is(typeof(RMW_RET_OK)))
+        static if (!is(typeof(RMW_WARN_UNUSED)))
         {
-            private enum enumMixinStr_RMW_RET_OK = `enum RMW_RET_OK = 0;`;
-            static if (is(typeof({ mixin(enumMixinStr_RMW_RET_OK); })))
+            private enum enumMixinStr_RMW_WARN_UNUSED = `enum RMW_WARN_UNUSED = RCUTILS_WARN_UNUSED;`;
+            static if (is(typeof({ mixin(enumMixinStr_RMW_WARN_UNUSED); })))
             {
-                mixin(enumMixinStr_RMW_RET_OK);
+                mixin(enumMixinStr_RMW_WARN_UNUSED);
             }
         }
+
         static if (!is(typeof(__SIZEOF_PTHREAD_MUTEX_T)))
         {
             private enum enumMixinStr___SIZEOF_PTHREAD_MUTEX_T = `enum __SIZEOF_PTHREAD_MUTEX_T = 40;`;
@@ -13797,24 +14982,6 @@ version (galactic)
                 mixin(enumMixinStr__BITS_PTHREADTYPES_COMMON_H);
             }
         }
-
-        static if (!is(typeof(RMW_WARN_UNUSED)))
-        {
-            private enum enumMixinStr_RMW_WARN_UNUSED = `enum RMW_WARN_UNUSED = RCUTILS_WARN_UNUSED;`;
-            static if (is(typeof({ mixin(enumMixinStr_RMW_WARN_UNUSED); })))
-            {
-                mixin(enumMixinStr_RMW_WARN_UNUSED);
-            }
-        }
-        static if (!is(typeof(__have_pthread_attr_t)))
-        {
-            private enum enumMixinStr___have_pthread_attr_t = `enum __have_pthread_attr_t = 1;`;
-            static if (is(typeof({ mixin(enumMixinStr___have_pthread_attr_t); })))
-            {
-                mixin(enumMixinStr___have_pthread_attr_t);
-            }
-        }
-
         static if (!is(typeof(RMW_DEFAULT_DOMAIN_ID)))
         {
             private enum enumMixinStr_RMW_DEFAULT_DOMAIN_ID = `enum RMW_DEFAULT_DOMAIN_ID = ( 18446744073709551615UL );`;
@@ -13830,6 +14997,15 @@ version (galactic)
             static if (is(typeof({ mixin(enumMixinStr_RCUTILS_LOCAL); })))
             {
                 mixin(enumMixinStr_RCUTILS_LOCAL);
+            }
+        }
+
+        static if (!is(typeof(__have_pthread_attr_t)))
+        {
+            private enum enumMixinStr___have_pthread_attr_t = `enum __have_pthread_attr_t = 1;`;
+            static if (is(typeof({ mixin(enumMixinStr___have_pthread_attr_t); })))
+            {
+                mixin(enumMixinStr___have_pthread_attr_t);
             }
         }
 
@@ -14001,7 +15177,6 @@ version (galactic)
                 mixin(enumMixinStr_RCUTILS_RET_OK);
             }
         }
-
         static if (!is(typeof(__FD_ZERO_STOS)))
         {
             private enum enumMixinStr___FD_ZERO_STOS = `enum __FD_ZERO_STOS = "stosq";`;
@@ -14018,20 +15193,21 @@ version (galactic)
                 mixin(enumMixinStr__BITS_STDINT_INTN_H);
             }
         }
-        static if (!is(typeof(_BITS_STDINT_UINTN_H)))
-        {
-            private enum enumMixinStr__BITS_STDINT_UINTN_H = `enum _BITS_STDINT_UINTN_H = 1;`;
-            static if (is(typeof({ mixin(enumMixinStr__BITS_STDINT_UINTN_H); })))
-            {
-                mixin(enumMixinStr__BITS_STDINT_UINTN_H);
-            }
-        }
         static if (!is(typeof(RCUTILS_STEADY_TIME)))
         {
             private enum enumMixinStr_RCUTILS_STEADY_TIME = `enum RCUTILS_STEADY_TIME = rcutils_steady_time_now;`;
             static if (is(typeof({ mixin(enumMixinStr_RCUTILS_STEADY_TIME); })))
             {
                 mixin(enumMixinStr_RCUTILS_STEADY_TIME);
+            }
+        }
+
+        static if (!is(typeof(_BITS_STDINT_UINTN_H)))
+        {
+            private enum enumMixinStr__BITS_STDINT_UINTN_H = `enum _BITS_STDINT_UINTN_H = 1;`;
+            static if (is(typeof({ mixin(enumMixinStr__BITS_STDINT_UINTN_H); })))
+            {
+                mixin(enumMixinStr__BITS_STDINT_UINTN_H);
             }
         }
         static if (!is(typeof(_BITS_STDIO_LIM_H)))
@@ -14096,16 +15272,6 @@ version (galactic)
                 mixin(enumMixinStr__THREAD_MUTEX_INTERNAL_H);
             }
         }
-        static if (!is(typeof(__PTHREAD_MUTEX_HAVE_PREV)))
-        {
-            private enum enumMixinStr___PTHREAD_MUTEX_HAVE_PREV = `enum __PTHREAD_MUTEX_HAVE_PREV = 1;`;
-            static if (is(typeof({
-                        mixin(enumMixinStr___PTHREAD_MUTEX_HAVE_PREV);
-                    })))
-            {
-                mixin(enumMixinStr___PTHREAD_MUTEX_HAVE_PREV);
-            }
-        }
         static if (!is(typeof(RCUTILS_FAULT_INJECTION_FAIL_NOW)))
         {
             private enum enumMixinStr_RCUTILS_FAULT_INJECTION_FAIL_NOW = `enum RCUTILS_FAULT_INJECTION_FAIL_NOW = 0;`;
@@ -14117,14 +15283,14 @@ version (galactic)
             }
         }
 
-        static if (!is(typeof(__PTHREAD_RWLOCK_ELISION_EXTRA)))
+        static if (!is(typeof(__PTHREAD_MUTEX_HAVE_PREV)))
         {
-            private enum enumMixinStr___PTHREAD_RWLOCK_ELISION_EXTRA = `enum __PTHREAD_RWLOCK_ELISION_EXTRA = 0 , { 0 , 0 , 0 , 0 , 0 , 0 , 0 };`;
+            private enum enumMixinStr___PTHREAD_MUTEX_HAVE_PREV = `enum __PTHREAD_MUTEX_HAVE_PREV = 1;`;
             static if (is(typeof({
-                        mixin(enumMixinStr___PTHREAD_RWLOCK_ELISION_EXTRA);
+                        mixin(enumMixinStr___PTHREAD_MUTEX_HAVE_PREV);
                     })))
             {
-                mixin(enumMixinStr___PTHREAD_RWLOCK_ELISION_EXTRA);
+                mixin(enumMixinStr___PTHREAD_MUTEX_HAVE_PREV);
             }
         }
 
@@ -14138,6 +15304,16 @@ version (galactic)
                 mixin(enumMixinStr_RCUTILS_FAULT_INJECTION_NEVER_FAIL);
             }
         }
+        static if (!is(typeof(__PTHREAD_RWLOCK_ELISION_EXTRA)))
+        {
+            private enum enumMixinStr___PTHREAD_RWLOCK_ELISION_EXTRA = `enum __PTHREAD_RWLOCK_ELISION_EXTRA = 0 , { 0 , 0 , 0 , 0 , 0 , 0 , 0 };`;
+            static if (is(typeof({
+                        mixin(enumMixinStr___PTHREAD_RWLOCK_ELISION_EXTRA);
+                    })))
+            {
+                mixin(enumMixinStr___PTHREAD_RWLOCK_ELISION_EXTRA);
+            }
+        }
         static if (!is(typeof(_THREAD_SHARED_TYPES_H)))
         {
             private enum enumMixinStr__THREAD_SHARED_TYPES_H = `enum _THREAD_SHARED_TYPES_H = 1;`;
@@ -14146,6 +15322,7 @@ version (galactic)
                 mixin(enumMixinStr__THREAD_SHARED_TYPES_H);
             }
         }
+
         static if (!is(typeof(RCUTILS_DEPRECATED)))
         {
             private enum enumMixinStr_RCUTILS_DEPRECATED = `enum RCUTILS_DEPRECATED = __attribute__ ( ( deprecated ) );`;
@@ -14154,6 +15331,24 @@ version (galactic)
                 mixin(enumMixinStr_RCUTILS_DEPRECATED);
             }
         }
+        static if (!is(typeof(RCUTILS_THREAD_LOCAL)))
+        {
+            private enum enumMixinStr_RCUTILS_THREAD_LOCAL = `enum RCUTILS_THREAD_LOCAL = _Thread_local;`;
+            static if (is(typeof({ mixin(enumMixinStr_RCUTILS_THREAD_LOCAL); })))
+            {
+                mixin(enumMixinStr_RCUTILS_THREAD_LOCAL);
+            }
+        }
+
+        static if (!is(typeof(RCUTILS_WARN_UNUSED)))
+        {
+            private enum enumMixinStr_RCUTILS_WARN_UNUSED = `enum RCUTILS_WARN_UNUSED = __attribute__ ( ( warn_unused_result ) );`;
+            static if (is(typeof({ mixin(enumMixinStr_RCUTILS_WARN_UNUSED); })))
+            {
+                mixin(enumMixinStr_RCUTILS_WARN_UNUSED);
+            }
+        }
+
         static if (!is(typeof(_BITS_TIME64_H)))
         {
             private enum enumMixinStr__BITS_TIME64_H = `enum _BITS_TIME64_H = 1;`;
@@ -14172,12 +15367,12 @@ version (galactic)
             }
         }
 
-        static if (!is(typeof(RCUTILS_THREAD_LOCAL)))
+        static if (!is(typeof(RCUTILS_LOGGING_AUTOINIT)))
         {
-            private enum enumMixinStr_RCUTILS_THREAD_LOCAL = `enum RCUTILS_THREAD_LOCAL = _Thread_local;`;
-            static if (is(typeof({ mixin(enumMixinStr_RCUTILS_THREAD_LOCAL); })))
+            private enum enumMixinStr_RCUTILS_LOGGING_AUTOINIT = `enum RCUTILS_LOGGING_AUTOINIT = do { if ( __builtin_expect ( ( ! g_rcutils_logging_initialized ) , 0 ) ) { if ( rcutils_logging_initialize ( ) != 0 ) { RCUTILS_SAFE_FWRITE_TO_STDERR ( "[rcutils|" "/tmp/package.d.tmp" ":" "15701" "] error initializing logging: " ) ; RCUTILS_SAFE_FWRITE_TO_STDERR ( rcutils_get_error_string ( ) . str ) ; RCUTILS_SAFE_FWRITE_TO_STDERR ( "\n" ) ; rcutils_reset_error ( ) ; } } } while ( 0 );`;
+            static if (is(typeof({ mixin(enumMixinStr_RCUTILS_LOGGING_AUTOINIT); })))
             {
-                mixin(enumMixinStr_RCUTILS_THREAD_LOCAL);
+                mixin(enumMixinStr_RCUTILS_LOGGING_AUTOINIT);
             }
         }
 
@@ -14196,24 +15391,6 @@ version (galactic)
             static if (is(typeof({ mixin(enumMixinStr__BITS_TYPES_H); })))
             {
                 mixin(enumMixinStr__BITS_TYPES_H);
-            }
-        }
-
-        static if (!is(typeof(RCUTILS_WARN_UNUSED)))
-        {
-            private enum enumMixinStr_RCUTILS_WARN_UNUSED = `enum RCUTILS_WARN_UNUSED = __attribute__ ( ( warn_unused_result ) );`;
-            static if (is(typeof({ mixin(enumMixinStr_RCUTILS_WARN_UNUSED); })))
-            {
-                mixin(enumMixinStr_RCUTILS_WARN_UNUSED);
-            }
-        }
-
-        static if (!is(typeof(RCUTILS_LOGGING_AUTOINIT)))
-        {
-            private enum enumMixinStr_RCUTILS_LOGGING_AUTOINIT = `enum RCUTILS_LOGGING_AUTOINIT = do { if ( __builtin_expect ( ( ! g_rcutils_logging_initialized ) , 0 ) ) { if ( rcutils_logging_initialize ( ) != 0 ) { RCUTILS_SAFE_FWRITE_TO_STDERR ( "[rcutils|" "/tmp/package.d.tmp" ":" "14555" "] error initializing logging: " ) ; RCUTILS_SAFE_FWRITE_TO_STDERR ( rcutils_get_error_string ( ) . str ) ; RCUTILS_SAFE_FWRITE_TO_STDERR ( "\n" ) ; rcutils_reset_error ( ) ; } } } while ( 0 );`;
-            static if (is(typeof({ mixin(enumMixinStr_RCUTILS_LOGGING_AUTOINIT); })))
-            {
-                mixin(enumMixinStr_RCUTILS_LOGGING_AUTOINIT);
             }
         }
 
@@ -14319,6 +15496,28 @@ version (galactic)
             }
         }
 
+        static if (!is(typeof(RCL_RET_LIFECYCLE_STATE_NOT_REGISTERED)))
+        {
+            private enum enumMixinStr_RCL_RET_LIFECYCLE_STATE_NOT_REGISTERED = `enum RCL_RET_LIFECYCLE_STATE_NOT_REGISTERED = 3001;`;
+            static if (is(typeof({
+                        mixin(enumMixinStr_RCL_RET_LIFECYCLE_STATE_NOT_REGISTERED);
+                    })))
+            {
+                mixin(enumMixinStr_RCL_RET_LIFECYCLE_STATE_NOT_REGISTERED);
+            }
+        }
+
+        static if (!is(typeof(RCL_RET_LIFECYCLE_STATE_REGISTERED)))
+        {
+            private enum enumMixinStr_RCL_RET_LIFECYCLE_STATE_REGISTERED = `enum RCL_RET_LIFECYCLE_STATE_REGISTERED = 3000;`;
+            static if (is(typeof({
+                        mixin(enumMixinStr_RCL_RET_LIFECYCLE_STATE_REGISTERED);
+                    })))
+            {
+                mixin(enumMixinStr_RCL_RET_LIFECYCLE_STATE_REGISTERED);
+            }
+        }
+
         static if (!is(typeof(__S16_TYPE)))
         {
             private enum enumMixinStr___S16_TYPE = `enum __S16_TYPE = short int;`;
@@ -14373,14 +15572,23 @@ version (galactic)
             }
         }
 
-        static if (!is(typeof(RCL_RET_LIFECYCLE_STATE_NOT_REGISTERED)))
+        static if (!is(typeof(RCL_RET_EVENT_TAKE_FAILED)))
         {
-            private enum enumMixinStr_RCL_RET_LIFECYCLE_STATE_NOT_REGISTERED = `enum RCL_RET_LIFECYCLE_STATE_NOT_REGISTERED = 3001;`;
+            private enum enumMixinStr_RCL_RET_EVENT_TAKE_FAILED = `enum RCL_RET_EVENT_TAKE_FAILED = 2001;`;
             static if (is(typeof({
-                        mixin(enumMixinStr_RCL_RET_LIFECYCLE_STATE_NOT_REGISTERED);
+                        mixin(enumMixinStr_RCL_RET_EVENT_TAKE_FAILED);
                     })))
             {
-                mixin(enumMixinStr_RCL_RET_LIFECYCLE_STATE_NOT_REGISTERED);
+                mixin(enumMixinStr_RCL_RET_EVENT_TAKE_FAILED);
+            }
+        }
+
+        static if (!is(typeof(RCL_RET_EVENT_INVALID)))
+        {
+            private enum enumMixinStr_RCL_RET_EVENT_INVALID = `enum RCL_RET_EVENT_INVALID = 2000;`;
+            static if (is(typeof({ mixin(enumMixinStr_RCL_RET_EVENT_INVALID); })))
+            {
+                mixin(enumMixinStr_RCL_RET_EVENT_INVALID);
             }
         }
 
@@ -14462,37 +15670,6 @@ version (galactic)
             static if (is(typeof({ mixin(enumMixinStr___STD_TYPE); })))
             {
                 mixin(enumMixinStr___STD_TYPE);
-            }
-        }
-
-        static if (!is(typeof(RCL_RET_LIFECYCLE_STATE_REGISTERED)))
-        {
-            private enum enumMixinStr_RCL_RET_LIFECYCLE_STATE_REGISTERED = `enum RCL_RET_LIFECYCLE_STATE_REGISTERED = 3000;`;
-            static if (is(typeof({
-                        mixin(enumMixinStr_RCL_RET_LIFECYCLE_STATE_REGISTERED);
-                    })))
-            {
-                mixin(enumMixinStr_RCL_RET_LIFECYCLE_STATE_REGISTERED);
-            }
-        }
-
-        static if (!is(typeof(RCL_RET_EVENT_TAKE_FAILED)))
-        {
-            private enum enumMixinStr_RCL_RET_EVENT_TAKE_FAILED = `enum RCL_RET_EVENT_TAKE_FAILED = 2001;`;
-            static if (is(typeof({
-                        mixin(enumMixinStr_RCL_RET_EVENT_TAKE_FAILED);
-                    })))
-            {
-                mixin(enumMixinStr_RCL_RET_EVENT_TAKE_FAILED);
-            }
-        }
-
-        static if (!is(typeof(RCL_RET_EVENT_INVALID)))
-        {
-            private enum enumMixinStr_RCL_RET_EVENT_INVALID = `enum RCL_RET_EVENT_INVALID = 2000;`;
-            static if (is(typeof({ mixin(enumMixinStr_RCL_RET_EVENT_INVALID); })))
-            {
-                mixin(enumMixinStr_RCL_RET_EVENT_INVALID);
             }
         }
 
@@ -14900,6 +16077,38 @@ version (galactic)
             static if (is(typeof({ mixin(enumMixinStr_RCL_WARN_UNUSED); })))
             {
                 mixin(enumMixinStr_RCL_WARN_UNUSED);
+            }
+        }
+        static if (!is(typeof(rcl_topic_endpoint_info_array_fini)))
+        {
+            private enum enumMixinStr_rcl_topic_endpoint_info_array_fini = `enum rcl_topic_endpoint_info_array_fini = rmw_topic_endpoint_info_array_fini;`;
+            static if (is(typeof({
+                        mixin(enumMixinStr_rcl_topic_endpoint_info_array_fini);
+                    })))
+            {
+                mixin(enumMixinStr_rcl_topic_endpoint_info_array_fini);
+            }
+        }
+
+        static if (!is(typeof(rcl_get_zero_initialized_topic_endpoint_info_array)))
+        {
+            private enum enumMixinStr_rcl_get_zero_initialized_topic_endpoint_info_array = `enum rcl_get_zero_initialized_topic_endpoint_info_array = rmw_get_zero_initialized_topic_endpoint_info_array;`;
+            static if (is(typeof({
+                        mixin(enumMixinStr_rcl_get_zero_initialized_topic_endpoint_info_array);
+                    })))
+            {
+                mixin(enumMixinStr_rcl_get_zero_initialized_topic_endpoint_info_array);
+            }
+        }
+
+        static if (!is(typeof(rcl_get_zero_initialized_names_and_types)))
+        {
+            private enum enumMixinStr_rcl_get_zero_initialized_names_and_types = `enum rcl_get_zero_initialized_names_and_types = rmw_get_zero_initialized_names_and_types;`;
+            static if (is(typeof({
+                        mixin(enumMixinStr_rcl_get_zero_initialized_names_and_types);
+                    })))
+            {
+                mixin(enumMixinStr_rcl_get_zero_initialized_names_and_types);
             }
         }
         static if (!is(typeof(RCL_DEFAULT_DOMAIN_ID)))
