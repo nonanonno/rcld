@@ -21,6 +21,8 @@ configuration "unittest" {
     dependency "silly" version="~>1.1.1"
     dependency "dshould" version="~>1.5.0"
     targetPath ".dub/unittest"
+    postRunCommands "bash test/setup.sh"
+    postRunCommands "dub test --root test"
 }
 
 configuration "clean" {
