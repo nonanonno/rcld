@@ -37,14 +37,14 @@ unittest
     assert(found);
 
     auto proc = spawnShell(format(
-            `ros2 service call /%s/set_bool std_srvs/srv/SetBool '{data: True}'`, ns));
+            `ros2 service call /%s/set_bool std_srvs/srv/SetBool '{data: True}' > /dev/null`, ns));
     SetBool.Request req;
     rmw_request_id_t reqId;
     bool taken = false;
     foreach (_; 0 .. 5)
     {
         Thread.sleep(200.msecs);
-        taken = srv.take(req, reqId);
+        taken = srv.takeRequest(req, reqId);
         if (taken)
         {
             break;

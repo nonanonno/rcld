@@ -5,3 +5,4 @@ public import rcld.node;
 public import rcld.publisher;
 public import rcld.subscription;
 public import rcld.service;
+public import rcld.client;

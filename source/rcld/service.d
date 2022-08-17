@@ -37,7 +37,7 @@ class Service(T) : BaseService
         return _handle.impl !is null;
     }
 
-    bool take(out T.Request request, out rmw_request_id_t requestId)
+    bool takeRequest(out T.Request request, out rmw_request_id_t requestId)
     {
         auto cMsg = T.Request.createC();
         assert(cMsg);

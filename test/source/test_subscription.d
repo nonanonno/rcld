@@ -35,7 +35,7 @@ unittest
     }
     assert(found);
 
-    assert(spawnShell(format(`ros2 topic pub /%s/chatter std_msgs/msg/String '{data: "hello"}' -1`, ns))
+    assert(spawnShell(format(`ros2 topic pub /%s/chatter std_msgs/msg/String '{data: "hello"}' -1 > /dev/null`, ns))
             .wait == 0);
 
     String msg;
