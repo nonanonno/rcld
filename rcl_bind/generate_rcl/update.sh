@@ -16,7 +16,7 @@ function generate() {
     local ros_distro=${1}
     echo Executing ${ros_distro} ...
     docker build . -t rcl_builder:${ros_distro} --build-arg ROS_DISTRO=${ros_distro}
-    docker run --rm rcl_builder:${ros_distro} > ../source/rcl/${ros_distro}.d
+    docker run -it --rm rcl_builder:${ros_distro} > ../source/rcl/${ros_distro}.d
     echo Done ${ros_distro}
 }
 

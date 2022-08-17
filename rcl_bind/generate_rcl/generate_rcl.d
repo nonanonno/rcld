@@ -47,6 +47,7 @@ void main(string[] args)
 module rcl.%s;
 
 #include <rcl/rcl.h>
+#include <rcl/graph.h>
 #include <rosidl_runtime_c/action_type_support_struct.h>
 #include <rosidl_runtime_c/message_type_support_struct.h>
 #include <rosidl_runtime_c/primitives_sequence.h>
