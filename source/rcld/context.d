@@ -3,6 +3,7 @@ module rcld.context;
 import core.runtime;
 import rcl;
 import rcld.util;
+import rcld.node;
 
 version (unittest) import std.exception;
 
@@ -83,6 +84,10 @@ class Context
 
     void shutdown()
     {
+        foreach (node; _nodes)
+        {
+            node.terminate();
+        }
         safeCall(rcl_shutdown(&_context));
     }
 
@@ -97,6 +102,9 @@ class Context
         safeCall(rcl_context_get_domain_id(constHandle(), &domainId));
         return domainId;
     }
+
+package:
+    Node[] _nodes;
 
 private:
     rcl_context_t _context;

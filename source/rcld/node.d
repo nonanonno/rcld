@@ -4,6 +4,7 @@ import rcl;
 import rcld.context;
 import std.string;
 import rcld.util;
+import rcld.publisher;
 
 version (unittest) import std.exception;
 
@@ -22,18 +23,35 @@ class Node
                 context.getRclContextRef(),
                 &options
         ));
+        context._nodes ~= this;
     }
 
-    ~this()
+    void terminate()
     {
-        if (rcl_node_is_valid(&_handle))
+        if (isValid())
         {
+            foreach (pub; _publishers)
+            {
+                pub.terminate(this);
+            }
+            _publishers.length = 0;
             safeCall(rcl_node_fini(&_handle));
         }
     }
 
-private:
+    ~this()
+    {
+        terminate();
+    }
+
+    bool isValid() const
+    {
+        return _handle.impl !is null;
+    }
+
+package:
     rcl_node_t _handle;
+    BasePublisher[] _publishers;
 }
 
 @("construct")
