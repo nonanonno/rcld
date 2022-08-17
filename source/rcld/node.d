@@ -5,6 +5,7 @@ import rcld.context;
 import std.string;
 import rcld.util;
 import rcld.publisher;
+import rcld.subscription;
 
 version (unittest) import std.exception;
 
@@ -30,11 +31,8 @@ class Node
     {
         if (isValid())
         {
-            foreach (pub; _publishers)
-            {
-                pub.terminate(this);
-            }
-            _publishers.length = 0;
+            terminateItems(_publishers);
+            terminateItems(_subscriptions);
             safeCall(rcl_node_fini(&_handle));
         }
     }
@@ -52,6 +50,18 @@ class Node
 package:
     rcl_node_t _handle;
     BasePublisher[] _publishers;
+    BaseSubscription[] _subscriptions;
+
+private:
+    void terminateItems(T)(ref T[] items)
+    {
+        foreach (i; items)
+        {
+            i.terminate(this);
+        }
+        items.length = 0;
+    }
+
 }
 
 @("construct")
