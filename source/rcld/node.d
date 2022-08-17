@@ -6,6 +6,7 @@ import std.string;
 import rcld.util;
 import rcld.publisher;
 import rcld.subscription;
+import rcld.service;
 
 version (unittest) import std.exception;
 
@@ -33,6 +34,7 @@ class Node
         {
             terminateItems(_publishers);
             terminateItems(_subscriptions);
+            terminateItems(_services);
             safeCall(rcl_node_fini(&_handle));
         }
     }
@@ -51,6 +53,7 @@ package:
     rcl_node_t _handle;
     BasePublisher[] _publishers;
     BaseSubscription[] _subscriptions;
+    BaseService[] _services;
 
 private:
     void terminateItems(T)(ref T[] items)

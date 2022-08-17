@@ -12,6 +12,7 @@ import test_helper.utils;
 import rcld;
 import std_msgs.msg;
 
+@("check if the topic created by the subscription can be found")
 unittest
 {
     auto ns = uniqueString;
