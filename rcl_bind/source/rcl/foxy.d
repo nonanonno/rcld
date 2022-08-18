@@ -156,9 +156,13 @@ version (foxy)
 
         alias daddr_t = int;
 
+        alias ssize_t = c_long;
+
         alias id_t = uint;
 
         alias pid_t = int;
+
+        alias off_t = c_long;
 
         alias uid_t = uint;
 
@@ -296,6 +300,81 @@ version (foxy)
 
             const(char)*[13] __names;
         }
+        /// Initialize msg/GoalInfo message.
+        /**
+ * If the init function is called twice for the same message without
+ * calling fini inbetween previously allocated memory will be leaked.
+ * \param[in,out] msg The previously allocated message pointer.
+ * Fields without a default value will not be initialized by this function.
+ * You might want to call memset(msg, 0, sizeof(
+ * action_msgs__msg__GoalInfo
+ * )) before or use
+ * action_msgs__msg__GoalInfo__create()
+ * to allocate and initialize the message.
+ * \return true if initialization was successful, otherwise false
+ */
+        bool action_msgs__msg__GoalInfo__init(action_msgs__msg__GoalInfo*) @nogc nothrow;
+        /// Finalize msg/GoalInfo message.
+        /**
+ * \param[in,out] msg The allocated message pointer.
+ */
+        void action_msgs__msg__GoalInfo__fini(action_msgs__msg__GoalInfo*) @nogc nothrow;
+        /// Create msg/GoalInfo message.
+        /**
+ * It allocates the memory for the message, sets the memory to zero, and
+ * calls
+ * action_msgs__msg__GoalInfo__init().
+ * \return The pointer to the initialized message if successful,
+ * otherwise NULL
+ */
+        action_msgs__msg__GoalInfo* action_msgs__msg__GoalInfo__create() @nogc nothrow;
+        /// Destroy msg/GoalInfo message.
+        /**
+ * It calls
+ * action_msgs__msg__GoalInfo__fini()
+ * and frees the memory of the message.
+ * \param[in,out] msg The allocated message pointer.
+ */
+        void action_msgs__msg__GoalInfo__destroy(action_msgs__msg__GoalInfo*) @nogc nothrow;
+        /// Initialize array of msg/GoalInfo messages.
+        /**
+ * It allocates the memory for the number of elements and calls
+ * action_msgs__msg__GoalInfo__init()
+ * for each element of the array.
+ * \param[in,out] array The allocated array pointer.
+ * \param[in] size The size / capacity of the array.
+ * \return true if initialization was successful, otherwise false
+ * If the array pointer is valid and the size is zero it is guaranteed
+ # to return true.
+ */
+        bool action_msgs__msg__GoalInfo__Sequence__init(
+                action_msgs__msg__GoalInfo__Sequence*, c_ulong) @nogc nothrow;
+        /// Finalize array of msg/GoalInfo messages.
+        /**
+ * It calls
+ * action_msgs__msg__GoalInfo__fini()
+ * for each element of the array and frees the memory for the number of
+ * elements.
+ * \param[in,out] array The initialized array pointer.
+ */
+        void action_msgs__msg__GoalInfo__Sequence__fini(action_msgs__msg__GoalInfo__Sequence*) @nogc nothrow;
+        /// Create array of msg/GoalInfo messages.
+        /**
+ * It allocates the memory for the array and calls
+ * action_msgs__msg__GoalInfo__Sequence__init().
+ * \param[in] size The size / capacity of the array.
+ * \return The pointer to the initialized array if successful, otherwise NULL
+ */
+        action_msgs__msg__GoalInfo__Sequence* action_msgs__msg__GoalInfo__Sequence__create(c_ulong) @nogc nothrow;
+        /// Destroy array of msg/GoalInfo messages.
+        /**
+ * It calls
+ * action_msgs__msg__GoalInfo__Sequence__fini()
+ * on the array,
+ * and frees the memory of the array.
+ * \param[in,out] array The initialized array pointer.
+ */
+        void action_msgs__msg__GoalInfo__Sequence__destroy(action_msgs__msg__GoalInfo__Sequence*) @nogc nothrow;
 
         struct _G_fpos_t
         {
@@ -305,7 +384,185 @@ version (foxy)
             __mbstate_t __state;
         }
 
+        struct action_msgs__msg__GoalInfo
+        {
+
+            unique_identifier_msgs__msg__UUID goal_id;
+
+            builtin_interfaces__msg__Time stamp;
+        }
+
+        struct action_msgs__msg__GoalInfo__Sequence
+        {
+
+            action_msgs__msg__GoalInfo* data;
+            /// The number of valid items in data
+            c_ulong size;
+            /// The number of allocated items in data
+            c_ulong capacity;
+        }
+
         alias __fpos_t = _G_fpos_t;
+
+        const(rosidl_message_type_support_t)* rosidl_typesupport_c__get_message_type_support_handle__action_msgs__msg__GoalInfo() @nogc nothrow;
+        /// Initialize msg/GoalStatus message.
+        /**
+ * If the init function is called twice for the same message without
+ * calling fini inbetween previously allocated memory will be leaked.
+ * \param[in,out] msg The previously allocated message pointer.
+ * Fields without a default value will not be initialized by this function.
+ * You might want to call memset(msg, 0, sizeof(
+ * action_msgs__msg__GoalStatus
+ * )) before or use
+ * action_msgs__msg__GoalStatus__create()
+ * to allocate and initialize the message.
+ * \return true if initialization was successful, otherwise false
+ */
+        bool action_msgs__msg__GoalStatus__init(action_msgs__msg__GoalStatus*) @nogc nothrow;
+        /// Finalize msg/GoalStatus message.
+        /**
+ * \param[in,out] msg The allocated message pointer.
+ */
+        void action_msgs__msg__GoalStatus__fini(action_msgs__msg__GoalStatus*) @nogc nothrow;
+        /// Create msg/GoalStatus message.
+        /**
+ * It allocates the memory for the message, sets the memory to zero, and
+ * calls
+ * action_msgs__msg__GoalStatus__init().
+ * \return The pointer to the initialized message if successful,
+ * otherwise NULL
+ */
+        action_msgs__msg__GoalStatus* action_msgs__msg__GoalStatus__create() @nogc nothrow;
+        /// Destroy msg/GoalStatus message.
+        /**
+ * It calls
+ * action_msgs__msg__GoalStatus__fini()
+ * and frees the memory of the message.
+ * \param[in,out] msg The allocated message pointer.
+ */
+        void action_msgs__msg__GoalStatus__destroy(action_msgs__msg__GoalStatus*) @nogc nothrow;
+        /// Initialize array of msg/GoalStatus messages.
+        /**
+ * It allocates the memory for the number of elements and calls
+ * action_msgs__msg__GoalStatus__init()
+ * for each element of the array.
+ * \param[in,out] array The allocated array pointer.
+ * \param[in] size The size / capacity of the array.
+ * \return true if initialization was successful, otherwise false
+ * If the array pointer is valid and the size is zero it is guaranteed
+ # to return true.
+ */
+        bool action_msgs__msg__GoalStatus__Sequence__init(
+                action_msgs__msg__GoalStatus__Sequence*, c_ulong) @nogc nothrow;
+        /// Finalize array of msg/GoalStatus messages.
+        /**
+ * It calls
+ * action_msgs__msg__GoalStatus__fini()
+ * for each element of the array and frees the memory for the number of
+ * elements.
+ * \param[in,out] array The initialized array pointer.
+ */
+        void action_msgs__msg__GoalStatus__Sequence__fini(action_msgs__msg__GoalStatus__Sequence*) @nogc nothrow;
+        /// Create array of msg/GoalStatus messages.
+        /**
+ * It allocates the memory for the array and calls
+ * action_msgs__msg__GoalStatus__Sequence__init().
+ * \param[in] size The size / capacity of the array.
+ * \return The pointer to the initialized array if successful, otherwise NULL
+ */
+        action_msgs__msg__GoalStatus__Sequence* action_msgs__msg__GoalStatus__Sequence__create(
+                c_ulong) @nogc nothrow;
+        /// Destroy array of msg/GoalStatus messages.
+        /**
+ * It calls
+ * action_msgs__msg__GoalStatus__Sequence__fini()
+ * on the array,
+ * and frees the memory of the array.
+ * \param[in,out] array The initialized array pointer.
+ */
+        void action_msgs__msg__GoalStatus__Sequence__destroy(
+                action_msgs__msg__GoalStatus__Sequence*) @nogc nothrow;
+        /// Constant 'STATUS_UNKNOWN'.
+        enum _Anonymous_2
+        {
+
+            action_msgs__msg__GoalStatus__STATUS_UNKNOWN = 0,
+        }
+
+        enum action_msgs__msg__GoalStatus__STATUS_UNKNOWN = _Anonymous_2
+                .action_msgs__msg__GoalStatus__STATUS_UNKNOWN;
+        /// Constant 'STATUS_ACCEPTED'.
+        enum _Anonymous_3
+        {
+
+            action_msgs__msg__GoalStatus__STATUS_ACCEPTED = 1,
+        }
+
+        enum action_msgs__msg__GoalStatus__STATUS_ACCEPTED = _Anonymous_3
+                .action_msgs__msg__GoalStatus__STATUS_ACCEPTED;
+        /// Constant 'STATUS_EXECUTING'.
+        enum _Anonymous_4
+        {
+
+            action_msgs__msg__GoalStatus__STATUS_EXECUTING = 2,
+        }
+
+        enum action_msgs__msg__GoalStatus__STATUS_EXECUTING = _Anonymous_4
+                .action_msgs__msg__GoalStatus__STATUS_EXECUTING;
+        /// Constant 'STATUS_CANCELING'.
+        enum _Anonymous_5
+        {
+
+            action_msgs__msg__GoalStatus__STATUS_CANCELING = 3,
+        }
+
+        enum action_msgs__msg__GoalStatus__STATUS_CANCELING = _Anonymous_5
+                .action_msgs__msg__GoalStatus__STATUS_CANCELING;
+        /// Constant 'STATUS_SUCCEEDED'.
+        enum _Anonymous_6
+        {
+
+            action_msgs__msg__GoalStatus__STATUS_SUCCEEDED = 4,
+        }
+
+        enum action_msgs__msg__GoalStatus__STATUS_SUCCEEDED = _Anonymous_6
+                .action_msgs__msg__GoalStatus__STATUS_SUCCEEDED;
+        /// Constant 'STATUS_CANCELED'.
+        enum _Anonymous_7
+        {
+
+            action_msgs__msg__GoalStatus__STATUS_CANCELED = 5,
+        }
+
+        enum action_msgs__msg__GoalStatus__STATUS_CANCELED = _Anonymous_7
+                .action_msgs__msg__GoalStatus__STATUS_CANCELED;
+        /// Constant 'STATUS_ABORTED'.
+        enum _Anonymous_8
+        {
+
+            action_msgs__msg__GoalStatus__STATUS_ABORTED = 6,
+        }
+
+        enum action_msgs__msg__GoalStatus__STATUS_ABORTED = _Anonymous_8
+                .action_msgs__msg__GoalStatus__STATUS_ABORTED;
+
+        struct action_msgs__msg__GoalStatus
+        {
+
+            action_msgs__msg__GoalInfo goal_info;
+
+            byte status;
+        }
+
+        struct action_msgs__msg__GoalStatus__Sequence
+        {
+
+            action_msgs__msg__GoalStatus* data;
+            /// The number of valid items in data
+            c_ulong size;
+            /// The number of allocated items in data
+            c_ulong capacity;
+        }
 
         struct _G_fpos64_t
         {
@@ -315,7 +572,105 @@ version (foxy)
             __mbstate_t __state;
         }
 
+        const(rosidl_message_type_support_t)* rosidl_typesupport_c__get_message_type_support_handle__action_msgs__msg__GoalStatus() @nogc nothrow;
+
         alias __fpos64_t = _G_fpos64_t;
+        /// Initialize msg/GoalStatusArray message.
+        /**
+ * If the init function is called twice for the same message without
+ * calling fini inbetween previously allocated memory will be leaked.
+ * \param[in,out] msg The previously allocated message pointer.
+ * Fields without a default value will not be initialized by this function.
+ * You might want to call memset(msg, 0, sizeof(
+ * action_msgs__msg__GoalStatusArray
+ * )) before or use
+ * action_msgs__msg__GoalStatusArray__create()
+ * to allocate and initialize the message.
+ * \return true if initialization was successful, otherwise false
+ */
+        bool action_msgs__msg__GoalStatusArray__init(action_msgs__msg__GoalStatusArray*) @nogc nothrow;
+        /// Finalize msg/GoalStatusArray message.
+        /**
+ * \param[in,out] msg The allocated message pointer.
+ */
+        void action_msgs__msg__GoalStatusArray__fini(action_msgs__msg__GoalStatusArray*) @nogc nothrow;
+        /// Create msg/GoalStatusArray message.
+        /**
+ * It allocates the memory for the message, sets the memory to zero, and
+ * calls
+ * action_msgs__msg__GoalStatusArray__init().
+ * \return The pointer to the initialized message if successful,
+ * otherwise NULL
+ */
+        action_msgs__msg__GoalStatusArray* action_msgs__msg__GoalStatusArray__create() @nogc nothrow;
+        /// Destroy msg/GoalStatusArray message.
+        /**
+ * It calls
+ * action_msgs__msg__GoalStatusArray__fini()
+ * and frees the memory of the message.
+ * \param[in,out] msg The allocated message pointer.
+ */
+        void action_msgs__msg__GoalStatusArray__destroy(action_msgs__msg__GoalStatusArray*) @nogc nothrow;
+        /// Initialize array of msg/GoalStatusArray messages.
+        /**
+ * It allocates the memory for the number of elements and calls
+ * action_msgs__msg__GoalStatusArray__init()
+ * for each element of the array.
+ * \param[in,out] array The allocated array pointer.
+ * \param[in] size The size / capacity of the array.
+ * \return true if initialization was successful, otherwise false
+ * If the array pointer is valid and the size is zero it is guaranteed
+ # to return true.
+ */
+        bool action_msgs__msg__GoalStatusArray__Sequence__init(
+                action_msgs__msg__GoalStatusArray__Sequence*, c_ulong) @nogc nothrow;
+        /// Finalize array of msg/GoalStatusArray messages.
+        /**
+ * It calls
+ * action_msgs__msg__GoalStatusArray__fini()
+ * for each element of the array and frees the memory for the number of
+ * elements.
+ * \param[in,out] array The initialized array pointer.
+ */
+        void action_msgs__msg__GoalStatusArray__Sequence__fini(
+                action_msgs__msg__GoalStatusArray__Sequence*) @nogc nothrow;
+        /// Create array of msg/GoalStatusArray messages.
+        /**
+ * It allocates the memory for the array and calls
+ * action_msgs__msg__GoalStatusArray__Sequence__init().
+ * \param[in] size The size / capacity of the array.
+ * \return The pointer to the initialized array if successful, otherwise NULL
+ */
+        action_msgs__msg__GoalStatusArray__Sequence* action_msgs__msg__GoalStatusArray__Sequence__create(
+                c_ulong) @nogc nothrow;
+        /// Destroy array of msg/GoalStatusArray messages.
+        /**
+ * It calls
+ * action_msgs__msg__GoalStatusArray__Sequence__fini()
+ * on the array,
+ * and frees the memory of the array.
+ * \param[in,out] array The initialized array pointer.
+ */
+        void action_msgs__msg__GoalStatusArray__Sequence__destroy(
+                action_msgs__msg__GoalStatusArray__Sequence*) @nogc nothrow;
+
+        struct action_msgs__msg__GoalStatusArray
+        {
+
+            action_msgs__msg__GoalStatus__Sequence status_list;
+        }
+
+        struct action_msgs__msg__GoalStatusArray__Sequence
+        {
+
+            action_msgs__msg__GoalStatusArray* data;
+            /// The number of valid items in data
+            c_ulong size;
+            /// The number of allocated items in data
+            c_ulong capacity;
+        }
+
+        const(rosidl_message_type_support_t)* rosidl_typesupport_c__get_message_type_support_handle__action_msgs__msg__GoalStatusArray() @nogc nothrow;
 
         alias __FILE = _IO_FILE;
 
@@ -324,14 +679,442 @@ version (foxy)
         alias __sig_atomic_t = int;
 
         alias __socklen_t = uint;
+        /// Initialize srv/CancelGoal message.
+        /**
+ * If the init function is called twice for the same message without
+ * calling fini inbetween previously allocated memory will be leaked.
+ * \param[in,out] msg The previously allocated message pointer.
+ * Fields without a default value will not be initialized by this function.
+ * You might want to call memset(msg, 0, sizeof(
+ * action_msgs__srv__CancelGoal_Request
+ * )) before or use
+ * action_msgs__srv__CancelGoal_Request__create()
+ * to allocate and initialize the message.
+ * \return true if initialization was successful, otherwise false
+ */
+        bool action_msgs__srv__CancelGoal_Request__init(action_msgs__srv__CancelGoal_Request*) @nogc nothrow;
+        /// Finalize srv/CancelGoal message.
+        /**
+ * \param[in,out] msg The allocated message pointer.
+ */
+        void action_msgs__srv__CancelGoal_Request__fini(action_msgs__srv__CancelGoal_Request*) @nogc nothrow;
+        /// Create srv/CancelGoal message.
+        /**
+ * It allocates the memory for the message, sets the memory to zero, and
+ * calls
+ * action_msgs__srv__CancelGoal_Request__init().
+ * \return The pointer to the initialized message if successful,
+ * otherwise NULL
+ */
+        action_msgs__srv__CancelGoal_Request* action_msgs__srv__CancelGoal_Request__create() @nogc nothrow;
+        /// Destroy srv/CancelGoal message.
+        /**
+ * It calls
+ * action_msgs__srv__CancelGoal_Request__fini()
+ * and frees the memory of the message.
+ * \param[in,out] msg The allocated message pointer.
+ */
+        void action_msgs__srv__CancelGoal_Request__destroy(action_msgs__srv__CancelGoal_Request*) @nogc nothrow;
+        /// Initialize array of srv/CancelGoal messages.
+        /**
+ * It allocates the memory for the number of elements and calls
+ * action_msgs__srv__CancelGoal_Request__init()
+ * for each element of the array.
+ * \param[in,out] array The allocated array pointer.
+ * \param[in] size The size / capacity of the array.
+ * \return true if initialization was successful, otherwise false
+ * If the array pointer is valid and the size is zero it is guaranteed
+ # to return true.
+ */
+        bool action_msgs__srv__CancelGoal_Request__Sequence__init(
+                action_msgs__srv__CancelGoal_Request__Sequence*, c_ulong) @nogc nothrow;
+        /// Finalize array of srv/CancelGoal messages.
+        /**
+ * It calls
+ * action_msgs__srv__CancelGoal_Request__fini()
+ * for each element of the array and frees the memory for the number of
+ * elements.
+ * \param[in,out] array The initialized array pointer.
+ */
+        void action_msgs__srv__CancelGoal_Request__Sequence__fini(
+                action_msgs__srv__CancelGoal_Request__Sequence*) @nogc nothrow;
+        /// Create array of srv/CancelGoal messages.
+        /**
+ * It allocates the memory for the array and calls
+ * action_msgs__srv__CancelGoal_Request__Sequence__init().
+ * \param[in] size The size / capacity of the array.
+ * \return The pointer to the initialized array if successful, otherwise NULL
+ */
+        action_msgs__srv__CancelGoal_Request__Sequence* action_msgs__srv__CancelGoal_Request__Sequence__create(
+                c_ulong) @nogc nothrow;
+        /// Destroy array of srv/CancelGoal messages.
+        /**
+ * It calls
+ * action_msgs__srv__CancelGoal_Request__Sequence__fini()
+ * on the array,
+ * and frees the memory of the array.
+ * \param[in,out] array The initialized array pointer.
+ */
+        void action_msgs__srv__CancelGoal_Request__Sequence__destroy(
+                action_msgs__srv__CancelGoal_Request__Sequence*) @nogc nothrow;
+        /// Initialize srv/CancelGoal message.
+        /**
+ * If the init function is called twice for the same message without
+ * calling fini inbetween previously allocated memory will be leaked.
+ * \param[in,out] msg The previously allocated message pointer.
+ * Fields without a default value will not be initialized by this function.
+ * You might want to call memset(msg, 0, sizeof(
+ * action_msgs__srv__CancelGoal_Response
+ * )) before or use
+ * action_msgs__srv__CancelGoal_Response__create()
+ * to allocate and initialize the message.
+ * \return true if initialization was successful, otherwise false
+ */
+        bool action_msgs__srv__CancelGoal_Response__init(action_msgs__srv__CancelGoal_Response*) @nogc nothrow;
+        /// Finalize srv/CancelGoal message.
+        /**
+ * \param[in,out] msg The allocated message pointer.
+ */
+        void action_msgs__srv__CancelGoal_Response__fini(action_msgs__srv__CancelGoal_Response*) @nogc nothrow;
+        /// Create srv/CancelGoal message.
+        /**
+ * It allocates the memory for the message, sets the memory to zero, and
+ * calls
+ * action_msgs__srv__CancelGoal_Response__init().
+ * \return The pointer to the initialized message if successful,
+ * otherwise NULL
+ */
+        action_msgs__srv__CancelGoal_Response* action_msgs__srv__CancelGoal_Response__create() @nogc nothrow;
+        /// Destroy srv/CancelGoal message.
+        /**
+ * It calls
+ * action_msgs__srv__CancelGoal_Response__fini()
+ * and frees the memory of the message.
+ * \param[in,out] msg The allocated message pointer.
+ */
+        void action_msgs__srv__CancelGoal_Response__destroy(action_msgs__srv__CancelGoal_Response*) @nogc nothrow;
+        /// Initialize array of srv/CancelGoal messages.
+        /**
+ * It allocates the memory for the number of elements and calls
+ * action_msgs__srv__CancelGoal_Response__init()
+ * for each element of the array.
+ * \param[in,out] array The allocated array pointer.
+ * \param[in] size The size / capacity of the array.
+ * \return true if initialization was successful, otherwise false
+ * If the array pointer is valid and the size is zero it is guaranteed
+ # to return true.
+ */
+        bool action_msgs__srv__CancelGoal_Response__Sequence__init(
+                action_msgs__srv__CancelGoal_Response__Sequence*, c_ulong) @nogc nothrow;
+        /// Finalize array of srv/CancelGoal messages.
+        /**
+ * It calls
+ * action_msgs__srv__CancelGoal_Response__fini()
+ * for each element of the array and frees the memory for the number of
+ * elements.
+ * \param[in,out] array The initialized array pointer.
+ */
+        void action_msgs__srv__CancelGoal_Response__Sequence__fini(
+                action_msgs__srv__CancelGoal_Response__Sequence*) @nogc nothrow;
+        /// Create array of srv/CancelGoal messages.
+        /**
+ * It allocates the memory for the array and calls
+ * action_msgs__srv__CancelGoal_Response__Sequence__init().
+ * \param[in] size The size / capacity of the array.
+ * \return The pointer to the initialized array if successful, otherwise NULL
+ */
+        action_msgs__srv__CancelGoal_Response__Sequence* action_msgs__srv__CancelGoal_Response__Sequence__create(
+                c_ulong) @nogc nothrow;
+        /// Destroy array of srv/CancelGoal messages.
+        /**
+ * It calls
+ * action_msgs__srv__CancelGoal_Response__Sequence__fini()
+ * on the array,
+ * and frees the memory of the array.
+ * \param[in,out] array The initialized array pointer.
+ */
+        void action_msgs__srv__CancelGoal_Response__Sequence__destroy(
+                action_msgs__srv__CancelGoal_Response__Sequence*) @nogc nothrow;
+
+        struct action_msgs__srv__CancelGoal_Request
+        {
+
+            action_msgs__msg__GoalInfo goal_info;
+        }
+
+        struct action_msgs__srv__CancelGoal_Request__Sequence
+        {
+
+            action_msgs__srv__CancelGoal_Request* data;
+            /// The number of valid items in data
+            c_ulong size;
+            /// The number of allocated items in data
+            c_ulong capacity;
+        }
+        /// Constant 'ERROR_NONE'.
+        enum _Anonymous_9
+        {
+
+            action_msgs__srv__CancelGoal_Response__ERROR_NONE = 0,
+        }
+
+        enum action_msgs__srv__CancelGoal_Response__ERROR_NONE = _Anonymous_9
+                .action_msgs__srv__CancelGoal_Response__ERROR_NONE;
+        /// Constant 'ERROR_REJECTED'.
+        enum _Anonymous_10
+        {
+
+            action_msgs__srv__CancelGoal_Response__ERROR_REJECTED = 1,
+        }
+
+        enum action_msgs__srv__CancelGoal_Response__ERROR_REJECTED = _Anonymous_10
+                .action_msgs__srv__CancelGoal_Response__ERROR_REJECTED;
+        /// Constant 'ERROR_UNKNOWN_GOAL_ID'.
+        enum _Anonymous_11
+        {
+
+            action_msgs__srv__CancelGoal_Response__ERROR_UNKNOWN_GOAL_ID = 2,
+        }
+
+        enum action_msgs__srv__CancelGoal_Response__ERROR_UNKNOWN_GOAL_ID = _Anonymous_11
+                .action_msgs__srv__CancelGoal_Response__ERROR_UNKNOWN_GOAL_ID;
+        /// Constant 'ERROR_GOAL_TERMINATED'.
+        enum _Anonymous_12
+        {
+
+            action_msgs__srv__CancelGoal_Response__ERROR_GOAL_TERMINATED = 3,
+        }
+
+        enum action_msgs__srv__CancelGoal_Response__ERROR_GOAL_TERMINATED = _Anonymous_12
+                .action_msgs__srv__CancelGoal_Response__ERROR_GOAL_TERMINATED;
+
+        struct action_msgs__srv__CancelGoal_Response
+        {
+
+            byte return_code;
+
+            action_msgs__msg__GoalInfo__Sequence goals_canceling;
+        }
+
+        struct action_msgs__srv__CancelGoal_Response__Sequence
+        {
+
+            action_msgs__srv__CancelGoal_Response* data;
+            /// The number of valid items in data
+            c_ulong size;
+            /// The number of allocated items in data
+            c_ulong capacity;
+        }
+
+        const(rosidl_message_type_support_t)* rosidl_typesupport_c__get_message_type_support_handle__action_msgs__srv__CancelGoal_Request() @nogc nothrow;
+
+        const(rosidl_message_type_support_t)* rosidl_typesupport_c__get_message_type_support_handle__action_msgs__srv__CancelGoal_Response() @nogc nothrow;
+
+        const(rosidl_service_type_support_t)* rosidl_typesupport_c__get_service_type_support_handle__action_msgs__srv__CancelGoal() @nogc nothrow;
 
         alias __intptr_t = c_long;
+        /// Initialize msg/Duration message.
+        /**
+ * If the init function is called twice for the same message without
+ * calling fini inbetween previously allocated memory will be leaked.
+ * \param[in,out] msg The previously allocated message pointer.
+ * Fields without a default value will not be initialized by this function.
+ * You might want to call memset(msg, 0, sizeof(
+ * builtin_interfaces__msg__Duration
+ * )) before or use
+ * builtin_interfaces__msg__Duration__create()
+ * to allocate and initialize the message.
+ * \return true if initialization was successful, otherwise false
+ */
+        bool builtin_interfaces__msg__Duration__init(builtin_interfaces__msg__Duration*) @nogc nothrow;
+        /// Finalize msg/Duration message.
+        /**
+ * \param[in,out] msg The allocated message pointer.
+ */
+        void builtin_interfaces__msg__Duration__fini(builtin_interfaces__msg__Duration*) @nogc nothrow;
+        /// Create msg/Duration message.
+        /**
+ * It allocates the memory for the message, sets the memory to zero, and
+ * calls
+ * builtin_interfaces__msg__Duration__init().
+ * \return The pointer to the initialized message if successful,
+ * otherwise NULL
+ */
+        builtin_interfaces__msg__Duration* builtin_interfaces__msg__Duration__create() @nogc nothrow;
+        /// Destroy msg/Duration message.
+        /**
+ * It calls
+ * builtin_interfaces__msg__Duration__fini()
+ * and frees the memory of the message.
+ * \param[in,out] msg The allocated message pointer.
+ */
+        void builtin_interfaces__msg__Duration__destroy(builtin_interfaces__msg__Duration*) @nogc nothrow;
+        /// Initialize array of msg/Duration messages.
+        /**
+ * It allocates the memory for the number of elements and calls
+ * builtin_interfaces__msg__Duration__init()
+ * for each element of the array.
+ * \param[in,out] array The allocated array pointer.
+ * \param[in] size The size / capacity of the array.
+ * \return true if initialization was successful, otherwise false
+ * If the array pointer is valid and the size is zero it is guaranteed
+ # to return true.
+ */
+        bool builtin_interfaces__msg__Duration__Sequence__init(
+                builtin_interfaces__msg__Duration__Sequence*, c_ulong) @nogc nothrow;
+        /// Finalize array of msg/Duration messages.
+        /**
+ * It calls
+ * builtin_interfaces__msg__Duration__fini()
+ * for each element of the array and frees the memory for the number of
+ * elements.
+ * \param[in,out] array The initialized array pointer.
+ */
+        void builtin_interfaces__msg__Duration__Sequence__fini(
+                builtin_interfaces__msg__Duration__Sequence*) @nogc nothrow;
+        /// Create array of msg/Duration messages.
+        /**
+ * It allocates the memory for the array and calls
+ * builtin_interfaces__msg__Duration__Sequence__init().
+ * \param[in] size The size / capacity of the array.
+ * \return The pointer to the initialized array if successful, otherwise NULL
+ */
+        builtin_interfaces__msg__Duration__Sequence* builtin_interfaces__msg__Duration__Sequence__create(
+                c_ulong) @nogc nothrow;
+        /// Destroy array of msg/Duration messages.
+        /**
+ * It calls
+ * builtin_interfaces__msg__Duration__Sequence__fini()
+ * on the array,
+ * and frees the memory of the array.
+ * \param[in,out] array The initialized array pointer.
+ */
+        void builtin_interfaces__msg__Duration__Sequence__destroy(
+                builtin_interfaces__msg__Duration__Sequence*) @nogc nothrow;
 
         alias __caddr_t = char*;
 
+        struct builtin_interfaces__msg__Duration
+        {
+
+            int sec;
+
+            uint nanosec;
+        }
+
+        struct builtin_interfaces__msg__Duration__Sequence
+        {
+
+            builtin_interfaces__msg__Duration* data;
+            /// The number of valid items in data
+            c_ulong size;
+            /// The number of allocated items in data
+            c_ulong capacity;
+        }
+
         alias __loff_t = c_long;
 
+        const(rosidl_message_type_support_t)* rosidl_typesupport_c__get_message_type_support_handle__builtin_interfaces__msg__Duration() @nogc nothrow;
+        /// Initialize msg/Time message.
+        /**
+ * If the init function is called twice for the same message without
+ * calling fini inbetween previously allocated memory will be leaked.
+ * \param[in,out] msg The previously allocated message pointer.
+ * Fields without a default value will not be initialized by this function.
+ * You might want to call memset(msg, 0, sizeof(
+ * builtin_interfaces__msg__Time
+ * )) before or use
+ * builtin_interfaces__msg__Time__create()
+ * to allocate and initialize the message.
+ * \return true if initialization was successful, otherwise false
+ */
+        bool builtin_interfaces__msg__Time__init(builtin_interfaces__msg__Time*) @nogc nothrow;
+        /// Finalize msg/Time message.
+        /**
+ * \param[in,out] msg The allocated message pointer.
+ */
+        void builtin_interfaces__msg__Time__fini(builtin_interfaces__msg__Time*) @nogc nothrow;
+        /// Create msg/Time message.
+        /**
+ * It allocates the memory for the message, sets the memory to zero, and
+ * calls
+ * builtin_interfaces__msg__Time__init().
+ * \return The pointer to the initialized message if successful,
+ * otherwise NULL
+ */
+        builtin_interfaces__msg__Time* builtin_interfaces__msg__Time__create() @nogc nothrow;
+        /// Destroy msg/Time message.
+        /**
+ * It calls
+ * builtin_interfaces__msg__Time__fini()
+ * and frees the memory of the message.
+ * \param[in,out] msg The allocated message pointer.
+ */
+        void builtin_interfaces__msg__Time__destroy(builtin_interfaces__msg__Time*) @nogc nothrow;
+        /// Initialize array of msg/Time messages.
+        /**
+ * It allocates the memory for the number of elements and calls
+ * builtin_interfaces__msg__Time__init()
+ * for each element of the array.
+ * \param[in,out] array The allocated array pointer.
+ * \param[in] size The size / capacity of the array.
+ * \return true if initialization was successful, otherwise false
+ * If the array pointer is valid and the size is zero it is guaranteed
+ # to return true.
+ */
+        bool builtin_interfaces__msg__Time__Sequence__init(
+                builtin_interfaces__msg__Time__Sequence*, c_ulong) @nogc nothrow;
+        /// Finalize array of msg/Time messages.
+        /**
+ * It calls
+ * builtin_interfaces__msg__Time__fini()
+ * for each element of the array and frees the memory for the number of
+ * elements.
+ * \param[in,out] array The initialized array pointer.
+ */
+        void builtin_interfaces__msg__Time__Sequence__fini(
+                builtin_interfaces__msg__Time__Sequence*) @nogc nothrow;
+        /// Create array of msg/Time messages.
+        /**
+ * It allocates the memory for the array and calls
+ * builtin_interfaces__msg__Time__Sequence__init().
+ * \param[in] size The size / capacity of the array.
+ * \return The pointer to the initialized array if successful, otherwise NULL
+ */
+        builtin_interfaces__msg__Time__Sequence* builtin_interfaces__msg__Time__Sequence__create(
+                c_ulong) @nogc nothrow;
+        /// Destroy array of msg/Time messages.
+        /**
+ * It calls
+ * builtin_interfaces__msg__Time__Sequence__fini()
+ * on the array,
+ * and frees the memory of the array.
+ * \param[in,out] array The initialized array pointer.
+ */
+        void builtin_interfaces__msg__Time__Sequence__destroy(
+                builtin_interfaces__msg__Time__Sequence*) @nogc nothrow;
+
+        struct builtin_interfaces__msg__Time
+        {
+
+            int sec;
+
+            uint nanosec;
+        }
+
+        struct builtin_interfaces__msg__Time__Sequence
+        {
+
+            builtin_interfaces__msg__Time* data;
+            /// The number of valid items in data
+            c_ulong size;
+            /// The number of allocated items in data
+            c_ulong capacity;
+        }
+
         alias __syscall_ulong_t = c_ulong;
+
+        const(rosidl_message_type_support_t)* rosidl_typesupport_c__get_message_type_support_handle__builtin_interfaces__msg__Time() @nogc nothrow;
 
         alias __syscall_slong_t = c_long;
 
@@ -340,12 +1123,2228 @@ version (foxy)
         alias __fsword_t = c_long;
 
         alias __fsfilcnt64_t = c_ulong;
+        /// Initialize srv/ListNodes message.
+        /**
+ * If the init function is called twice for the same message without
+ * calling fini inbetween previously allocated memory will be leaked.
+ * \param[in,out] msg The previously allocated message pointer.
+ * Fields without a default value will not be initialized by this function.
+ * You might want to call memset(msg, 0, sizeof(
+ * composition_interfaces__srv__ListNodes_Request
+ * )) before or use
+ * composition_interfaces__srv__ListNodes_Request__create()
+ * to allocate and initialize the message.
+ * \return true if initialization was successful, otherwise false
+ */
+        bool composition_interfaces__srv__ListNodes_Request__init(
+                composition_interfaces__srv__ListNodes_Request*) @nogc nothrow;
+        /// Finalize srv/ListNodes message.
+        /**
+ * \param[in,out] msg The allocated message pointer.
+ */
+        void composition_interfaces__srv__ListNodes_Request__fini(
+                composition_interfaces__srv__ListNodes_Request*) @nogc nothrow;
+        /// Create srv/ListNodes message.
+        /**
+ * It allocates the memory for the message, sets the memory to zero, and
+ * calls
+ * composition_interfaces__srv__ListNodes_Request__init().
+ * \return The pointer to the initialized message if successful,
+ * otherwise NULL
+ */
+        composition_interfaces__srv__ListNodes_Request* composition_interfaces__srv__ListNodes_Request__create() @nogc nothrow;
+        /// Destroy srv/ListNodes message.
+        /**
+ * It calls
+ * composition_interfaces__srv__ListNodes_Request__fini()
+ * and frees the memory of the message.
+ * \param[in,out] msg The allocated message pointer.
+ */
+        void composition_interfaces__srv__ListNodes_Request__destroy(
+                composition_interfaces__srv__ListNodes_Request*) @nogc nothrow;
+        /// Initialize array of srv/ListNodes messages.
+        /**
+ * It allocates the memory for the number of elements and calls
+ * composition_interfaces__srv__ListNodes_Request__init()
+ * for each element of the array.
+ * \param[in,out] array The allocated array pointer.
+ * \param[in] size The size / capacity of the array.
+ * \return true if initialization was successful, otherwise false
+ * If the array pointer is valid and the size is zero it is guaranteed
+ # to return true.
+ */
+        bool composition_interfaces__srv__ListNodes_Request__Sequence__init(
+                composition_interfaces__srv__ListNodes_Request__Sequence*, c_ulong) @nogc nothrow;
+        /// Finalize array of srv/ListNodes messages.
+        /**
+ * It calls
+ * composition_interfaces__srv__ListNodes_Request__fini()
+ * for each element of the array and frees the memory for the number of
+ * elements.
+ * \param[in,out] array The initialized array pointer.
+ */
+        void composition_interfaces__srv__ListNodes_Request__Sequence__fini(
+                composition_interfaces__srv__ListNodes_Request__Sequence*) @nogc nothrow;
+        /// Create array of srv/ListNodes messages.
+        /**
+ * It allocates the memory for the array and calls
+ * composition_interfaces__srv__ListNodes_Request__Sequence__init().
+ * \param[in] size The size / capacity of the array.
+ * \return The pointer to the initialized array if successful, otherwise NULL
+ */
+        composition_interfaces__srv__ListNodes_Request__Sequence* composition_interfaces__srv__ListNodes_Request__Sequence__create(
+                c_ulong) @nogc nothrow;
+        /// Destroy array of srv/ListNodes messages.
+        /**
+ * It calls
+ * composition_interfaces__srv__ListNodes_Request__Sequence__fini()
+ * on the array,
+ * and frees the memory of the array.
+ * \param[in,out] array The initialized array pointer.
+ */
+        void composition_interfaces__srv__ListNodes_Request__Sequence__destroy(
+                composition_interfaces__srv__ListNodes_Request__Sequence*) @nogc nothrow;
+        /// Initialize srv/ListNodes message.
+        /**
+ * If the init function is called twice for the same message without
+ * calling fini inbetween previously allocated memory will be leaked.
+ * \param[in,out] msg The previously allocated message pointer.
+ * Fields without a default value will not be initialized by this function.
+ * You might want to call memset(msg, 0, sizeof(
+ * composition_interfaces__srv__ListNodes_Response
+ * )) before or use
+ * composition_interfaces__srv__ListNodes_Response__create()
+ * to allocate and initialize the message.
+ * \return true if initialization was successful, otherwise false
+ */
+        bool composition_interfaces__srv__ListNodes_Response__init(
+                composition_interfaces__srv__ListNodes_Response*) @nogc nothrow;
+        /// Finalize srv/ListNodes message.
+        /**
+ * \param[in,out] msg The allocated message pointer.
+ */
+        void composition_interfaces__srv__ListNodes_Response__fini(
+                composition_interfaces__srv__ListNodes_Response*) @nogc nothrow;
+        /// Create srv/ListNodes message.
+        /**
+ * It allocates the memory for the message, sets the memory to zero, and
+ * calls
+ * composition_interfaces__srv__ListNodes_Response__init().
+ * \return The pointer to the initialized message if successful,
+ * otherwise NULL
+ */
+        composition_interfaces__srv__ListNodes_Response* composition_interfaces__srv__ListNodes_Response__create() @nogc nothrow;
+        /// Destroy srv/ListNodes message.
+        /**
+ * It calls
+ * composition_interfaces__srv__ListNodes_Response__fini()
+ * and frees the memory of the message.
+ * \param[in,out] msg The allocated message pointer.
+ */
+        void composition_interfaces__srv__ListNodes_Response__destroy(
+                composition_interfaces__srv__ListNodes_Response*) @nogc nothrow;
+        /// Initialize array of srv/ListNodes messages.
+        /**
+ * It allocates the memory for the number of elements and calls
+ * composition_interfaces__srv__ListNodes_Response__init()
+ * for each element of the array.
+ * \param[in,out] array The allocated array pointer.
+ * \param[in] size The size / capacity of the array.
+ * \return true if initialization was successful, otherwise false
+ * If the array pointer is valid and the size is zero it is guaranteed
+ # to return true.
+ */
+        bool composition_interfaces__srv__ListNodes_Response__Sequence__init(
+                composition_interfaces__srv__ListNodes_Response__Sequence*, c_ulong) @nogc nothrow;
+        /// Finalize array of srv/ListNodes messages.
+        /**
+ * It calls
+ * composition_interfaces__srv__ListNodes_Response__fini()
+ * for each element of the array and frees the memory for the number of
+ * elements.
+ * \param[in,out] array The initialized array pointer.
+ */
+        void composition_interfaces__srv__ListNodes_Response__Sequence__fini(
+                composition_interfaces__srv__ListNodes_Response__Sequence*) @nogc nothrow;
+        /// Create array of srv/ListNodes messages.
+        /**
+ * It allocates the memory for the array and calls
+ * composition_interfaces__srv__ListNodes_Response__Sequence__init().
+ * \param[in] size The size / capacity of the array.
+ * \return The pointer to the initialized array if successful, otherwise NULL
+ */
+        composition_interfaces__srv__ListNodes_Response__Sequence* composition_interfaces__srv__ListNodes_Response__Sequence__create(
+                c_ulong) @nogc nothrow;
+        /// Destroy array of srv/ListNodes messages.
+        /**
+ * It calls
+ * composition_interfaces__srv__ListNodes_Response__Sequence__fini()
+ * on the array,
+ * and frees the memory of the array.
+ * \param[in,out] array The initialized array pointer.
+ */
+        void composition_interfaces__srv__ListNodes_Response__Sequence__destroy(
+                composition_interfaces__srv__ListNodes_Response__Sequence*) @nogc nothrow;
+
+        struct composition_interfaces__srv__ListNodes_Request
+        {
+
+            ubyte structure_needs_at_least_one_member;
+        }
+
+        struct composition_interfaces__srv__ListNodes_Request__Sequence
+        {
+
+            composition_interfaces__srv__ListNodes_Request* data;
+            /// The number of valid items in data
+            c_ulong size;
+            /// The number of allocated items in data
+            c_ulong capacity;
+        }
+
+        struct composition_interfaces__srv__ListNodes_Response
+        {
+
+            rosidl_runtime_c__String__Sequence full_node_names;
+
+            rosidl_runtime_c__uint64__Sequence unique_ids;
+        }
+
+        struct composition_interfaces__srv__ListNodes_Response__Sequence
+        {
+
+            composition_interfaces__srv__ListNodes_Response* data;
+            /// The number of valid items in data
+            c_ulong size;
+            /// The number of allocated items in data
+            c_ulong capacity;
+        }
+
+        const(rosidl_message_type_support_t)* rosidl_typesupport_c__get_message_type_support_handle__composition_interfaces__srv__ListNodes_Request() @nogc nothrow;
+
+        const(rosidl_message_type_support_t)* rosidl_typesupport_c__get_message_type_support_handle__composition_interfaces__srv__ListNodes_Response() @nogc nothrow;
+
+        const(rosidl_service_type_support_t)* rosidl_typesupport_c__get_service_type_support_handle__composition_interfaces__srv__ListNodes() @nogc nothrow;
 
         alias __fsfilcnt_t = c_ulong;
+        /// Initialize srv/LoadNode message.
+        /**
+ * If the init function is called twice for the same message without
+ * calling fini inbetween previously allocated memory will be leaked.
+ * \param[in,out] msg The previously allocated message pointer.
+ * Fields without a default value will not be initialized by this function.
+ * You might want to call memset(msg, 0, sizeof(
+ * composition_interfaces__srv__LoadNode_Request
+ * )) before or use
+ * composition_interfaces__srv__LoadNode_Request__create()
+ * to allocate and initialize the message.
+ * \return true if initialization was successful, otherwise false
+ */
+        bool composition_interfaces__srv__LoadNode_Request__init(
+                composition_interfaces__srv__LoadNode_Request*) @nogc nothrow;
+        /// Finalize srv/LoadNode message.
+        /**
+ * \param[in,out] msg The allocated message pointer.
+ */
+        void composition_interfaces__srv__LoadNode_Request__fini(
+                composition_interfaces__srv__LoadNode_Request*) @nogc nothrow;
+        /// Create srv/LoadNode message.
+        /**
+ * It allocates the memory for the message, sets the memory to zero, and
+ * calls
+ * composition_interfaces__srv__LoadNode_Request__init().
+ * \return The pointer to the initialized message if successful,
+ * otherwise NULL
+ */
+        composition_interfaces__srv__LoadNode_Request* composition_interfaces__srv__LoadNode_Request__create() @nogc nothrow;
+        /// Destroy srv/LoadNode message.
+        /**
+ * It calls
+ * composition_interfaces__srv__LoadNode_Request__fini()
+ * and frees the memory of the message.
+ * \param[in,out] msg The allocated message pointer.
+ */
+        void composition_interfaces__srv__LoadNode_Request__destroy(
+                composition_interfaces__srv__LoadNode_Request*) @nogc nothrow;
+        /// Initialize array of srv/LoadNode messages.
+        /**
+ * It allocates the memory for the number of elements and calls
+ * composition_interfaces__srv__LoadNode_Request__init()
+ * for each element of the array.
+ * \param[in,out] array The allocated array pointer.
+ * \param[in] size The size / capacity of the array.
+ * \return true if initialization was successful, otherwise false
+ * If the array pointer is valid and the size is zero it is guaranteed
+ # to return true.
+ */
+        bool composition_interfaces__srv__LoadNode_Request__Sequence__init(
+                composition_interfaces__srv__LoadNode_Request__Sequence*, c_ulong) @nogc nothrow;
+        /// Finalize array of srv/LoadNode messages.
+        /**
+ * It calls
+ * composition_interfaces__srv__LoadNode_Request__fini()
+ * for each element of the array and frees the memory for the number of
+ * elements.
+ * \param[in,out] array The initialized array pointer.
+ */
+        void composition_interfaces__srv__LoadNode_Request__Sequence__fini(
+                composition_interfaces__srv__LoadNode_Request__Sequence*) @nogc nothrow;
+        /// Create array of srv/LoadNode messages.
+        /**
+ * It allocates the memory for the array and calls
+ * composition_interfaces__srv__LoadNode_Request__Sequence__init().
+ * \param[in] size The size / capacity of the array.
+ * \return The pointer to the initialized array if successful, otherwise NULL
+ */
+        composition_interfaces__srv__LoadNode_Request__Sequence* composition_interfaces__srv__LoadNode_Request__Sequence__create(
+                c_ulong) @nogc nothrow;
+        /// Destroy array of srv/LoadNode messages.
+        /**
+ * It calls
+ * composition_interfaces__srv__LoadNode_Request__Sequence__fini()
+ * on the array,
+ * and frees the memory of the array.
+ * \param[in,out] array The initialized array pointer.
+ */
+        void composition_interfaces__srv__LoadNode_Request__Sequence__destroy(
+                composition_interfaces__srv__LoadNode_Request__Sequence*) @nogc nothrow;
+        /// Initialize srv/LoadNode message.
+        /**
+ * If the init function is called twice for the same message without
+ * calling fini inbetween previously allocated memory will be leaked.
+ * \param[in,out] msg The previously allocated message pointer.
+ * Fields without a default value will not be initialized by this function.
+ * You might want to call memset(msg, 0, sizeof(
+ * composition_interfaces__srv__LoadNode_Response
+ * )) before or use
+ * composition_interfaces__srv__LoadNode_Response__create()
+ * to allocate and initialize the message.
+ * \return true if initialization was successful, otherwise false
+ */
+        bool composition_interfaces__srv__LoadNode_Response__init(
+                composition_interfaces__srv__LoadNode_Response*) @nogc nothrow;
+        /// Finalize srv/LoadNode message.
+        /**
+ * \param[in,out] msg The allocated message pointer.
+ */
+        void composition_interfaces__srv__LoadNode_Response__fini(
+                composition_interfaces__srv__LoadNode_Response*) @nogc nothrow;
+        /// Create srv/LoadNode message.
+        /**
+ * It allocates the memory for the message, sets the memory to zero, and
+ * calls
+ * composition_interfaces__srv__LoadNode_Response__init().
+ * \return The pointer to the initialized message if successful,
+ * otherwise NULL
+ */
+        composition_interfaces__srv__LoadNode_Response* composition_interfaces__srv__LoadNode_Response__create() @nogc nothrow;
+        /// Destroy srv/LoadNode message.
+        /**
+ * It calls
+ * composition_interfaces__srv__LoadNode_Response__fini()
+ * and frees the memory of the message.
+ * \param[in,out] msg The allocated message pointer.
+ */
+        void composition_interfaces__srv__LoadNode_Response__destroy(
+                composition_interfaces__srv__LoadNode_Response*) @nogc nothrow;
+        /// Initialize array of srv/LoadNode messages.
+        /**
+ * It allocates the memory for the number of elements and calls
+ * composition_interfaces__srv__LoadNode_Response__init()
+ * for each element of the array.
+ * \param[in,out] array The allocated array pointer.
+ * \param[in] size The size / capacity of the array.
+ * \return true if initialization was successful, otherwise false
+ * If the array pointer is valid and the size is zero it is guaranteed
+ # to return true.
+ */
+        bool composition_interfaces__srv__LoadNode_Response__Sequence__init(
+                composition_interfaces__srv__LoadNode_Response__Sequence*, c_ulong) @nogc nothrow;
+        /// Finalize array of srv/LoadNode messages.
+        /**
+ * It calls
+ * composition_interfaces__srv__LoadNode_Response__fini()
+ * for each element of the array and frees the memory for the number of
+ * elements.
+ * \param[in,out] array The initialized array pointer.
+ */
+        void composition_interfaces__srv__LoadNode_Response__Sequence__fini(
+                composition_interfaces__srv__LoadNode_Response__Sequence*) @nogc nothrow;
+        /// Create array of srv/LoadNode messages.
+        /**
+ * It allocates the memory for the array and calls
+ * composition_interfaces__srv__LoadNode_Response__Sequence__init().
+ * \param[in] size The size / capacity of the array.
+ * \return The pointer to the initialized array if successful, otherwise NULL
+ */
+        composition_interfaces__srv__LoadNode_Response__Sequence* composition_interfaces__srv__LoadNode_Response__Sequence__create(
+                c_ulong) @nogc nothrow;
+        /// Destroy array of srv/LoadNode messages.
+        /**
+ * It calls
+ * composition_interfaces__srv__LoadNode_Response__Sequence__fini()
+ * on the array,
+ * and frees the memory of the array.
+ * \param[in,out] array The initialized array pointer.
+ */
+        void composition_interfaces__srv__LoadNode_Response__Sequence__destroy(
+                composition_interfaces__srv__LoadNode_Response__Sequence*) @nogc nothrow;
+
+        struct composition_interfaces__srv__LoadNode_Request
+        {
+
+            rosidl_runtime_c__String package_name;
+
+            rosidl_runtime_c__String plugin_name;
+
+            rosidl_runtime_c__String node_name;
+
+            rosidl_runtime_c__String node_namespace;
+
+            ubyte log_level;
+
+            rosidl_runtime_c__String__Sequence remap_rules;
+
+            rcl_interfaces__msg__Parameter__Sequence parameters;
+
+            rcl_interfaces__msg__Parameter__Sequence extra_arguments;
+        }
+
+        struct composition_interfaces__srv__LoadNode_Request__Sequence
+        {
+
+            composition_interfaces__srv__LoadNode_Request* data;
+            /// The number of valid items in data
+            c_ulong size;
+            /// The number of allocated items in data
+            c_ulong capacity;
+        }
+
+        struct composition_interfaces__srv__LoadNode_Response
+        {
+
+            bool success;
+
+            rosidl_runtime_c__String error_message;
+
+            rosidl_runtime_c__String full_node_name;
+
+            c_ulong unique_id;
+        }
+
+        struct composition_interfaces__srv__LoadNode_Response__Sequence
+        {
+
+            composition_interfaces__srv__LoadNode_Response* data;
+            /// The number of valid items in data
+            c_ulong size;
+            /// The number of allocated items in data
+            c_ulong capacity;
+        }
+
+        const(rosidl_message_type_support_t)* rosidl_typesupport_c__get_message_type_support_handle__composition_interfaces__srv__LoadNode_Request() @nogc nothrow;
+
+        const(rosidl_message_type_support_t)* rosidl_typesupport_c__get_message_type_support_handle__composition_interfaces__srv__LoadNode_Response() @nogc nothrow;
+
+        const(rosidl_service_type_support_t)* rosidl_typesupport_c__get_service_type_support_handle__composition_interfaces__srv__LoadNode() @nogc nothrow;
+
+        alias __fsblkcnt64_t = c_ulong;
+        /// Initialize srv/UnloadNode message.
+        /**
+ * If the init function is called twice for the same message without
+ * calling fini inbetween previously allocated memory will be leaked.
+ * \param[in,out] msg The previously allocated message pointer.
+ * Fields without a default value will not be initialized by this function.
+ * You might want to call memset(msg, 0, sizeof(
+ * composition_interfaces__srv__UnloadNode_Request
+ * )) before or use
+ * composition_interfaces__srv__UnloadNode_Request__create()
+ * to allocate and initialize the message.
+ * \return true if initialization was successful, otherwise false
+ */
+        bool composition_interfaces__srv__UnloadNode_Request__init(
+                composition_interfaces__srv__UnloadNode_Request*) @nogc nothrow;
+        /// Finalize srv/UnloadNode message.
+        /**
+ * \param[in,out] msg The allocated message pointer.
+ */
+        void composition_interfaces__srv__UnloadNode_Request__fini(
+                composition_interfaces__srv__UnloadNode_Request*) @nogc nothrow;
+        /// Create srv/UnloadNode message.
+        /**
+ * It allocates the memory for the message, sets the memory to zero, and
+ * calls
+ * composition_interfaces__srv__UnloadNode_Request__init().
+ * \return The pointer to the initialized message if successful,
+ * otherwise NULL
+ */
+        composition_interfaces__srv__UnloadNode_Request* composition_interfaces__srv__UnloadNode_Request__create() @nogc nothrow;
+        /// Destroy srv/UnloadNode message.
+        /**
+ * It calls
+ * composition_interfaces__srv__UnloadNode_Request__fini()
+ * and frees the memory of the message.
+ * \param[in,out] msg The allocated message pointer.
+ */
+        void composition_interfaces__srv__UnloadNode_Request__destroy(
+                composition_interfaces__srv__UnloadNode_Request*) @nogc nothrow;
+        /// Initialize array of srv/UnloadNode messages.
+        /**
+ * It allocates the memory for the number of elements and calls
+ * composition_interfaces__srv__UnloadNode_Request__init()
+ * for each element of the array.
+ * \param[in,out] array The allocated array pointer.
+ * \param[in] size The size / capacity of the array.
+ * \return true if initialization was successful, otherwise false
+ * If the array pointer is valid and the size is zero it is guaranteed
+ # to return true.
+ */
+        bool composition_interfaces__srv__UnloadNode_Request__Sequence__init(
+                composition_interfaces__srv__UnloadNode_Request__Sequence*, c_ulong) @nogc nothrow;
+        /// Finalize array of srv/UnloadNode messages.
+        /**
+ * It calls
+ * composition_interfaces__srv__UnloadNode_Request__fini()
+ * for each element of the array and frees the memory for the number of
+ * elements.
+ * \param[in,out] array The initialized array pointer.
+ */
+        void composition_interfaces__srv__UnloadNode_Request__Sequence__fini(
+                composition_interfaces__srv__UnloadNode_Request__Sequence*) @nogc nothrow;
+        /// Create array of srv/UnloadNode messages.
+        /**
+ * It allocates the memory for the array and calls
+ * composition_interfaces__srv__UnloadNode_Request__Sequence__init().
+ * \param[in] size The size / capacity of the array.
+ * \return The pointer to the initialized array if successful, otherwise NULL
+ */
+        composition_interfaces__srv__UnloadNode_Request__Sequence* composition_interfaces__srv__UnloadNode_Request__Sequence__create(
+                c_ulong) @nogc nothrow;
+        /// Destroy array of srv/UnloadNode messages.
+        /**
+ * It calls
+ * composition_interfaces__srv__UnloadNode_Request__Sequence__fini()
+ * on the array,
+ * and frees the memory of the array.
+ * \param[in,out] array The initialized array pointer.
+ */
+        void composition_interfaces__srv__UnloadNode_Request__Sequence__destroy(
+                composition_interfaces__srv__UnloadNode_Request__Sequence*) @nogc nothrow;
+        /// Initialize srv/UnloadNode message.
+        /**
+ * If the init function is called twice for the same message without
+ * calling fini inbetween previously allocated memory will be leaked.
+ * \param[in,out] msg The previously allocated message pointer.
+ * Fields without a default value will not be initialized by this function.
+ * You might want to call memset(msg, 0, sizeof(
+ * composition_interfaces__srv__UnloadNode_Response
+ * )) before or use
+ * composition_interfaces__srv__UnloadNode_Response__create()
+ * to allocate and initialize the message.
+ * \return true if initialization was successful, otherwise false
+ */
+        bool composition_interfaces__srv__UnloadNode_Response__init(
+                composition_interfaces__srv__UnloadNode_Response*) @nogc nothrow;
+        /// Finalize srv/UnloadNode message.
+        /**
+ * \param[in,out] msg The allocated message pointer.
+ */
+        void composition_interfaces__srv__UnloadNode_Response__fini(
+                composition_interfaces__srv__UnloadNode_Response*) @nogc nothrow;
+        /// Create srv/UnloadNode message.
+        /**
+ * It allocates the memory for the message, sets the memory to zero, and
+ * calls
+ * composition_interfaces__srv__UnloadNode_Response__init().
+ * \return The pointer to the initialized message if successful,
+ * otherwise NULL
+ */
+        composition_interfaces__srv__UnloadNode_Response* composition_interfaces__srv__UnloadNode_Response__create() @nogc nothrow;
+        /// Destroy srv/UnloadNode message.
+        /**
+ * It calls
+ * composition_interfaces__srv__UnloadNode_Response__fini()
+ * and frees the memory of the message.
+ * \param[in,out] msg The allocated message pointer.
+ */
+        void composition_interfaces__srv__UnloadNode_Response__destroy(
+                composition_interfaces__srv__UnloadNode_Response*) @nogc nothrow;
+        /// Initialize array of srv/UnloadNode messages.
+        /**
+ * It allocates the memory for the number of elements and calls
+ * composition_interfaces__srv__UnloadNode_Response__init()
+ * for each element of the array.
+ * \param[in,out] array The allocated array pointer.
+ * \param[in] size The size / capacity of the array.
+ * \return true if initialization was successful, otherwise false
+ * If the array pointer is valid and the size is zero it is guaranteed
+ # to return true.
+ */
+        bool composition_interfaces__srv__UnloadNode_Response__Sequence__init(
+                composition_interfaces__srv__UnloadNode_Response__Sequence*, c_ulong) @nogc nothrow;
+        /// Finalize array of srv/UnloadNode messages.
+        /**
+ * It calls
+ * composition_interfaces__srv__UnloadNode_Response__fini()
+ * for each element of the array and frees the memory for the number of
+ * elements.
+ * \param[in,out] array The initialized array pointer.
+ */
+        void composition_interfaces__srv__UnloadNode_Response__Sequence__fini(
+                composition_interfaces__srv__UnloadNode_Response__Sequence*) @nogc nothrow;
+        /// Create array of srv/UnloadNode messages.
+        /**
+ * It allocates the memory for the array and calls
+ * composition_interfaces__srv__UnloadNode_Response__Sequence__init().
+ * \param[in] size The size / capacity of the array.
+ * \return The pointer to the initialized array if successful, otherwise NULL
+ */
+        composition_interfaces__srv__UnloadNode_Response__Sequence* composition_interfaces__srv__UnloadNode_Response__Sequence__create(
+                c_ulong) @nogc nothrow;
+        /// Destroy array of srv/UnloadNode messages.
+        /**
+ * It calls
+ * composition_interfaces__srv__UnloadNode_Response__Sequence__fini()
+ * on the array,
+ * and frees the memory of the array.
+ * \param[in,out] array The initialized array pointer.
+ */
+        void composition_interfaces__srv__UnloadNode_Response__Sequence__destroy(
+                composition_interfaces__srv__UnloadNode_Response__Sequence*) @nogc nothrow;
+
+        struct composition_interfaces__srv__UnloadNode_Request
+        {
+
+            c_ulong unique_id;
+        }
+
+        struct composition_interfaces__srv__UnloadNode_Request__Sequence
+        {
+
+            composition_interfaces__srv__UnloadNode_Request* data;
+            /// The number of valid items in data
+            c_ulong size;
+            /// The number of allocated items in data
+            c_ulong capacity;
+        }
+
+        struct composition_interfaces__srv__UnloadNode_Response
+        {
+
+            bool success;
+
+            rosidl_runtime_c__String error_message;
+        }
+
+        struct composition_interfaces__srv__UnloadNode_Response__Sequence
+        {
+
+            composition_interfaces__srv__UnloadNode_Response* data;
+            /// The number of valid items in data
+            c_ulong size;
+            /// The number of allocated items in data
+            c_ulong capacity;
+        }
+
+        const(rosidl_message_type_support_t)* rosidl_typesupport_c__get_message_type_support_handle__composition_interfaces__srv__UnloadNode_Request() @nogc nothrow;
+
+        const(rosidl_message_type_support_t)* rosidl_typesupport_c__get_message_type_support_handle__composition_interfaces__srv__UnloadNode_Response() @nogc nothrow;
+
+        const(rosidl_service_type_support_t)* rosidl_typesupport_c__get_service_type_support_handle__composition_interfaces__srv__UnloadNode() @nogc nothrow;
+
+        alias __fsblkcnt_t = c_ulong;
+
+        alias __blkcnt64_t = c_long;
+        /// Initialize msg/State message.
+        /**
+ * If the init function is called twice for the same message without
+ * calling fini inbetween previously allocated memory will be leaked.
+ * \param[in,out] msg The previously allocated message pointer.
+ * Fields without a default value will not be initialized by this function.
+ * You might want to call memset(msg, 0, sizeof(
+ * lifecycle_msgs__msg__State
+ * )) before or use
+ * lifecycle_msgs__msg__State__create()
+ * to allocate and initialize the message.
+ * \return true if initialization was successful, otherwise false
+ */
+        bool lifecycle_msgs__msg__State__init(lifecycle_msgs__msg__State*) @nogc nothrow;
+        /// Finalize msg/State message.
+        /**
+ * \param[in,out] msg The allocated message pointer.
+ */
+        void lifecycle_msgs__msg__State__fini(lifecycle_msgs__msg__State*) @nogc nothrow;
+        /// Create msg/State message.
+        /**
+ * It allocates the memory for the message, sets the memory to zero, and
+ * calls
+ * lifecycle_msgs__msg__State__init().
+ * \return The pointer to the initialized message if successful,
+ * otherwise NULL
+ */
+        lifecycle_msgs__msg__State* lifecycle_msgs__msg__State__create() @nogc nothrow;
+        /// Destroy msg/State message.
+        /**
+ * It calls
+ * lifecycle_msgs__msg__State__fini()
+ * and frees the memory of the message.
+ * \param[in,out] msg The allocated message pointer.
+ */
+        void lifecycle_msgs__msg__State__destroy(lifecycle_msgs__msg__State*) @nogc nothrow;
+        /// Initialize array of msg/State messages.
+        /**
+ * It allocates the memory for the number of elements and calls
+ * lifecycle_msgs__msg__State__init()
+ * for each element of the array.
+ * \param[in,out] array The allocated array pointer.
+ * \param[in] size The size / capacity of the array.
+ * \return true if initialization was successful, otherwise false
+ * If the array pointer is valid and the size is zero it is guaranteed
+ # to return true.
+ */
+        bool lifecycle_msgs__msg__State__Sequence__init(
+                lifecycle_msgs__msg__State__Sequence*, c_ulong) @nogc nothrow;
+        /// Finalize array of msg/State messages.
+        /**
+ * It calls
+ * lifecycle_msgs__msg__State__fini()
+ * for each element of the array and frees the memory for the number of
+ * elements.
+ * \param[in,out] array The initialized array pointer.
+ */
+        void lifecycle_msgs__msg__State__Sequence__fini(lifecycle_msgs__msg__State__Sequence*) @nogc nothrow;
+        /// Create array of msg/State messages.
+        /**
+ * It allocates the memory for the array and calls
+ * lifecycle_msgs__msg__State__Sequence__init().
+ * \param[in] size The size / capacity of the array.
+ * \return The pointer to the initialized array if successful, otherwise NULL
+ */
+        lifecycle_msgs__msg__State__Sequence* lifecycle_msgs__msg__State__Sequence__create(c_ulong) @nogc nothrow;
+        /// Destroy array of msg/State messages.
+        /**
+ * It calls
+ * lifecycle_msgs__msg__State__Sequence__fini()
+ * on the array,
+ * and frees the memory of the array.
+ * \param[in,out] array The initialized array pointer.
+ */
+        void lifecycle_msgs__msg__State__Sequence__destroy(lifecycle_msgs__msg__State__Sequence*) @nogc nothrow;
+        /// Constant 'PRIMARY_STATE_UNKNOWN'.
+        enum _Anonymous_13
+        {
+
+            lifecycle_msgs__msg__State__PRIMARY_STATE_UNKNOWN = 0,
+        }
+
+        enum lifecycle_msgs__msg__State__PRIMARY_STATE_UNKNOWN = _Anonymous_13
+                .lifecycle_msgs__msg__State__PRIMARY_STATE_UNKNOWN;
+        /// Constant 'PRIMARY_STATE_UNCONFIGURED'.
+        enum _Anonymous_14
+        {
+
+            lifecycle_msgs__msg__State__PRIMARY_STATE_UNCONFIGURED = 1,
+        }
+
+        enum lifecycle_msgs__msg__State__PRIMARY_STATE_UNCONFIGURED = _Anonymous_14
+                .lifecycle_msgs__msg__State__PRIMARY_STATE_UNCONFIGURED;
+        /// Constant 'PRIMARY_STATE_INACTIVE'.
+        enum _Anonymous_15
+        {
+
+            lifecycle_msgs__msg__State__PRIMARY_STATE_INACTIVE = 2,
+        }
+
+        enum lifecycle_msgs__msg__State__PRIMARY_STATE_INACTIVE = _Anonymous_15
+                .lifecycle_msgs__msg__State__PRIMARY_STATE_INACTIVE;
+        /// Constant 'PRIMARY_STATE_ACTIVE'.
+        enum _Anonymous_16
+        {
+
+            lifecycle_msgs__msg__State__PRIMARY_STATE_ACTIVE = 3,
+        }
+
+        enum lifecycle_msgs__msg__State__PRIMARY_STATE_ACTIVE = _Anonymous_16
+                .lifecycle_msgs__msg__State__PRIMARY_STATE_ACTIVE;
+        /// Constant 'PRIMARY_STATE_FINALIZED'.
+        enum _Anonymous_17
+        {
+
+            lifecycle_msgs__msg__State__PRIMARY_STATE_FINALIZED = 4,
+        }
+
+        enum lifecycle_msgs__msg__State__PRIMARY_STATE_FINALIZED = _Anonymous_17
+                .lifecycle_msgs__msg__State__PRIMARY_STATE_FINALIZED;
+        /// Constant 'TRANSITION_STATE_CONFIGURING'.
+        enum _Anonymous_18
+        {
+
+            lifecycle_msgs__msg__State__TRANSITION_STATE_CONFIGURING = 10,
+        }
+
+        enum lifecycle_msgs__msg__State__TRANSITION_STATE_CONFIGURING = _Anonymous_18
+                .lifecycle_msgs__msg__State__TRANSITION_STATE_CONFIGURING;
+        /// Constant 'TRANSITION_STATE_CLEANINGUP'.
+        enum _Anonymous_19
+        {
+
+            lifecycle_msgs__msg__State__TRANSITION_STATE_CLEANINGUP = 11,
+        }
+
+        enum lifecycle_msgs__msg__State__TRANSITION_STATE_CLEANINGUP = _Anonymous_19
+                .lifecycle_msgs__msg__State__TRANSITION_STATE_CLEANINGUP;
+        /// Constant 'TRANSITION_STATE_SHUTTINGDOWN'.
+        enum _Anonymous_20
+        {
+
+            lifecycle_msgs__msg__State__TRANSITION_STATE_SHUTTINGDOWN = 12,
+        }
+
+        enum lifecycle_msgs__msg__State__TRANSITION_STATE_SHUTTINGDOWN = _Anonymous_20
+                .lifecycle_msgs__msg__State__TRANSITION_STATE_SHUTTINGDOWN;
+        /// Constant 'TRANSITION_STATE_ACTIVATING'.
+        enum _Anonymous_21
+        {
+
+            lifecycle_msgs__msg__State__TRANSITION_STATE_ACTIVATING = 13,
+        }
+
+        enum lifecycle_msgs__msg__State__TRANSITION_STATE_ACTIVATING = _Anonymous_21
+                .lifecycle_msgs__msg__State__TRANSITION_STATE_ACTIVATING;
+        /// Constant 'TRANSITION_STATE_DEACTIVATING'.
+        enum _Anonymous_22
+        {
+
+            lifecycle_msgs__msg__State__TRANSITION_STATE_DEACTIVATING = 14,
+        }
+
+        enum lifecycle_msgs__msg__State__TRANSITION_STATE_DEACTIVATING = _Anonymous_22
+                .lifecycle_msgs__msg__State__TRANSITION_STATE_DEACTIVATING;
+        /// Constant 'TRANSITION_STATE_ERRORPROCESSING'.
+        enum _Anonymous_23
+        {
+
+            lifecycle_msgs__msg__State__TRANSITION_STATE_ERRORPROCESSING = 15,
+        }
+
+        enum lifecycle_msgs__msg__State__TRANSITION_STATE_ERRORPROCESSING = _Anonymous_23
+                .lifecycle_msgs__msg__State__TRANSITION_STATE_ERRORPROCESSING;
+
+        struct lifecycle_msgs__msg__State
+        {
+
+            ubyte id;
+
+            rosidl_runtime_c__String label;
+        }
+
+        struct lifecycle_msgs__msg__State__Sequence
+        {
+
+            lifecycle_msgs__msg__State* data;
+            /// The number of valid items in data
+            c_ulong size;
+            /// The number of allocated items in data
+            c_ulong capacity;
+        }
+
+        const(rosidl_message_type_support_t)* rosidl_typesupport_c__get_message_type_support_handle__lifecycle_msgs__msg__State() @nogc nothrow;
+
+        alias __blkcnt_t = c_long;
+        /// Initialize msg/Transition message.
+        /**
+ * If the init function is called twice for the same message without
+ * calling fini inbetween previously allocated memory will be leaked.
+ * \param[in,out] msg The previously allocated message pointer.
+ * Fields without a default value will not be initialized by this function.
+ * You might want to call memset(msg, 0, sizeof(
+ * lifecycle_msgs__msg__Transition
+ * )) before or use
+ * lifecycle_msgs__msg__Transition__create()
+ * to allocate and initialize the message.
+ * \return true if initialization was successful, otherwise false
+ */
+        bool lifecycle_msgs__msg__Transition__init(lifecycle_msgs__msg__Transition*) @nogc nothrow;
+        /// Finalize msg/Transition message.
+        /**
+ * \param[in,out] msg The allocated message pointer.
+ */
+        void lifecycle_msgs__msg__Transition__fini(lifecycle_msgs__msg__Transition*) @nogc nothrow;
+        /// Create msg/Transition message.
+        /**
+ * It allocates the memory for the message, sets the memory to zero, and
+ * calls
+ * lifecycle_msgs__msg__Transition__init().
+ * \return The pointer to the initialized message if successful,
+ * otherwise NULL
+ */
+        lifecycle_msgs__msg__Transition* lifecycle_msgs__msg__Transition__create() @nogc nothrow;
+        /// Destroy msg/Transition message.
+        /**
+ * It calls
+ * lifecycle_msgs__msg__Transition__fini()
+ * and frees the memory of the message.
+ * \param[in,out] msg The allocated message pointer.
+ */
+        void lifecycle_msgs__msg__Transition__destroy(lifecycle_msgs__msg__Transition*) @nogc nothrow;
+        /// Initialize array of msg/Transition messages.
+        /**
+ * It allocates the memory for the number of elements and calls
+ * lifecycle_msgs__msg__Transition__init()
+ * for each element of the array.
+ * \param[in,out] array The allocated array pointer.
+ * \param[in] size The size / capacity of the array.
+ * \return true if initialization was successful, otherwise false
+ * If the array pointer is valid and the size is zero it is guaranteed
+ # to return true.
+ */
+        bool lifecycle_msgs__msg__Transition__Sequence__init(
+                lifecycle_msgs__msg__Transition__Sequence*, c_ulong) @nogc nothrow;
+        /// Finalize array of msg/Transition messages.
+        /**
+ * It calls
+ * lifecycle_msgs__msg__Transition__fini()
+ * for each element of the array and frees the memory for the number of
+ * elements.
+ * \param[in,out] array The initialized array pointer.
+ */
+        void lifecycle_msgs__msg__Transition__Sequence__fini(
+                lifecycle_msgs__msg__Transition__Sequence*) @nogc nothrow;
+        /// Create array of msg/Transition messages.
+        /**
+ * It allocates the memory for the array and calls
+ * lifecycle_msgs__msg__Transition__Sequence__init().
+ * \param[in] size The size / capacity of the array.
+ * \return The pointer to the initialized array if successful, otherwise NULL
+ */
+        lifecycle_msgs__msg__Transition__Sequence* lifecycle_msgs__msg__Transition__Sequence__create(
+                c_ulong) @nogc nothrow;
+        /// Destroy array of msg/Transition messages.
+        /**
+ * It calls
+ * lifecycle_msgs__msg__Transition__Sequence__fini()
+ * on the array,
+ * and frees the memory of the array.
+ * \param[in,out] array The initialized array pointer.
+ */
+        void lifecycle_msgs__msg__Transition__Sequence__destroy(
+                lifecycle_msgs__msg__Transition__Sequence*) @nogc nothrow;
+        /// Constant 'TRANSITION_CREATE'.
+        enum _Anonymous_24
+        {
+
+            lifecycle_msgs__msg__Transition__TRANSITION_CREATE = 0,
+        }
+
+        enum lifecycle_msgs__msg__Transition__TRANSITION_CREATE = _Anonymous_24
+                .lifecycle_msgs__msg__Transition__TRANSITION_CREATE;
+        /// Constant 'TRANSITION_CONFIGURE'.
+        enum _Anonymous_25
+        {
+
+            lifecycle_msgs__msg__Transition__TRANSITION_CONFIGURE = 1,
+        }
+
+        enum lifecycle_msgs__msg__Transition__TRANSITION_CONFIGURE = _Anonymous_25
+                .lifecycle_msgs__msg__Transition__TRANSITION_CONFIGURE;
+        /// Constant 'TRANSITION_CLEANUP'.
+        enum _Anonymous_26
+        {
+
+            lifecycle_msgs__msg__Transition__TRANSITION_CLEANUP = 2,
+        }
+
+        enum lifecycle_msgs__msg__Transition__TRANSITION_CLEANUP = _Anonymous_26
+                .lifecycle_msgs__msg__Transition__TRANSITION_CLEANUP;
+        /// Constant 'TRANSITION_ACTIVATE'.
+        enum _Anonymous_27
+        {
+
+            lifecycle_msgs__msg__Transition__TRANSITION_ACTIVATE = 3,
+        }
+
+        enum lifecycle_msgs__msg__Transition__TRANSITION_ACTIVATE = _Anonymous_27
+                .lifecycle_msgs__msg__Transition__TRANSITION_ACTIVATE;
+        /// Constant 'TRANSITION_DEACTIVATE'.
+        enum _Anonymous_28
+        {
+
+            lifecycle_msgs__msg__Transition__TRANSITION_DEACTIVATE = 4,
+        }
+
+        enum lifecycle_msgs__msg__Transition__TRANSITION_DEACTIVATE = _Anonymous_28
+                .lifecycle_msgs__msg__Transition__TRANSITION_DEACTIVATE;
+        /// Constant 'TRANSITION_UNCONFIGURED_SHUTDOWN'.
+        enum _Anonymous_29
+        {
+
+            lifecycle_msgs__msg__Transition__TRANSITION_UNCONFIGURED_SHUTDOWN = 5,
+        }
+
+        enum lifecycle_msgs__msg__Transition__TRANSITION_UNCONFIGURED_SHUTDOWN = _Anonymous_29
+                .lifecycle_msgs__msg__Transition__TRANSITION_UNCONFIGURED_SHUTDOWN;
+        /// Constant 'TRANSITION_INACTIVE_SHUTDOWN'.
+        enum _Anonymous_30
+        {
+
+            lifecycle_msgs__msg__Transition__TRANSITION_INACTIVE_SHUTDOWN = 6,
+        }
+
+        enum lifecycle_msgs__msg__Transition__TRANSITION_INACTIVE_SHUTDOWN = _Anonymous_30
+                .lifecycle_msgs__msg__Transition__TRANSITION_INACTIVE_SHUTDOWN;
+        /// Constant 'TRANSITION_ACTIVE_SHUTDOWN'.
+        enum _Anonymous_31
+        {
+
+            lifecycle_msgs__msg__Transition__TRANSITION_ACTIVE_SHUTDOWN = 7,
+        }
+
+        enum lifecycle_msgs__msg__Transition__TRANSITION_ACTIVE_SHUTDOWN = _Anonymous_31
+                .lifecycle_msgs__msg__Transition__TRANSITION_ACTIVE_SHUTDOWN;
+        /// Constant 'TRANSITION_DESTROY'.
+        enum _Anonymous_32
+        {
+
+            lifecycle_msgs__msg__Transition__TRANSITION_DESTROY = 8,
+        }
+
+        enum lifecycle_msgs__msg__Transition__TRANSITION_DESTROY = _Anonymous_32
+                .lifecycle_msgs__msg__Transition__TRANSITION_DESTROY;
+        /// Constant 'TRANSITION_ON_CONFIGURE_SUCCESS'.
+        enum _Anonymous_33
+        {
+
+            lifecycle_msgs__msg__Transition__TRANSITION_ON_CONFIGURE_SUCCESS = 10,
+        }
+
+        enum lifecycle_msgs__msg__Transition__TRANSITION_ON_CONFIGURE_SUCCESS = _Anonymous_33
+                .lifecycle_msgs__msg__Transition__TRANSITION_ON_CONFIGURE_SUCCESS;
+        /// Constant 'TRANSITION_ON_CONFIGURE_FAILURE'.
+        enum _Anonymous_34
+        {
+
+            lifecycle_msgs__msg__Transition__TRANSITION_ON_CONFIGURE_FAILURE = 11,
+        }
+
+        enum lifecycle_msgs__msg__Transition__TRANSITION_ON_CONFIGURE_FAILURE = _Anonymous_34
+                .lifecycle_msgs__msg__Transition__TRANSITION_ON_CONFIGURE_FAILURE;
+        /// Constant 'TRANSITION_ON_CONFIGURE_ERROR'.
+        enum _Anonymous_35
+        {
+
+            lifecycle_msgs__msg__Transition__TRANSITION_ON_CONFIGURE_ERROR = 12,
+        }
+
+        enum lifecycle_msgs__msg__Transition__TRANSITION_ON_CONFIGURE_ERROR = _Anonymous_35
+                .lifecycle_msgs__msg__Transition__TRANSITION_ON_CONFIGURE_ERROR;
+        /// Constant 'TRANSITION_ON_CLEANUP_SUCCESS'.
+        enum _Anonymous_36
+        {
+
+            lifecycle_msgs__msg__Transition__TRANSITION_ON_CLEANUP_SUCCESS = 20,
+        }
+
+        enum lifecycle_msgs__msg__Transition__TRANSITION_ON_CLEANUP_SUCCESS = _Anonymous_36
+                .lifecycle_msgs__msg__Transition__TRANSITION_ON_CLEANUP_SUCCESS;
+        /// Constant 'TRANSITION_ON_CLEANUP_FAILURE'.
+        enum _Anonymous_37
+        {
+
+            lifecycle_msgs__msg__Transition__TRANSITION_ON_CLEANUP_FAILURE = 21,
+        }
+
+        enum lifecycle_msgs__msg__Transition__TRANSITION_ON_CLEANUP_FAILURE = _Anonymous_37
+                .lifecycle_msgs__msg__Transition__TRANSITION_ON_CLEANUP_FAILURE;
+        /// Constant 'TRANSITION_ON_CLEANUP_ERROR'.
+        enum _Anonymous_38
+        {
+
+            lifecycle_msgs__msg__Transition__TRANSITION_ON_CLEANUP_ERROR = 22,
+        }
+
+        enum lifecycle_msgs__msg__Transition__TRANSITION_ON_CLEANUP_ERROR = _Anonymous_38
+                .lifecycle_msgs__msg__Transition__TRANSITION_ON_CLEANUP_ERROR;
+        /// Constant 'TRANSITION_ON_ACTIVATE_SUCCESS'.
+        enum _Anonymous_39
+        {
+
+            lifecycle_msgs__msg__Transition__TRANSITION_ON_ACTIVATE_SUCCESS = 30,
+        }
+
+        enum lifecycle_msgs__msg__Transition__TRANSITION_ON_ACTIVATE_SUCCESS = _Anonymous_39
+                .lifecycle_msgs__msg__Transition__TRANSITION_ON_ACTIVATE_SUCCESS;
+        /// Constant 'TRANSITION_ON_ACTIVATE_FAILURE'.
+        enum _Anonymous_40
+        {
+
+            lifecycle_msgs__msg__Transition__TRANSITION_ON_ACTIVATE_FAILURE = 31,
+        }
+
+        enum lifecycle_msgs__msg__Transition__TRANSITION_ON_ACTIVATE_FAILURE = _Anonymous_40
+                .lifecycle_msgs__msg__Transition__TRANSITION_ON_ACTIVATE_FAILURE;
+        /// Constant 'TRANSITION_ON_ACTIVATE_ERROR'.
+        enum _Anonymous_41
+        {
+
+            lifecycle_msgs__msg__Transition__TRANSITION_ON_ACTIVATE_ERROR = 32,
+        }
+
+        enum lifecycle_msgs__msg__Transition__TRANSITION_ON_ACTIVATE_ERROR = _Anonymous_41
+                .lifecycle_msgs__msg__Transition__TRANSITION_ON_ACTIVATE_ERROR;
+        /// Constant 'TRANSITION_ON_DEACTIVATE_SUCCESS'.
+        enum _Anonymous_42
+        {
+
+            lifecycle_msgs__msg__Transition__TRANSITION_ON_DEACTIVATE_SUCCESS = 40,
+        }
+
+        enum lifecycle_msgs__msg__Transition__TRANSITION_ON_DEACTIVATE_SUCCESS = _Anonymous_42
+                .lifecycle_msgs__msg__Transition__TRANSITION_ON_DEACTIVATE_SUCCESS;
+        /// Constant 'TRANSITION_ON_DEACTIVATE_FAILURE'.
+        enum _Anonymous_43
+        {
+
+            lifecycle_msgs__msg__Transition__TRANSITION_ON_DEACTIVATE_FAILURE = 41,
+        }
+
+        enum lifecycle_msgs__msg__Transition__TRANSITION_ON_DEACTIVATE_FAILURE = _Anonymous_43
+                .lifecycle_msgs__msg__Transition__TRANSITION_ON_DEACTIVATE_FAILURE;
+        /// Constant 'TRANSITION_ON_DEACTIVATE_ERROR'.
+        enum _Anonymous_44
+        {
+
+            lifecycle_msgs__msg__Transition__TRANSITION_ON_DEACTIVATE_ERROR = 42,
+        }
+
+        enum lifecycle_msgs__msg__Transition__TRANSITION_ON_DEACTIVATE_ERROR = _Anonymous_44
+                .lifecycle_msgs__msg__Transition__TRANSITION_ON_DEACTIVATE_ERROR;
+        /// Constant 'TRANSITION_ON_SHUTDOWN_SUCCESS'.
+        enum _Anonymous_45
+        {
+
+            lifecycle_msgs__msg__Transition__TRANSITION_ON_SHUTDOWN_SUCCESS = 50,
+        }
+
+        enum lifecycle_msgs__msg__Transition__TRANSITION_ON_SHUTDOWN_SUCCESS = _Anonymous_45
+                .lifecycle_msgs__msg__Transition__TRANSITION_ON_SHUTDOWN_SUCCESS;
+        /// Constant 'TRANSITION_ON_SHUTDOWN_FAILURE'.
+        enum _Anonymous_46
+        {
+
+            lifecycle_msgs__msg__Transition__TRANSITION_ON_SHUTDOWN_FAILURE = 51,
+        }
+
+        enum lifecycle_msgs__msg__Transition__TRANSITION_ON_SHUTDOWN_FAILURE = _Anonymous_46
+                .lifecycle_msgs__msg__Transition__TRANSITION_ON_SHUTDOWN_FAILURE;
+        /// Constant 'TRANSITION_ON_SHUTDOWN_ERROR'.
+        enum _Anonymous_47
+        {
+
+            lifecycle_msgs__msg__Transition__TRANSITION_ON_SHUTDOWN_ERROR = 52,
+        }
+
+        enum lifecycle_msgs__msg__Transition__TRANSITION_ON_SHUTDOWN_ERROR = _Anonymous_47
+                .lifecycle_msgs__msg__Transition__TRANSITION_ON_SHUTDOWN_ERROR;
+        /// Constant 'TRANSITION_ON_ERROR_SUCCESS'.
+        enum _Anonymous_48
+        {
+
+            lifecycle_msgs__msg__Transition__TRANSITION_ON_ERROR_SUCCESS = 60,
+        }
+
+        enum lifecycle_msgs__msg__Transition__TRANSITION_ON_ERROR_SUCCESS = _Anonymous_48
+                .lifecycle_msgs__msg__Transition__TRANSITION_ON_ERROR_SUCCESS;
+        /// Constant 'TRANSITION_ON_ERROR_FAILURE'.
+        enum _Anonymous_49
+        {
+
+            lifecycle_msgs__msg__Transition__TRANSITION_ON_ERROR_FAILURE = 61,
+        }
+
+        enum lifecycle_msgs__msg__Transition__TRANSITION_ON_ERROR_FAILURE = _Anonymous_49
+                .lifecycle_msgs__msg__Transition__TRANSITION_ON_ERROR_FAILURE;
+        /// Constant 'TRANSITION_ON_ERROR_ERROR'.
+        enum _Anonymous_50
+        {
+
+            lifecycle_msgs__msg__Transition__TRANSITION_ON_ERROR_ERROR = 62,
+        }
+
+        enum lifecycle_msgs__msg__Transition__TRANSITION_ON_ERROR_ERROR = _Anonymous_50
+                .lifecycle_msgs__msg__Transition__TRANSITION_ON_ERROR_ERROR;
+        /// Constant 'TRANSITION_CALLBACK_SUCCESS'.
+        enum _Anonymous_51
+        {
+
+            lifecycle_msgs__msg__Transition__TRANSITION_CALLBACK_SUCCESS = 97,
+        }
+
+        enum lifecycle_msgs__msg__Transition__TRANSITION_CALLBACK_SUCCESS = _Anonymous_51
+                .lifecycle_msgs__msg__Transition__TRANSITION_CALLBACK_SUCCESS;
+        /// Constant 'TRANSITION_CALLBACK_FAILURE'.
+        enum _Anonymous_52
+        {
+
+            lifecycle_msgs__msg__Transition__TRANSITION_CALLBACK_FAILURE = 98,
+        }
+
+        enum lifecycle_msgs__msg__Transition__TRANSITION_CALLBACK_FAILURE = _Anonymous_52
+                .lifecycle_msgs__msg__Transition__TRANSITION_CALLBACK_FAILURE;
+        /// Constant 'TRANSITION_CALLBACK_ERROR'.
+        enum _Anonymous_53
+        {
+
+            lifecycle_msgs__msg__Transition__TRANSITION_CALLBACK_ERROR = 99,
+        }
+
+        enum lifecycle_msgs__msg__Transition__TRANSITION_CALLBACK_ERROR = _Anonymous_53
+                .lifecycle_msgs__msg__Transition__TRANSITION_CALLBACK_ERROR;
+
+        struct lifecycle_msgs__msg__Transition
+        {
+
+            ubyte id;
+
+            rosidl_runtime_c__String label;
+        }
+
+        struct lifecycle_msgs__msg__Transition__Sequence
+        {
+
+            lifecycle_msgs__msg__Transition* data;
+            /// The number of valid items in data
+            c_ulong size;
+            /// The number of allocated items in data
+            c_ulong capacity;
+        }
+
+        const(rosidl_message_type_support_t)* rosidl_typesupport_c__get_message_type_support_handle__lifecycle_msgs__msg__Transition() @nogc nothrow;
+        /// Initialize msg/TransitionDescription message.
+        /**
+ * If the init function is called twice for the same message without
+ * calling fini inbetween previously allocated memory will be leaked.
+ * \param[in,out] msg The previously allocated message pointer.
+ * Fields without a default value will not be initialized by this function.
+ * You might want to call memset(msg, 0, sizeof(
+ * lifecycle_msgs__msg__TransitionDescription
+ * )) before or use
+ * lifecycle_msgs__msg__TransitionDescription__create()
+ * to allocate and initialize the message.
+ * \return true if initialization was successful, otherwise false
+ */
+        bool lifecycle_msgs__msg__TransitionDescription__init(
+                lifecycle_msgs__msg__TransitionDescription*) @nogc nothrow;
+        /// Finalize msg/TransitionDescription message.
+        /**
+ * \param[in,out] msg The allocated message pointer.
+ */
+        void lifecycle_msgs__msg__TransitionDescription__fini(
+                lifecycle_msgs__msg__TransitionDescription*) @nogc nothrow;
+        /// Create msg/TransitionDescription message.
+        /**
+ * It allocates the memory for the message, sets the memory to zero, and
+ * calls
+ * lifecycle_msgs__msg__TransitionDescription__init().
+ * \return The pointer to the initialized message if successful,
+ * otherwise NULL
+ */
+        lifecycle_msgs__msg__TransitionDescription* lifecycle_msgs__msg__TransitionDescription__create() @nogc nothrow;
+        /// Destroy msg/TransitionDescription message.
+        /**
+ * It calls
+ * lifecycle_msgs__msg__TransitionDescription__fini()
+ * and frees the memory of the message.
+ * \param[in,out] msg The allocated message pointer.
+ */
+        void lifecycle_msgs__msg__TransitionDescription__destroy(
+                lifecycle_msgs__msg__TransitionDescription*) @nogc nothrow;
+        /// Initialize array of msg/TransitionDescription messages.
+        /**
+ * It allocates the memory for the number of elements and calls
+ * lifecycle_msgs__msg__TransitionDescription__init()
+ * for each element of the array.
+ * \param[in,out] array The allocated array pointer.
+ * \param[in] size The size / capacity of the array.
+ * \return true if initialization was successful, otherwise false
+ * If the array pointer is valid and the size is zero it is guaranteed
+ # to return true.
+ */
+        bool lifecycle_msgs__msg__TransitionDescription__Sequence__init(
+                lifecycle_msgs__msg__TransitionDescription__Sequence*, c_ulong) @nogc nothrow;
+        /// Finalize array of msg/TransitionDescription messages.
+        /**
+ * It calls
+ * lifecycle_msgs__msg__TransitionDescription__fini()
+ * for each element of the array and frees the memory for the number of
+ * elements.
+ * \param[in,out] array The initialized array pointer.
+ */
+        void lifecycle_msgs__msg__TransitionDescription__Sequence__fini(
+                lifecycle_msgs__msg__TransitionDescription__Sequence*) @nogc nothrow;
+        /// Create array of msg/TransitionDescription messages.
+        /**
+ * It allocates the memory for the array and calls
+ * lifecycle_msgs__msg__TransitionDescription__Sequence__init().
+ * \param[in] size The size / capacity of the array.
+ * \return The pointer to the initialized array if successful, otherwise NULL
+ */
+        lifecycle_msgs__msg__TransitionDescription__Sequence* lifecycle_msgs__msg__TransitionDescription__Sequence__create(
+                c_ulong) @nogc nothrow;
+        /// Destroy array of msg/TransitionDescription messages.
+        /**
+ * It calls
+ * lifecycle_msgs__msg__TransitionDescription__Sequence__fini()
+ * on the array,
+ * and frees the memory of the array.
+ * \param[in,out] array The initialized array pointer.
+ */
+        void lifecycle_msgs__msg__TransitionDescription__Sequence__destroy(
+                lifecycle_msgs__msg__TransitionDescription__Sequence*) @nogc nothrow;
+
+        alias __blksize_t = c_long;
+
+        struct lifecycle_msgs__msg__TransitionDescription
+        {
+
+            lifecycle_msgs__msg__Transition transition;
+
+            lifecycle_msgs__msg__State start_state;
+
+            lifecycle_msgs__msg__State goal_state;
+        }
+
+        struct lifecycle_msgs__msg__TransitionDescription__Sequence
+        {
+
+            lifecycle_msgs__msg__TransitionDescription* data;
+            /// The number of valid items in data
+            c_ulong size;
+            /// The number of allocated items in data
+            c_ulong capacity;
+        }
+
+        const(rosidl_message_type_support_t)* rosidl_typesupport_c__get_message_type_support_handle__lifecycle_msgs__msg__TransitionDescription() @nogc nothrow;
+        /// Initialize msg/TransitionEvent message.
+        /**
+ * If the init function is called twice for the same message without
+ * calling fini inbetween previously allocated memory will be leaked.
+ * \param[in,out] msg The previously allocated message pointer.
+ * Fields without a default value will not be initialized by this function.
+ * You might want to call memset(msg, 0, sizeof(
+ * lifecycle_msgs__msg__TransitionEvent
+ * )) before or use
+ * lifecycle_msgs__msg__TransitionEvent__create()
+ * to allocate and initialize the message.
+ * \return true if initialization was successful, otherwise false
+ */
+        bool lifecycle_msgs__msg__TransitionEvent__init(lifecycle_msgs__msg__TransitionEvent*) @nogc nothrow;
+        /// Finalize msg/TransitionEvent message.
+        /**
+ * \param[in,out] msg The allocated message pointer.
+ */
+        void lifecycle_msgs__msg__TransitionEvent__fini(lifecycle_msgs__msg__TransitionEvent*) @nogc nothrow;
+        /// Create msg/TransitionEvent message.
+        /**
+ * It allocates the memory for the message, sets the memory to zero, and
+ * calls
+ * lifecycle_msgs__msg__TransitionEvent__init().
+ * \return The pointer to the initialized message if successful,
+ * otherwise NULL
+ */
+        lifecycle_msgs__msg__TransitionEvent* lifecycle_msgs__msg__TransitionEvent__create() @nogc nothrow;
+        /// Destroy msg/TransitionEvent message.
+        /**
+ * It calls
+ * lifecycle_msgs__msg__TransitionEvent__fini()
+ * and frees the memory of the message.
+ * \param[in,out] msg The allocated message pointer.
+ */
+        void lifecycle_msgs__msg__TransitionEvent__destroy(lifecycle_msgs__msg__TransitionEvent*) @nogc nothrow;
+        /// Initialize array of msg/TransitionEvent messages.
+        /**
+ * It allocates the memory for the number of elements and calls
+ * lifecycle_msgs__msg__TransitionEvent__init()
+ * for each element of the array.
+ * \param[in,out] array The allocated array pointer.
+ * \param[in] size The size / capacity of the array.
+ * \return true if initialization was successful, otherwise false
+ * If the array pointer is valid and the size is zero it is guaranteed
+ # to return true.
+ */
+        bool lifecycle_msgs__msg__TransitionEvent__Sequence__init(
+                lifecycle_msgs__msg__TransitionEvent__Sequence*, c_ulong) @nogc nothrow;
+        /// Finalize array of msg/TransitionEvent messages.
+        /**
+ * It calls
+ * lifecycle_msgs__msg__TransitionEvent__fini()
+ * for each element of the array and frees the memory for the number of
+ * elements.
+ * \param[in,out] array The initialized array pointer.
+ */
+        void lifecycle_msgs__msg__TransitionEvent__Sequence__fini(
+                lifecycle_msgs__msg__TransitionEvent__Sequence*) @nogc nothrow;
+        /// Create array of msg/TransitionEvent messages.
+        /**
+ * It allocates the memory for the array and calls
+ * lifecycle_msgs__msg__TransitionEvent__Sequence__init().
+ * \param[in] size The size / capacity of the array.
+ * \return The pointer to the initialized array if successful, otherwise NULL
+ */
+        lifecycle_msgs__msg__TransitionEvent__Sequence* lifecycle_msgs__msg__TransitionEvent__Sequence__create(
+                c_ulong) @nogc nothrow;
+        /// Destroy array of msg/TransitionEvent messages.
+        /**
+ * It calls
+ * lifecycle_msgs__msg__TransitionEvent__Sequence__fini()
+ * on the array,
+ * and frees the memory of the array.
+ * \param[in,out] array The initialized array pointer.
+ */
+        void lifecycle_msgs__msg__TransitionEvent__Sequence__destroy(
+                lifecycle_msgs__msg__TransitionEvent__Sequence*) @nogc nothrow;
+
+        alias __timer_t = void*;
+
+        struct lifecycle_msgs__msg__TransitionEvent
+        {
+
+            c_ulong timestamp;
+
+            lifecycle_msgs__msg__Transition transition;
+
+            lifecycle_msgs__msg__State start_state;
+
+            lifecycle_msgs__msg__State goal_state;
+        }
+
+        struct lifecycle_msgs__msg__TransitionEvent__Sequence
+        {
+
+            lifecycle_msgs__msg__TransitionEvent* data;
+            /// The number of valid items in data
+            c_ulong size;
+            /// The number of allocated items in data
+            c_ulong capacity;
+        }
+
+        const(rosidl_message_type_support_t)* rosidl_typesupport_c__get_message_type_support_handle__lifecycle_msgs__msg__TransitionEvent() @nogc nothrow;
+
+        alias __clockid_t = int;
+
+        alias __key_t = int;
+
+        alias __daddr_t = int;
+
+        alias __suseconds_t = c_long;
+        /// Initialize srv/ChangeState message.
+        /**
+ * If the init function is called twice for the same message without
+ * calling fini inbetween previously allocated memory will be leaked.
+ * \param[in,out] msg The previously allocated message pointer.
+ * Fields without a default value will not be initialized by this function.
+ * You might want to call memset(msg, 0, sizeof(
+ * lifecycle_msgs__srv__ChangeState_Request
+ * )) before or use
+ * lifecycle_msgs__srv__ChangeState_Request__create()
+ * to allocate and initialize the message.
+ * \return true if initialization was successful, otherwise false
+ */
+        bool lifecycle_msgs__srv__ChangeState_Request__init(
+                lifecycle_msgs__srv__ChangeState_Request*) @nogc nothrow;
+        /// Finalize srv/ChangeState message.
+        /**
+ * \param[in,out] msg The allocated message pointer.
+ */
+        void lifecycle_msgs__srv__ChangeState_Request__fini(
+                lifecycle_msgs__srv__ChangeState_Request*) @nogc nothrow;
+        /// Create srv/ChangeState message.
+        /**
+ * It allocates the memory for the message, sets the memory to zero, and
+ * calls
+ * lifecycle_msgs__srv__ChangeState_Request__init().
+ * \return The pointer to the initialized message if successful,
+ * otherwise NULL
+ */
+        lifecycle_msgs__srv__ChangeState_Request* lifecycle_msgs__srv__ChangeState_Request__create() @nogc nothrow;
+        /// Destroy srv/ChangeState message.
+        /**
+ * It calls
+ * lifecycle_msgs__srv__ChangeState_Request__fini()
+ * and frees the memory of the message.
+ * \param[in,out] msg The allocated message pointer.
+ */
+        void lifecycle_msgs__srv__ChangeState_Request__destroy(
+                lifecycle_msgs__srv__ChangeState_Request*) @nogc nothrow;
+        /// Initialize array of srv/ChangeState messages.
+        /**
+ * It allocates the memory for the number of elements and calls
+ * lifecycle_msgs__srv__ChangeState_Request__init()
+ * for each element of the array.
+ * \param[in,out] array The allocated array pointer.
+ * \param[in] size The size / capacity of the array.
+ * \return true if initialization was successful, otherwise false
+ * If the array pointer is valid and the size is zero it is guaranteed
+ # to return true.
+ */
+        bool lifecycle_msgs__srv__ChangeState_Request__Sequence__init(
+                lifecycle_msgs__srv__ChangeState_Request__Sequence*, c_ulong) @nogc nothrow;
+        /// Finalize array of srv/ChangeState messages.
+        /**
+ * It calls
+ * lifecycle_msgs__srv__ChangeState_Request__fini()
+ * for each element of the array and frees the memory for the number of
+ * elements.
+ * \param[in,out] array The initialized array pointer.
+ */
+        void lifecycle_msgs__srv__ChangeState_Request__Sequence__fini(
+                lifecycle_msgs__srv__ChangeState_Request__Sequence*) @nogc nothrow;
+        /// Create array of srv/ChangeState messages.
+        /**
+ * It allocates the memory for the array and calls
+ * lifecycle_msgs__srv__ChangeState_Request__Sequence__init().
+ * \param[in] size The size / capacity of the array.
+ * \return The pointer to the initialized array if successful, otherwise NULL
+ */
+        lifecycle_msgs__srv__ChangeState_Request__Sequence* lifecycle_msgs__srv__ChangeState_Request__Sequence__create(
+                c_ulong) @nogc nothrow;
+        /// Destroy array of srv/ChangeState messages.
+        /**
+ * It calls
+ * lifecycle_msgs__srv__ChangeState_Request__Sequence__fini()
+ * on the array,
+ * and frees the memory of the array.
+ * \param[in,out] array The initialized array pointer.
+ */
+        void lifecycle_msgs__srv__ChangeState_Request__Sequence__destroy(
+                lifecycle_msgs__srv__ChangeState_Request__Sequence*) @nogc nothrow;
+        /// Initialize srv/ChangeState message.
+        /**
+ * If the init function is called twice for the same message without
+ * calling fini inbetween previously allocated memory will be leaked.
+ * \param[in,out] msg The previously allocated message pointer.
+ * Fields without a default value will not be initialized by this function.
+ * You might want to call memset(msg, 0, sizeof(
+ * lifecycle_msgs__srv__ChangeState_Response
+ * )) before or use
+ * lifecycle_msgs__srv__ChangeState_Response__create()
+ * to allocate and initialize the message.
+ * \return true if initialization was successful, otherwise false
+ */
+        bool lifecycle_msgs__srv__ChangeState_Response__init(
+                lifecycle_msgs__srv__ChangeState_Response*) @nogc nothrow;
+        /// Finalize srv/ChangeState message.
+        /**
+ * \param[in,out] msg The allocated message pointer.
+ */
+        void lifecycle_msgs__srv__ChangeState_Response__fini(
+                lifecycle_msgs__srv__ChangeState_Response*) @nogc nothrow;
+        /// Create srv/ChangeState message.
+        /**
+ * It allocates the memory for the message, sets the memory to zero, and
+ * calls
+ * lifecycle_msgs__srv__ChangeState_Response__init().
+ * \return The pointer to the initialized message if successful,
+ * otherwise NULL
+ */
+        lifecycle_msgs__srv__ChangeState_Response* lifecycle_msgs__srv__ChangeState_Response__create() @nogc nothrow;
+        /// Destroy srv/ChangeState message.
+        /**
+ * It calls
+ * lifecycle_msgs__srv__ChangeState_Response__fini()
+ * and frees the memory of the message.
+ * \param[in,out] msg The allocated message pointer.
+ */
+        void lifecycle_msgs__srv__ChangeState_Response__destroy(
+                lifecycle_msgs__srv__ChangeState_Response*) @nogc nothrow;
+        /// Initialize array of srv/ChangeState messages.
+        /**
+ * It allocates the memory for the number of elements and calls
+ * lifecycle_msgs__srv__ChangeState_Response__init()
+ * for each element of the array.
+ * \param[in,out] array The allocated array pointer.
+ * \param[in] size The size / capacity of the array.
+ * \return true if initialization was successful, otherwise false
+ * If the array pointer is valid and the size is zero it is guaranteed
+ # to return true.
+ */
+        bool lifecycle_msgs__srv__ChangeState_Response__Sequence__init(
+                lifecycle_msgs__srv__ChangeState_Response__Sequence*, c_ulong) @nogc nothrow;
+        /// Finalize array of srv/ChangeState messages.
+        /**
+ * It calls
+ * lifecycle_msgs__srv__ChangeState_Response__fini()
+ * for each element of the array and frees the memory for the number of
+ * elements.
+ * \param[in,out] array The initialized array pointer.
+ */
+        void lifecycle_msgs__srv__ChangeState_Response__Sequence__fini(
+                lifecycle_msgs__srv__ChangeState_Response__Sequence*) @nogc nothrow;
+        /// Create array of srv/ChangeState messages.
+        /**
+ * It allocates the memory for the array and calls
+ * lifecycle_msgs__srv__ChangeState_Response__Sequence__init().
+ * \param[in] size The size / capacity of the array.
+ * \return The pointer to the initialized array if successful, otherwise NULL
+ */
+        lifecycle_msgs__srv__ChangeState_Response__Sequence* lifecycle_msgs__srv__ChangeState_Response__Sequence__create(
+                c_ulong) @nogc nothrow;
+        /// Destroy array of srv/ChangeState messages.
+        /**
+ * It calls
+ * lifecycle_msgs__srv__ChangeState_Response__Sequence__fini()
+ * on the array,
+ * and frees the memory of the array.
+ * \param[in,out] array The initialized array pointer.
+ */
+        void lifecycle_msgs__srv__ChangeState_Response__Sequence__destroy(
+                lifecycle_msgs__srv__ChangeState_Response__Sequence*) @nogc nothrow;
+
+        struct lifecycle_msgs__srv__ChangeState_Request
+        {
+
+            lifecycle_msgs__msg__Transition transition;
+        }
+
+        struct lifecycle_msgs__srv__ChangeState_Request__Sequence
+        {
+
+            lifecycle_msgs__srv__ChangeState_Request* data;
+            /// The number of valid items in data
+            c_ulong size;
+            /// The number of allocated items in data
+            c_ulong capacity;
+        }
+
+        struct lifecycle_msgs__srv__ChangeState_Response
+        {
+
+            bool success;
+        }
+
+        struct lifecycle_msgs__srv__ChangeState_Response__Sequence
+        {
+
+            lifecycle_msgs__srv__ChangeState_Response* data;
+            /// The number of valid items in data
+            c_ulong size;
+            /// The number of allocated items in data
+            c_ulong capacity;
+        }
+
+        const(rosidl_message_type_support_t)* rosidl_typesupport_c__get_message_type_support_handle__lifecycle_msgs__srv__ChangeState_Request() @nogc nothrow;
+
+        const(rosidl_message_type_support_t)* rosidl_typesupport_c__get_message_type_support_handle__lifecycle_msgs__srv__ChangeState_Response() @nogc nothrow;
+
+        const(rosidl_service_type_support_t)* rosidl_typesupport_c__get_service_type_support_handle__lifecycle_msgs__srv__ChangeState() @nogc nothrow;
+        /// Initialize srv/GetAvailableStates message.
+        /**
+ * If the init function is called twice for the same message without
+ * calling fini inbetween previously allocated memory will be leaked.
+ * \param[in,out] msg The previously allocated message pointer.
+ * Fields without a default value will not be initialized by this function.
+ * You might want to call memset(msg, 0, sizeof(
+ * lifecycle_msgs__srv__GetAvailableStates_Request
+ * )) before or use
+ * lifecycle_msgs__srv__GetAvailableStates_Request__create()
+ * to allocate and initialize the message.
+ * \return true if initialization was successful, otherwise false
+ */
+        bool lifecycle_msgs__srv__GetAvailableStates_Request__init(
+                lifecycle_msgs__srv__GetAvailableStates_Request*) @nogc nothrow;
+        /// Finalize srv/GetAvailableStates message.
+        /**
+ * \param[in,out] msg The allocated message pointer.
+ */
+        void lifecycle_msgs__srv__GetAvailableStates_Request__fini(
+                lifecycle_msgs__srv__GetAvailableStates_Request*) @nogc nothrow;
+        /// Create srv/GetAvailableStates message.
+        /**
+ * It allocates the memory for the message, sets the memory to zero, and
+ * calls
+ * lifecycle_msgs__srv__GetAvailableStates_Request__init().
+ * \return The pointer to the initialized message if successful,
+ * otherwise NULL
+ */
+        lifecycle_msgs__srv__GetAvailableStates_Request* lifecycle_msgs__srv__GetAvailableStates_Request__create() @nogc nothrow;
+        /// Destroy srv/GetAvailableStates message.
+        /**
+ * It calls
+ * lifecycle_msgs__srv__GetAvailableStates_Request__fini()
+ * and frees the memory of the message.
+ * \param[in,out] msg The allocated message pointer.
+ */
+        void lifecycle_msgs__srv__GetAvailableStates_Request__destroy(
+                lifecycle_msgs__srv__GetAvailableStates_Request*) @nogc nothrow;
+        /// Initialize array of srv/GetAvailableStates messages.
+        /**
+ * It allocates the memory for the number of elements and calls
+ * lifecycle_msgs__srv__GetAvailableStates_Request__init()
+ * for each element of the array.
+ * \param[in,out] array The allocated array pointer.
+ * \param[in] size The size / capacity of the array.
+ * \return true if initialization was successful, otherwise false
+ * If the array pointer is valid and the size is zero it is guaranteed
+ # to return true.
+ */
+        bool lifecycle_msgs__srv__GetAvailableStates_Request__Sequence__init(
+                lifecycle_msgs__srv__GetAvailableStates_Request__Sequence*, c_ulong) @nogc nothrow;
+        /// Finalize array of srv/GetAvailableStates messages.
+        /**
+ * It calls
+ * lifecycle_msgs__srv__GetAvailableStates_Request__fini()
+ * for each element of the array and frees the memory for the number of
+ * elements.
+ * \param[in,out] array The initialized array pointer.
+ */
+        void lifecycle_msgs__srv__GetAvailableStates_Request__Sequence__fini(
+                lifecycle_msgs__srv__GetAvailableStates_Request__Sequence*) @nogc nothrow;
+        /// Create array of srv/GetAvailableStates messages.
+        /**
+ * It allocates the memory for the array and calls
+ * lifecycle_msgs__srv__GetAvailableStates_Request__Sequence__init().
+ * \param[in] size The size / capacity of the array.
+ * \return The pointer to the initialized array if successful, otherwise NULL
+ */
+        lifecycle_msgs__srv__GetAvailableStates_Request__Sequence* lifecycle_msgs__srv__GetAvailableStates_Request__Sequence__create(
+                c_ulong) @nogc nothrow;
+        /// Destroy array of srv/GetAvailableStates messages.
+        /**
+ * It calls
+ * lifecycle_msgs__srv__GetAvailableStates_Request__Sequence__fini()
+ * on the array,
+ * and frees the memory of the array.
+ * \param[in,out] array The initialized array pointer.
+ */
+        void lifecycle_msgs__srv__GetAvailableStates_Request__Sequence__destroy(
+                lifecycle_msgs__srv__GetAvailableStates_Request__Sequence*) @nogc nothrow;
+        /// Initialize srv/GetAvailableStates message.
+        /**
+ * If the init function is called twice for the same message without
+ * calling fini inbetween previously allocated memory will be leaked.
+ * \param[in,out] msg The previously allocated message pointer.
+ * Fields without a default value will not be initialized by this function.
+ * You might want to call memset(msg, 0, sizeof(
+ * lifecycle_msgs__srv__GetAvailableStates_Response
+ * )) before or use
+ * lifecycle_msgs__srv__GetAvailableStates_Response__create()
+ * to allocate and initialize the message.
+ * \return true if initialization was successful, otherwise false
+ */
+        bool lifecycle_msgs__srv__GetAvailableStates_Response__init(
+                lifecycle_msgs__srv__GetAvailableStates_Response*) @nogc nothrow;
+        /// Finalize srv/GetAvailableStates message.
+        /**
+ * \param[in,out] msg The allocated message pointer.
+ */
+        void lifecycle_msgs__srv__GetAvailableStates_Response__fini(
+                lifecycle_msgs__srv__GetAvailableStates_Response*) @nogc nothrow;
+        /// Create srv/GetAvailableStates message.
+        /**
+ * It allocates the memory for the message, sets the memory to zero, and
+ * calls
+ * lifecycle_msgs__srv__GetAvailableStates_Response__init().
+ * \return The pointer to the initialized message if successful,
+ * otherwise NULL
+ */
+        lifecycle_msgs__srv__GetAvailableStates_Response* lifecycle_msgs__srv__GetAvailableStates_Response__create() @nogc nothrow;
+        /// Destroy srv/GetAvailableStates message.
+        /**
+ * It calls
+ * lifecycle_msgs__srv__GetAvailableStates_Response__fini()
+ * and frees the memory of the message.
+ * \param[in,out] msg The allocated message pointer.
+ */
+        void lifecycle_msgs__srv__GetAvailableStates_Response__destroy(
+                lifecycle_msgs__srv__GetAvailableStates_Response*) @nogc nothrow;
+        /// Initialize array of srv/GetAvailableStates messages.
+        /**
+ * It allocates the memory for the number of elements and calls
+ * lifecycle_msgs__srv__GetAvailableStates_Response__init()
+ * for each element of the array.
+ * \param[in,out] array The allocated array pointer.
+ * \param[in] size The size / capacity of the array.
+ * \return true if initialization was successful, otherwise false
+ * If the array pointer is valid and the size is zero it is guaranteed
+ # to return true.
+ */
+        bool lifecycle_msgs__srv__GetAvailableStates_Response__Sequence__init(
+                lifecycle_msgs__srv__GetAvailableStates_Response__Sequence*, c_ulong) @nogc nothrow;
+        /// Finalize array of srv/GetAvailableStates messages.
+        /**
+ * It calls
+ * lifecycle_msgs__srv__GetAvailableStates_Response__fini()
+ * for each element of the array and frees the memory for the number of
+ * elements.
+ * \param[in,out] array The initialized array pointer.
+ */
+        void lifecycle_msgs__srv__GetAvailableStates_Response__Sequence__fini(
+                lifecycle_msgs__srv__GetAvailableStates_Response__Sequence*) @nogc nothrow;
+        /// Create array of srv/GetAvailableStates messages.
+        /**
+ * It allocates the memory for the array and calls
+ * lifecycle_msgs__srv__GetAvailableStates_Response__Sequence__init().
+ * \param[in] size The size / capacity of the array.
+ * \return The pointer to the initialized array if successful, otherwise NULL
+ */
+        lifecycle_msgs__srv__GetAvailableStates_Response__Sequence* lifecycle_msgs__srv__GetAvailableStates_Response__Sequence__create(
+                c_ulong) @nogc nothrow;
+        /// Destroy array of srv/GetAvailableStates messages.
+        /**
+ * It calls
+ * lifecycle_msgs__srv__GetAvailableStates_Response__Sequence__fini()
+ * on the array,
+ * and frees the memory of the array.
+ * \param[in,out] array The initialized array pointer.
+ */
+        void lifecycle_msgs__srv__GetAvailableStates_Response__Sequence__destroy(
+                lifecycle_msgs__srv__GetAvailableStates_Response__Sequence*) @nogc nothrow;
+
+        alias __useconds_t = uint;
+
+        struct lifecycle_msgs__srv__GetAvailableStates_Request
+        {
+
+            ubyte structure_needs_at_least_one_member;
+        }
+
+        struct lifecycle_msgs__srv__GetAvailableStates_Request__Sequence
+        {
+
+            lifecycle_msgs__srv__GetAvailableStates_Request* data;
+            /// The number of valid items in data
+            c_ulong size;
+            /// The number of allocated items in data
+            c_ulong capacity;
+        }
+
+        struct lifecycle_msgs__srv__GetAvailableStates_Response
+        {
+
+            lifecycle_msgs__msg__State__Sequence available_states;
+        }
+
+        struct lifecycle_msgs__srv__GetAvailableStates_Response__Sequence
+        {
+
+            lifecycle_msgs__srv__GetAvailableStates_Response* data;
+            /// The number of valid items in data
+            c_ulong size;
+            /// The number of allocated items in data
+            c_ulong capacity;
+        }
+
+        const(rosidl_message_type_support_t)* rosidl_typesupport_c__get_message_type_support_handle__lifecycle_msgs__srv__GetAvailableStates_Request() @nogc nothrow;
+
+        const(rosidl_message_type_support_t)* rosidl_typesupport_c__get_message_type_support_handle__lifecycle_msgs__srv__GetAvailableStates_Response() @nogc nothrow;
+
+        const(rosidl_service_type_support_t)* rosidl_typesupport_c__get_service_type_support_handle__lifecycle_msgs__srv__GetAvailableStates() @nogc nothrow;
+
+        alias __time_t = c_long;
+        /// Initialize srv/GetAvailableTransitions message.
+        /**
+ * If the init function is called twice for the same message without
+ * calling fini inbetween previously allocated memory will be leaked.
+ * \param[in,out] msg The previously allocated message pointer.
+ * Fields without a default value will not be initialized by this function.
+ * You might want to call memset(msg, 0, sizeof(
+ * lifecycle_msgs__srv__GetAvailableTransitions_Request
+ * )) before or use
+ * lifecycle_msgs__srv__GetAvailableTransitions_Request__create()
+ * to allocate and initialize the message.
+ * \return true if initialization was successful, otherwise false
+ */
+        bool lifecycle_msgs__srv__GetAvailableTransitions_Request__init(
+                lifecycle_msgs__srv__GetAvailableTransitions_Request*) @nogc nothrow;
+        /// Finalize srv/GetAvailableTransitions message.
+        /**
+ * \param[in,out] msg The allocated message pointer.
+ */
+        void lifecycle_msgs__srv__GetAvailableTransitions_Request__fini(
+                lifecycle_msgs__srv__GetAvailableTransitions_Request*) @nogc nothrow;
+        /// Create srv/GetAvailableTransitions message.
+        /**
+ * It allocates the memory for the message, sets the memory to zero, and
+ * calls
+ * lifecycle_msgs__srv__GetAvailableTransitions_Request__init().
+ * \return The pointer to the initialized message if successful,
+ * otherwise NULL
+ */
+        lifecycle_msgs__srv__GetAvailableTransitions_Request* lifecycle_msgs__srv__GetAvailableTransitions_Request__create() @nogc nothrow;
+        /// Destroy srv/GetAvailableTransitions message.
+        /**
+ * It calls
+ * lifecycle_msgs__srv__GetAvailableTransitions_Request__fini()
+ * and frees the memory of the message.
+ * \param[in,out] msg The allocated message pointer.
+ */
+        void lifecycle_msgs__srv__GetAvailableTransitions_Request__destroy(
+                lifecycle_msgs__srv__GetAvailableTransitions_Request*) @nogc nothrow;
+        /// Initialize array of srv/GetAvailableTransitions messages.
+        /**
+ * It allocates the memory for the number of elements and calls
+ * lifecycle_msgs__srv__GetAvailableTransitions_Request__init()
+ * for each element of the array.
+ * \param[in,out] array The allocated array pointer.
+ * \param[in] size The size / capacity of the array.
+ * \return true if initialization was successful, otherwise false
+ * If the array pointer is valid and the size is zero it is guaranteed
+ # to return true.
+ */
+        bool lifecycle_msgs__srv__GetAvailableTransitions_Request__Sequence__init(
+                lifecycle_msgs__srv__GetAvailableTransitions_Request__Sequence*, c_ulong) @nogc nothrow;
+        /// Finalize array of srv/GetAvailableTransitions messages.
+        /**
+ * It calls
+ * lifecycle_msgs__srv__GetAvailableTransitions_Request__fini()
+ * for each element of the array and frees the memory for the number of
+ * elements.
+ * \param[in,out] array The initialized array pointer.
+ */
+        void lifecycle_msgs__srv__GetAvailableTransitions_Request__Sequence__fini(
+                lifecycle_msgs__srv__GetAvailableTransitions_Request__Sequence*) @nogc nothrow;
+        /// Create array of srv/GetAvailableTransitions messages.
+        /**
+ * It allocates the memory for the array and calls
+ * lifecycle_msgs__srv__GetAvailableTransitions_Request__Sequence__init().
+ * \param[in] size The size / capacity of the array.
+ * \return The pointer to the initialized array if successful, otherwise NULL
+ */
+        lifecycle_msgs__srv__GetAvailableTransitions_Request__Sequence* lifecycle_msgs__srv__GetAvailableTransitions_Request__Sequence__create(
+                c_ulong) @nogc nothrow;
+        /// Destroy array of srv/GetAvailableTransitions messages.
+        /**
+ * It calls
+ * lifecycle_msgs__srv__GetAvailableTransitions_Request__Sequence__fini()
+ * on the array,
+ * and frees the memory of the array.
+ * \param[in,out] array The initialized array pointer.
+ */
+        void lifecycle_msgs__srv__GetAvailableTransitions_Request__Sequence__destroy(
+                lifecycle_msgs__srv__GetAvailableTransitions_Request__Sequence*) @nogc nothrow;
+        /// Initialize srv/GetAvailableTransitions message.
+        /**
+ * If the init function is called twice for the same message without
+ * calling fini inbetween previously allocated memory will be leaked.
+ * \param[in,out] msg The previously allocated message pointer.
+ * Fields without a default value will not be initialized by this function.
+ * You might want to call memset(msg, 0, sizeof(
+ * lifecycle_msgs__srv__GetAvailableTransitions_Response
+ * )) before or use
+ * lifecycle_msgs__srv__GetAvailableTransitions_Response__create()
+ * to allocate and initialize the message.
+ * \return true if initialization was successful, otherwise false
+ */
+        bool lifecycle_msgs__srv__GetAvailableTransitions_Response__init(
+                lifecycle_msgs__srv__GetAvailableTransitions_Response*) @nogc nothrow;
+        /// Finalize srv/GetAvailableTransitions message.
+        /**
+ * \param[in,out] msg The allocated message pointer.
+ */
+        void lifecycle_msgs__srv__GetAvailableTransitions_Response__fini(
+                lifecycle_msgs__srv__GetAvailableTransitions_Response*) @nogc nothrow;
+        /// Create srv/GetAvailableTransitions message.
+        /**
+ * It allocates the memory for the message, sets the memory to zero, and
+ * calls
+ * lifecycle_msgs__srv__GetAvailableTransitions_Response__init().
+ * \return The pointer to the initialized message if successful,
+ * otherwise NULL
+ */
+        lifecycle_msgs__srv__GetAvailableTransitions_Response* lifecycle_msgs__srv__GetAvailableTransitions_Response__create() @nogc nothrow;
+        /// Destroy srv/GetAvailableTransitions message.
+        /**
+ * It calls
+ * lifecycle_msgs__srv__GetAvailableTransitions_Response__fini()
+ * and frees the memory of the message.
+ * \param[in,out] msg The allocated message pointer.
+ */
+        void lifecycle_msgs__srv__GetAvailableTransitions_Response__destroy(
+                lifecycle_msgs__srv__GetAvailableTransitions_Response*) @nogc nothrow;
+        /// Initialize array of srv/GetAvailableTransitions messages.
+        /**
+ * It allocates the memory for the number of elements and calls
+ * lifecycle_msgs__srv__GetAvailableTransitions_Response__init()
+ * for each element of the array.
+ * \param[in,out] array The allocated array pointer.
+ * \param[in] size The size / capacity of the array.
+ * \return true if initialization was successful, otherwise false
+ * If the array pointer is valid and the size is zero it is guaranteed
+ # to return true.
+ */
+        bool lifecycle_msgs__srv__GetAvailableTransitions_Response__Sequence__init(
+                lifecycle_msgs__srv__GetAvailableTransitions_Response__Sequence*, c_ulong) @nogc nothrow;
+        /// Finalize array of srv/GetAvailableTransitions messages.
+        /**
+ * It calls
+ * lifecycle_msgs__srv__GetAvailableTransitions_Response__fini()
+ * for each element of the array and frees the memory for the number of
+ * elements.
+ * \param[in,out] array The initialized array pointer.
+ */
+        void lifecycle_msgs__srv__GetAvailableTransitions_Response__Sequence__fini(
+                lifecycle_msgs__srv__GetAvailableTransitions_Response__Sequence*) @nogc nothrow;
+        /// Create array of srv/GetAvailableTransitions messages.
+        /**
+ * It allocates the memory for the array and calls
+ * lifecycle_msgs__srv__GetAvailableTransitions_Response__Sequence__init().
+ * \param[in] size The size / capacity of the array.
+ * \return The pointer to the initialized array if successful, otherwise NULL
+ */
+        lifecycle_msgs__srv__GetAvailableTransitions_Response__Sequence* lifecycle_msgs__srv__GetAvailableTransitions_Response__Sequence__create(
+                c_ulong) @nogc nothrow;
+        /// Destroy array of srv/GetAvailableTransitions messages.
+        /**
+ * It calls
+ * lifecycle_msgs__srv__GetAvailableTransitions_Response__Sequence__fini()
+ * on the array,
+ * and frees the memory of the array.
+ * \param[in,out] array The initialized array pointer.
+ */
+        void lifecycle_msgs__srv__GetAvailableTransitions_Response__Sequence__destroy(
+                lifecycle_msgs__srv__GetAvailableTransitions_Response__Sequence*) @nogc nothrow;
+
+        struct lifecycle_msgs__srv__GetAvailableTransitions_Request
+        {
+
+            ubyte structure_needs_at_least_one_member;
+        }
+
+        struct lifecycle_msgs__srv__GetAvailableTransitions_Request__Sequence
+        {
+
+            lifecycle_msgs__srv__GetAvailableTransitions_Request* data;
+            /// The number of valid items in data
+            c_ulong size;
+            /// The number of allocated items in data
+            c_ulong capacity;
+        }
+
+        struct lifecycle_msgs__srv__GetAvailableTransitions_Response
+        {
+
+            lifecycle_msgs__msg__TransitionDescription__Sequence available_transitions;
+        }
+
+        struct lifecycle_msgs__srv__GetAvailableTransitions_Response__Sequence
+        {
+
+            lifecycle_msgs__srv__GetAvailableTransitions_Response* data;
+            /// The number of valid items in data
+            c_ulong size;
+            /// The number of allocated items in data
+            c_ulong capacity;
+        }
+
+        const(rosidl_message_type_support_t)* rosidl_typesupport_c__get_message_type_support_handle__lifecycle_msgs__srv__GetAvailableTransitions_Request() @nogc nothrow;
+
+        const(rosidl_message_type_support_t)* rosidl_typesupport_c__get_message_type_support_handle__lifecycle_msgs__srv__GetAvailableTransitions_Response() @nogc nothrow;
+
+        const(rosidl_service_type_support_t)* rosidl_typesupport_c__get_service_type_support_handle__lifecycle_msgs__srv__GetAvailableTransitions() @nogc nothrow;
+
+        alias __id_t = uint;
+        /// Initialize srv/GetState message.
+        /**
+ * If the init function is called twice for the same message without
+ * calling fini inbetween previously allocated memory will be leaked.
+ * \param[in,out] msg The previously allocated message pointer.
+ * Fields without a default value will not be initialized by this function.
+ * You might want to call memset(msg, 0, sizeof(
+ * lifecycle_msgs__srv__GetState_Request
+ * )) before or use
+ * lifecycle_msgs__srv__GetState_Request__create()
+ * to allocate and initialize the message.
+ * \return true if initialization was successful, otherwise false
+ */
+        bool lifecycle_msgs__srv__GetState_Request__init(lifecycle_msgs__srv__GetState_Request*) @nogc nothrow;
+        /// Finalize srv/GetState message.
+        /**
+ * \param[in,out] msg The allocated message pointer.
+ */
+        void lifecycle_msgs__srv__GetState_Request__fini(lifecycle_msgs__srv__GetState_Request*) @nogc nothrow;
+        /// Create srv/GetState message.
+        /**
+ * It allocates the memory for the message, sets the memory to zero, and
+ * calls
+ * lifecycle_msgs__srv__GetState_Request__init().
+ * \return The pointer to the initialized message if successful,
+ * otherwise NULL
+ */
+        lifecycle_msgs__srv__GetState_Request* lifecycle_msgs__srv__GetState_Request__create() @nogc nothrow;
+        /// Destroy srv/GetState message.
+        /**
+ * It calls
+ * lifecycle_msgs__srv__GetState_Request__fini()
+ * and frees the memory of the message.
+ * \param[in,out] msg The allocated message pointer.
+ */
+        void lifecycle_msgs__srv__GetState_Request__destroy(lifecycle_msgs__srv__GetState_Request*) @nogc nothrow;
+        /// Initialize array of srv/GetState messages.
+        /**
+ * It allocates the memory for the number of elements and calls
+ * lifecycle_msgs__srv__GetState_Request__init()
+ * for each element of the array.
+ * \param[in,out] array The allocated array pointer.
+ * \param[in] size The size / capacity of the array.
+ * \return true if initialization was successful, otherwise false
+ * If the array pointer is valid and the size is zero it is guaranteed
+ # to return true.
+ */
+        bool lifecycle_msgs__srv__GetState_Request__Sequence__init(
+                lifecycle_msgs__srv__GetState_Request__Sequence*, c_ulong) @nogc nothrow;
+        /// Finalize array of srv/GetState messages.
+        /**
+ * It calls
+ * lifecycle_msgs__srv__GetState_Request__fini()
+ * for each element of the array and frees the memory for the number of
+ * elements.
+ * \param[in,out] array The initialized array pointer.
+ */
+        void lifecycle_msgs__srv__GetState_Request__Sequence__fini(
+                lifecycle_msgs__srv__GetState_Request__Sequence*) @nogc nothrow;
+        /// Create array of srv/GetState messages.
+        /**
+ * It allocates the memory for the array and calls
+ * lifecycle_msgs__srv__GetState_Request__Sequence__init().
+ * \param[in] size The size / capacity of the array.
+ * \return The pointer to the initialized array if successful, otherwise NULL
+ */
+        lifecycle_msgs__srv__GetState_Request__Sequence* lifecycle_msgs__srv__GetState_Request__Sequence__create(
+                c_ulong) @nogc nothrow;
+        /// Destroy array of srv/GetState messages.
+        /**
+ * It calls
+ * lifecycle_msgs__srv__GetState_Request__Sequence__fini()
+ * on the array,
+ * and frees the memory of the array.
+ * \param[in,out] array The initialized array pointer.
+ */
+        void lifecycle_msgs__srv__GetState_Request__Sequence__destroy(
+                lifecycle_msgs__srv__GetState_Request__Sequence*) @nogc nothrow;
+        /// Initialize srv/GetState message.
+        /**
+ * If the init function is called twice for the same message without
+ * calling fini inbetween previously allocated memory will be leaked.
+ * \param[in,out] msg The previously allocated message pointer.
+ * Fields without a default value will not be initialized by this function.
+ * You might want to call memset(msg, 0, sizeof(
+ * lifecycle_msgs__srv__GetState_Response
+ * )) before or use
+ * lifecycle_msgs__srv__GetState_Response__create()
+ * to allocate and initialize the message.
+ * \return true if initialization was successful, otherwise false
+ */
+        bool lifecycle_msgs__srv__GetState_Response__init(lifecycle_msgs__srv__GetState_Response*) @nogc nothrow;
+        /// Finalize srv/GetState message.
+        /**
+ * \param[in,out] msg The allocated message pointer.
+ */
+        void lifecycle_msgs__srv__GetState_Response__fini(lifecycle_msgs__srv__GetState_Response*) @nogc nothrow;
+        /// Create srv/GetState message.
+        /**
+ * It allocates the memory for the message, sets the memory to zero, and
+ * calls
+ * lifecycle_msgs__srv__GetState_Response__init().
+ * \return The pointer to the initialized message if successful,
+ * otherwise NULL
+ */
+        lifecycle_msgs__srv__GetState_Response* lifecycle_msgs__srv__GetState_Response__create() @nogc nothrow;
+        /// Destroy srv/GetState message.
+        /**
+ * It calls
+ * lifecycle_msgs__srv__GetState_Response__fini()
+ * and frees the memory of the message.
+ * \param[in,out] msg The allocated message pointer.
+ */
+        void lifecycle_msgs__srv__GetState_Response__destroy(
+                lifecycle_msgs__srv__GetState_Response*) @nogc nothrow;
+        /// Initialize array of srv/GetState messages.
+        /**
+ * It allocates the memory for the number of elements and calls
+ * lifecycle_msgs__srv__GetState_Response__init()
+ * for each element of the array.
+ * \param[in,out] array The allocated array pointer.
+ * \param[in] size The size / capacity of the array.
+ * \return true if initialization was successful, otherwise false
+ * If the array pointer is valid and the size is zero it is guaranteed
+ # to return true.
+ */
+        bool lifecycle_msgs__srv__GetState_Response__Sequence__init(
+                lifecycle_msgs__srv__GetState_Response__Sequence*, c_ulong) @nogc nothrow;
+        /// Finalize array of srv/GetState messages.
+        /**
+ * It calls
+ * lifecycle_msgs__srv__GetState_Response__fini()
+ * for each element of the array and frees the memory for the number of
+ * elements.
+ * \param[in,out] array The initialized array pointer.
+ */
+        void lifecycle_msgs__srv__GetState_Response__Sequence__fini(
+                lifecycle_msgs__srv__GetState_Response__Sequence*) @nogc nothrow;
+        /// Create array of srv/GetState messages.
+        /**
+ * It allocates the memory for the array and calls
+ * lifecycle_msgs__srv__GetState_Response__Sequence__init().
+ * \param[in] size The size / capacity of the array.
+ * \return The pointer to the initialized array if successful, otherwise NULL
+ */
+        lifecycle_msgs__srv__GetState_Response__Sequence* lifecycle_msgs__srv__GetState_Response__Sequence__create(
+                c_ulong) @nogc nothrow;
+        /// Destroy array of srv/GetState messages.
+        /**
+ * It calls
+ * lifecycle_msgs__srv__GetState_Response__Sequence__fini()
+ * on the array,
+ * and frees the memory of the array.
+ * \param[in,out] array The initialized array pointer.
+ */
+        void lifecycle_msgs__srv__GetState_Response__Sequence__destroy(
+                lifecycle_msgs__srv__GetState_Response__Sequence*) @nogc nothrow;
+
+        struct lifecycle_msgs__srv__GetState_Request
+        {
+
+            ubyte structure_needs_at_least_one_member;
+        }
+
+        struct lifecycle_msgs__srv__GetState_Request__Sequence
+        {
+
+            lifecycle_msgs__srv__GetState_Request* data;
+            /// The number of valid items in data
+            c_ulong size;
+            /// The number of allocated items in data
+            c_ulong capacity;
+        }
+
+        struct lifecycle_msgs__srv__GetState_Response
+        {
+
+            lifecycle_msgs__msg__State current_state;
+        }
+
+        struct lifecycle_msgs__srv__GetState_Response__Sequence
+        {
+
+            lifecycle_msgs__srv__GetState_Response* data;
+            /// The number of valid items in data
+            c_ulong size;
+            /// The number of allocated items in data
+            c_ulong capacity;
+        }
+
+        const(rosidl_message_type_support_t)* rosidl_typesupport_c__get_message_type_support_handle__lifecycle_msgs__srv__GetState_Request() @nogc nothrow;
+
+        const(rosidl_message_type_support_t)* rosidl_typesupport_c__get_message_type_support_handle__lifecycle_msgs__srv__GetState_Response() @nogc nothrow;
+
+        const(rosidl_service_type_support_t)* rosidl_typesupport_c__get_service_type_support_handle__lifecycle_msgs__srv__GetState() @nogc nothrow;
+
+        alias __rlim64_t = c_ulong;
 
         alias rcl_allocator_t = rcutils_allocator_t;
 
-        alias __fsblkcnt64_t = c_ulong;
+        alias __rlim_t = c_ulong;
+
+        alias __clock_t = c_long;
         struct rcl_arguments_impl_t;
         /// Hold output of parsing command line arguments.
         struct rcl_arguments_t
@@ -354,15 +3353,19 @@ version (foxy)
             rcl_arguments_impl_t* impl;
         }
 
-        alias __fsblkcnt_t = c_ulong;
+        struct __fsid_t
+        {
 
-        alias __blkcnt64_t = c_long;
+            int[2] __val;
+        }
 
-        alias __blkcnt_t = c_long;
+        alias __pid_t = int;
 
-        alias __blksize_t = c_long;
+        alias __off64_t = c_long;
 
-        alias __timer_t = void*;
+        alias __off_t = c_long;
+
+        alias __nlink_t = c_ulong;
         /// Return a rcl_arguments_t struct with members initialized to `NULL`.
         rcl_arguments_t rcl_get_zero_initialized_arguments() @nogc nothrow;
         /// Parse command line arguments into a structure usable by code.
@@ -953,7 +3956,7 @@ version (foxy)
  */
         bool rcl_client_is_valid(const(rcl_client_t)*) @nogc nothrow;
 
-        alias __clockid_t = int;
+        alias __mode_t = uint;
 
         alias rcl_context_instance_id_t = c_ulong;
         struct rcl_context_impl_t;
@@ -1166,8 +4169,6 @@ version (foxy)
  */
         rmw_context_t* rcl_context_get_rmw_context(rcl_context_t*) @nogc nothrow;
 
-        alias __key_t = int;
-
         extern __gshared const(const(char)*) RCL_DOMAIN_ID_ENV_VAR;
         /// Determine the default domain ID, based on the environment.
         /**
@@ -1177,6 +4178,8 @@ version (foxy)
  * \returns RCL_RET_OK.
  */
         int rcl_get_default_domain_id(c_ulong*) @nogc nothrow;
+
+        alias __ino64_t = c_ulong;
 
         enum rcl_publisher_event_type_t
         {
@@ -1310,7 +4313,7 @@ version (foxy)
 
         alias rcl_topic_endpoint_info_array_t = rmw_topic_endpoint_info_array_t;
 
-        alias __daddr_t = int;
+        alias __ino_t = c_ulong;
         /// Return a list of topic names and types for publishers associated with a node.
         /**
  * The `node` parameter must point to a valid node.
@@ -1890,8 +4893,6 @@ version (foxy)
  * \return `RCL_RET_ERROR` if an unspecified error occurs.
  */
         int rcl_service_server_is_available(const(rcl_node_t)*, const(rcl_client_t)*, bool*) @nogc nothrow;
-
-        alias __suseconds_t = c_long;
         struct rcl_guard_condition_impl_t;
         /// Options available for a rcl guard condition.
         struct rcl_guard_condition_options_t
@@ -2078,6 +5079,8 @@ version (foxy)
  * \return rmw guard condition handle if successful, otherwise `NULL`
  */
         rmw_guard_condition_t* rcl_guard_condition_get_rmw_handle(const(rcl_guard_condition_t)*) @nogc nothrow;
+
+        alias __gid_t = uint;
         /// Initialization of rcl.
         /**
  * This function can be run any number of times, so long as the given context
@@ -2312,9 +5315,9 @@ version (foxy)
  */
         const(rcutils_allocator_t)* rcl_init_options_get_allocator(const(rcl_init_options_t)*) @nogc nothrow;
 
-        alias __useconds_t = uint;
+        alias __uid_t = uint;
 
-        alias __time_t = c_long;
+        alias __dev_t = c_ulong;
         /// Handle for a rcl guard condition.
         struct rcl_guard_condition_t
         {
@@ -2795,8 +5798,6 @@ version (foxy)
  * \return `RCL_RET_ERROR` if an unspecified error occurs.
  */
         int rcl_node_options_fini(rcl_node_options_t*) @nogc nothrow;
-
-        alias __id_t = uint;
         struct rcl_publisher_impl_t;
         /// Structure which encapsulates a ROS Publisher.
         struct rcl_publisher_t
@@ -3654,7 +6655,7 @@ version (foxy)
  */
         bool rcl_service_is_valid(const(rcl_service_t)*) @nogc nothrow;
 
-        alias __rlim64_t = c_ulong;
+        alias __uintmax_t = c_ulong;
         struct rcl_subscription_impl_t;
         /// Structure which encapsulates a ROS Subscription.
         struct rcl_subscription_t
@@ -4143,9 +7144,15 @@ version (foxy)
  */
         bool rcl_subscription_can_loan_messages(const(rcl_subscription_t)*) @nogc nothrow;
 
-        alias __rlim_t = c_ulong;
+        alias __intmax_t = c_long;
 
-        alias __clock_t = c_long;
+        alias __u_quad_t = c_ulong;
+
+        alias __quad_t = c_long;
+
+        alias __uint_least64_t = c_ulong;
+
+        alias __int_least64_t = c_long;
         /// A single point in time, measured in nanoseconds since the Unix epoch.
         alias rcl_time_point_value_t = c_long;
         /// A duration of time, measured in nanoseconds.
@@ -4703,6 +7710,8 @@ version (foxy)
  */
         int rcl_clock_remove_jump_callback(rcl_clock_t*,
                 void function(const(rcl_time_jump_t)*, bool, void*), void*) @nogc nothrow;
+
+        alias __uint_least32_t = uint;
         struct rcl_timer_impl_t;
         /// Structure which encapsulates a ROS Timer.
         struct rcl_timer_t
@@ -5173,47 +8182,202 @@ version (foxy)
  */
         rcl_guard_condition_t* rcl_timer_get_guard_condition(const(rcl_timer_t)*) @nogc nothrow;
 
-        struct __fsid_t
-        {
-
-            int[2] __val;
-        }
+        alias __int_least32_t = int;
 
         alias rcl_ret_t = int;
 
-        alias __pid_t = int;
+        alias __uint_least16_t = ushort;
 
-        alias __off64_t = c_long;
+        alias __int_least16_t = short;
 
-        alias __off_t = c_long;
+        alias __uint_least8_t = ubyte;
 
-        alias __nlink_t = c_ulong;
+        alias __int_least8_t = byte;
 
-        alias __mode_t = uint;
+        alias __uint64_t = c_ulong;
 
-        alias __ino64_t = c_ulong;
+        alias __int64_t = c_long;
 
-        alias __ino_t = c_ulong;
+        alias __uint32_t = uint;
 
-        alias __gid_t = uint;
+        alias __int32_t = int;
 
-        alias __uid_t = uint;
+        alias __uint16_t = ushort;
 
-        alias __dev_t = c_ulong;
+        alias __int16_t = short;
 
-        alias __uintmax_t = c_ulong;
+        alias __uint8_t = ubyte;
+
+        alias __int8_t = byte;
+
+        alias __u_long = c_ulong;
+
+        alias __u_int = uint;
+
+        alias __u_short = ushort;
+
+        alias __u_char = ubyte;
+
+        struct __pthread_cond_s
+        {
+
+            static union _Anonymous_54
+            {
+
+                ulong __wseq;
+
+                static struct _Anonymous_55
+                {
+
+                    uint __low;
+
+                    uint __high;
+                }
+
+                _Anonymous_55 __wseq32;
+            }
+
+            _Anonymous_54 _anonymous_56;
+            ref auto __wseq() @property @nogc pure nothrow
+            {
+                return _anonymous_56.__wseq;
+            }
+
+            void __wseq(_T_)(auto ref _T_ val) @property @nogc pure nothrow
+            {
+                _anonymous_56.__wseq = val;
+            }
+
+            ref auto __wseq32() @property @nogc pure nothrow
+            {
+                return _anonymous_56.__wseq32;
+            }
+
+            void __wseq32(_T_)(auto ref _T_ val) @property @nogc pure nothrow
+            {
+                _anonymous_56.__wseq32 = val;
+            }
+
+            static union _Anonymous_57
+            {
+
+                ulong __g1_start;
+
+                static struct _Anonymous_58
+                {
+
+                    uint __low;
+
+                    uint __high;
+                }
+
+                _Anonymous_58 __g1_start32;
+            }
+
+            _Anonymous_57 _anonymous_59;
+            ref auto __g1_start() @property @nogc pure nothrow
+            {
+                return _anonymous_59.__g1_start;
+            }
+
+            void __g1_start(_T_)(auto ref _T_ val) @property @nogc pure nothrow
+            {
+                _anonymous_59.__g1_start = val;
+            }
+
+            ref auto __g1_start32() @property @nogc pure nothrow
+            {
+                return _anonymous_59.__g1_start32;
+            }
+
+            void __g1_start32(_T_)(auto ref _T_ val) @property @nogc pure nothrow
+            {
+                _anonymous_59.__g1_start32 = val;
+            }
+
+            uint[2] __g_refs;
+
+            uint[2] __g_size;
+
+            uint __g1_orig_size;
+
+            uint __wrefs;
+
+            uint[2] __g_signals;
+        }
+
+        struct __pthread_internal_slist
+        {
+
+            __pthread_internal_slist* __next;
+        }
+
+        alias __pthread_slist_t = __pthread_internal_slist;
+
+        struct __pthread_internal_list
+        {
+
+            __pthread_internal_list* __prev;
+
+            __pthread_internal_list* __next;
+        }
+
+        alias __pthread_list_t = __pthread_internal_list;
+
+        extern __gshared const(const(char)*)[0] sys_errlist;
+
+        extern __gshared int sys_nerr;
         /// typedef for rmw_serialized_message_t;
         alias rcl_serialized_message_t = rcutils_uint8_array_t;
 
-        alias __intmax_t = c_long;
+        struct __pthread_rwlock_arch_t
+        {
 
-        alias __u_quad_t = c_ulong;
+            uint __readers;
 
-        alias __quad_t = c_long;
+            uint __writers;
 
-        alias __uint_least64_t = c_ulong;
+            uint __wrphase_futex;
 
-        alias __int_least64_t = c_long;
+            uint __writers_futex;
+
+            uint __pad3;
+
+            uint __pad4;
+
+            int __cur_writer;
+
+            int __shared;
+
+            byte __rwelision;
+
+            ubyte[7] __pad1;
+
+            c_ulong __pad2;
+
+            uint __flags;
+        }
+
+        struct __pthread_mutex_s
+        {
+
+            int __lock;
+
+            uint __count;
+
+            int __owner;
+
+            uint __nusers;
+
+            int __kind;
+
+            short __spins;
+
+            short __elision;
+
+            __pthread_internal_list __list;
+        }
+
         struct rcl_wait_set_impl_t;
         /// Container for subscription's, guard condition's, etc to be waited on.
         struct rcl_wait_set_t
@@ -5586,8 +8750,4714 @@ version (foxy)
  * \return `true` if the wait_set is valid, otherwise `false`.
  */
         bool rcl_wait_set_is_valid(const(rcl_wait_set_t)*) @nogc nothrow;
+        struct rcl_action_client_impl_t;
+        /// Structure which encapsulates a ROS action client.
+        struct rcl_action_client_t
+        {
+            /// Pointer to the action client implementation
+            rcl_action_client_impl_t* impl;
+        }
+        /// Options available for a rcl_action_client_t.
+        struct rcl_action_client_options_t
+        {
+            /// Middleware quality of service settings for the action client.
+            /// Goal service quality of service
+            rmw_qos_profile_t goal_service_qos;
+            /// Result service quality of service
+            rmw_qos_profile_t result_service_qos;
+            /// Cancel service quality of service
+            rmw_qos_profile_t cancel_service_qos;
+            /// Feedback topic quality of service
+            rmw_qos_profile_t feedback_topic_qos;
+            /// Status topic quality of service
+            rmw_qos_profile_t status_topic_qos;
+            /// Custom allocator for the action client, used for incidental allocations.
+            /** For default behavior (malloc/free), see: rcl_get_default_allocator() */
+            rcutils_allocator_t allocator;
+        }
+        /// Return a rcl_action_client_t struct with members set to `NULL`.
+        /**
+ * Should be called to get a null rcl_action_client_t before passing to
+ * rcl_action_client_init().
+ */
+        rcl_action_client_t rcl_action_get_zero_initialized_client() @nogc nothrow;
+        /// Initialize a rcl_action_client_t.
+        /**
+ * After calling this function on a rcl_action_client_t, it can be used to send
+ * goals of the given type to the given topic using rcl_action_send_goal_request().
+ * If a goal request is sent to a (possibly remote) server and if the server
+ * sends a response, the client can access the response with
+ * rcl_take_goal_response() once the response is available.
+ *
+ * After a goal request has been accepted, the rcl_action_client_t associated with the
+ * goal can perform the following operations:
+ *
+ * - Send a request for the result with rcl_action_send_result_request().
+ * If the server sends a response when the goal terminates, the result can be accessed
+ * with rcl_action_take_result_response(), once the response is available.
+ * - Send a cancel request for the goal with rcl_action_send_cancel_request().
+ * If the server sends a response to a cancel request, the client can access the
+ * response with rcl_action_take_cancel_response() once the response is available.
+ * - Take feedback about the goal with rcl_action_take_feedback().
+ *
+ * A rcl_action_client_t can be used to access the current status of all accepted goals
+ * communicated by the action server with rcl_action_take_status().
+ *
+ * The given rcl_node_t must be valid and the resulting rcl_action_client_t is
+ * only valid as long as the given rcl_node_t remains valid.
+ *
+ * The rosidl_action_type_support_t is obtained on a per .action type basis.
+ * When the user defines a ROS action, code is generated which provides the
+ * required rosidl_action_type_support_t object.
+ * This object can be obtained using a language appropriate mechanism.
+ *
+ * \todo TODO(jacobperron) write these instructions once and link to it instead
+ *
+ * For C, a macro can be used (for example `example_interfaces/Fibonacci`):
+ *
+ * ```c
+ * #include <rosidl_runtime_c/action_type_support_struct.h>
+ * #include <example_interfaces/action/fibonacci.h>
+ * const rosidl_action_type_support_t * ts =
+ *   ROSIDL_GET_ACTION_TYPE_SUPPORT(example_interfaces, Fibonacci);
+ * ```
+ *
+ * For C++, a template function is used:
+ *
+ * ```cpp
+ * #include <rosidl_runtime_cpp/action_type_support.hpp>
+ * #include <example_interfaces/action/fibonacci.h>
+ * using rosidl_typesupport_cpp::get_action_type_support_handle;
+ * const rosidl_action_type_support_t * ts =
+ *   get_action_type_support_handle<example_interfaces::action::Fibonacci>();
+ * ```
+ *
+ * The rosidl_action_type_support_t object contains action type specific
+ * information used to send or take goals, results, and feedback.
+ *
+ * The topic name must be a c string that follows the topic and service name
+ * format rules for unexpanded names, also known as non-fully qualified names:
+ *
+ * \see rcl_expand_topic_name
+ *
+ * The options struct allows the user to set the quality of service settings as
+ * well as a custom allocator that is used when initializing/finalizing the
+ * client to allocate space for incidentals, e.g. the action client name string.
+ *
+ * Expected usage (for C action clients):
+ *
+ * ```c
+ * #include <rcl/rcl.h>
+ * #include <rcl_action/action_client.h>
+ * #include <rosidl_runtime_c/action_type_support_struct.h>
+ * #include <example_interfaces/action/fibonacci.h>
+ *
+ * rcl_node_t node = rcl_get_zero_initialized_node();
+ * rcl_node_options_t node_ops = rcl_node_get_default_options();
+ * rcl_ret_t ret = rcl_node_init(&node, "node_name", "/my_namespace", &node_ops);
+ * // ... error handling
+ * const rosidl_action_type_support_t * ts =
+ *   ROSIDL_GET_ACTION_TYPE_SUPPORT(example_interfaces, Fibonacci);
+ * rcl_action_client_t action_client = rcl_action_get_zero_initialized_client();
+ * rcl_action_client_options_t action_client_ops = rcl_action_client_get_default_options();
+ * ret = rcl_action_client_init(&action_client, &node, ts, "fibonacci", &action_client_ops);
+ * // ... error handling, and on shutdown do finalization:
+ * ret = rcl_action_client_fini(&action_client, &node);
+ * // ... error handling for rcl_action_client_fini()
+ * ret = rcl_node_fini(&node);
+ * // ... error handling for rcl_node_fini()
+ * ```
+ *
+ * <hr>
+ * Attribute          | Adherence
+ * ------------------ | -------------
+ * Allocates Memory   | Yes
+ * Thread-Safe        | No
+ * Uses Atomics       | No
+ * Lock-Free          | Yes
+ *
+ * \param[out] action_client a preallocated, zero-initialized action client structure
+ *   to be initialized
+ * \param[in] node valid rcl node handle
+ * \param[in] type_support type support object for the action's type
+ * \param[in] action_name the name of the action
+ * \param[in] options action_client options, including quality of service settings
+ * \return `RCL_RET_OK` if action_client was initialized successfully, or
+ * \return `RCL_RET_INVALID_ARGUMENT` if any arguments are invalid, or
+ * \return `RCL_RET_NODE_INVALID` if the node is invalid, or
+ * \return `RCL_RET_ALREADY_INIT` if the action client is already initialized, or
+ * \return `RCL_RET_BAD_ALLOC` if allocating memory failed, or
+ * \return `RCL_RET_ACTION_NAME_INVALID` if the given action name is invalid, or
+ * \return `RCL_RET_ERROR` if an unspecified error occurs.
+ */
+        int rcl_action_client_init(rcl_action_client_t*, rcl_node_t*,
+                const(rosidl_action_type_support_t)*, const(char)*,
+                const(rcl_action_client_options_t)*) @nogc nothrow;
+        /// Finalize a rcl_action_client_t.
+        /**
+ * After calling, the node will no longer listen for goals for this action client
+ * (assuming this is the only action client of this type in this node).
+ *
+ * After calling, calls to rcl_wait(), rcl_action_send_goal_request(),
+ * rcl_action_take_goal_response(), rcl_action_send_cancel_request(),
+ * rcl_action_take_cancel_response(), rcl_action_send_result_request(),
+ * rcl_action_take_result_response(), rcl_action_take_feedback(), and
+ * rcl_action_take_status(), will fail when using this action client.
+ *
+ * Additionally, rcl_wait() will be interrupted if currently blocking.
+ *
+ * The given node handle is still valid.
+ *
+ * <hr>
+ * Attribute          | Adherence
+ * ------------------ | -------------
+ * Allocates Memory   | Yes
+ * Thread-Safe        | No
+ * Uses Atomics       | No
+ * Lock-Free          | Yes
+ *
+ * \param[inout] action_client handle to the action_client to be deinitialized
+ * \param[in] node handle to the node used to create the action client
+ * \return `RCL_RET_OK` if the action client was deinitialized successfully, or
+ * \return `RCL_RET_ACTION_CLIENT_INVALID` if the action client is invalid, or
+ * \return `RCL_RET_NODE_INVALID` if the node is invalid, or
+ * \return `RCL_RET_ERROR` if an unspecified error occurs.
+ */
+        int rcl_action_client_fini(rcl_action_client_t*, rcl_node_t*) @nogc nothrow;
+        /// Return the default action client options in a rcl_action_client_options_t.
+        /**
+ * The defaults are:
+ *
+ * - goal_service_qos = rmw_qos_profile_services_default;
+ * - result_service_qos = rmw_qos_profile_services_default;
+ * - cancel_service_qos = rmw_qos_profile_services_default;
+ * - feedback_topic_qos = rmw_qos_profile_default;
+ * - status_topic_qos = rcl_action_qos_profile_status_default;
+ * - allocator = rcl_get_default_allocator()
+ */
+        rcl_action_client_options_t rcl_action_client_get_default_options() @nogc nothrow;
+        /// Check if an action server is available for the given action client.
+        /**
+ * This function will return true for is_available if there is an action server
+ * available for the given action client.
+ *
+ * The node parameter must not be `NULL`, and must point to a valid node.
+ *
+ * The client parameter must not be `NULL`, and must point to a valid client.
+ *
+ * The given client and node must match, i.e. the client must have been created
+ * using the given node.
+ *
+ * The is_available parameter must not be `NULL`, and must point a bool variable.
+ * The result of the check will be stored in the is_available parameter.
+ *
+ * In the event that error handling needs to allocate memory, this function
+ * will try to use the node's allocator.
+ *
+ * <hr>
+ * Attribute          | Adherence
+ * ------------------ | -------------
+ * Allocates Memory   | Yes
+ * Thread-Safe        | No
+ * Uses Atomics       | No
+ * Lock-Free          | Maybe [1]
+ * <i>[1] implementation may need to protect the data structure with a lock</i>
+ *
+ * \param[in] node the handle to the node being used to query the ROS graph
+ * \param[in] client the handle to the action client being queried
+ * \param[out] is_available set to true if there is an action server available, else false
+ * \return `RCL_RET_OK` if successful (regardless of the action server availability), or
+ * \return `RCL_RET_NODE_INVALID` if the node is invalid, or
+ * \return `RCL_RET_ACTION_CLIENT_INVALID` if the action client is invalid, or
+ * \return `RCL_RET_INVALID_ARGUMENT` if any arguments are invalid, or
+ * \return `RCL_RET_ERROR` if an unspecified error occurs.
+ */
+        int rcl_action_server_is_available(const(rcl_node_t)*,
+                const(rcl_action_client_t)*, bool*) @nogc nothrow;
+        /// Send a ROS goal using a rcl_action_client_t.
+        /**
+ * This is a non-blocking call.
+ *
+ * The caller is responsible for ensuring that the type of `ros_goal_request`
+ * and the type associate with the client (via the type support) match.
+ * Passing a different type produces undefined behavior and cannot be checked
+ * by this function and therefore no deliberate error will occur.
+ *
+ * The ROS goal message given by the `ros_goal_request` void pointer is always
+ * owned by the calling code, but should remain constant during execution of this
+ * function. i.e. Before and after calling rcl_action_send_goal_request() the
+ * `ros_goal_request` message can change, but it cannot be changed during the call to
+ * rcl_action_send_goal_request().
+ * The same `ros_goal_request` can be passed to multiple calls of this function
+ * simultaneously, even if the action clients differ.
+ *
+ * This function is thread safe so long as access to both the rcl_action_client_t
+ * and the `ros_goal_request` are synchronized.
+ * That means that calling rcl_action_send_goal_request() from multiple threads is allowed,
+ * but calling rcl_action_send_goal_request() at the same time as non-thread safe action
+ * client functions is not, e.g. calling rcl_action_send_goal_request() and
+ * rcl_action_client_fini() concurrently is not allowed.
+ *
+ * <hr>
+ * Attribute          | Adherence
+ * ------------------ | -------------
+ * Allocates Memory   | No
+ * Thread-Safe        | Yes [1]
+ * Uses Atomics       | No
+ * Lock-Free          | Yes
+ * <i>[1] for unique pairs of clients and goals, see above for more</i>
+ *
+ * \param[in] action_client handle to the client that will make the goal request
+ * \param[in] ros_goal_request pointer to the ROS goal message
+ * \param[out] sequence_number pointer to the goal request sequence number
+ * \return `RCL_RET_OK` if the request was sent successfully, or
+ * \return `RCL_RET_INVALID_ARGUMENT` if any arguments are invalid, or
+ * \return `RCL_RET_ACTION_CLIENT_INVALID` if the client is invalid, or
+ * \return `RCL_RET_ERROR` if an unspecified error occurs.
+ */
+        int rcl_action_send_goal_request(const(rcl_action_client_t)*, const(void)*, c_long*) @nogc nothrow;
+        /// Take a response for a goal request from an action server using a rcl_action_client_t.
+        /**
+ * \todo TODO(jacobperron) blocking of take?
+ *
+ * \todo TODO(jacobperron) pre-, during-, and post-conditions for message ownership?
+ *
+ * \todo TODO(jacobperron) is this thread-safe?
+ *
+ * The caller is responsible for ensuring that the type of `ros_goal_response`
+ * and the type associate with the client (via the type support) match.
+ * Passing a different type produces undefined behavior and cannot be checked
+ * by this function and therefore no deliberate error will occur.
+ *
+ * The caller must provide a pointer to an allocated message for the `ros_goal_response`.
+ * If the take is successful, this function will populate the fields of `ros_goal_response`.
+ * The ROS message given by the `ros_goal_response` void pointer is always
+ * owned by the calling code, but should remain constant during execution of this
+ * function. i.e. Before and after calling rcl_action_send_goal_response() the
+ * `ros_goal_response` message can change, but it cannot be changed during the call to
+ * rcl_action_send_goal_response().
+ *
+ * <hr>
+ * Attribute          | Adherence
+ * ------------------ | -------------
+ * Allocates Memory   | No
+ * Thread-Safe        | No
+ * Uses Atomics       | No
+ * Lock-Free          | Yes
+ *
+ * \param[in] action_client handle to the client that will take the goal response
+ * \param[out] response_header pointer to the goal response header
+ * \param[out] ros_goal_response pointer to the response of a goal request
+ * \return `RCL_RET_OK` if the response was taken successfully, or
+ * \return `RCL_RET_INVALID_ARGUMENT` if any arguments are invalid, or
+ * \return `RCL_RET_ACTION_CLIENT_INVALID` if the action client is invalid, or
+ * \return `RCL_RET_ACTION_CLIENT_TAKE_FAILED` if take failed but no error occurred
+ *         in the middleware, or
+ * \return `RCL_RET_ERROR` if an unspecified error occurs.
+ */
+        int rcl_action_take_goal_response(const(rcl_action_client_t)*, rmw_request_id_t*, void*) @nogc nothrow;
+        /// Take a ROS feedback message for an active goal associated with a rcl_action_client_t.
+        /**
+ * The caller is responsible for ensuring that the type of `ros_feedback`
+ * and the type associate with the client (via the type support) match.
+ * Passing a different type produces undefined behavior and cannot be checked
+ * by this function and therefore no deliberate error will occur.
+ *
+ * \todo TODO(jacobperron) blocking of take?
+ *
+ * \todo TODO(jacobperron) pre-, during-, and post-conditions for message ownership?
+ *
+ * \todo TODO(jacobperron) is this thread-safe?
+ *
+ * `ros_feedback` should point to a preallocated ROS message struct of the
+ * correct type.
+ * If feedback is successfully taken, the feedback message is copied to into the
+ * `ros_feedback` struct.
+ *
+ * If allocation is required when taking the feedback, e.g. if space needs to
+ * be allocated for a dynamically sized array in the target message, then the
+ * allocator given in the action client options is used.
+ *
+ * <hr>
+ * Attribute          | Adherence
+ * ------------------ | -------------
+ * Allocates Memory   | Maybe [1]
+ * Thread-Safe        | No
+ * Uses Atomics       | No
+ * Lock-Free          | Yes
+ * <i>[1] only if required when filling the feedback message, avoided for fixed sizes</i>
+ *
+ * \param[in] action_client handle to the client that will take action feedback
+ * \param[out] ros_feedback pointer to the ROS feedback message.
+ * \return `RCL_RET_OK` if the response was taken successfully, or
+ * \return `RCL_RET_INVALID_ARGUMENT` if any arguments are invalid, or
+ * \return `RCL_RET_ACTION_CLIENT_INVALID` if the action client is invalid, or
+ * \return `RCL_RET_BAD_ALLOC` if allocating memory failed, or
+ * \return `RCL_RET_ACTION_CLIENT_TAKE_FAILED` if take failed but no error occurred
+ *         in the middleware, or
+ * \return `RCL_RET_ERROR` if an unspecified error occurs.
+ */
+        int rcl_action_take_feedback(const(rcl_action_client_t)*, void*) @nogc nothrow;
+        /// Take a ROS status message using a rcl_action_client_t.
+        /**
+ * The caller is responsible for ensuring that the type of `ros_status_array`
+ * and the type associate with the client (via the type support) match.
+ * Passing a different type produces undefined behavior and cannot be checked
+ * by this function and therefore no deliberate error will occur.
+ *
+ * \todo TODO(jacobperron) blocking of take?
+ *
+ * \todo TODO(jacobperron) pre-, during-, and post-conditions for message ownership?
+ *
+ * \todo TODO(jacobperron) is this thread-safe?
+ *
+ * The caller is responsible for allocating the `ros_status_array` struct with a
+ * zero-initialization (the internal array should not be allocated).
+ * If there is a successful take, then `ros_status_array` is populated
+ * with the allocator given in the action client options.
+ * It is the callers responsibility to deallocate the `ros_status_array` struct using
+ * the allocator given in the action client options.
+ *
+ * <hr>
+ * Attribute          | Adherence
+ * ------------------ | -------------
+ * Allocates Memory   | Yes
+ * Thread-Safe        | No
+ * Uses Atomics       | No
+ * Lock-Free          | Yes
+ *
+ * \param[in] action_client handle to the client that will take status message
+ * \param[out] ros_status_array pointer to ROS aciton_msgs/StatusArray message that
+ *   will be populated with information about goals that have accepted the cancel request.
+ * \return `RCL_RET_OK` if the response was taken successfully, or
+ * \return `RCL_RET_INVALID_ARGUMENT` if any arguments are invalid, or
+ * \return `RCL_RET_ACTION_CLIENT_INVALID` if the action client is invalid, or
+ * \return `RCL_RET_BAD_ALLOC` if allocating memory failed, or
+ * \return `RCL_RET_ACTION_CLIENT_TAKE_FAILED` if take failed but no error occurred
+ *         in the middleware, or
+ * \return `RCL_RET_ERROR` if an unspecified error occurs.
+ */
+        int rcl_action_take_status(const(rcl_action_client_t)*, void*) @nogc nothrow;
+        /// Send a request for the result of a completed goal associated with a rcl_action_client_t.
+        /**
+ * This is a non-blocking call.
+ *
+ * The caller is responsible for ensuring that the type of `ros_result_request`
+ * and the type associate with the client (via the type support) match.
+ * Passing a different type produces undefined behavior and cannot be checked
+ * by this function and therefore no deliberate error will occur.
+ *
+ * The ROS message given by the `ros_result_request` void pointer is always
+ * owned by the calling code, but should remain constant during execution of this
+ * function. i.e. Before and after calling rcl_action_send_result_request() the
+ * `ros_result_request` message can change, but it cannot be changed during the call to
+ * rcl_action_send_result_request().
+ * The same `ros_result_request` can be passed to multiple calls of this function
+ * simultaneously, even if the action clients differ.
+ *
+ * This function is thread safe so long as access to both the rcl_action_client_t
+ * and the `ros_result_request` are synchronized.
+ * That means that calling rcl_action_send_result_request() from multiple threads is allowed,
+ * but calling rcl_action_send_result_request() at the same time as non-thread safe action
+ * client functions is not, e.g. calling rcl_action_send_result_request() and
+ * rcl_action_client_fini() concurrently is not allowed.
+ *
+ * <hr>
+ * Attribute          | Adherence
+ * ------------------ | -------------
+ * Allocates Memory   | No
+ * Thread-Safe        | Yes [1]
+ * Uses Atomics       | No
+ * Lock-Free          | Yes
+ * <i>[1] for unique pairs of clients and result requests, see above for more</i>
 
-        alias __uint_least32_t = uint;
+ * \param[in] action_client handle to the client that will send the result request
+ * \param[in] ros_result_request pointer to a ROS result request message
+ * \param[out] sequence_number pointer to the result request sequence number
+ * \return `RCL_RET_OK` if the request was sent successfully, or
+ * \return `RCL_RET_INVALID_ARGUMENT` if any arguments are invalid, or
+ * \return `RCL_RET_ACTION_CLIENT_INVALID` if the action client is invalid, or
+ * \return `RCL_RET_ERROR` if an unspecified error occurs.
+ */
+        int rcl_action_send_result_request(const(rcl_action_client_t)*, const(void)*, c_long*) @nogc nothrow;
+        /// Take a ROS result message for a completed goal associated with a rcl_action_client_t.
+        /**
+ * \todo TODO(jacobperron) blocking of take?
+ *
+ * \todo TODO(jacobperron) pre-, during-, and post-conditions for message ownership?
+ *
+ * \todo TODO(jacobperron) is this thread-safe?
+ *
+ * The caller is responsible for ensuring that the type of `ros_result_response`
+ * and the type associate with the client (via the type support) match.
+ * Passing a different type produces undefined behavior and cannot be checked
+ * by this function and therefore no deliberate error will occur.
+ *
+ * The caller must provide a pointer to an allocated message for the `ros_result_response`.
+ * If the take is successful, this function will populate the fields of `ros_result_response`.
+ * The ROS message given by the `ros_result_response` void pointer is always
+ * owned by the calling code, but should remain constant during execution of this
+ * function. i.e. Before and after calling rcl_action_take_result_response() the
+ * `ros_result_response` message can change, but it cannot be changed during the call to
+ * rcl_action_take_result_response().
+ *
+ * If allocation is required when taking the result, e.g. if space needs to
+ * be allocated for a dynamically sized array in the target message, then the
+ * allocator given in the action client options is used.
+ *
+ * <hr>
+ * Attribute          | Adherence
+ * ------------------ | -------------
+ * Allocates Memory   | Maybe [1]
+ * Thread-Safe        | No
+ * Uses Atomics       | No
+ * Lock-Free          | Yes
+ * <i>[1] only if required when filling the result response message, avoided for fixed sizes</i>
+ *
+ * \param[in] action_client handle to the client that will take the result response
+ * \param[out] response_header pointer to the result response header
+ * \param[out] ros_result preallocated, zero-initialized, struct where the ROS
+ *   result message is copied.
+ * \return `RCL_RET_OK` if the response was taken successfully, or
+ * \return `RCL_RET_INVALID_ARGUMENT` if any arguments are invalid, or
+ * \return `RCL_RET_ACTION_CLIENT_INVALID` if the action client is invalid, or
+ * \return `RCL_RET_BAD_ALLOC` if allocating memory failed, or
+ * \return `RCL_RET_ACTION_CLIENT_TAKE_FAILED` if take failed but no error occurred
+ *         in the middleware, or
+ * \return `RCL_RET_ERROR` if an unspecified error occurs.
+ */
+        int rcl_action_take_result_response(const(rcl_action_client_t)*,
+                rmw_request_id_t*, void*) @nogc nothrow;
+        /// Send a cancel request for a goal using a rcl_action_client_t.
+        /**
+ * This is a non-blocking call.
+ *
+ * The caller is responsible for ensuring that the type of `ros_cancel_request`
+ * and the type associate with the client (via the type support) match.
+ * Passing a different type produces undefined behavior and cannot be checked
+ * by this function and therefore no deliberate error will occur.
+ *
+ * The following cancel policy applies based on the goal ID and the timestamp provided
+ * by the `ros_cancel_request` message:
+ *
+ * - If the goal ID is zero and timestamp is zero, cancel all goals.
+ * - If the goal ID is zero and timestamp is not zero, cancel all goals accepted
+ *   at or before the timestamp.
+ * - If the goal ID is not zero and timestamp is zero, cancel the goal with the
+ *   given ID regardless of the time it was accepted.
+ * - If the goal ID is not zero and timestamp is not zero, cancel the goal with the
+ *   given ID and all goals accepted at or before the timestamp.
+ *
+ * <hr>
+ * Attribute          | Adherence
+ * ------------------ | -------------
+ * Allocates Memory   | No
+ * Thread-Safe        | No
+ * Uses Atomics       | No
+ * Lock-Free          | Yes
+ *
+ * \param[in] action_client handle to the client that will make the cancel request
+ * \param[in] ros_cancel_request pointer the ROS cancel request message
+ * \param[out] sequence_number pointer to the cancel request sequence number
+ * \return `RCL_RET_OK` if the response was taken successfully, or
+ * \return `RCL_RET_INVALID_ARGUMENT` if any arguments are invalid, or
+ * \return `RCL_RET_ACTION_CLIENT_INVALID` if the action client is invalid, or
+ * \return `RCL_RET_ERROR` if an unspecified error occurs.
+ */
+        int rcl_action_send_cancel_request(const(rcl_action_client_t)*, const(void)*, c_long*) @nogc nothrow;
+        /// Take a cancel response using a rcl_action_client_t.
+        /**
+ * \todo TODO(jacobperron) blocking of take?
+ *
+ * \todo TODO(jacobperron) pre-, during-, and post-conditions for message ownership?
+ *
+ * \todo TODO(jacobperron) is this thread-safe?
+ *
+ * The caller is responsible for ensuring that the type of `ros_cancel_response`
+ * and the type associate with the client (via the type support) match.
+ * Passing a different type produces undefined behavior and cannot be checked
+ * by this function and therefore no deliberate error will occur.
+
+ * The caller is responsible for allocating the `ros_cancel_response` message
+ * with a zero-initialization (the internal array should not be allocated).
+ * If a successful response is taken, then `ros_cancel_response` is populated
+ * using the allocator given in the action client options.
+ * It is the callers responsibility to deallocate `ros_cancel_response` using
+ * the allocator given in the action client options.
+ *
+ * <hr>
+ * Attribute          | Adherence
+ * ------------------ | -------------
+ * Allocates Memory   | Yes
+ * Thread-Safe        | No
+ * Uses Atomics       | No
+ * Lock-Free          | Yes
+ *
+ * \param[in] action_client handle to the client that will take the cancel response
+ * \param[out] response_header pointer to the cancel response header
+ * \param[out] ros_cancel_response a zero-initialized ROS cancel response message where
+ *   the cancel response is copied.
+ * \return `RCL_RET_OK` if the response was taken successfully, or
+ * \return `RCL_RET_INVALID_ARGUMENT` if any arguments are invalid, or
+ * \return `RCL_RET_ACTION_CLIENT_INVALID` if the action client is invalid, or
+ * \return `RCL_RET_BAD_ALLOC` if allocating memory failed, or
+ * \return `RCL_RET_ACTION_CLIENT_TAKE_FAILED` if take failed but no error occurred
+ *         in the middleware, or
+ * \return `RCL_RET_ERROR` if an unspecified error occurs.
+ */
+        int rcl_action_take_cancel_response(const(rcl_action_client_t)*,
+                rmw_request_id_t*, void*) @nogc nothrow;
+        /// Get the name of the action for a rcl_action_client_t.
+        /**
+ * This function returns the action client's name string.
+ * This function can fail, and therefore return `NULL`, if the:
+ *   - action client is `NULL`
+ *   - action client is invalid (never called init, called fini, or invalid)
+ *
+ * The returned string is only valid as long as the action client is valid.
+ * The value of the string may change if the topic name changes, and therefore
+ * copying the string is recommended if this is a concern.
+ *
+ * <hr>
+ * Attribute          | Adherence
+ * ------------------ | -------------
+ * Allocates Memory   | No
+ * Thread-Safe        | No
+ * Uses Atomics       | No
+ * Lock-Free          | Yes
+ *
+ * \param[in] action_client the pointer to the action client
+ * \return name string if successful, otherwise `NULL`
+ */
+        const(char)* rcl_action_client_get_action_name(const(rcl_action_client_t)*) @nogc nothrow;
+        /// Return the options for a rcl_action_client_t.
+        /**
+ * This function returns the action client's internal options struct.
+ * This function can fail, and therefore return `NULL`, if the:
+ *   - action client is `NULL`
+ *   - action client is invalid (never called init, called fini, or invalid)
+ *
+ * The returned struct is only valid as long as the action client is valid.
+ * The values in the struct may change if the action client's options change,
+ * and therefore copying the struct is recommended if this is a concern.
+ *
+ * <hr>
+ * Attribute          | Adherence
+ * ------------------ | -------------
+ * Allocates Memory   | No
+ * Thread-Safe        | No
+ * Uses Atomics       | No
+ * Lock-Free          | Yes
+ *
+ * \param[in] action_client pointer to the action client
+ * \return options struct if successful, otherwise `NULL`
+ */
+        const(rcl_action_client_options_t)* rcl_action_client_get_options(
+                const(rcl_action_client_t)*) @nogc nothrow;
+        /// Check that a rcl_action_client_t is valid.
+        /**
+ * The bool returned is `false` if `action_client` is invalid.
+ * The bool returned is `true` otherwise.
+ * In the case where `false` is to be returned, an error message is set.
+ * This function cannot fail.
+ *
+ * <hr>
+ * Attribute          | Adherence
+ * ------------------ | -------------
+ * Allocates Memory   | No
+ * Thread-Safe        | No
+ * Uses Atomics       | No
+ * Lock-Free          | Yes
+ *
+ * \param[in] action_client pointer to the rcl action client
+ * \return `true` if `action_client` is valid, otherwise `false`
+ */
+        bool rcl_action_client_is_valid(const(rcl_action_client_t)*) @nogc nothrow;
+        struct rcl_action_server_impl_t;
+        /// Options available for a rcl_action_server_t.
+        struct rcl_action_server_options_t
+        {
+            /// Middleware quality of service settings for the action server.
+            /// Goal service quality of service
+            rmw_qos_profile_t goal_service_qos;
+            /// Cancel service quality of service
+            rmw_qos_profile_t cancel_service_qos;
+            /// Result service quality of service
+            rmw_qos_profile_t result_service_qos;
+            /// Feedback topic quality of service
+            rmw_qos_profile_t feedback_topic_qos;
+            /// Status topic quality of service
+            rmw_qos_profile_t status_topic_qos;
+            /// Custom allocator for the action server, used for incidental allocations.
+            /** For default behavior (malloc/free), see: rcl_get_default_allocator() */
+            rcutils_allocator_t allocator;
+            /// Goal handles that have results longer than this time are deallocated.
+            rcl_duration_t result_timeout;
+        }
+        /// Return a rcl_action_server_t struct with members set to `NULL`.
+        /**
+ * Should be called to get a null rcl_action_server_t before passing to
+ * rcl_action_server_init().
+ */
+        rcl_action_server_t rcl_action_get_zero_initialized_server() @nogc nothrow;
+        /// Initialize an action server.
+        /**
+ * After calling this function on a rcl_action_server_t, it can be used to take
+ * goals of the given type for the given action name using rcl_action_take_goal_request()
+ * and take cancel requests with rcl_action_take_cancel_request().
+ * It can also send a result for a request using rcl_action_send_result() or
+ * rcl_action_send_cancel_response().
+ *
+ * After accepting a goal with rcl_action_take_goal_request(), the action server can
+ * be used to send feedback with rcl_action_publish_feedback() and send status
+ * messages with rcl_action_publish_status().
+ *
+ * The given rcl_node_t must be valid and the resulting rcl_action_server_t is
+ * only valid as long as the given rcl_node_t remains valid.
+ *
+ * The give rcl_clock_t must be valid and the resulting rcl_ction_server_t is
+ * only valid as long ast he given rcl_clock_t remains valid.
+ *
+ * The rosidl_action_type_support_t is obtained on a per .action type basis.
+ * When the user defines a ROS action, code is generated which provides the
+ * required rosidl_action_type_support_t object.
+ * This object can be obtained using a language appropriate mechanism.
+ * \todo TODO(jacobperron) write these instructions once and link to it instead
+ *
+ * For C, a macro can be used (for example `example_interfaces/Fibonacci`):
+ *
+ * ```c
+ * #include <rosidl_runtime_c/action_type_support_struct.h>
+ * #include <example_interfaces/action/fibonacci.h>
+ * const rosidl_action_type_support_t * ts =
+ *   ROSIDL_GET_ACTION_TYPE_SUPPORT(example_interfaces, Fibonacci);
+ * ```
+ *
+ * For C++, a template function is used:
+ *
+ * ```cpp
+ * #include <rosidl_runtime_cpp/action_type_support.hpp>
+ * #include <example_interfaces/action/fibonacci.h>
+ * using rosidl_typesupport_cpp::get_action_type_support_handle;
+ * const rosidl_action_type_support_t * ts =
+ *   get_action_type_support_handle<example_interfaces::action::Fibonacci>();
+ * ```
+ *
+ * The rosidl_action_type_support_t object contains action type specific
+ * information used to send or take goals, results, and feedback.
+ *
+ * The topic name must be a c string that follows the topic and service name
+ * format rules for unexpanded names, also known as non-fully qualified names:
+ *
+ * \see rcl_expand_topic_name
+ *
+ * The options struct allows the user to set the quality of service settings as
+ * well as a custom allocator that is used when initializing/finalizing the
+ * client to allocate space for incidentals, e.g. the action server name string.
+ *
+ * Expected usage (for C action servers):
+ *
+ * ```c
+ * #include <rcl/rcl.h>
+ * #include <rcl_action/rcl_action.h>
+ * #include <rosidl_runtime_c/action_type_support_struct.h>
+ * #include <example_interfaces/action/fibonacci.h>
+ *
+ * rcl_node_t node = rcl_get_zero_initialized_node();
+ * rcl_node_options_t node_ops = rcl_node_get_default_options();
+ * rcl_ret_t ret = rcl_node_init(&node, "node_name", "/my_namespace", &node_ops);
+ * // ... error handling
+ * const rosidl_action_type_support_t * ts =
+ *   ROSIDL_GET_ACTION_TYPE_SUPPORT(example_interfaces, Fibonacci);
+ * rcl_action_server_t action_server = rcl_action_get_zero_initialized_server();
+ * rcl_action_server_options_t action_server_ops = rcl_action_server_get_default_options();
+ * ret = rcl_action_server_init(&action_server, &node, ts, "fibonacci", &action_server_ops);
+ * // ... error handling, and on shutdown do finalization:
+ * ret = rcl_action_server_fini(&action_server, &node);
+ * // ... error handling for rcl_action_server_fini()
+ * ret = rcl_node_fini(&node);
+ * // ... error handling for rcl_node_fini()
+ * ```
+ *
+ * <hr>
+ * Attribute          | Adherence
+ * ------------------ | -------------
+ * Allocates Memory   | Yes
+ * Thread-Safe        | No
+ * Uses Atomics       | No
+ * Lock-Free          | Yes
+ *
+ * \param[out] action_server handle to a preallocated, zero-initialized action server structure
+ *   to be initialized.
+ * \param[in] node valid node handle
+ * \param[in] clock valid clock handle
+ * \param[in] type_support type support object for the action's type
+ * \param[in] action_name the name of the action
+ * \param[in] options action_server options, including quality of service settings
+ * \return `RCL_RET_OK` if action_server was initialized successfully, or
+ * \return `RCL_RET_INVALID_ARGUMENT` if any arguments are invalid, or
+ * \return `RCL_RET_NODE_INVALID` if the node is invalid, or
+ * \return `RCL_RET_BAD_ALLOC` if allocating memory failed, or
+ * \return `RCL_RET_ACTION_NAME_INVALID` if the given action name is invalid, or
+ * \return `RCL_RET_ERROR` if an unspecified error occurs.
+ */
+        int rcl_action_server_init(rcl_action_server_t*, rcl_node_t*, rcl_clock_t*,
+                const(rosidl_action_type_support_t)*, const(char)*,
+                const(rcl_action_server_options_t)*) @nogc nothrow;
+        /// Finalize an action server.
+        /**
+ * After calling, the node will no longer listen to services and topics for this action server.
+ * (assuming this is the only action server of this type in this node).
+ *
+ * After calling, calls to rcl_wait(), rcl_action_take_goal_request(),
+ * rcl_action_take_cancel_request(), rcl_action_publish_feedback(),
+ * rcl_action_publish_status(), rcl_action_send_result(), and
+ * rcl_action_send_cancel_response() will fail when using this action server.
+ * Additionally, rcl_wait() will be interrupted if currently blocking.
+ * However, the given node handle is still valid.
+ *
+ * <hr>
+ * Attribute          | Adherence
+ * ------------------ | -------------
+ * Allocates Memory   | Yes
+ * Thread-Safe        | No
+ * Uses Atomics       | No
+ * Lock-Free          | Yes
+ *
+ * \param[inout] action_server handle to the action_server to be deinitialized
+ * \param[in] node handle to the node used to create the action server
+ * \return `RCL_RET_OK` if the action server was deinitialized successfully, or
+ * \return `RCL_RET_ACTION_SERVER_INVALID` if the action server pointer is null, or
+ * \return `RCL_RET_NODE_INVALID` if the node is invalid, or
+ * \return `RCL_RET_ERROR` if an unspecified error occurs.
+ */
+        int rcl_action_server_fini(rcl_action_server_t*, rcl_node_t*) @nogc nothrow;
+        /// Return the default action server options in a rcl_action_server_options_t.
+        /**
+ * The defaults are:
+ *
+ * - goal_service_qos = rmw_qos_profile_services_default;
+ * - cancel_service_qos = rmw_qos_profile_services_default;
+ * - result_service_qos = rmw_qos_profile_services_default;
+ * - feedback_topic_qos = rmw_qos_profile_default;
+ * - status_topic_qos = rcl_action_qos_profile_status_default;
+ * - allocator = rcl_get_default_allocator();
+ * - result_timeout = RCUTILS_S_TO_NS(15 * 60);  // 15 minutes
+ */
+        rcl_action_server_options_t rcl_action_server_get_default_options() @nogc nothrow;
+        /// Take a pending ROS goal using an action server.
+        /**
+ * \todo TODO(jacobperron) blocking of take?
+ *
+ * \todo TODO(jacobperron) pre-, during-, and post-conditions for message ownership?
+ *
+ * \todo TODO(jacobperron) is this thread-safe?
+ *
+ * The caller is responsible for ensuring that the type of `ros_goal_request`
+ * and the type associate with the client (via the type support) match.
+ * Passing a different type produces undefined behavior and cannot be checked
+ * by this function and therefore no deliberate error will occur.
+ *
+ * `ros_goal_request` should point to a preallocated, zero-initialized,
+ * ROS goal message.
+ * If a goal request is taken successfully, it will be copied into `ros_goal_request`.
+ *
+ * If allocation is required when taking the request, e.g. if space needs to
+ * be allocated for a dynamically sized array in the target message, then the
+ * allocator given in the action server options is used.
+ *
+ * <hr>
+ * Attribute          | Adherence
+ * ------------------ | -------------
+ * Allocates Memory   | Maybe [1]
+ * Thread-Safe        | No
+ * Uses Atomics       | No
+ * Lock-Free          | Yes
+ * <i>[1] only if required when filling the request, avoided for fixed sizes</i>
+ *
+ * \param[in] action_server handle to the action server that will take the request
+ * \param[out] request_header pointer to the goal request header
+ * \param[out] ros_goal_request a preallocated, zero-initialized, ROS goal request message
+ *   where the request is copied
+ * \return `RCL_RET_OK` if the request was taken, or
+ * \return `RCL_RET_INVALID_ARGUMENT` if any arguments are invalid, or
+ * \return `RCL_RET_ACTION_SERVER_INVALID` if the action server is invalid, or
+ * \return `RCL_RET_BAD_ALLOC` if allocating memory failed, or
+ * \return `RCL_RET_ACTION_SERVER_TAKE_FAILED` if take failed but no error occurred
+ *         in the middleware, or
+ * \return `RCL_RET_ERROR` if an unspecified error occurs.
+ */
+        int rcl_action_take_goal_request(const(rcl_action_server_t)*, rmw_request_id_t*, void*) @nogc nothrow;
+        /// Send a response for a goal request to an action client using an action server.
+        /**
+ * This is a non-blocking call.
+ *
+ * The caller is responsible for ensuring that the type of `ros_goal_response`
+ * and the type associate with the client (via the type support) match.
+ * Passing a different type produces undefined behavior and cannot be checked
+ * by this function and therefore no deliberate error will occur.
+ *
+ * If the caller intends to send an 'accepted' response, before calling this function
+ * the caller should use rcl_action_accept_new_goal() to get a rcl_action_goal_handle_t
+ * for future interaction with the goal (e.g. publishing feedback and canceling the goal).
+ *
+ * This function is thread safe so long as access to both the action server and the
+ * `ros_goal_response` are synchronized.
+ * That means that calling rcl_action_send_goal_response() from multiple threads is
+ * allowed, but calling rcl_action_send_goal_response() at the same time as non-thread safe
+ * action server functions is not, e.g. calling rcl_action_send_goal_response() and
+ * rcl_action_server_fini() concurrently is not allowed.
+ * Before calling rcl_action_send_goal_response() the `ros_goal_request` can change and
+ * after calling rcl_action_send_goal_response() the `ros_goal_request` can change, but it
+ * cannot be changed during the rcl_action_send_goal_response() call.
+ *
+ * <hr>
+ * Attribute          | Adherence
+ * ------------------ | -------------
+ * Allocates Memory   | No
+ * Thread-Safe        | Yes [1]
+ * Uses Atomics       | No
+ * Lock-Free          | Yes
+ * <i>[1] for unique pairs of action servers and responses, see above for more</i>
+ *
+ * \param[in] action_server handle to the action server that will make the goal response
+ * \param[in] response_header pointer to the goal response header
+ * \param[in] ros_goal_response a ROS goal response message to send
+ * \return `RCL_RET_OK` if the response was sent successfully, or
+ * \return `RCL_RET_INVALID_ARGUMENT` if any arguments are invalid, or
+ * \return `RCL_RET_ACTION_SERVER_INVALID` if the action server is invalid, or
+ * \return `RCL_RET_ERROR` if an unspecified error occurs.
+ */
+        int rcl_action_send_goal_response(const(rcl_action_server_t)*, rmw_request_id_t*, void*) @nogc nothrow;
+        /// Accept a new goal using an action server.
+        /**
+ * This is a non-blocking call.
+ *
+ * Creates and returns a new goal handle.
+ * The action server starts tracking it internally.
+ * If a failure occurs, `NULL` is returned and an error message is set.
+ * Possible reasons for failure:
+ *   - action server is invalid
+ *   - goal info is invalid
+ *   - goal ID is already being tracked by the action server
+ *   - memory allocation failure
+ *
+ * This function should be called after receiving a new goal request with
+ * rcl_action_take_goal_request() and before sending a response with
+ * rcl_action_send_goal_response().
+ *
+ * After calling this function, the action server will start tracking the goal.
+ * The pointer to the goal handle becomes invalid after `rcl_action_server_fini()` is called.
+ * The caller becomes responsible for finalizing the goal handle later.
+ *
+ * Example usage:
+ *
+ * ```c
+ * #include <rcl/rcl_action.h>
+ *
+ * // ... init an action server
+ * // Take a goal request (client library type)
+ * rcl_ret_t ret = rcl_action_take_goal_request(&action_server, &goal_request);
+ * // ... error handling
+ * // If the goal is accepted, then tell the action server
+ * // First, create a goal info message
+ * rcl_action_goal_info_t goal_info = rcl_action_get_zero_initialized_goal_info();
+ * // ... populate goal_info.uuid (unique_identifier_msgs/UUID)
+ * // ... populate goal_info.stamp (builtin_interfaces/Time)
+ * rcl_action_goal_handle_t * goal_handle = rcl_action_accept_new_goal(&action_server, &goal_info);
+ * // ... error_handling
+ * // ... Populate goal response (client library type)
+ * ret = rcl_action_send_goal_response(&action_server, &goal_response);
+ * // ... error handling, and sometime before shutdown finalize goal info message
+ * ret = rcl_action_goal_info_fini(&goal_info, &action_server);
+ * ```
+ *
+ * <hr>
+ * Attribute          | Adherence
+ * ------------------ | -------------
+ * Allocates Memory   | Yes
+ * Thread-Safe        | No
+ * Uses Atomics       | No
+ * Lock-Free          | Yes
+ *
+ * \param[in] action_server handle to the action server that is accepting the goal
+ * \param[in] goal_info a message containing info about the goal being accepted
+ * \return a pointer to a new goal handle representing the accepted goal, or
+ * \return `NULL` if a failure occured.
+ */
+        rcl_action_goal_handle_t* rcl_action_accept_new_goal(rcl_action_server_t*,
+                const(action_msgs__msg__GoalInfo)*) @nogc nothrow;
+        /// Publish a ROS feedback message for an active goal using an action server.
+        /**
+ * The caller is responsible for ensuring that the type of `ros_feedback`
+ * and the type associate with the client (via the type support) match.
+ * Passing a different type produces undefined behavior and cannot be checked
+ * by this function and therefore no deliberate error will occur.
+ *
+ * This function acts like a ROS publisher and is potentially a blocking call.
+ * \see rcl_publish()
+ *
+ * This function is thread safe so long as access to both the action server and
+ * `ros_feedback` is synchronized.
+ * That means that calling rcl_action_publish_feedback() from multiple threads
+ * is allowed, but calling rcl_action_publish_feedback() at the same time as
+ * non-thread safe action server functions is not, e.g. calling
+ * rcl_action_publish_feedback() and rcl_action_server_fini() concurrently is not
+ * allowed.
+ *
+ * Before calling rcl_action_publish_feedback() the `ros_feedback` message ca
+ * change and after calling rcl_action_publish_feedback() the `ros_feedback` message
+ * can change, but it cannot be changed during the publish call.
+ * The same `ros_feedback` can be passed to multiple calls of
+ * rcl_action_publish_feedback() simultaneously, even if the action servers differ.
+ * `ros_feedback` is unmodified by rcl_action_publish_feedback().
+ *
+ * <hr>
+ * Attribute          | Adherence
+ * ------------------ | -------------
+ * Allocates Memory   | No
+ * Thread-Safe        | Yes [1]
+ * Uses Atomics       | No
+ * Lock-Free          | Yes
+ * <i>[1] for unique pairs of action servers and feedback, see above for more</i>
+ *
+ * \param[in] action_server handle to the action server that will publish the feedback
+ * \param[in] ros_feedback a ROS message containing the goal feedback
+ * \return `RCL_RET_OK` if the response was sent successfully, or
+ * \return `RCL_RET_INVALID_ARGUMENT` if any arguments are invalid, or
+ * \return `RCL_RET_ACTION_SERVER_INVALID` if the action server is invalid, or
+ * \return `RCL_RET_ERROR` if an unspecified error occurs. *
+ */
+        int rcl_action_publish_feedback(const(rcl_action_server_t)*, void*) @nogc nothrow;
+        /// Get a status array message for accepted goals associated with an action server.
+        /**
+ * The provided `status_message` should be zero-initialized with
+ * rcl_action_get_zero_initialized_goal_status_array() before calling this function.
+ *
+ * <hr>
+ * Attribute          | Adherence
+ * ------------------ | -------------
+ * Allocates Memory   | No
+ * Thread-Safe        | No
+ * Uses Atomics       | No
+ * Lock-Free          | Yes
+ *
+ * \param[in] action_server handle to the action server that will publish the status message
+ * \param[out] status_message an action_msgs/StatusArray ROS message
+ * \return `RCL_RET_OK` if the response was sent successfully, or
+ * \return `RCL_RET_INVALID_ARGUMENT` if any arguments are invalid, or
+ * \return `RCL_RET_ACTION_SERVER_INVALID` if the action server is invalid, or
+ * \return `RCL_RET_ERROR` if an unspecified error occurs.
+ */
+        int rcl_action_get_goal_status_array(const(rcl_action_server_t)*,
+                rcl_action_goal_status_array_t*) @nogc nothrow;
+        /// Publish a status array message for accepted goals associated with an action server.
+        /**
+ * This function acts like a ROS publisher and is potentially a blocking call.
+ * \see rcl_publish()
+ *
+ * A status array message associated with the action server can be created with
+ * rcl_action_get_goal_status_array().
+ *
+ * <hr>
+ * Attribute          | Adherence
+ * ------------------ | -------------
+ * Allocates Memory   | No
+ * Thread-Safe        | No
+ * Uses Atomics       | No
+ * Lock-Free          | Yes
+ *
+ * \param[in] action_server handle to the action server that will publish the status message
+ * \param[in] status_message an action_msgs/StatusArray ROS message to publish
+ * \return `RCL_RET_OK` if the response was sent successfully, or
+ * \return `RCL_RET_INVALID_ARGUMENT` if any arguments are invalid, or
+ * \return `RCL_RET_ACTION_SERVER_INVALID` if the action server is invalid, or
+ * \return `RCL_RET_ERROR` if an unspecified error occurs.
+ */
+        int rcl_action_publish_status(const(rcl_action_server_t)*, const(void)*) @nogc nothrow;
+        /// Take a pending result request using an action server.
+        /**
+ * \todo TODO(jacobperron) blocking of take?
+ *
+ * \todo TODO(jacobperron) pre-, during-, and post-conditions for message ownership?
+ *
+ * \todo TODO(jacobperron) is this thread-safe?
+ *
+ * The caller is responsible for ensuring that the type of `ros_result_request`
+ * and the type associate with the client (via the type support) match.
+ * Passing a different type produces undefined behavior and cannot be checked
+ * by this function and therefore no deliberate error will occur.
+ *
+ * <hr>
+ * Attribute          | Adherence
+ * ------------------ | -------------
+ * Allocates Memory   | No
+ * Thread-Safe        | No
+ * Uses Atomics       | No
+ * Lock-Free          | Yes
+ *
+ * \param[in] action_server handle to the action server that will take the result request
+ * \param[out] request_header pointer to the result request header
+ * \param[out] ros_result_request a preallocated ROS result request message where the
+ *   request is copied.
+ * \return `RCL_RET_OK` if the response was sent successfully, or
+ * \return `RCL_RET_INVALID_ARGUMENT` if any arguments are invalid, or
+ * \return `RCL_RET_ACTION_SERVER_INVALID` if the action server is invalid, or
+ * \return `RCL_RET_ACTION_SERVER_TAKE_FAILED` if take failed but no error occurred
+ *         in the middleware, or
+ * \return `RCL_RET_ERROR` if an unspecified error occurs.
+ */
+        int rcl_action_take_result_request(const(rcl_action_server_t)*, rmw_request_id_t*, void*) @nogc nothrow;
+        /// Send a result response using an action server.
+        /**
+ * This is a non-blocking call.
+ *
+ * The caller is responsible for ensuring that the type of `ros_result_response`
+ * and the type associate with the client (via the type support) match.
+ * Passing a different type produces undefined behavior and cannot be checked
+ * by this function and therefore no deliberate error will occur.
+ *
+ * Before calling this function, the caller should use rcl_action_update_goal_state()
+ * to update the goals state to the appropriate terminal state.
+ *
+ * <hr>
+ * Attribute          | Adherence
+ * ------------------ | -------------
+ * Allocates Memory   | No
+ * Thread-Safe        | No
+ * Uses Atomics       | No
+ * Lock-Free          | Yes
+ *
+ * \param[in] action_server handle to the action server that will send the result response
+ * \param[in] response_header pointer to the result response header
+ * \param[in] ros_result_response a ROS result response message to send
+ * \return `RCL_RET_OK` if the response was sent successfully, or
+ * \return `RCL_RET_INVALID_ARGUMENT` if any arguments are invalid, or
+ * \return `RCL_RET_ACTION_SERVER_INVALID` if the action server is invalid, or
+ * \return `RCL_RET_ERROR` if an unspecified error occurs.
+ */
+        int rcl_action_send_result_response(const(rcl_action_server_t)*,
+                rmw_request_id_t*, void*) @nogc nothrow;
+        /// Expires goals associated with an action server.
+        /**
+ * A goal is 'expired' if it has been in a terminal state (has a result) for longer
+ * than some duration.
+ * The timeout duration is set as part of the action server options.
+ *
+ * If a negative timeout value if provided, then goal results never expire (kept forever).
+ * If a timeout of zero is set, then goal results are discarded immediately (ie. goal
+ * results are discarded whenever this function is called).
+ *
+ * Expired goals are removed from the internal array of goal handles.
+ * rcl_action_server_goal_exists() will return false for any goals that have expired.
+ *
+ * \attention If one or more goals are expired then a previously returned goal handle
+ * array from rcl_action_server_get_goal_handles() becomes invalid.
+ *
+ * `expired_goals`, `expired_goals_capacity` and `num_expired` are optional arguments.
+ * If set to (`NULL`, 0u, `NULL`) then they are not used.
+ * To use them allocate an array with size equal to the maximum number of goals that you want to
+ * expire.
+ * Pass the number of goals the array can hold in as `expired_goals_capacity`.
+ * This function will set `num_expired` to the number of goals that were expired.
+ *
+ * <hr>
+ * Attribute          | Adherence
+ * ------------------ | -------------
+ * Allocates Memory   | Maybe[1]
+ * Thread-Safe        | No
+ * Uses Atomics       | No
+ * Lock-Free          | Yes
+ * <i>[1] if one or more goals expires, then the internal goal handle array may be
+ * resized or deallocated</i>
+ *
+ * \param[in] action_server handle to the action server from which expired goals
+ *   will be cleared.
+ * \param[inout] expired_goals the identifiers of goals that expired, or set to `NULL` if unused
+ * \param[inout] expired_goals_capacity the allocated size of `expired_goals`, or 0 if unused
+ * \param[out] num_expired the number of expired goals, or set to `NULL` if unused
+ * \return `RCL_RET_OK` if the response was sent successfully, or
+ * \return `RCL_RET_ACTION_SERVER_INVALID` if the action server is invalid, or
+ * \return `RCL_RET_INVALID_ARGUMENT` if any arguments are invalid, or
+ * \return `RCL_RET_BAD_ALLOC` if allocating memory failed, or
+ * \return `RCL_RET_ERROR` if an unspecified error occurs.
+ */
+        int rcl_action_expire_goals(const(rcl_action_server_t)*,
+                action_msgs__msg__GoalInfo*, c_ulong, c_ulong*) @nogc nothrow;
+        /// Notifies action server that a goal handle reached a terminal state.
+        /**
+ * <hr>
+ * Attribute          | Adherence
+ * ------------------ | -------------
+ * Allocates Memory   | No
+ * Thread-Safe        | No
+ * Uses Atomics       | No
+ * Lock-Free          | Yes
+ *
+ * \param[in] action_server handle to the action server
+ * \return `RCL_RET_OK` if everything is ok, or
+ * \return `RCL_RET_ACTION_SERVER_INVALID` if the action server is invalid, or
+ * \return `RCL_RET_INVALID_ARGUMENT` if any arguments are invalid, or
+ * \return `RCL_RET_ERROR` if an unspecified error occurs.
+ */
+        int rcl_action_notify_goal_done(const(rcl_action_server_t)*) @nogc nothrow;
+        /// Take a pending cancel request using an action server.
+        /**
+ * \todo TODO(jacobperron) blocking of take?
+ *
+ * \todo TODO(jacobperron) pre-, during-, and post-conditions for message ownership?
+ *
+ * \todo TODO(jacobperron) is this thread-safe?
+ *
+ * The caller is responsible for ensuring that the type of `ros_cancel_request`_
+ * and the type associate with the client (via the type support) match.
+ * Passing a different type produces undefined behavior and cannot be checked
+ * by this function and therefore no deliberate error will occur.
+ *
+ * After receiving a successful cancel request, the appropriate goals can be
+ * transitioned to the state CANCELING using rcl_action_process_cancel_request().
+ *
+ * <hr>
+ * Attribute          | Adherence
+ * ------------------ | -------------
+ * Allocates Memory   | No
+ * Thread-Safe        | No
+ * Uses Atomics       | No
+ * Lock-Free          | Yes
+ *
+ * \param[in] action_server handle to the action server that will take the cancel request
+ * \param[out] request_header pointer to the cancel request header
+ * \param[out] ros_cancel_request a preallocated ROS cancel request where the request
+ *   message is copied
+ * \return `RCL_RET_OK` if the response was sent successfully, or
+ * \return `RCL_RET_INVALID_ARGUMENT` if any arguments are invalid, or
+ * \return `RCL_RET_ACTION_SERVER_INVALID` if the action server is invalid, or
+ * \return `RCL_RET_ACTION_SERVER_TAKE_FAILED` if take failed but no error occurred
+ *         in the middleware, or
+ * \return `RCL_RET_ERROR` if an unspecified error occurs.
+ */
+        int rcl_action_take_cancel_request(const(rcl_action_server_t)*, rmw_request_id_t*, void*) @nogc nothrow;
+        /// Process a cancel request using an action server.
+        /**
+ * This is a non-blocking call.
+ *
+ * This function will compute a list of goals that a cancelation request is attempting to cancel.
+ * It does not change the state of any goal.
+ * The following cancel policy applies based on the goal ID and the timestamp
+ * contained in the cancel request:
+ *
+ * - If the goal ID is zero and timestamp is zero, cancel all goals.
+ * - If the goal ID is zero and timestamp is not zero, cancel all goals accepted
+ *   at or before the timestamp.
+ * - If the goal ID is not zero and timestamp is zero, cancel the goal with the
+ *   given ID regardless of the time it was accepted.
+ * - If the goal ID is not zero and timestamp is not zero, cancel the goal with the
+ *   given ID and all goals accepted at or before the timestamp.
+ *
+ * <hr>
+ * Attribute          | Adherence
+ * ------------------ | -------------
+ * Allocates Memory   | Yes
+ * Thread-Safe        | No
+ * Uses Atomics       | No
+ * Lock-Free          | Yes
+ *
+ * \param[in] action_server handle to the action server that will process the cancel request
+ * \param[in] cancel_request a C-typed ROS cancel request to process
+ * \param[out] cancel_response a zero-initialized cancel response struct
+ *   where the goal info of goals which should be cancelled are copied
+ * \return `RCL_RET_OK` if the response was sent successfully, or
+ * \return `RCL_RET_INVALID_ARGUMENT` if any arguments are invalid, or
+ * \return `RCL_RET_ACTION_SERVER_INVALID` if the action server is invalid, or
+ * \return `RCL_RET_BAD_ALLOC` if allocating memory failed, or
+ * \return `RCL_RET_ERROR` if an unspecified error occurs.
+ */
+        int rcl_action_process_cancel_request(const(rcl_action_server_t)*,
+                const(action_msgs__srv__CancelGoal_Request)*, rcl_action_cancel_response_t*) @nogc nothrow;
+        /// Send a cancel response using an action server.
+        /**
+ * This is a non-blocking call.
+ *
+ * <hr>
+ * Attribute          | Adherence
+ * ------------------ | -------------
+ * Allocates Memory   | No
+ * Thread-Safe        | No
+ * Uses Atomics       | No
+ * Lock-Free          | Yes
+ *
+ * \param[in] action_server handle to the action server that will send the cancel response
+ * \param[in] response_header pointer to the cancel response header
+ * \param[in] ros_cancel_response a ROS cancel response to send
+ * \return `RCL_RET_OK` if the request was taken, or
+ * \return `RCL_RET_INVALID_ARGUMENT` if any arguments are invalid, or
+ * \return `RCL_RET_ACTION_SERVER_INVALID` if the action server is invalid, or
+ * \return `RCL_RET_ERROR` if an unspecified error occurs.
+ */
+        int rcl_action_send_cancel_response(const(rcl_action_server_t)*,
+                rmw_request_id_t*, void*) @nogc nothrow;
+        /// Get the action name for an action server.
+        /**
+ * This function returns the action server's internal topic name string.
+ * This function can fail, and therefore return `NULL`, if the:
+ *   - action server is `NULL`
+ *   - action server is invalid (e.g. never called init or called fini)
+ *
+ * The returned string is only valid as long as the action server is valid.
+ * The value of the string may change if the topic name changes, and therefore
+ * copying the string is recommended if this is a concern.
+ *
+ * <hr>
+ * Attribute          | Adherence
+ * ------------------ | -------------
+ * Allocates Memory   | No
+ * Thread-Safe        | No
+ * Uses Atomics       | No
+ * Lock-Free          | Yes
+ *
+ * \param[in] action_server pointer to the action server
+ * \return name string if successful, or
+ * \return `NULL` otherwise.
+ */
+        const(char)* rcl_action_server_get_action_name(const(rcl_action_server_t)*) @nogc nothrow;
+        /// Return the rcl_action_server_options_t for an action server.
+        /**
+ * This function returns the action server's internal options struct.
+ * This function can fail, and therefore return `NULL`, if the:
+ *   - action server is `NULL`
+ *   - action server is invalid (e.g. never called init or called fini)
+ *
+ * The returned struct is only valid as long as the action server is valid.
+ * The values in the struct may change if the action server's options change,
+ * and therefore copying the struct is recommended if this is a concern.
+ *
+ * <hr>
+ * Attribute          | Adherence
+ * ------------------ | -------------
+ * Allocates Memory   | No
+ * Thread-Safe        | No
+ * Uses Atomics       | No
+ * Lock-Free          | Yes
+ *
+ * \param[in] action_server handle to the action server
+ * \return options struct if successful, or
+ * \return `NULL` otherwise.
+ */
+        const(rcl_action_server_options_t)* rcl_action_server_get_options(
+                const(rcl_action_server_t)*) @nogc nothrow;
+        /// Get the goal handles for all goals an action server is tracking.
+        /**
+ * A pointer to the internally held array of pointers to goal handle structs is returned
+ * along with the number of items in the array.
+ *
+ * The returned handle is made invalid if the action server is finalized, if
+ * rcl_shutdown() is called, or if rcl_action_expire_goals() is called and one or more
+ * goals are expired.
+ * The returned handle is not guaranteed to be valid for the life time of the
+ * action server as it may be finalized and recreated itself.
+ * Therefore, it is recommended to get the handle from the action server using
+ * this function each time it is needed and avoid use of the handle
+ * concurrently with functions that might change it.
+ *
+ * <hr>
+ * Attribute          | Adherence
+ * ------------------ | -------------
+ * Allocates Memory   | No
+ * Thread-Safe        | No
+ * Uses Atomics       | No
+ * Lock-Free          | Yes
+ *
+ * \param[in] action_server handle to the action server
+ * \param[out] goal_handles is set to the array of pointers to goal handles if successful.
+ * \param[out] num_goals is set to the number of goals in the returned array if successful,
+ *   not set otherwise.
+ * \return `RCL_RET_OK` if successful, or
+ * \return `RCL_RET_ACTION_SERVER_INVALID` if the action server is invalid, or
+ * \return `RCL_RET_INVALID_ARGUMENT` if any arguments are invalid, or
+ * \return `RCL_RET_ERROR` if an unspecified error occurs.
+ */
+        int rcl_action_server_get_goal_handles(const(rcl_action_server_t)*,
+                rcl_action_goal_handle_t***, c_ulong*) @nogc nothrow;
+        /// Check if a goal is already being tracked by an action server.
+        /**
+ * Checks whether or not a goal is being tracked in the internal goal array.
+ * The goal state has no effect on the return value.
+ *
+ * <hr>
+ * Attribute          | Adherence
+ * ------------------ | -------------
+ * Allocates Memory   | No
+ * Thread-Safe        | No
+ * Uses Atomics       | No
+ * Lock-Free          | Yes
+ *
+ * \param[in] action_server handle to the action server
+ * \param[in] goal_info handle to a struct containing the goal ID to check for
+ * \return `true` if `action_server` is currently tracking a goal with the provided goal ID, or
+ * \return `false` otherwise.
+ */
+        bool rcl_action_server_goal_exists(const(rcl_action_server_t)*,
+                const(action_msgs__msg__GoalInfo)*) @nogc nothrow;
+        /// Check if an action server is valid.
+        /**
+ * In the case where `false` is returned (ie. the action server is invalid),
+ * an error message is set.
+ *
+ * This function cannot fail.
+ *
+ * <hr>
+ * Attribute          | Adherence
+ * ------------------ | -------------
+ * Allocates Memory   | No
+ * Thread-Safe        | No
+ * Uses Atomics       | No
+ * Lock-Free          | Yes
+ *
+ * \param[in] action_server handle to the action server
+ * \return `true` if `action_server` is valid, or
+ * \return `false` otherwise.
+ */
+        bool rcl_action_server_is_valid(const(rcl_action_server_t)*) @nogc nothrow;
+        /// Check if an action server is valid without erroring if the library is shutting down.
+        /**
+ * In the case where `false` is returned (ie. the action server is invalid),
+ * an error message is set.
+ *
+ * This function cannot fail.
+ *
+ * <hr>
+ * Attribute          | Adherence
+ * ------------------ | -------------
+ * Allocates Memory   | No
+ * Thread-Safe        | No
+ * Uses Atomics       | No
+ * Lock-Free          | Yes
+ *
+ * \param[in] action_server handle to the action server
+ * \return `true` if `action_server` is valid, or
+ * \return `false` otherwise.
+ */
+        bool rcl_action_server_is_valid_except_context(const(rcl_action_server_t)*) @nogc nothrow;
+
+        extern __gshared const(rmw_qos_profile_t) rcl_action_qos_profile_status_default;
+        struct rcl_action_goal_handle_impl_t;
+        /// Goal handle for an action.
+        struct rcl_action_goal_handle_t
+        {
+            /// Pointer to the action goal handle implementation
+            rcl_action_goal_handle_impl_t* impl;
+        }
+        /// Return a rcl_action_goal_handle_t struct with members set to `NULL`.
+        /**
+ * Should be called to get a null rcl_action_goal_handle_t before passing to
+ * rcl_action_goal_handle_init().
+ */
+        rcl_action_goal_handle_t rcl_action_get_zero_initialized_goal_handle() @nogc nothrow;
+        /// Initialize a rcl_action_goal_handle_t.
+        /**
+ * After calling this function on a rcl_action_goal_handle_t, it can be used to update the
+ * goals state with rcl_action_update_goal_state().
+ * It can also be used to query the state of the goal with
+ * rcl_action_goal_handle_get_message() and rcl_action_goal_handle_is_active().
+ * Goal information can be accessed with rcl_action_goal_handle_get_message() and
+ * rcl_action_goal_handle_get_info().
+ *
+ * Goal handles are typically initialized and finalized by action servers.
+ * I.e. The allocator should be provided by the action server.
+ * Goal handles are created with rcl_action_accept_new_goal() and destroyed with
+ * rcl_action_clear_expired_goals() or rcl_action_server_fini().
+ *
+ * <hr>
+ * Attribute          | Adherence
+ * ------------------ | -------------
+ * Allocates Memory   | Yes
+ * Thread-Safe        | No
+ * Uses Atomics       | No
+ * Lock-Free          | Yes
+ *
+ * \param[out] goal_handle preallocated, zero-initialized, goal handle structure
+ *   to be initialized
+ * \param[in] goal_info information about the goal to be copied to the goal handle
+ * \param[in] allocator a valid allocator used to initialized the goal handle
+ * \return `RCL_RET_OK` if goal_handle was initialized successfully, or
+ * \return `RCL_RET_INVALID_ARGUMENT` if the allocator is invalid, or
+ * \return `RCL_RET_ACTION_GOAL_HANDLE_INVALID` if the goal handle is invalid, or
+ * \return `RCL_RET_ALREADY_INIT` if the goal handle has already been initialized, or
+ * \return `RCL_RET_BAD_ALLOC` if allocating memory failed
+ */
+        int rcl_action_goal_handle_init(rcl_action_goal_handle_t*,
+                const(action_msgs__msg__GoalInfo)*, rcutils_allocator_t) @nogc nothrow;
+        /// Finalize a rcl_action_goal_handle_t.
+        /**
+ * After calling, rcl_action_goal_handle_t will no longer be valid and
+ * rcl_action_server_t will no longer track the goal associated with the goal handle.
+ *
+ * After calling, calls to rcl_action_publish_feedback(), rcl_action_publish_status(),
+ * rcl_action_update_goal_state(), rcl_action_goal_handle_get_status(),
+ * rcl_action_goal_handle_is_active(), rcl_action_goal_handle_get_message(), and
+ * rcl_action_goal_handle_get_info() will fail when using this goal handle.
+ *
+ * However, the given action server is still valid.
+ *
+ * <hr>
+ * Attribute          | Adherence
+ * ------------------ | -------------
+ * Allocates Memory   | Yes
+ * Thread-Safe        | No
+ * Uses Atomics       | No
+ * Lock-Free          | Yes
+ *
+ * \param[inout] goal_handle struct to be deinitialized
+ * \return `RCL_RET_OK` if the goal handle was deinitialized successfully, or
+ * \return `RCL_RET_ACTION_GOAL_HANDLE_INVALID` if the goal handle is invalid, or
+ */
+        int rcl_action_goal_handle_fini(rcl_action_goal_handle_t*) @nogc nothrow;
+        /// Update a goal state with a rcl_action_goal_handle_t and an event.
+        /**
+ * This is a non-blocking call.
+ *
+ * <hr>
+ * Attribute          | Adherence
+ * ------------------ | -------------
+ * Allocates Memory   | No
+ * Thread-Safe        | No
+ * Uses Atomics       | No
+ * Lock-Free          | Yes
+ *
+ * \param[inout] goal_handle struct containing goal state to transition
+ * \param[in] goal_event the event used to transition the goal state
+ * \return `RCL_RET_OK` if the goal state was updated successfully, or
+ * \return `RCL_RET_ACTION_GOAL_EVENT_INVALID` if the goal event is invalid, or
+ * \return `RCL_RET_ACTION_GOAL_HANDLE_INVALID` if the goal handle is invalid, or
+ */
+        int rcl_action_update_goal_state(rcl_action_goal_handle_t*, const(rcl_action_goal_event_t)) @nogc nothrow;
+        /// Get the ID of a goal using a rcl_action_goal_handle_t.
+        /**
+ * This is a non-blocking call.
+ *
+ * <hr>
+ * Attribute          | Adherence
+ * ------------------ | -------------
+ * Allocates Memory   | No
+ * Thread-Safe        | No
+ * Uses Atomics       | No
+ * Lock-Free          | Yes
+ *
+ * \param[in] goal_handle struct containing the goal and meta
+ * \param[out] goal_info a preallocated struct where the goal info is copied
+ * \return `RCL_RET_OK` if the goal ID was accessed successfully, or
+ * \return `RCL_RET_ACTION_GOAL_HANDLE_INVALID` if the goal handle is invalid, or
+ * \return `RCL_RET_INVALID_ARGUMENT` if the goal_info argument is invalid
+ */
+        int rcl_action_goal_handle_get_info(const(rcl_action_goal_handle_t)*,
+                action_msgs__msg__GoalInfo*) @nogc nothrow;
+        /// Get the status of a goal.
+        /**
+ * This is a non-blocking call.
+ *
+ * <hr>
+ * Attribute          | Adherence
+ * ------------------ | -------------
+ * Allocates Memory   | No
+ * Thread-Safe        | No
+ * Uses Atomics       | No
+ * Lock-Free          | Yes
+ *
+ * \param[in] goal_handle struct containing the goal and metadata
+ * \param[out] status a preallocated struct where the goal status is copied
+ * \return `RCL_RET_OK` if the goal ID was accessed successfully, or
+ * \return `RCL_RET_ACTION_GOAL_HANDLE_INVALID` if the goal handle is invalid, or
+ * \return `RCL_RET_INVALID_ARGUMENT` if the status argument is invalid
+ */
+        int rcl_action_goal_handle_get_status(const(rcl_action_goal_handle_t)*, byte*) @nogc nothrow;
+        /// Check if a goal is active using a rcl_action_goal_handle_t.
+        /**
+ * This is a non-blocking call.
+ *
+ * <hr>
+ * Attribute          | Adherence
+ * ------------------ | -------------
+ * Allocates Memory   | No
+ * Thread-Safe        | No
+ * Uses Atomics       | No
+ * Lock-Free          | Yes
+ *
+ * \param[in] goal_handle struct containing the goal and metadata
+ * \return `true` if the goal is in one of the following states: ACCEPTED, EXECUTING, or CANCELING, or
+ * \return `false` if the goal handle pointer is invalid, or
+ * \return `false` otherwise
+*/
+        bool rcl_action_goal_handle_is_active(const(rcl_action_goal_handle_t)*) @nogc nothrow;
+        /// Check if a goal can be transitioned to CANCELING in its current state.
+        /**
+ * This is a non-blocking call.
+ *
+ * <hr>
+ * Attribute          | Adherence
+ * ------------------ | -------------
+ * Allocates Memory   | No
+ * Thread-Safe        | No
+ * Uses Atomics       | No
+ * Lock-Free          | Yes
+ *
+ * \param[in] goal_handle struct containing the goal and metadata
+ * \return `true` if the goal can be transitioned to CANCELING from its current state, or
+ * \return `false` if the goal handle pointer is invalid, or
+ * \return `false` otherwise
+*/
+        bool rcl_action_goal_handle_is_cancelable(const(rcl_action_goal_handle_t)*) @nogc nothrow;
+        /// Check if a rcl_action_goal_handle_t is valid.
+        /**
+ * This is a non-blocking call.
+ *
+ * A goal handle is invalid if:
+ *   - the implementation is `NULL` (rcl_action_goal_handle_init() not called or failed)
+ *   - rcl_shutdown() has been called since the goal handle has been initialized
+ *   - the goal handle has been finalized with rcl_action_goal_handle_fini()
+ *
+ * <hr>
+ * Attribute          | Adherence
+ * ------------------ | -------------
+ * Allocates Memory   | No
+ * Thread-Safe        | No
+ * Uses Atomics       | No
+ * Lock-Free          | Yes
+ *
+ * \param[in] goal_handle struct to evaluate as valid or not
+ * \return `true` if the goal handle is valid, or
+ * \return `false` if the goal handle pointer is null, or
+ * \return `false` otherwise
+ */
+        bool rcl_action_goal_handle_is_valid(const(rcl_action_goal_handle_t)*) @nogc nothrow;
+
+        alias uint64_t = ulong;
+        /// Transition a goal from one state to the next.
+        /**
+ * Given a goal state and a goal event, return the next state.
+ *
+ * \param[in] state the state to transition from
+ * \param[in] event the event triggering a transition
+ * \return the next goal state if the transition is valid, or
+ * \return `GOAL_STATE_UNKNOWN` if the transition is invalid or an error occured
+ */
+        byte rcl_action_transition_goal_state(const(byte), const(rcl_action_goal_event_t)) @nogc nothrow;
+
+        alias uint32_t = uint;
+        /// Get a list of action names and types for action clients associated with a node.
+        /**
+ * The `node` parameter must point to a valid node.
+ *
+ * The `action_names_and_types` parameter must be allocated and zero initialized.
+ * This function allocates memory for the returned list of names and types and so it is the
+ * callers responsibility to pass `action_names_and_types` to rcl_names_and_types_fini()
+ * when it is no longer needed.
+ * Failing to do so will result in leaked memory.
+ *
+ * The returned names are not automatically remapped by this function.
+ * Attempting to create action clients or action servers with names returned by this function may
+ * not result in the desired action name depending on the remap rules in use.
+ *
+ * <hr>
+ * Attribute          | Adherence
+ * ------------------ | -------------
+ * Allocates Memory   | Yes
+ * Thread-Safe        | No
+ * Uses Atomics       | No
+ * Lock-Free          | Maybe [1]
+ * <i>[1] implementation may need to protect the data structure with a lock</i>
+ *
+ * \param[in] node the handle to the node being used to query the ROS graph
+ * \param[in] allocator allocator for allocating space for strings
+ * \param[in] node_name the node name of the actions to return
+ * \param[in] node_namespace the node namespace of the actions to return
+ * \param[out] action_names_and_types list of action names and their types
+ * \return `RCL_RET_OK` if the query was successful, or
+ * \return `RCL_RET_NODE_INVALID` if the node is invalid, or
+ * \return `RCL_RET_INVALID_ARGUMENT` if any arguments are invalid, or
+ * \return `RCL_RET_ERROR` if an unspecified error occurs.
+ */
+        int rcl_action_get_client_names_and_types_by_node(const(rcl_node_t)*,
+                rcutils_allocator_t*, const(char)*, const(char)*, rmw_names_and_types_t*) @nogc nothrow;
+        /// Get a list of action names and types for action servers associated with a node.
+        /**
+ * This function returns a list of action names and types for action servers associated with
+ * the provided node name.
+ *
+ * The `node` parameter must point to a valid node.
+ *
+ * The `action_names_and_types` parameter must be allocated and zero initialized.
+ * This function allocates memory for the returned list of names and types and so it is the
+ * callers responsibility to pass `action_names_and_types` to rcl_names_and_types_fini()
+ * when it is no longer needed.
+ * Failing to do so will result in leaked memory.
+ *
+ * The returned names are not automatically remapped by this function.
+ * Attempting to create action clients or action servers with names returned by this function may
+ * not result in the desired action name depending on the remap rules in use.
+ *
+ * <hr>
+ * Attribute          | Adherence
+ * ------------------ | -------------
+ * Allocates Memory   | Yes
+ * Thread-Safe        | No
+ * Uses Atomics       | No
+ * Lock-Free          | Maybe [1]
+ * <i>[1] implementation may need to protect the data structure with a lock</i>
+ *
+ * \param[in] node the handle to the node being used to query the ROS graph
+ * \param[in] allocator allocator for allocating space for strings
+ * \param[in] node_name the node name of the actions to return
+ * \param[in] node_namespace the node namespace of the actions to return
+ * \param[out] action_names_and_types list of action names and their types
+ * \return `RCL_RET_OK` if the query was successful, or
+ * \return `RCL_RET_NODE_INVALID` if the node is invalid, or
+ * \return `RCL_RET_INVALID_ARGUMENT` if any arguments are invalid, or
+ * \return `RCL_RET_ERROR` if an unspecified error occurs.
+ */
+        int rcl_action_get_server_names_and_types_by_node(const(rcl_node_t)*,
+                rcutils_allocator_t*, const(char)*, const(char)*, rmw_names_and_types_t*) @nogc nothrow;
+        /// Return a list of action names and their types.
+        /**
+ * This function returns a list of action names and types in the ROS graph.
+ *
+ * The `node` parameter must point to a valid node.
+ *
+ * The `action_names_and_types` parameter must be allocated and zero initialized.
+ * This function allocates memory for the returned list of names and types and so it is the
+ * callers responsibility to pass `action_names_and_types` to rcl_names_and_types_fini()
+ * when it is no longer needed.
+ * Failing to do so will result in leaked memory.
+ *
+ * The returned names are not automatically remapped by this function.
+ * Attempting to create action clients or action servers with names returned by this function may
+ * not result in the desired action name depending on the remap rules in use.
+ *
+ * <hr>
+ * Attribute          | Adherence
+ * ------------------ | -------------
+ * Allocates Memory   | Yes
+ * Thread-Safe        | No
+ * Uses Atomics       | No
+ * Lock-Free          | Maybe [1]
+ * <i>[1] implementation may need to protect the data structure with a lock</i>
+ *
+ * \param[in] node the handle to the node being used to query the ROS graph
+ * \param[in] allocator allocator for allocating space for strings
+ * \param[out] action_names_and_types list of action names and types
+ * \return `RCL_RET_OK` if the query was successful, or
+ * \return `RCL_RET_NODE_INVALID` if the node is invalid, or
+ * \return `RCL_RET_INVALID_ARGUMENT` if any arguments are invalid, or
+ * \return `RCL_RET_ERROR` if an unspecified error occurs.
+ */
+        int rcl_action_get_names_and_types(const(rcl_node_t)*,
+                rcutils_allocator_t*, rmw_names_and_types_t*) @nogc nothrow;
+
+        alias uint16_t = ushort;
+
+        alias uint8_t = ubyte;
+
+        alias int64_t = c_long;
+
+        alias int32_t = int;
+
+        alias int16_t = short;
+
+        alias int8_t = byte;
+        /// Structure which encapsulates a ROS Action Server.
+        struct rcl_action_server_t
+        {
+            /// Pointer to the action server implementation
+            rcl_action_server_impl_t* impl;
+        }
+
+        alias rcl_action_goal_info_t = action_msgs__msg__GoalInfo;
+
+        alias rcl_action_goal_status_t = action_msgs__msg__GoalStatus;
+        /// Struct with the action goal status array
+        struct rcl_action_goal_status_array_t
+        {
+            /// Goal status array message
+            action_msgs__msg__GoalStatusArray msg;
+            /// Allocator used to initialize this struct.
+            rcutils_allocator_t allocator;
+        }
+
+        alias rcl_action_cancel_request_t = action_msgs__srv__CancelGoal_Request;
+        /// Struct with the action cancel response
+        struct rcl_action_cancel_response_t
+        {
+            /// Cancel goal response message
+            action_msgs__srv__CancelGoal_Response msg;
+            /// Allocator used to initialize this struct.
+            rcutils_allocator_t allocator;
+        }
+        /// Goal states
+        alias rcl_action_goal_state_t = byte;
+
+        union pthread_barrierattr_t
+        {
+
+            char[4] __size;
+
+            int __align;
+        }
+
+        union pthread_barrier_t
+        {
+
+            char[32] __size;
+
+            c_long __align;
+        }
+
+        alias pthread_spinlock_t = int;
+        /// User friendly error messages for invalid trasntions
+        extern __gshared const(char)*[0] goal_state_descriptions;
+
+        extern __gshared const(char)*[0] goal_event_descriptions;
+        /// Goal state transition events
+        enum rcl_action_goal_event_t
+        {
+
+            GOAL_EVENT_EXECUTE = 0,
+
+            GOAL_EVENT_CANCEL_GOAL = 1,
+
+            GOAL_EVENT_SUCCEED = 2,
+
+            GOAL_EVENT_ABORT = 3,
+
+            GOAL_EVENT_CANCELED = 4,
+
+            GOAL_EVENT_NUM_EVENTS = 5,
+        }
+
+        enum GOAL_EVENT_EXECUTE = rcl_action_goal_event_t.GOAL_EVENT_EXECUTE;
+        enum GOAL_EVENT_CANCEL_GOAL = rcl_action_goal_event_t.GOAL_EVENT_CANCEL_GOAL;
+        enum GOAL_EVENT_SUCCEED = rcl_action_goal_event_t.GOAL_EVENT_SUCCEED;
+        enum GOAL_EVENT_ABORT = rcl_action_goal_event_t.GOAL_EVENT_ABORT;
+        enum GOAL_EVENT_CANCELED = rcl_action_goal_event_t.GOAL_EVENT_CANCELED;
+        enum GOAL_EVENT_NUM_EVENTS = rcl_action_goal_event_t.GOAL_EVENT_NUM_EVENTS;
+        /// Return a rcl_action_goal_info_t with members set to zero values.
+        action_msgs__msg__GoalInfo rcl_action_get_zero_initialized_goal_info() @nogc nothrow;
+        /// Return a rcl_action_goal_status_array_t with members set to `NULL`.
+        /**
+ * Should be called to get a null rcl_action_goal_status_array_t before passing to
+ * rcl_action_server_get_goal_status_array().
+ */
+        rcl_action_goal_status_array_t rcl_action_get_zero_initialized_goal_status_array() @nogc nothrow;
+        /// Return a rcl_action_cancel_request_t with members set to `NULL`.
+        /**
+ * Should be called to get a null rcl_action_cancel_request_t before passing to
+ *
+ * rcl_action_cancel_request_init().
+ */
+        action_msgs__srv__CancelGoal_Request rcl_action_get_zero_initialized_cancel_request() @nogc nothrow;
+        /// Return a rcl_action_cancel_response_t with members set to `NULL`.
+        /**
+ * Should be called to get a null rcl_action_cancel_response_t before passing to
+ * rcl_action_cancel_response_init().
+ */
+        rcl_action_cancel_response_t rcl_action_get_zero_initialized_cancel_response() @nogc nothrow;
+        /// Initialize a rcl_action_goal_status_array_t.
+        /**
+ * After calling this function on a rcl_action_goal_status_array_t, it can be populated
+ * and used to get and send status array messages with an action server using
+ * rcl_action_get_goal_status_array() and rcl_action_publish_status() respectively.
+ *
+ * Example usage:
+ *
+ * ```c
+ * #include <rcl/rcl.h>
+ * #include <rcl_action/rcl_action.h>
+ *
+ * rcl_action_goal_status_array_t goal_status_array =
+ *   rcl_action_get_zero_initialized_goal_status_array();
+ * size_t num_status = 42;
+ * ret = rcl_action_goal_status_array_init(
+ *   &goal_status_array,
+ *   num_status,
+ *   rcl_get_default_allocator());
+ * // ... error handling, and when done with message, finalize
+ * ret = rcl_action_goal_status_array_fini(&goal_status_array, rcl_get_default_allocator());
+ * // ... error handling
+ * ```
+ *
+ * <hr>
+ * Attribute          | Adherence
+ * ------------------ | -------------
+ * Allocates Memory   | Yes
+ * Thread-Safe        | No
+ * Uses Atomics       | No
+ * Lock-Free          | Yes
+ *
+ * \param[out] status_array a preallocated, zero-initialized, goal status array message
+ *   to be initialized.
+ * \param[in] num_status the number of status messages to allocate space for.
+ *   Must be greater than zero
+ * \param[in] allocator a valid allocator
+ * \return `RCL_RET_OK` if cancel response was initialized successfully, or
+ * \return `RCL_RET_INVALID_ARGUMENT` if any arguments are invalid, or
+ * \return `RCL_RET_ALREADY_INIT` if the status array has already been initialized, or
+ * \return `RCL_RET_BAD_ALLOC` if allocating memory failed, or
+ * \return `RCL_RET_ERROR` if an unspecified error occurs.
+ */
+        int rcl_action_goal_status_array_init(rcl_action_goal_status_array_t*,
+                const(c_ulong), const(rcutils_allocator_t)) @nogc nothrow;
+        /// Finalize a rcl_action_goal_status_array_t.
+        /**
+ * After calling, the goal status array message will no longer be valid.
+ *
+ * <hr>
+ * Attribute          | Adherence
+ * ------------------ | -------------
+ * Allocates Memory   | Yes
+ * Thread-Safe        | No
+ * Uses Atomics       | No
+ * Lock-Free          | Yes
+ *
+ * \param[inout] status_array the goal status array message to be deinitialized
+ * \return `RCL_RET_OK` if the goal status array was deinitialized successfully, or
+ * \return `RCL_RET_INVALID_ARGUMENT` if any arguments are invalid, or
+ * \return `RCL_RET_ERROR` if an unspecified error occurs.
+ */
+        int rcl_action_goal_status_array_fini(rcl_action_goal_status_array_t*) @nogc nothrow;
+        /// Initialize a rcl_action_cancel_response_t.
+        /**
+ * After calling this function on a rcl_action_cancel_response_t, it can be populated
+ * and used to process cancel requests with an action server using
+ * rcl_action_process_cancel_request().
+ *
+ * Example usage:
+ *
+ * ```c
+ * #include <rcl/rcl.h>
+ * #include <rcl_action/rcl_action.h>
+ *
+ * rcl_action_cancel_response_t cancel_response =
+ *   rcl_action_get_zero_initialized_cancel_response();
+ * size_t num_goals_canceling = 10;
+ * ret = rcl_action_cancel_response_init(
+ *   &cancel_response,
+ *   num_goals_canceling,
+ *   rcl_get_default_allocator());
+ * // ... error handling, and when done processing response, finalize
+ * ret = rcl_action_cancel_response_fini(&cancel_response, rcl_get_default_allocator());
+ * // ... error handling
+ * ```
+ *
+ * <hr>
+ * Attribute          | Adherence
+ * ------------------ | -------------
+ * Allocates Memory   | Yes
+ * Thread-Safe        | No
+ * Uses Atomics       | No
+ * Lock-Free          | Yes
+ *
+ * \param[out] cancel_response a preallocated, zero-initialized, cancel response message
+ *   to be initialized.
+ * \param[in] num_goals_canceling the number of goals that are canceling to add to the response
+ *   Must be greater than zero
+ * \param[in] allocator a valid allocator
+ * \return `RCL_RET_OK` if cancel response was initialized successfully, or
+ * \return `RCL_RET_INVALID_ARGUMENT` if any arguments are invalid, or
+ * \return `RCL_RET_ALREADY_INIT` if the cancel response has already been initialized, or
+ * \return `RCL_RET_BAD_ALLOC` if allocating memory failed, or
+ * \return `RCL_RET_ERROR` if an unspecified error occurs.
+ */
+        int rcl_action_cancel_response_init(rcl_action_cancel_response_t*,
+                const(c_ulong), const(rcutils_allocator_t)) @nogc nothrow;
+        /// Finalize a rcl_action_cancel_response_t.
+        /**
+ * After calling, the cancel response message will no longer be valid.
+ *
+ * <hr>
+ * Attribute          | Adherence
+ * ------------------ | -------------
+ * Allocates Memory   | Yes
+ * Thread-Safe        | No
+ * Uses Atomics       | No
+ * Lock-Free          | Yes
+ *
+ * \param[inout] cancel_response the cancel response message to be deinitialized
+ * \return `RCL_RET_OK` if the cancel response was deinitialized successfully, or
+ * \return `RCL_RET_INVALID_ARGUMENT` if any arguments are invalid, or
+ * \return `RCL_RET_ERROR` if an unspecified error occurs.
+ */
+        int rcl_action_cancel_response_fini(rcl_action_cancel_response_t*) @nogc nothrow;
+
+        union pthread_rwlockattr_t
+        {
+
+            char[8] __size;
+
+            c_long __align;
+        }
+
+        union pthread_rwlock_t
+        {
+
+            __pthread_rwlock_arch_t __data;
+
+            char[56] __size;
+
+            c_long __align;
+        }
+        /// Add a rcl_action_client_t to a wait set.
+        /**
+ * This function will add the underlying service clients and subscribers to the wait set.
+ *
+ * This function behaves similar to adding subscriptions to the wait set, but will add
+ * five entities:
+ *
+ * - Three service clients
+ * - Two subscriptions
+ *
+ * \see rcl_wait_set_add_subscription
+ *
+ * If this function fails for any reason, `client_index` and `subscription_index` are not set.
+ * It is also possible the provided wait set is left in an inconsistent state (e.g. some
+ * of the clients and subscriptions were added to the wait set, but not all).
+ *
+ * <hr>
+ * Attribute          | Adherence
+ * ------------------ | -------------
+ * Allocates Memory   | Yes
+ * Thread-Safe        | No
+ * Uses Atomics       | No
+ * Lock-Free          | Yes
+ *
+ * \param[inout] wait_set struct where action client service client and subscription
+ *   are to be stored
+ * \param[in] action_client the action client to be added to the wait set
+ * \param[out] client_index the starting index in the wait set's client container where
+ *   the action clients underlying service clients were added. Optionally, set to `NULL`
+ *   if ignored.
+ * \param[out] subscription_index the starting index in the wait set's subscription container
+ *   where the action clients underlying subscriptions were added. Optionally, set to `NULL`
+ *   if ignored.
+ * \return `RCL_RET_OK` if added successfully, or
+ * \return `RCL_RET_WAIT_SET_INVALID` if the wait set is zero initialized, or
+ * \return `RCL_RET_WAIT_SET_FULL` if the subscription set is full, or
+ * \return `RCL_RET_ACTION_CLIENT_INVALID` if the action client is invalid, or
+ * \return `RCL_RET_ERROR` if an unspecified error occurs.
+*/
+        int rcl_action_wait_set_add_action_client(rcl_wait_set_t*,
+                const(rcl_action_client_t)*, c_ulong*, c_ulong*) @nogc nothrow;
+        /// Add a rcl_action_server_t to a wait set.
+        /**
+ * This function will add the underlying services to the wait set.
+ *
+ * This function behaves similar to adding services to the wait set, but will add
+ * three services.
+ *
+ * \see rcl_wait_set_add_service
+ *
+ * * If this function fails for any reason, `service_index` is not set.
+ * It is also possible the provided wait set is left in an inconsistent state (e.g. some
+ * of the clients and subscribers were added to the wait set, but not all).
+
+ * <hr>
+ * Attribute          | Adherence
+ * ------------------ | -------------
+ * Allocates Memory   | Yes
+ * Thread-Safe        | No
+ * Uses Atomics       | No
+ * Lock-Free          | Yes
+ *
+ * \param[inout] wait_set struct where action server services are to be stored
+ * \param[in] action_server the action server to be added to the wait set
+ * \param[out] service_index the starting index in the wait set's service container where
+ *   the action servers underlying services were added. Optionally, set to `NULL`
+ *   if ignored.
+ * \return `RCL_RET_OK` if added successfully, or
+ * \return `RCL_RET_WAIT_SET_INVALID` if the wait set is zero initialized, or
+ * \return `RCL_RET_WAIT_SET_FULL` if the subscription set is full, or
+ * \return `RCL_RET_ACTION_SERVER_INVALID` if the action server is invalid, or
+ * \return `RCL_RET_ERROR` if an unspecified error occurs.
+*/
+        int rcl_action_wait_set_add_action_server(rcl_wait_set_t*,
+                const(rcl_action_server_t)*, c_ulong*) @nogc nothrow;
+        /// Get the number of wait set entities associated with a rcl_action_client_t.
+        /**
+ * Returns the number of entities that are added to the wait set if
+ * rcl_action_wait_set_add_action_client() is called.
+ *
+ * <hr>
+ * Attribute          | Adherence
+ * ------------------ | -------------
+ * Allocates Memory   | No
+ * Thread-Safe        | Yes
+ * Uses Atomics       | No
+ * Lock-Free          | Yes
+ *
+ * \param[in] action_client an action client to query
+ * \param[out] num_subscriptions the number of subscriptions added when the action client
+ *   is added to the wait set
+ * \param[out] num_guard_conditions the number of guard conditions added when the action client
+ *   is added to the wait set
+ * \param[out] num_timers the number of timers added when the action client
+ *   is added to the wait set
+ * \param[out] num_clients the number of clients added when the action client
+ *   is added to the wait set
+ * \param[out] num_services the number of services added when the action client
+ *   is added to the wait set
+ * \return `RCL_RET_OK` if call is successful, or
+ * \return `RCL_RET_INVALID_ARGUMENT` if any arguments are invalid, or
+ * \return `RCL_RET_ACTION_CLIENT_INVALID` if the action client is invalid, or
+ * \return `RCL_RET_ERROR` if an unspecified error occurs.
+*/
+        int rcl_action_client_wait_set_get_num_entities(const(rcl_action_client_t)*,
+                c_ulong*, c_ulong*, c_ulong*, c_ulong*, c_ulong*) @nogc nothrow;
+        /// Get the number of wait set entities associated with a rcl_action_server_t.
+        /**
+ * Returns the number of entities that are added to the wait set if
+ * rcl_action_wait_set_add_action_server() is called.
+ *
+ * <hr>
+ * Attribute          | Adherence
+ * ------------------ | -------------
+ * Allocates Memory   | No
+ * Thread-Safe        | Yes
+ * Uses Atomics       | No
+ * Lock-Free          | Yes
+ *
+ * \param[in] action_server an action server to query
+ * \param[out] num_subscriptions the number of subscriptions added when the action server
+ *   is added to the wait set
+ * \param[out] num_guard_conditions the number of guard conditions added when the action server
+ *   is added to the wait set
+ * \param[out] num_timers the number of timers added when the action server
+ *   is added to the wait set
+ * \param[out] num_clients the number of clients added when the action server
+ *   is added to the wait set
+ * \param[out] num_services the number of services added when the action server
+ *   is added to the wait set
+ * \return `RCL_RET_OK` if call is successful, or
+ * \return `RCL_RET_INVALID_ARGUMENT` if any arguments are invalid, or
+ * \return `RCL_RET_ACTION_SERVER_INVALID` if the action server is invalid, or
+ * \return `RCL_RET_ERROR` if an unspecified error occurs.
+*/
+        int rcl_action_server_wait_set_get_num_entities(const(rcl_action_server_t)*,
+                c_ulong*, c_ulong*, c_ulong*, c_ulong*, c_ulong*) @nogc nothrow;
+        /// Get the wait set entities that are ready for a rcl_action_client_t.
+        /**
+ * The caller can use this function to determine the relevant action client functions
+ * to call: rcl_action_take_feedback(), rcl_action_take_status(),
+ * rcl_action_take_goal_response(), rcl_action_take_cancel_response(), or
+ * rcl_action_take_result_response().
+ *
+ * <hr>
+ * Attribute          | Adherence
+ * ------------------ | -------------
+ * Allocates Memory   | No
+ * Thread-Safe        | No
+ * Uses Atomics       | No
+ * Lock-Free          | Yes
+ *
+ * \param[in] wait_set struct where action server services are to be stored
+ * \param[in] action_client an action client to query
+ * \param[out] is_feedback_ready `true` if there is a feedback message ready to take,
+ *   `false` otherwise
+ * \param[out] is_status_ready `true` if there is a status message ready to take,
+ *   `false` otherwise
+ * \param[out] is_goal_response_ready `true` if there is a goal response message ready
+ *   to take, `false` otherwise
+ * \param[out] is_cancel_response_ready `true` if there is a cancel response message ready
+ *   to take, `false` otherwise
+ * \param[out] is_result_response_ready `true` if there is a result response message ready
+ *   to take, `false` otherwise
+ * \return `RCL_RET_OK` if call is successful, or
+ * \return `RCL_RET_WAIT_SET_INVALID` if the wait set is invalid, or
+ * \return `RCL_RET_INVALID_ARGUMENT` if any arguments are invalid, or
+ * \return `RCL_RET_ACTION_CLIENT_INVALID` if the action client is invalid, or
+ * \return `RCL_RET_ERROR` if an unspecified error occurs.
+*/
+        int rcl_action_client_wait_set_get_entities_ready(const(rcl_wait_set_t)*,
+                const(rcl_action_client_t)*, bool*, bool*, bool*, bool*, bool*) @nogc nothrow;
+        /// Get the wait set entities that are ready for a rcl_action_server_t.
+        /**
+ * The caller can use this function to determine the relevant action server functions
+ * to call: rcl_action_take_goal_request(), rcl_action_take_cancel_request(), or
+ * rcl_action_take_result_request().
+ *
+ * <hr>
+ * Attribute          | Adherence
+ * ------------------ | -------------
+ * Allocates Memory   | No
+ * Thread-Safe        | No
+ * Uses Atomics       | No
+ * Lock-Free          | Yes
+ *
+ * \param[in] wait_set struct where action server services are to be stored
+ * \param[in] action_server an action server to query
+ * \param[out] is_goal_request_ready `true` if there is a goal request message ready
+ *   to take, `false` otherwise
+ * \param[out] is_cancel_request_ready `true` if there is a cancel request message ready
+ *   to take, `false` otherwise
+ * \param[out] is_result_request_ready `true` if there is a result request message ready
+ *   to take, `false` otherwise
+ * \param[out] is_goal_expired `true` if there is a goal that expired, `false` otherwise
+ * \return `RCL_RET_OK` if call is successful, or
+ * \return `RCL_RET_WAIT_SET_INVALID` if the wait set is invalid, or
+ * \return `RCL_RET_INVALID_ARGUMENT` if any arguments are invalid, or
+ * \return `RCL_RET_ACTION_CLIENT_INVALID` if the action server is invalid, or
+ * \return `RCL_RET_ERROR` if an unspecified error occurs.
+*/
+        int rcl_action_server_wait_set_get_entities_ready(const(rcl_wait_set_t)*,
+                const(rcl_action_server_t)*, bool*, bool*, bool*, bool*) @nogc nothrow;
+
+        union pthread_cond_t
+        {
+
+            __pthread_cond_s __data;
+
+            char[48] __size;
+
+            long __align;
+        }
+        /// Initialize msg/FloatingPointRange message.
+        /**
+ * If the init function is called twice for the same message without
+ * calling fini inbetween previously allocated memory will be leaked.
+ * \param[in,out] msg The previously allocated message pointer.
+ * Fields without a default value will not be initialized by this function.
+ * You might want to call memset(msg, 0, sizeof(
+ * rcl_interfaces__msg__FloatingPointRange
+ * )) before or use
+ * rcl_interfaces__msg__FloatingPointRange__create()
+ * to allocate and initialize the message.
+ * \return true if initialization was successful, otherwise false
+ */
+        bool rcl_interfaces__msg__FloatingPointRange__init(
+                rcl_interfaces__msg__FloatingPointRange*) @nogc nothrow;
+        /// Finalize msg/FloatingPointRange message.
+        /**
+ * \param[in,out] msg The allocated message pointer.
+ */
+        void rcl_interfaces__msg__FloatingPointRange__fini(
+                rcl_interfaces__msg__FloatingPointRange*) @nogc nothrow;
+        /// Create msg/FloatingPointRange message.
+        /**
+ * It allocates the memory for the message, sets the memory to zero, and
+ * calls
+ * rcl_interfaces__msg__FloatingPointRange__init().
+ * \return The pointer to the initialized message if successful,
+ * otherwise NULL
+ */
+        rcl_interfaces__msg__FloatingPointRange* rcl_interfaces__msg__FloatingPointRange__create() @nogc nothrow;
+        /// Destroy msg/FloatingPointRange message.
+        /**
+ * It calls
+ * rcl_interfaces__msg__FloatingPointRange__fini()
+ * and frees the memory of the message.
+ * \param[in,out] msg The allocated message pointer.
+ */
+        void rcl_interfaces__msg__FloatingPointRange__destroy(
+                rcl_interfaces__msg__FloatingPointRange*) @nogc nothrow;
+        /// Initialize array of msg/FloatingPointRange messages.
+        /**
+ * It allocates the memory for the number of elements and calls
+ * rcl_interfaces__msg__FloatingPointRange__init()
+ * for each element of the array.
+ * \param[in,out] array The allocated array pointer.
+ * \param[in] size The size / capacity of the array.
+ * \return true if initialization was successful, otherwise false
+ * If the array pointer is valid and the size is zero it is guaranteed
+ # to return true.
+ */
+        bool rcl_interfaces__msg__FloatingPointRange__Sequence__init(
+                rcl_interfaces__msg__FloatingPointRange__Sequence*, c_ulong) @nogc nothrow;
+        /// Finalize array of msg/FloatingPointRange messages.
+        /**
+ * It calls
+ * rcl_interfaces__msg__FloatingPointRange__fini()
+ * for each element of the array and frees the memory for the number of
+ * elements.
+ * \param[in,out] array The initialized array pointer.
+ */
+        void rcl_interfaces__msg__FloatingPointRange__Sequence__fini(
+                rcl_interfaces__msg__FloatingPointRange__Sequence*) @nogc nothrow;
+        /// Create array of msg/FloatingPointRange messages.
+        /**
+ * It allocates the memory for the array and calls
+ * rcl_interfaces__msg__FloatingPointRange__Sequence__init().
+ * \param[in] size The size / capacity of the array.
+ * \return The pointer to the initialized array if successful, otherwise NULL
+ */
+        rcl_interfaces__msg__FloatingPointRange__Sequence* rcl_interfaces__msg__FloatingPointRange__Sequence__create(
+                c_ulong) @nogc nothrow;
+        /// Destroy array of msg/FloatingPointRange messages.
+        /**
+ * It calls
+ * rcl_interfaces__msg__FloatingPointRange__Sequence__fini()
+ * on the array,
+ * and frees the memory of the array.
+ * \param[in,out] array The initialized array pointer.
+ */
+        void rcl_interfaces__msg__FloatingPointRange__Sequence__destroy(
+                rcl_interfaces__msg__FloatingPointRange__Sequence*) @nogc nothrow;
+
+        struct rcl_interfaces__msg__FloatingPointRange
+        {
+
+            double from_value;
+
+            double to_value;
+
+            double step;
+        }
+
+        struct rcl_interfaces__msg__FloatingPointRange__Sequence
+        {
+
+            rcl_interfaces__msg__FloatingPointRange* data;
+            /// The number of valid items in data
+            c_ulong size;
+            /// The number of allocated items in data
+            c_ulong capacity;
+        }
+
+        const(rosidl_message_type_support_t)* rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__msg__FloatingPointRange() @nogc nothrow;
+
+        union pthread_mutex_t
+        {
+
+            __pthread_mutex_s __data;
+
+            char[40] __size;
+
+            c_long __align;
+        }
+        /// Initialize msg/IntegerRange message.
+        /**
+ * If the init function is called twice for the same message without
+ * calling fini inbetween previously allocated memory will be leaked.
+ * \param[in,out] msg The previously allocated message pointer.
+ * Fields without a default value will not be initialized by this function.
+ * You might want to call memset(msg, 0, sizeof(
+ * rcl_interfaces__msg__IntegerRange
+ * )) before or use
+ * rcl_interfaces__msg__IntegerRange__create()
+ * to allocate and initialize the message.
+ * \return true if initialization was successful, otherwise false
+ */
+        bool rcl_interfaces__msg__IntegerRange__init(rcl_interfaces__msg__IntegerRange*) @nogc nothrow;
+        /// Finalize msg/IntegerRange message.
+        /**
+ * \param[in,out] msg The allocated message pointer.
+ */
+        void rcl_interfaces__msg__IntegerRange__fini(rcl_interfaces__msg__IntegerRange*) @nogc nothrow;
+        /// Create msg/IntegerRange message.
+        /**
+ * It allocates the memory for the message, sets the memory to zero, and
+ * calls
+ * rcl_interfaces__msg__IntegerRange__init().
+ * \return The pointer to the initialized message if successful,
+ * otherwise NULL
+ */
+        rcl_interfaces__msg__IntegerRange* rcl_interfaces__msg__IntegerRange__create() @nogc nothrow;
+        /// Destroy msg/IntegerRange message.
+        /**
+ * It calls
+ * rcl_interfaces__msg__IntegerRange__fini()
+ * and frees the memory of the message.
+ * \param[in,out] msg The allocated message pointer.
+ */
+        void rcl_interfaces__msg__IntegerRange__destroy(rcl_interfaces__msg__IntegerRange*) @nogc nothrow;
+        /// Initialize array of msg/IntegerRange messages.
+        /**
+ * It allocates the memory for the number of elements and calls
+ * rcl_interfaces__msg__IntegerRange__init()
+ * for each element of the array.
+ * \param[in,out] array The allocated array pointer.
+ * \param[in] size The size / capacity of the array.
+ * \return true if initialization was successful, otherwise false
+ * If the array pointer is valid and the size is zero it is guaranteed
+ # to return true.
+ */
+        bool rcl_interfaces__msg__IntegerRange__Sequence__init(
+                rcl_interfaces__msg__IntegerRange__Sequence*, c_ulong) @nogc nothrow;
+        /// Finalize array of msg/IntegerRange messages.
+        /**
+ * It calls
+ * rcl_interfaces__msg__IntegerRange__fini()
+ * for each element of the array and frees the memory for the number of
+ * elements.
+ * \param[in,out] array The initialized array pointer.
+ */
+        void rcl_interfaces__msg__IntegerRange__Sequence__fini(
+                rcl_interfaces__msg__IntegerRange__Sequence*) @nogc nothrow;
+        /// Create array of msg/IntegerRange messages.
+        /**
+ * It allocates the memory for the array and calls
+ * rcl_interfaces__msg__IntegerRange__Sequence__init().
+ * \param[in] size The size / capacity of the array.
+ * \return The pointer to the initialized array if successful, otherwise NULL
+ */
+        rcl_interfaces__msg__IntegerRange__Sequence* rcl_interfaces__msg__IntegerRange__Sequence__create(
+                c_ulong) @nogc nothrow;
+        /// Destroy array of msg/IntegerRange messages.
+        /**
+ * It calls
+ * rcl_interfaces__msg__IntegerRange__Sequence__fini()
+ * on the array,
+ * and frees the memory of the array.
+ * \param[in,out] array The initialized array pointer.
+ */
+        void rcl_interfaces__msg__IntegerRange__Sequence__destroy(
+                rcl_interfaces__msg__IntegerRange__Sequence*) @nogc nothrow;
+
+        struct rcl_interfaces__msg__IntegerRange
+        {
+
+            c_long from_value;
+
+            c_long to_value;
+
+            c_ulong step;
+        }
+
+        struct rcl_interfaces__msg__IntegerRange__Sequence
+        {
+
+            rcl_interfaces__msg__IntegerRange* data;
+            /// The number of valid items in data
+            c_ulong size;
+            /// The number of allocated items in data
+            c_ulong capacity;
+        }
+
+        const(rosidl_message_type_support_t)* rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__msg__IntegerRange() @nogc nothrow;
+
+        union pthread_attr_t
+        {
+
+            char[56] __size;
+
+            c_long __align;
+        }
+        /// Initialize msg/ListParametersResult message.
+        /**
+ * If the init function is called twice for the same message without
+ * calling fini inbetween previously allocated memory will be leaked.
+ * \param[in,out] msg The previously allocated message pointer.
+ * Fields without a default value will not be initialized by this function.
+ * You might want to call memset(msg, 0, sizeof(
+ * rcl_interfaces__msg__ListParametersResult
+ * )) before or use
+ * rcl_interfaces__msg__ListParametersResult__create()
+ * to allocate and initialize the message.
+ * \return true if initialization was successful, otherwise false
+ */
+        bool rcl_interfaces__msg__ListParametersResult__init(
+                rcl_interfaces__msg__ListParametersResult*) @nogc nothrow;
+        /// Finalize msg/ListParametersResult message.
+        /**
+ * \param[in,out] msg The allocated message pointer.
+ */
+        void rcl_interfaces__msg__ListParametersResult__fini(
+                rcl_interfaces__msg__ListParametersResult*) @nogc nothrow;
+        /// Create msg/ListParametersResult message.
+        /**
+ * It allocates the memory for the message, sets the memory to zero, and
+ * calls
+ * rcl_interfaces__msg__ListParametersResult__init().
+ * \return The pointer to the initialized message if successful,
+ * otherwise NULL
+ */
+        rcl_interfaces__msg__ListParametersResult* rcl_interfaces__msg__ListParametersResult__create() @nogc nothrow;
+        /// Destroy msg/ListParametersResult message.
+        /**
+ * It calls
+ * rcl_interfaces__msg__ListParametersResult__fini()
+ * and frees the memory of the message.
+ * \param[in,out] msg The allocated message pointer.
+ */
+        void rcl_interfaces__msg__ListParametersResult__destroy(
+                rcl_interfaces__msg__ListParametersResult*) @nogc nothrow;
+        /// Initialize array of msg/ListParametersResult messages.
+        /**
+ * It allocates the memory for the number of elements and calls
+ * rcl_interfaces__msg__ListParametersResult__init()
+ * for each element of the array.
+ * \param[in,out] array The allocated array pointer.
+ * \param[in] size The size / capacity of the array.
+ * \return true if initialization was successful, otherwise false
+ * If the array pointer is valid and the size is zero it is guaranteed
+ # to return true.
+ */
+        bool rcl_interfaces__msg__ListParametersResult__Sequence__init(
+                rcl_interfaces__msg__ListParametersResult__Sequence*, c_ulong) @nogc nothrow;
+        /// Finalize array of msg/ListParametersResult messages.
+        /**
+ * It calls
+ * rcl_interfaces__msg__ListParametersResult__fini()
+ * for each element of the array and frees the memory for the number of
+ * elements.
+ * \param[in,out] array The initialized array pointer.
+ */
+        void rcl_interfaces__msg__ListParametersResult__Sequence__fini(
+                rcl_interfaces__msg__ListParametersResult__Sequence*) @nogc nothrow;
+        /// Create array of msg/ListParametersResult messages.
+        /**
+ * It allocates the memory for the array and calls
+ * rcl_interfaces__msg__ListParametersResult__Sequence__init().
+ * \param[in] size The size / capacity of the array.
+ * \return The pointer to the initialized array if successful, otherwise NULL
+ */
+        rcl_interfaces__msg__ListParametersResult__Sequence* rcl_interfaces__msg__ListParametersResult__Sequence__create(
+                c_ulong) @nogc nothrow;
+        /// Destroy array of msg/ListParametersResult messages.
+        /**
+ * It calls
+ * rcl_interfaces__msg__ListParametersResult__Sequence__fini()
+ * on the array,
+ * and frees the memory of the array.
+ * \param[in,out] array The initialized array pointer.
+ */
+        void rcl_interfaces__msg__ListParametersResult__Sequence__destroy(
+                rcl_interfaces__msg__ListParametersResult__Sequence*) @nogc nothrow;
+
+        struct rcl_interfaces__msg__ListParametersResult
+        {
+
+            rosidl_runtime_c__String__Sequence names;
+
+            rosidl_runtime_c__String__Sequence prefixes;
+        }
+
+        struct rcl_interfaces__msg__ListParametersResult__Sequence
+        {
+
+            rcl_interfaces__msg__ListParametersResult* data;
+            /// The number of valid items in data
+            c_ulong size;
+            /// The number of allocated items in data
+            c_ulong capacity;
+        }
+
+        alias pthread_once_t = int;
+
+        const(rosidl_message_type_support_t)* rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__msg__ListParametersResult() @nogc nothrow;
+
+        alias pthread_key_t = uint;
+        /// Initialize msg/Log message.
+        /**
+ * If the init function is called twice for the same message without
+ * calling fini inbetween previously allocated memory will be leaked.
+ * \param[in,out] msg The previously allocated message pointer.
+ * Fields without a default value will not be initialized by this function.
+ * You might want to call memset(msg, 0, sizeof(
+ * rcl_interfaces__msg__Log
+ * )) before or use
+ * rcl_interfaces__msg__Log__create()
+ * to allocate and initialize the message.
+ * \return true if initialization was successful, otherwise false
+ */
+        bool rcl_interfaces__msg__Log__init(rcl_interfaces__msg__Log*) @nogc nothrow;
+        /// Finalize msg/Log message.
+        /**
+ * \param[in,out] msg The allocated message pointer.
+ */
+        void rcl_interfaces__msg__Log__fini(rcl_interfaces__msg__Log*) @nogc nothrow;
+        /// Create msg/Log message.
+        /**
+ * It allocates the memory for the message, sets the memory to zero, and
+ * calls
+ * rcl_interfaces__msg__Log__init().
+ * \return The pointer to the initialized message if successful,
+ * otherwise NULL
+ */
+        rcl_interfaces__msg__Log* rcl_interfaces__msg__Log__create() @nogc nothrow;
+        /// Destroy msg/Log message.
+        /**
+ * It calls
+ * rcl_interfaces__msg__Log__fini()
+ * and frees the memory of the message.
+ * \param[in,out] msg The allocated message pointer.
+ */
+        void rcl_interfaces__msg__Log__destroy(rcl_interfaces__msg__Log*) @nogc nothrow;
+        /// Initialize array of msg/Log messages.
+        /**
+ * It allocates the memory for the number of elements and calls
+ * rcl_interfaces__msg__Log__init()
+ * for each element of the array.
+ * \param[in,out] array The allocated array pointer.
+ * \param[in] size The size / capacity of the array.
+ * \return true if initialization was successful, otherwise false
+ * If the array pointer is valid and the size is zero it is guaranteed
+ # to return true.
+ */
+        bool rcl_interfaces__msg__Log__Sequence__init(rcl_interfaces__msg__Log__Sequence*, c_ulong) @nogc nothrow;
+        /// Finalize array of msg/Log messages.
+        /**
+ * It calls
+ * rcl_interfaces__msg__Log__fini()
+ * for each element of the array and frees the memory for the number of
+ * elements.
+ * \param[in,out] array The initialized array pointer.
+ */
+        void rcl_interfaces__msg__Log__Sequence__fini(rcl_interfaces__msg__Log__Sequence*) @nogc nothrow;
+        /// Create array of msg/Log messages.
+        /**
+ * It allocates the memory for the array and calls
+ * rcl_interfaces__msg__Log__Sequence__init().
+ * \param[in] size The size / capacity of the array.
+ * \return The pointer to the initialized array if successful, otherwise NULL
+ */
+        rcl_interfaces__msg__Log__Sequence* rcl_interfaces__msg__Log__Sequence__create(c_ulong) @nogc nothrow;
+        /// Destroy array of msg/Log messages.
+        /**
+ * It calls
+ * rcl_interfaces__msg__Log__Sequence__fini()
+ * on the array,
+ * and frees the memory of the array.
+ * \param[in,out] array The initialized array pointer.
+ */
+        void rcl_interfaces__msg__Log__Sequence__destroy(rcl_interfaces__msg__Log__Sequence*) @nogc nothrow;
+        /// Constant 'DEBUG'.
+        enum _Anonymous_60
+        {
+
+            rcl_interfaces__msg__Log__DEBUG = 10,
+        }
+
+        enum rcl_interfaces__msg__Log__DEBUG = _Anonymous_60.rcl_interfaces__msg__Log__DEBUG;
+        /// Constant 'INFO'.
+        enum _Anonymous_61
+        {
+
+            rcl_interfaces__msg__Log__INFO = 20,
+        }
+
+        enum rcl_interfaces__msg__Log__INFO = _Anonymous_61.rcl_interfaces__msg__Log__INFO;
+        /// Constant 'WARN'.
+        enum _Anonymous_62
+        {
+
+            rcl_interfaces__msg__Log__WARN = 30,
+        }
+
+        enum rcl_interfaces__msg__Log__WARN = _Anonymous_62.rcl_interfaces__msg__Log__WARN;
+        /// Constant 'ERROR'.
+        enum _Anonymous_63
+        {
+
+            rcl_interfaces__msg__Log__ERROR = 40,
+        }
+
+        enum rcl_interfaces__msg__Log__ERROR = _Anonymous_63.rcl_interfaces__msg__Log__ERROR;
+        /// Constant 'FATAL'.
+        enum _Anonymous_64
+        {
+
+            rcl_interfaces__msg__Log__FATAL = 50,
+        }
+
+        enum rcl_interfaces__msg__Log__FATAL = _Anonymous_64.rcl_interfaces__msg__Log__FATAL;
+
+        struct rcl_interfaces__msg__Log
+        {
+
+            builtin_interfaces__msg__Time stamp;
+
+            ubyte level;
+
+            rosidl_runtime_c__String name;
+
+            rosidl_runtime_c__String msg;
+
+            rosidl_runtime_c__String file;
+
+            rosidl_runtime_c__String function_;
+
+            uint line;
+        }
+
+        struct rcl_interfaces__msg__Log__Sequence
+        {
+
+            rcl_interfaces__msg__Log* data;
+            /// The number of valid items in data
+            c_ulong size;
+            /// The number of allocated items in data
+            c_ulong capacity;
+        }
+
+        const(rosidl_message_type_support_t)* rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__msg__Log() @nogc nothrow;
+
+        union pthread_condattr_t
+        {
+
+            char[4] __size;
+
+            int __align;
+        }
+        /// Initialize msg/Parameter message.
+        /**
+ * If the init function is called twice for the same message without
+ * calling fini inbetween previously allocated memory will be leaked.
+ * \param[in,out] msg The previously allocated message pointer.
+ * Fields without a default value will not be initialized by this function.
+ * You might want to call memset(msg, 0, sizeof(
+ * rcl_interfaces__msg__Parameter
+ * )) before or use
+ * rcl_interfaces__msg__Parameter__create()
+ * to allocate and initialize the message.
+ * \return true if initialization was successful, otherwise false
+ */
+        bool rcl_interfaces__msg__Parameter__init(rcl_interfaces__msg__Parameter*) @nogc nothrow;
+        /// Finalize msg/Parameter message.
+        /**
+ * \param[in,out] msg The allocated message pointer.
+ */
+        void rcl_interfaces__msg__Parameter__fini(rcl_interfaces__msg__Parameter*) @nogc nothrow;
+        /// Create msg/Parameter message.
+        /**
+ * It allocates the memory for the message, sets the memory to zero, and
+ * calls
+ * rcl_interfaces__msg__Parameter__init().
+ * \return The pointer to the initialized message if successful,
+ * otherwise NULL
+ */
+        rcl_interfaces__msg__Parameter* rcl_interfaces__msg__Parameter__create() @nogc nothrow;
+        /// Destroy msg/Parameter message.
+        /**
+ * It calls
+ * rcl_interfaces__msg__Parameter__fini()
+ * and frees the memory of the message.
+ * \param[in,out] msg The allocated message pointer.
+ */
+        void rcl_interfaces__msg__Parameter__destroy(rcl_interfaces__msg__Parameter*) @nogc nothrow;
+        /// Initialize array of msg/Parameter messages.
+        /**
+ * It allocates the memory for the number of elements and calls
+ * rcl_interfaces__msg__Parameter__init()
+ * for each element of the array.
+ * \param[in,out] array The allocated array pointer.
+ * \param[in] size The size / capacity of the array.
+ * \return true if initialization was successful, otherwise false
+ * If the array pointer is valid and the size is zero it is guaranteed
+ # to return true.
+ */
+        bool rcl_interfaces__msg__Parameter__Sequence__init(
+                rcl_interfaces__msg__Parameter__Sequence*, c_ulong) @nogc nothrow;
+        /// Finalize array of msg/Parameter messages.
+        /**
+ * It calls
+ * rcl_interfaces__msg__Parameter__fini()
+ * for each element of the array and frees the memory for the number of
+ * elements.
+ * \param[in,out] array The initialized array pointer.
+ */
+        void rcl_interfaces__msg__Parameter__Sequence__fini(
+                rcl_interfaces__msg__Parameter__Sequence*) @nogc nothrow;
+        /// Create array of msg/Parameter messages.
+        /**
+ * It allocates the memory for the array and calls
+ * rcl_interfaces__msg__Parameter__Sequence__init().
+ * \param[in] size The size / capacity of the array.
+ * \return The pointer to the initialized array if successful, otherwise NULL
+ */
+        rcl_interfaces__msg__Parameter__Sequence* rcl_interfaces__msg__Parameter__Sequence__create(
+                c_ulong) @nogc nothrow;
+        /// Destroy array of msg/Parameter messages.
+        /**
+ * It calls
+ * rcl_interfaces__msg__Parameter__Sequence__fini()
+ * on the array,
+ * and frees the memory of the array.
+ * \param[in,out] array The initialized array pointer.
+ */
+        void rcl_interfaces__msg__Parameter__Sequence__destroy(
+                rcl_interfaces__msg__Parameter__Sequence*) @nogc nothrow;
+
+        struct rcl_interfaces__msg__Parameter
+        {
+
+            rosidl_runtime_c__String name;
+
+            rcl_interfaces__msg__ParameterValue value;
+        }
+
+        struct rcl_interfaces__msg__Parameter__Sequence
+        {
+
+            rcl_interfaces__msg__Parameter* data;
+            /// The number of valid items in data
+            c_ulong size;
+            /// The number of allocated items in data
+            c_ulong capacity;
+        }
+
+        const(rosidl_message_type_support_t)* rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__msg__Parameter() @nogc nothrow;
+
+        union pthread_mutexattr_t
+        {
+
+            char[4] __size;
+
+            int __align;
+        }
+        /// Initialize msg/ParameterDescriptor message.
+        /**
+ * If the init function is called twice for the same message without
+ * calling fini inbetween previously allocated memory will be leaked.
+ * \param[in,out] msg The previously allocated message pointer.
+ * Fields without a default value will not be initialized by this function.
+ * You might want to call memset(msg, 0, sizeof(
+ * rcl_interfaces__msg__ParameterDescriptor
+ * )) before or use
+ * rcl_interfaces__msg__ParameterDescriptor__create()
+ * to allocate and initialize the message.
+ * \return true if initialization was successful, otherwise false
+ */
+        bool rcl_interfaces__msg__ParameterDescriptor__init(
+                rcl_interfaces__msg__ParameterDescriptor*) @nogc nothrow;
+        /// Finalize msg/ParameterDescriptor message.
+        /**
+ * \param[in,out] msg The allocated message pointer.
+ */
+        void rcl_interfaces__msg__ParameterDescriptor__fini(
+                rcl_interfaces__msg__ParameterDescriptor*) @nogc nothrow;
+        /// Create msg/ParameterDescriptor message.
+        /**
+ * It allocates the memory for the message, sets the memory to zero, and
+ * calls
+ * rcl_interfaces__msg__ParameterDescriptor__init().
+ * \return The pointer to the initialized message if successful,
+ * otherwise NULL
+ */
+        rcl_interfaces__msg__ParameterDescriptor* rcl_interfaces__msg__ParameterDescriptor__create() @nogc nothrow;
+        /// Destroy msg/ParameterDescriptor message.
+        /**
+ * It calls
+ * rcl_interfaces__msg__ParameterDescriptor__fini()
+ * and frees the memory of the message.
+ * \param[in,out] msg The allocated message pointer.
+ */
+        void rcl_interfaces__msg__ParameterDescriptor__destroy(
+                rcl_interfaces__msg__ParameterDescriptor*) @nogc nothrow;
+        /// Initialize array of msg/ParameterDescriptor messages.
+        /**
+ * It allocates the memory for the number of elements and calls
+ * rcl_interfaces__msg__ParameterDescriptor__init()
+ * for each element of the array.
+ * \param[in,out] array The allocated array pointer.
+ * \param[in] size The size / capacity of the array.
+ * \return true if initialization was successful, otherwise false
+ * If the array pointer is valid and the size is zero it is guaranteed
+ # to return true.
+ */
+        bool rcl_interfaces__msg__ParameterDescriptor__Sequence__init(
+                rcl_interfaces__msg__ParameterDescriptor__Sequence*, c_ulong) @nogc nothrow;
+        /// Finalize array of msg/ParameterDescriptor messages.
+        /**
+ * It calls
+ * rcl_interfaces__msg__ParameterDescriptor__fini()
+ * for each element of the array and frees the memory for the number of
+ * elements.
+ * \param[in,out] array The initialized array pointer.
+ */
+        void rcl_interfaces__msg__ParameterDescriptor__Sequence__fini(
+                rcl_interfaces__msg__ParameterDescriptor__Sequence*) @nogc nothrow;
+        /// Create array of msg/ParameterDescriptor messages.
+        /**
+ * It allocates the memory for the array and calls
+ * rcl_interfaces__msg__ParameterDescriptor__Sequence__init().
+ * \param[in] size The size / capacity of the array.
+ * \return The pointer to the initialized array if successful, otherwise NULL
+ */
+        rcl_interfaces__msg__ParameterDescriptor__Sequence* rcl_interfaces__msg__ParameterDescriptor__Sequence__create(
+                c_ulong) @nogc nothrow;
+        /// Destroy array of msg/ParameterDescriptor messages.
+        /**
+ * It calls
+ * rcl_interfaces__msg__ParameterDescriptor__Sequence__fini()
+ * on the array,
+ * and frees the memory of the array.
+ * \param[in,out] array The initialized array pointer.
+ */
+        void rcl_interfaces__msg__ParameterDescriptor__Sequence__destroy(
+                rcl_interfaces__msg__ParameterDescriptor__Sequence*) @nogc nothrow;
+
+        alias pthread_t = c_ulong;
+
+        enum _Anonymous_65
+        {
+
+            rcl_interfaces__msg__ParameterDescriptor__floating_point_range__MAX_SIZE = 1,
+        }
+
+        enum rcl_interfaces__msg__ParameterDescriptor__floating_point_range__MAX_SIZE = _Anonymous_65
+                .rcl_interfaces__msg__ParameterDescriptor__floating_point_range__MAX_SIZE;
+
+        enum _Anonymous_66
+        {
+
+            rcl_interfaces__msg__ParameterDescriptor__integer_range__MAX_SIZE = 1,
+        }
+
+        enum rcl_interfaces__msg__ParameterDescriptor__integer_range__MAX_SIZE = _Anonymous_66
+                .rcl_interfaces__msg__ParameterDescriptor__integer_range__MAX_SIZE;
+
+        struct rcl_interfaces__msg__ParameterDescriptor
+        {
+
+            rosidl_runtime_c__String name;
+
+            ubyte type;
+
+            rosidl_runtime_c__String description;
+
+            rosidl_runtime_c__String additional_constraints;
+
+            bool read_only;
+
+            rcl_interfaces__msg__FloatingPointRange__Sequence floating_point_range;
+
+            rcl_interfaces__msg__IntegerRange__Sequence integer_range;
+        }
+
+        struct rcl_interfaces__msg__ParameterDescriptor__Sequence
+        {
+
+            rcl_interfaces__msg__ParameterDescriptor* data;
+            /// The number of valid items in data
+            c_ulong size;
+            /// The number of allocated items in data
+            c_ulong capacity;
+        }
+
+        const(rosidl_message_type_support_t)* rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__msg__ParameterDescriptor() @nogc nothrow;
+        /// Initialize msg/ParameterEvent message.
+        /**
+ * If the init function is called twice for the same message without
+ * calling fini inbetween previously allocated memory will be leaked.
+ * \param[in,out] msg The previously allocated message pointer.
+ * Fields without a default value will not be initialized by this function.
+ * You might want to call memset(msg, 0, sizeof(
+ * rcl_interfaces__msg__ParameterEvent
+ * )) before or use
+ * rcl_interfaces__msg__ParameterEvent__create()
+ * to allocate and initialize the message.
+ * \return true if initialization was successful, otherwise false
+ */
+        bool rcl_interfaces__msg__ParameterEvent__init(rcl_interfaces__msg__ParameterEvent*) @nogc nothrow;
+        /// Finalize msg/ParameterEvent message.
+        /**
+ * \param[in,out] msg The allocated message pointer.
+ */
+        void rcl_interfaces__msg__ParameterEvent__fini(rcl_interfaces__msg__ParameterEvent*) @nogc nothrow;
+        /// Create msg/ParameterEvent message.
+        /**
+ * It allocates the memory for the message, sets the memory to zero, and
+ * calls
+ * rcl_interfaces__msg__ParameterEvent__init().
+ * \return The pointer to the initialized message if successful,
+ * otherwise NULL
+ */
+        rcl_interfaces__msg__ParameterEvent* rcl_interfaces__msg__ParameterEvent__create() @nogc nothrow;
+        /// Destroy msg/ParameterEvent message.
+        /**
+ * It calls
+ * rcl_interfaces__msg__ParameterEvent__fini()
+ * and frees the memory of the message.
+ * \param[in,out] msg The allocated message pointer.
+ */
+        void rcl_interfaces__msg__ParameterEvent__destroy(rcl_interfaces__msg__ParameterEvent*) @nogc nothrow;
+        /// Initialize array of msg/ParameterEvent messages.
+        /**
+ * It allocates the memory for the number of elements and calls
+ * rcl_interfaces__msg__ParameterEvent__init()
+ * for each element of the array.
+ * \param[in,out] array The allocated array pointer.
+ * \param[in] size The size / capacity of the array.
+ * \return true if initialization was successful, otherwise false
+ * If the array pointer is valid and the size is zero it is guaranteed
+ # to return true.
+ */
+        bool rcl_interfaces__msg__ParameterEvent__Sequence__init(
+                rcl_interfaces__msg__ParameterEvent__Sequence*, c_ulong) @nogc nothrow;
+        /// Finalize array of msg/ParameterEvent messages.
+        /**
+ * It calls
+ * rcl_interfaces__msg__ParameterEvent__fini()
+ * for each element of the array and frees the memory for the number of
+ * elements.
+ * \param[in,out] array The initialized array pointer.
+ */
+        void rcl_interfaces__msg__ParameterEvent__Sequence__fini(
+                rcl_interfaces__msg__ParameterEvent__Sequence*) @nogc nothrow;
+        /// Create array of msg/ParameterEvent messages.
+        /**
+ * It allocates the memory for the array and calls
+ * rcl_interfaces__msg__ParameterEvent__Sequence__init().
+ * \param[in] size The size / capacity of the array.
+ * \return The pointer to the initialized array if successful, otherwise NULL
+ */
+        rcl_interfaces__msg__ParameterEvent__Sequence* rcl_interfaces__msg__ParameterEvent__Sequence__create(
+                c_ulong) @nogc nothrow;
+        /// Destroy array of msg/ParameterEvent messages.
+        /**
+ * It calls
+ * rcl_interfaces__msg__ParameterEvent__Sequence__fini()
+ * on the array,
+ * and frees the memory of the array.
+ * \param[in,out] array The initialized array pointer.
+ */
+        void rcl_interfaces__msg__ParameterEvent__Sequence__destroy(
+                rcl_interfaces__msg__ParameterEvent__Sequence*) @nogc nothrow;
+
+        struct rcl_interfaces__msg__ParameterEvent
+        {
+
+            builtin_interfaces__msg__Time stamp;
+
+            rosidl_runtime_c__String node;
+
+            rcl_interfaces__msg__Parameter__Sequence new_parameters;
+
+            rcl_interfaces__msg__Parameter__Sequence changed_parameters;
+
+            rcl_interfaces__msg__Parameter__Sequence deleted_parameters;
+        }
+
+        struct rcl_interfaces__msg__ParameterEvent__Sequence
+        {
+
+            rcl_interfaces__msg__ParameterEvent* data;
+            /// The number of valid items in data
+            c_ulong size;
+            /// The number of allocated items in data
+            c_ulong capacity;
+        }
+
+        const(rosidl_message_type_support_t)* rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__msg__ParameterEvent() @nogc nothrow;
+        /// Initialize msg/ParameterEventDescriptors message.
+        /**
+ * If the init function is called twice for the same message without
+ * calling fini inbetween previously allocated memory will be leaked.
+ * \param[in,out] msg The previously allocated message pointer.
+ * Fields without a default value will not be initialized by this function.
+ * You might want to call memset(msg, 0, sizeof(
+ * rcl_interfaces__msg__ParameterEventDescriptors
+ * )) before or use
+ * rcl_interfaces__msg__ParameterEventDescriptors__create()
+ * to allocate and initialize the message.
+ * \return true if initialization was successful, otherwise false
+ */
+        bool rcl_interfaces__msg__ParameterEventDescriptors__init(
+                rcl_interfaces__msg__ParameterEventDescriptors*) @nogc nothrow;
+        /// Finalize msg/ParameterEventDescriptors message.
+        /**
+ * \param[in,out] msg The allocated message pointer.
+ */
+        void rcl_interfaces__msg__ParameterEventDescriptors__fini(
+                rcl_interfaces__msg__ParameterEventDescriptors*) @nogc nothrow;
+        /// Create msg/ParameterEventDescriptors message.
+        /**
+ * It allocates the memory for the message, sets the memory to zero, and
+ * calls
+ * rcl_interfaces__msg__ParameterEventDescriptors__init().
+ * \return The pointer to the initialized message if successful,
+ * otherwise NULL
+ */
+        rcl_interfaces__msg__ParameterEventDescriptors* rcl_interfaces__msg__ParameterEventDescriptors__create() @nogc nothrow;
+        /// Destroy msg/ParameterEventDescriptors message.
+        /**
+ * It calls
+ * rcl_interfaces__msg__ParameterEventDescriptors__fini()
+ * and frees the memory of the message.
+ * \param[in,out] msg The allocated message pointer.
+ */
+        void rcl_interfaces__msg__ParameterEventDescriptors__destroy(
+                rcl_interfaces__msg__ParameterEventDescriptors*) @nogc nothrow;
+        /// Initialize array of msg/ParameterEventDescriptors messages.
+        /**
+ * It allocates the memory for the number of elements and calls
+ * rcl_interfaces__msg__ParameterEventDescriptors__init()
+ * for each element of the array.
+ * \param[in,out] array The allocated array pointer.
+ * \param[in] size The size / capacity of the array.
+ * \return true if initialization was successful, otherwise false
+ * If the array pointer is valid and the size is zero it is guaranteed
+ # to return true.
+ */
+        bool rcl_interfaces__msg__ParameterEventDescriptors__Sequence__init(
+                rcl_interfaces__msg__ParameterEventDescriptors__Sequence*, c_ulong) @nogc nothrow;
+        /// Finalize array of msg/ParameterEventDescriptors messages.
+        /**
+ * It calls
+ * rcl_interfaces__msg__ParameterEventDescriptors__fini()
+ * for each element of the array and frees the memory for the number of
+ * elements.
+ * \param[in,out] array The initialized array pointer.
+ */
+        void rcl_interfaces__msg__ParameterEventDescriptors__Sequence__fini(
+                rcl_interfaces__msg__ParameterEventDescriptors__Sequence*) @nogc nothrow;
+        /// Create array of msg/ParameterEventDescriptors messages.
+        /**
+ * It allocates the memory for the array and calls
+ * rcl_interfaces__msg__ParameterEventDescriptors__Sequence__init().
+ * \param[in] size The size / capacity of the array.
+ * \return The pointer to the initialized array if successful, otherwise NULL
+ */
+        rcl_interfaces__msg__ParameterEventDescriptors__Sequence* rcl_interfaces__msg__ParameterEventDescriptors__Sequence__create(
+                c_ulong) @nogc nothrow;
+        /// Destroy array of msg/ParameterEventDescriptors messages.
+        /**
+ * It calls
+ * rcl_interfaces__msg__ParameterEventDescriptors__Sequence__fini()
+ * on the array,
+ * and frees the memory of the array.
+ * \param[in,out] array The initialized array pointer.
+ */
+        void rcl_interfaces__msg__ParameterEventDescriptors__Sequence__destroy(
+                rcl_interfaces__msg__ParameterEventDescriptors__Sequence*) @nogc nothrow;
+
+        struct rcl_interfaces__msg__ParameterEventDescriptors
+        {
+
+            rcl_interfaces__msg__ParameterDescriptor__Sequence new_parameters;
+
+            rcl_interfaces__msg__ParameterDescriptor__Sequence changed_parameters;
+
+            rcl_interfaces__msg__ParameterDescriptor__Sequence deleted_parameters;
+        }
+
+        struct rcl_interfaces__msg__ParameterEventDescriptors__Sequence
+        {
+
+            rcl_interfaces__msg__ParameterEventDescriptors* data;
+            /// The number of valid items in data
+            c_ulong size;
+            /// The number of allocated items in data
+            c_ulong capacity;
+        }
+
+        const(rosidl_message_type_support_t)* rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__msg__ParameterEventDescriptors() @nogc nothrow;
+        /// Initialize msg/ParameterType message.
+        /**
+ * If the init function is called twice for the same message without
+ * calling fini inbetween previously allocated memory will be leaked.
+ * \param[in,out] msg The previously allocated message pointer.
+ * Fields without a default value will not be initialized by this function.
+ * You might want to call memset(msg, 0, sizeof(
+ * rcl_interfaces__msg__ParameterType
+ * )) before or use
+ * rcl_interfaces__msg__ParameterType__create()
+ * to allocate and initialize the message.
+ * \return true if initialization was successful, otherwise false
+ */
+        bool rcl_interfaces__msg__ParameterType__init(rcl_interfaces__msg__ParameterType*) @nogc nothrow;
+        /// Finalize msg/ParameterType message.
+        /**
+ * \param[in,out] msg The allocated message pointer.
+ */
+        void rcl_interfaces__msg__ParameterType__fini(rcl_interfaces__msg__ParameterType*) @nogc nothrow;
+        /// Create msg/ParameterType message.
+        /**
+ * It allocates the memory for the message, sets the memory to zero, and
+ * calls
+ * rcl_interfaces__msg__ParameterType__init().
+ * \return The pointer to the initialized message if successful,
+ * otherwise NULL
+ */
+        rcl_interfaces__msg__ParameterType* rcl_interfaces__msg__ParameterType__create() @nogc nothrow;
+        /// Destroy msg/ParameterType message.
+        /**
+ * It calls
+ * rcl_interfaces__msg__ParameterType__fini()
+ * and frees the memory of the message.
+ * \param[in,out] msg The allocated message pointer.
+ */
+        void rcl_interfaces__msg__ParameterType__destroy(rcl_interfaces__msg__ParameterType*) @nogc nothrow;
+        /// Initialize array of msg/ParameterType messages.
+        /**
+ * It allocates the memory for the number of elements and calls
+ * rcl_interfaces__msg__ParameterType__init()
+ * for each element of the array.
+ * \param[in,out] array The allocated array pointer.
+ * \param[in] size The size / capacity of the array.
+ * \return true if initialization was successful, otherwise false
+ * If the array pointer is valid and the size is zero it is guaranteed
+ # to return true.
+ */
+        bool rcl_interfaces__msg__ParameterType__Sequence__init(
+                rcl_interfaces__msg__ParameterType__Sequence*, c_ulong) @nogc nothrow;
+        /// Finalize array of msg/ParameterType messages.
+        /**
+ * It calls
+ * rcl_interfaces__msg__ParameterType__fini()
+ * for each element of the array and frees the memory for the number of
+ * elements.
+ * \param[in,out] array The initialized array pointer.
+ */
+        void rcl_interfaces__msg__ParameterType__Sequence__fini(
+                rcl_interfaces__msg__ParameterType__Sequence*) @nogc nothrow;
+        /// Create array of msg/ParameterType messages.
+        /**
+ * It allocates the memory for the array and calls
+ * rcl_interfaces__msg__ParameterType__Sequence__init().
+ * \param[in] size The size / capacity of the array.
+ * \return The pointer to the initialized array if successful, otherwise NULL
+ */
+        rcl_interfaces__msg__ParameterType__Sequence* rcl_interfaces__msg__ParameterType__Sequence__create(
+                c_ulong) @nogc nothrow;
+        /// Destroy array of msg/ParameterType messages.
+        /**
+ * It calls
+ * rcl_interfaces__msg__ParameterType__Sequence__fini()
+ * on the array,
+ * and frees the memory of the array.
+ * \param[in,out] array The initialized array pointer.
+ */
+        void rcl_interfaces__msg__ParameterType__Sequence__destroy(
+                rcl_interfaces__msg__ParameterType__Sequence*) @nogc nothrow;
+        /// Constant 'PARAMETER_NOT_SET'.
+        enum _Anonymous_67
+        {
+
+            rcl_interfaces__msg__ParameterType__PARAMETER_NOT_SET = 0,
+        }
+
+        enum rcl_interfaces__msg__ParameterType__PARAMETER_NOT_SET = _Anonymous_67
+                .rcl_interfaces__msg__ParameterType__PARAMETER_NOT_SET;
+        /// Constant 'PARAMETER_BOOL'.
+        enum _Anonymous_68
+        {
+
+            rcl_interfaces__msg__ParameterType__PARAMETER_BOOL = 1,
+        }
+
+        enum rcl_interfaces__msg__ParameterType__PARAMETER_BOOL = _Anonymous_68
+                .rcl_interfaces__msg__ParameterType__PARAMETER_BOOL;
+        /// Constant 'PARAMETER_INTEGER'.
+        enum _Anonymous_69
+        {
+
+            rcl_interfaces__msg__ParameterType__PARAMETER_INTEGER = 2,
+        }
+
+        enum rcl_interfaces__msg__ParameterType__PARAMETER_INTEGER = _Anonymous_69
+                .rcl_interfaces__msg__ParameterType__PARAMETER_INTEGER;
+        /// Constant 'PARAMETER_DOUBLE'.
+        enum _Anonymous_70
+        {
+
+            rcl_interfaces__msg__ParameterType__PARAMETER_DOUBLE = 3,
+        }
+
+        enum rcl_interfaces__msg__ParameterType__PARAMETER_DOUBLE = _Anonymous_70
+                .rcl_interfaces__msg__ParameterType__PARAMETER_DOUBLE;
+        /// Constant 'PARAMETER_STRING'.
+        enum _Anonymous_71
+        {
+
+            rcl_interfaces__msg__ParameterType__PARAMETER_STRING = 4,
+        }
+
+        enum rcl_interfaces__msg__ParameterType__PARAMETER_STRING = _Anonymous_71
+                .rcl_interfaces__msg__ParameterType__PARAMETER_STRING;
+        /// Constant 'PARAMETER_BYTE_ARRAY'.
+        enum _Anonymous_72
+        {
+
+            rcl_interfaces__msg__ParameterType__PARAMETER_BYTE_ARRAY = 5,
+        }
+
+        enum rcl_interfaces__msg__ParameterType__PARAMETER_BYTE_ARRAY = _Anonymous_72
+                .rcl_interfaces__msg__ParameterType__PARAMETER_BYTE_ARRAY;
+        /// Constant 'PARAMETER_BOOL_ARRAY'.
+        enum _Anonymous_73
+        {
+
+            rcl_interfaces__msg__ParameterType__PARAMETER_BOOL_ARRAY = 6,
+        }
+
+        enum rcl_interfaces__msg__ParameterType__PARAMETER_BOOL_ARRAY = _Anonymous_73
+                .rcl_interfaces__msg__ParameterType__PARAMETER_BOOL_ARRAY;
+        /// Constant 'PARAMETER_INTEGER_ARRAY'.
+        enum _Anonymous_74
+        {
+
+            rcl_interfaces__msg__ParameterType__PARAMETER_INTEGER_ARRAY = 7,
+        }
+
+        enum rcl_interfaces__msg__ParameterType__PARAMETER_INTEGER_ARRAY = _Anonymous_74
+                .rcl_interfaces__msg__ParameterType__PARAMETER_INTEGER_ARRAY;
+        /// Constant 'PARAMETER_DOUBLE_ARRAY'.
+        enum _Anonymous_75
+        {
+
+            rcl_interfaces__msg__ParameterType__PARAMETER_DOUBLE_ARRAY = 8,
+        }
+
+        enum rcl_interfaces__msg__ParameterType__PARAMETER_DOUBLE_ARRAY = _Anonymous_75
+                .rcl_interfaces__msg__ParameterType__PARAMETER_DOUBLE_ARRAY;
+        /// Constant 'PARAMETER_STRING_ARRAY'.
+        enum _Anonymous_76
+        {
+
+            rcl_interfaces__msg__ParameterType__PARAMETER_STRING_ARRAY = 9,
+        }
+
+        enum rcl_interfaces__msg__ParameterType__PARAMETER_STRING_ARRAY = _Anonymous_76
+                .rcl_interfaces__msg__ParameterType__PARAMETER_STRING_ARRAY;
+
+        struct rcl_interfaces__msg__ParameterType
+        {
+
+            ubyte structure_needs_at_least_one_member;
+        }
+
+        struct rcl_interfaces__msg__ParameterType__Sequence
+        {
+
+            rcl_interfaces__msg__ParameterType* data;
+            /// The number of valid items in data
+            c_ulong size;
+            /// The number of allocated items in data
+            c_ulong capacity;
+        }
+
+        const(rosidl_message_type_support_t)* rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__msg__ParameterType() @nogc nothrow;
+        /// Initialize msg/ParameterValue message.
+        /**
+ * If the init function is called twice for the same message without
+ * calling fini inbetween previously allocated memory will be leaked.
+ * \param[in,out] msg The previously allocated message pointer.
+ * Fields without a default value will not be initialized by this function.
+ * You might want to call memset(msg, 0, sizeof(
+ * rcl_interfaces__msg__ParameterValue
+ * )) before or use
+ * rcl_interfaces__msg__ParameterValue__create()
+ * to allocate and initialize the message.
+ * \return true if initialization was successful, otherwise false
+ */
+        bool rcl_interfaces__msg__ParameterValue__init(rcl_interfaces__msg__ParameterValue*) @nogc nothrow;
+        /// Finalize msg/ParameterValue message.
+        /**
+ * \param[in,out] msg The allocated message pointer.
+ */
+        void rcl_interfaces__msg__ParameterValue__fini(rcl_interfaces__msg__ParameterValue*) @nogc nothrow;
+        /// Create msg/ParameterValue message.
+        /**
+ * It allocates the memory for the message, sets the memory to zero, and
+ * calls
+ * rcl_interfaces__msg__ParameterValue__init().
+ * \return The pointer to the initialized message if successful,
+ * otherwise NULL
+ */
+        rcl_interfaces__msg__ParameterValue* rcl_interfaces__msg__ParameterValue__create() @nogc nothrow;
+        /// Destroy msg/ParameterValue message.
+        /**
+ * It calls
+ * rcl_interfaces__msg__ParameterValue__fini()
+ * and frees the memory of the message.
+ * \param[in,out] msg The allocated message pointer.
+ */
+        void rcl_interfaces__msg__ParameterValue__destroy(rcl_interfaces__msg__ParameterValue*) @nogc nothrow;
+        /// Initialize array of msg/ParameterValue messages.
+        /**
+ * It allocates the memory for the number of elements and calls
+ * rcl_interfaces__msg__ParameterValue__init()
+ * for each element of the array.
+ * \param[in,out] array The allocated array pointer.
+ * \param[in] size The size / capacity of the array.
+ * \return true if initialization was successful, otherwise false
+ * If the array pointer is valid and the size is zero it is guaranteed
+ # to return true.
+ */
+        bool rcl_interfaces__msg__ParameterValue__Sequence__init(
+                rcl_interfaces__msg__ParameterValue__Sequence*, c_ulong) @nogc nothrow;
+        /// Finalize array of msg/ParameterValue messages.
+        /**
+ * It calls
+ * rcl_interfaces__msg__ParameterValue__fini()
+ * for each element of the array and frees the memory for the number of
+ * elements.
+ * \param[in,out] array The initialized array pointer.
+ */
+        void rcl_interfaces__msg__ParameterValue__Sequence__fini(
+                rcl_interfaces__msg__ParameterValue__Sequence*) @nogc nothrow;
+        /// Create array of msg/ParameterValue messages.
+        /**
+ * It allocates the memory for the array and calls
+ * rcl_interfaces__msg__ParameterValue__Sequence__init().
+ * \param[in] size The size / capacity of the array.
+ * \return The pointer to the initialized array if successful, otherwise NULL
+ */
+        rcl_interfaces__msg__ParameterValue__Sequence* rcl_interfaces__msg__ParameterValue__Sequence__create(
+                c_ulong) @nogc nothrow;
+        /// Destroy array of msg/ParameterValue messages.
+        /**
+ * It calls
+ * rcl_interfaces__msg__ParameterValue__Sequence__fini()
+ * on the array,
+ * and frees the memory of the array.
+ * \param[in,out] array The initialized array pointer.
+ */
+        void rcl_interfaces__msg__ParameterValue__Sequence__destroy(
+                rcl_interfaces__msg__ParameterValue__Sequence*) @nogc nothrow;
+
+        struct rcl_interfaces__msg__ParameterValue
+        {
+
+            ubyte type;
+
+            bool bool_value;
+
+            c_long integer_value;
+
+            double double_value;
+
+            rosidl_runtime_c__String string_value;
+
+            rosidl_runtime_c__octet__Sequence byte_array_value;
+
+            rosidl_runtime_c__boolean__Sequence bool_array_value;
+
+            rosidl_runtime_c__int64__Sequence integer_array_value;
+
+            rosidl_runtime_c__double__Sequence double_array_value;
+
+            rosidl_runtime_c__String__Sequence string_array_value;
+        }
+
+        struct rcl_interfaces__msg__ParameterValue__Sequence
+        {
+
+            rcl_interfaces__msg__ParameterValue* data;
+            /// The number of valid items in data
+            c_ulong size;
+            /// The number of allocated items in data
+            c_ulong capacity;
+        }
+
+        const(rosidl_message_type_support_t)* rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__msg__ParameterValue() @nogc nothrow;
+        /// Initialize msg/SetParametersResult message.
+        /**
+ * If the init function is called twice for the same message without
+ * calling fini inbetween previously allocated memory will be leaked.
+ * \param[in,out] msg The previously allocated message pointer.
+ * Fields without a default value will not be initialized by this function.
+ * You might want to call memset(msg, 0, sizeof(
+ * rcl_interfaces__msg__SetParametersResult
+ * )) before or use
+ * rcl_interfaces__msg__SetParametersResult__create()
+ * to allocate and initialize the message.
+ * \return true if initialization was successful, otherwise false
+ */
+        bool rcl_interfaces__msg__SetParametersResult__init(
+                rcl_interfaces__msg__SetParametersResult*) @nogc nothrow;
+        /// Finalize msg/SetParametersResult message.
+        /**
+ * \param[in,out] msg The allocated message pointer.
+ */
+        void rcl_interfaces__msg__SetParametersResult__fini(
+                rcl_interfaces__msg__SetParametersResult*) @nogc nothrow;
+        /// Create msg/SetParametersResult message.
+        /**
+ * It allocates the memory for the message, sets the memory to zero, and
+ * calls
+ * rcl_interfaces__msg__SetParametersResult__init().
+ * \return The pointer to the initialized message if successful,
+ * otherwise NULL
+ */
+        rcl_interfaces__msg__SetParametersResult* rcl_interfaces__msg__SetParametersResult__create() @nogc nothrow;
+        /// Destroy msg/SetParametersResult message.
+        /**
+ * It calls
+ * rcl_interfaces__msg__SetParametersResult__fini()
+ * and frees the memory of the message.
+ * \param[in,out] msg The allocated message pointer.
+ */
+        void rcl_interfaces__msg__SetParametersResult__destroy(
+                rcl_interfaces__msg__SetParametersResult*) @nogc nothrow;
+        /// Initialize array of msg/SetParametersResult messages.
+        /**
+ * It allocates the memory for the number of elements and calls
+ * rcl_interfaces__msg__SetParametersResult__init()
+ * for each element of the array.
+ * \param[in,out] array The allocated array pointer.
+ * \param[in] size The size / capacity of the array.
+ * \return true if initialization was successful, otherwise false
+ * If the array pointer is valid and the size is zero it is guaranteed
+ # to return true.
+ */
+        bool rcl_interfaces__msg__SetParametersResult__Sequence__init(
+                rcl_interfaces__msg__SetParametersResult__Sequence*, c_ulong) @nogc nothrow;
+        /// Finalize array of msg/SetParametersResult messages.
+        /**
+ * It calls
+ * rcl_interfaces__msg__SetParametersResult__fini()
+ * for each element of the array and frees the memory for the number of
+ * elements.
+ * \param[in,out] array The initialized array pointer.
+ */
+        void rcl_interfaces__msg__SetParametersResult__Sequence__fini(
+                rcl_interfaces__msg__SetParametersResult__Sequence*) @nogc nothrow;
+        /// Create array of msg/SetParametersResult messages.
+        /**
+ * It allocates the memory for the array and calls
+ * rcl_interfaces__msg__SetParametersResult__Sequence__init().
+ * \param[in] size The size / capacity of the array.
+ * \return The pointer to the initialized array if successful, otherwise NULL
+ */
+        rcl_interfaces__msg__SetParametersResult__Sequence* rcl_interfaces__msg__SetParametersResult__Sequence__create(
+                c_ulong) @nogc nothrow;
+        /// Destroy array of msg/SetParametersResult messages.
+        /**
+ * It calls
+ * rcl_interfaces__msg__SetParametersResult__Sequence__fini()
+ * on the array,
+ * and frees the memory of the array.
+ * \param[in,out] array The initialized array pointer.
+ */
+        void rcl_interfaces__msg__SetParametersResult__Sequence__destroy(
+                rcl_interfaces__msg__SetParametersResult__Sequence*) @nogc nothrow;
+
+        struct rcl_interfaces__msg__SetParametersResult
+        {
+
+            bool successful;
+
+            rosidl_runtime_c__String reason;
+        }
+
+        struct rcl_interfaces__msg__SetParametersResult__Sequence
+        {
+
+            rcl_interfaces__msg__SetParametersResult* data;
+            /// The number of valid items in data
+            c_ulong size;
+            /// The number of allocated items in data
+            c_ulong capacity;
+        }
+
+        const(rosidl_message_type_support_t)* rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__msg__SetParametersResult() @nogc nothrow;
+        /// Initialize srv/DescribeParameters message.
+        /**
+ * If the init function is called twice for the same message without
+ * calling fini inbetween previously allocated memory will be leaked.
+ * \param[in,out] msg The previously allocated message pointer.
+ * Fields without a default value will not be initialized by this function.
+ * You might want to call memset(msg, 0, sizeof(
+ * rcl_interfaces__srv__DescribeParameters_Request
+ * )) before or use
+ * rcl_interfaces__srv__DescribeParameters_Request__create()
+ * to allocate and initialize the message.
+ * \return true if initialization was successful, otherwise false
+ */
+        bool rcl_interfaces__srv__DescribeParameters_Request__init(
+                rcl_interfaces__srv__DescribeParameters_Request*) @nogc nothrow;
+        /// Finalize srv/DescribeParameters message.
+        /**
+ * \param[in,out] msg The allocated message pointer.
+ */
+        void rcl_interfaces__srv__DescribeParameters_Request__fini(
+                rcl_interfaces__srv__DescribeParameters_Request*) @nogc nothrow;
+        /// Create srv/DescribeParameters message.
+        /**
+ * It allocates the memory for the message, sets the memory to zero, and
+ * calls
+ * rcl_interfaces__srv__DescribeParameters_Request__init().
+ * \return The pointer to the initialized message if successful,
+ * otherwise NULL
+ */
+        rcl_interfaces__srv__DescribeParameters_Request* rcl_interfaces__srv__DescribeParameters_Request__create() @nogc nothrow;
+        /// Destroy srv/DescribeParameters message.
+        /**
+ * It calls
+ * rcl_interfaces__srv__DescribeParameters_Request__fini()
+ * and frees the memory of the message.
+ * \param[in,out] msg The allocated message pointer.
+ */
+        void rcl_interfaces__srv__DescribeParameters_Request__destroy(
+                rcl_interfaces__srv__DescribeParameters_Request*) @nogc nothrow;
+        /// Initialize array of srv/DescribeParameters messages.
+        /**
+ * It allocates the memory for the number of elements and calls
+ * rcl_interfaces__srv__DescribeParameters_Request__init()
+ * for each element of the array.
+ * \param[in,out] array The allocated array pointer.
+ * \param[in] size The size / capacity of the array.
+ * \return true if initialization was successful, otherwise false
+ * If the array pointer is valid and the size is zero it is guaranteed
+ # to return true.
+ */
+        bool rcl_interfaces__srv__DescribeParameters_Request__Sequence__init(
+                rcl_interfaces__srv__DescribeParameters_Request__Sequence*, c_ulong) @nogc nothrow;
+        /// Finalize array of srv/DescribeParameters messages.
+        /**
+ * It calls
+ * rcl_interfaces__srv__DescribeParameters_Request__fini()
+ * for each element of the array and frees the memory for the number of
+ * elements.
+ * \param[in,out] array The initialized array pointer.
+ */
+        void rcl_interfaces__srv__DescribeParameters_Request__Sequence__fini(
+                rcl_interfaces__srv__DescribeParameters_Request__Sequence*) @nogc nothrow;
+        /// Create array of srv/DescribeParameters messages.
+        /**
+ * It allocates the memory for the array and calls
+ * rcl_interfaces__srv__DescribeParameters_Request__Sequence__init().
+ * \param[in] size The size / capacity of the array.
+ * \return The pointer to the initialized array if successful, otherwise NULL
+ */
+        rcl_interfaces__srv__DescribeParameters_Request__Sequence* rcl_interfaces__srv__DescribeParameters_Request__Sequence__create(
+                c_ulong) @nogc nothrow;
+        /// Destroy array of srv/DescribeParameters messages.
+        /**
+ * It calls
+ * rcl_interfaces__srv__DescribeParameters_Request__Sequence__fini()
+ * on the array,
+ * and frees the memory of the array.
+ * \param[in,out] array The initialized array pointer.
+ */
+        void rcl_interfaces__srv__DescribeParameters_Request__Sequence__destroy(
+                rcl_interfaces__srv__DescribeParameters_Request__Sequence*) @nogc nothrow;
+        /// Initialize srv/DescribeParameters message.
+        /**
+ * If the init function is called twice for the same message without
+ * calling fini inbetween previously allocated memory will be leaked.
+ * \param[in,out] msg The previously allocated message pointer.
+ * Fields without a default value will not be initialized by this function.
+ * You might want to call memset(msg, 0, sizeof(
+ * rcl_interfaces__srv__DescribeParameters_Response
+ * )) before or use
+ * rcl_interfaces__srv__DescribeParameters_Response__create()
+ * to allocate and initialize the message.
+ * \return true if initialization was successful, otherwise false
+ */
+        bool rcl_interfaces__srv__DescribeParameters_Response__init(
+                rcl_interfaces__srv__DescribeParameters_Response*) @nogc nothrow;
+        /// Finalize srv/DescribeParameters message.
+        /**
+ * \param[in,out] msg The allocated message pointer.
+ */
+        void rcl_interfaces__srv__DescribeParameters_Response__fini(
+                rcl_interfaces__srv__DescribeParameters_Response*) @nogc nothrow;
+        /// Create srv/DescribeParameters message.
+        /**
+ * It allocates the memory for the message, sets the memory to zero, and
+ * calls
+ * rcl_interfaces__srv__DescribeParameters_Response__init().
+ * \return The pointer to the initialized message if successful,
+ * otherwise NULL
+ */
+        rcl_interfaces__srv__DescribeParameters_Response* rcl_interfaces__srv__DescribeParameters_Response__create() @nogc nothrow;
+        /// Destroy srv/DescribeParameters message.
+        /**
+ * It calls
+ * rcl_interfaces__srv__DescribeParameters_Response__fini()
+ * and frees the memory of the message.
+ * \param[in,out] msg The allocated message pointer.
+ */
+        void rcl_interfaces__srv__DescribeParameters_Response__destroy(
+                rcl_interfaces__srv__DescribeParameters_Response*) @nogc nothrow;
+        /// Initialize array of srv/DescribeParameters messages.
+        /**
+ * It allocates the memory for the number of elements and calls
+ * rcl_interfaces__srv__DescribeParameters_Response__init()
+ * for each element of the array.
+ * \param[in,out] array The allocated array pointer.
+ * \param[in] size The size / capacity of the array.
+ * \return true if initialization was successful, otherwise false
+ * If the array pointer is valid and the size is zero it is guaranteed
+ # to return true.
+ */
+        bool rcl_interfaces__srv__DescribeParameters_Response__Sequence__init(
+                rcl_interfaces__srv__DescribeParameters_Response__Sequence*, c_ulong) @nogc nothrow;
+        /// Finalize array of srv/DescribeParameters messages.
+        /**
+ * It calls
+ * rcl_interfaces__srv__DescribeParameters_Response__fini()
+ * for each element of the array and frees the memory for the number of
+ * elements.
+ * \param[in,out] array The initialized array pointer.
+ */
+        void rcl_interfaces__srv__DescribeParameters_Response__Sequence__fini(
+                rcl_interfaces__srv__DescribeParameters_Response__Sequence*) @nogc nothrow;
+        /// Create array of srv/DescribeParameters messages.
+        /**
+ * It allocates the memory for the array and calls
+ * rcl_interfaces__srv__DescribeParameters_Response__Sequence__init().
+ * \param[in] size The size / capacity of the array.
+ * \return The pointer to the initialized array if successful, otherwise NULL
+ */
+        rcl_interfaces__srv__DescribeParameters_Response__Sequence* rcl_interfaces__srv__DescribeParameters_Response__Sequence__create(
+                c_ulong) @nogc nothrow;
+        /// Destroy array of srv/DescribeParameters messages.
+        /**
+ * It calls
+ * rcl_interfaces__srv__DescribeParameters_Response__Sequence__fini()
+ * on the array,
+ * and frees the memory of the array.
+ * \param[in,out] array The initialized array pointer.
+ */
+        void rcl_interfaces__srv__DescribeParameters_Response__Sequence__destroy(
+                rcl_interfaces__srv__DescribeParameters_Response__Sequence*) @nogc nothrow;
+
+        struct rcl_interfaces__srv__DescribeParameters_Request
+        {
+
+            rosidl_runtime_c__String__Sequence names;
+        }
+
+        struct rcl_interfaces__srv__DescribeParameters_Request__Sequence
+        {
+
+            rcl_interfaces__srv__DescribeParameters_Request* data;
+            /// The number of valid items in data
+            c_ulong size;
+            /// The number of allocated items in data
+            c_ulong capacity;
+        }
+
+        struct rcl_interfaces__srv__DescribeParameters_Response
+        {
+
+            rcl_interfaces__msg__ParameterDescriptor__Sequence descriptors;
+        }
+
+        struct rcl_interfaces__srv__DescribeParameters_Response__Sequence
+        {
+
+            rcl_interfaces__srv__DescribeParameters_Response* data;
+            /// The number of valid items in data
+            c_ulong size;
+            /// The number of allocated items in data
+            c_ulong capacity;
+        }
+
+        const(rosidl_message_type_support_t)* rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__srv__DescribeParameters_Request() @nogc nothrow;
+
+        const(rosidl_message_type_support_t)* rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__srv__DescribeParameters_Response() @nogc nothrow;
+
+        const(rosidl_service_type_support_t)* rosidl_typesupport_c__get_service_type_support_handle__rcl_interfaces__srv__DescribeParameters() @nogc nothrow;
+        /// Initialize srv/GetParameterTypes message.
+        /**
+ * If the init function is called twice for the same message without
+ * calling fini inbetween previously allocated memory will be leaked.
+ * \param[in,out] msg The previously allocated message pointer.
+ * Fields without a default value will not be initialized by this function.
+ * You might want to call memset(msg, 0, sizeof(
+ * rcl_interfaces__srv__GetParameterTypes_Request
+ * )) before or use
+ * rcl_interfaces__srv__GetParameterTypes_Request__create()
+ * to allocate and initialize the message.
+ * \return true if initialization was successful, otherwise false
+ */
+        bool rcl_interfaces__srv__GetParameterTypes_Request__init(
+                rcl_interfaces__srv__GetParameterTypes_Request*) @nogc nothrow;
+        /// Finalize srv/GetParameterTypes message.
+        /**
+ * \param[in,out] msg The allocated message pointer.
+ */
+        void rcl_interfaces__srv__GetParameterTypes_Request__fini(
+                rcl_interfaces__srv__GetParameterTypes_Request*) @nogc nothrow;
+        /// Create srv/GetParameterTypes message.
+        /**
+ * It allocates the memory for the message, sets the memory to zero, and
+ * calls
+ * rcl_interfaces__srv__GetParameterTypes_Request__init().
+ * \return The pointer to the initialized message if successful,
+ * otherwise NULL
+ */
+        rcl_interfaces__srv__GetParameterTypes_Request* rcl_interfaces__srv__GetParameterTypes_Request__create() @nogc nothrow;
+        /// Destroy srv/GetParameterTypes message.
+        /**
+ * It calls
+ * rcl_interfaces__srv__GetParameterTypes_Request__fini()
+ * and frees the memory of the message.
+ * \param[in,out] msg The allocated message pointer.
+ */
+        void rcl_interfaces__srv__GetParameterTypes_Request__destroy(
+                rcl_interfaces__srv__GetParameterTypes_Request*) @nogc nothrow;
+        /// Initialize array of srv/GetParameterTypes messages.
+        /**
+ * It allocates the memory for the number of elements and calls
+ * rcl_interfaces__srv__GetParameterTypes_Request__init()
+ * for each element of the array.
+ * \param[in,out] array The allocated array pointer.
+ * \param[in] size The size / capacity of the array.
+ * \return true if initialization was successful, otherwise false
+ * If the array pointer is valid and the size is zero it is guaranteed
+ # to return true.
+ */
+        bool rcl_interfaces__srv__GetParameterTypes_Request__Sequence__init(
+                rcl_interfaces__srv__GetParameterTypes_Request__Sequence*, c_ulong) @nogc nothrow;
+        /// Finalize array of srv/GetParameterTypes messages.
+        /**
+ * It calls
+ * rcl_interfaces__srv__GetParameterTypes_Request__fini()
+ * for each element of the array and frees the memory for the number of
+ * elements.
+ * \param[in,out] array The initialized array pointer.
+ */
+        void rcl_interfaces__srv__GetParameterTypes_Request__Sequence__fini(
+                rcl_interfaces__srv__GetParameterTypes_Request__Sequence*) @nogc nothrow;
+        /// Create array of srv/GetParameterTypes messages.
+        /**
+ * It allocates the memory for the array and calls
+ * rcl_interfaces__srv__GetParameterTypes_Request__Sequence__init().
+ * \param[in] size The size / capacity of the array.
+ * \return The pointer to the initialized array if successful, otherwise NULL
+ */
+        rcl_interfaces__srv__GetParameterTypes_Request__Sequence* rcl_interfaces__srv__GetParameterTypes_Request__Sequence__create(
+                c_ulong) @nogc nothrow;
+        /// Destroy array of srv/GetParameterTypes messages.
+        /**
+ * It calls
+ * rcl_interfaces__srv__GetParameterTypes_Request__Sequence__fini()
+ * on the array,
+ * and frees the memory of the array.
+ * \param[in,out] array The initialized array pointer.
+ */
+        void rcl_interfaces__srv__GetParameterTypes_Request__Sequence__destroy(
+                rcl_interfaces__srv__GetParameterTypes_Request__Sequence*) @nogc nothrow;
+        /// Initialize srv/GetParameterTypes message.
+        /**
+ * If the init function is called twice for the same message without
+ * calling fini inbetween previously allocated memory will be leaked.
+ * \param[in,out] msg The previously allocated message pointer.
+ * Fields without a default value will not be initialized by this function.
+ * You might want to call memset(msg, 0, sizeof(
+ * rcl_interfaces__srv__GetParameterTypes_Response
+ * )) before or use
+ * rcl_interfaces__srv__GetParameterTypes_Response__create()
+ * to allocate and initialize the message.
+ * \return true if initialization was successful, otherwise false
+ */
+        bool rcl_interfaces__srv__GetParameterTypes_Response__init(
+                rcl_interfaces__srv__GetParameterTypes_Response*) @nogc nothrow;
+        /// Finalize srv/GetParameterTypes message.
+        /**
+ * \param[in,out] msg The allocated message pointer.
+ */
+        void rcl_interfaces__srv__GetParameterTypes_Response__fini(
+                rcl_interfaces__srv__GetParameterTypes_Response*) @nogc nothrow;
+        /// Create srv/GetParameterTypes message.
+        /**
+ * It allocates the memory for the message, sets the memory to zero, and
+ * calls
+ * rcl_interfaces__srv__GetParameterTypes_Response__init().
+ * \return The pointer to the initialized message if successful,
+ * otherwise NULL
+ */
+        rcl_interfaces__srv__GetParameterTypes_Response* rcl_interfaces__srv__GetParameterTypes_Response__create() @nogc nothrow;
+        /// Destroy srv/GetParameterTypes message.
+        /**
+ * It calls
+ * rcl_interfaces__srv__GetParameterTypes_Response__fini()
+ * and frees the memory of the message.
+ * \param[in,out] msg The allocated message pointer.
+ */
+        void rcl_interfaces__srv__GetParameterTypes_Response__destroy(
+                rcl_interfaces__srv__GetParameterTypes_Response*) @nogc nothrow;
+        /// Initialize array of srv/GetParameterTypes messages.
+        /**
+ * It allocates the memory for the number of elements and calls
+ * rcl_interfaces__srv__GetParameterTypes_Response__init()
+ * for each element of the array.
+ * \param[in,out] array The allocated array pointer.
+ * \param[in] size The size / capacity of the array.
+ * \return true if initialization was successful, otherwise false
+ * If the array pointer is valid and the size is zero it is guaranteed
+ # to return true.
+ */
+        bool rcl_interfaces__srv__GetParameterTypes_Response__Sequence__init(
+                rcl_interfaces__srv__GetParameterTypes_Response__Sequence*, c_ulong) @nogc nothrow;
+        /// Finalize array of srv/GetParameterTypes messages.
+        /**
+ * It calls
+ * rcl_interfaces__srv__GetParameterTypes_Response__fini()
+ * for each element of the array and frees the memory for the number of
+ * elements.
+ * \param[in,out] array The initialized array pointer.
+ */
+        void rcl_interfaces__srv__GetParameterTypes_Response__Sequence__fini(
+                rcl_interfaces__srv__GetParameterTypes_Response__Sequence*) @nogc nothrow;
+        /// Create array of srv/GetParameterTypes messages.
+        /**
+ * It allocates the memory for the array and calls
+ * rcl_interfaces__srv__GetParameterTypes_Response__Sequence__init().
+ * \param[in] size The size / capacity of the array.
+ * \return The pointer to the initialized array if successful, otherwise NULL
+ */
+        rcl_interfaces__srv__GetParameterTypes_Response__Sequence* rcl_interfaces__srv__GetParameterTypes_Response__Sequence__create(
+                c_ulong) @nogc nothrow;
+        /// Destroy array of srv/GetParameterTypes messages.
+        /**
+ * It calls
+ * rcl_interfaces__srv__GetParameterTypes_Response__Sequence__fini()
+ * on the array,
+ * and frees the memory of the array.
+ * \param[in,out] array The initialized array pointer.
+ */
+        void rcl_interfaces__srv__GetParameterTypes_Response__Sequence__destroy(
+                rcl_interfaces__srv__GetParameterTypes_Response__Sequence*) @nogc nothrow;
+
+        struct rcl_interfaces__srv__GetParameterTypes_Request
+        {
+
+            rosidl_runtime_c__String__Sequence names;
+        }
+
+        struct rcl_interfaces__srv__GetParameterTypes_Request__Sequence
+        {
+
+            rcl_interfaces__srv__GetParameterTypes_Request* data;
+            /// The number of valid items in data
+            c_ulong size;
+            /// The number of allocated items in data
+            c_ulong capacity;
+        }
+
+        struct rcl_interfaces__srv__GetParameterTypes_Response
+        {
+
+            rosidl_runtime_c__uint8__Sequence types;
+        }
+
+        struct rcl_interfaces__srv__GetParameterTypes_Response__Sequence
+        {
+
+            rcl_interfaces__srv__GetParameterTypes_Response* data;
+            /// The number of valid items in data
+            c_ulong size;
+            /// The number of allocated items in data
+            c_ulong capacity;
+        }
+
+        const(rosidl_message_type_support_t)* rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__srv__GetParameterTypes_Request() @nogc nothrow;
+
+        const(rosidl_message_type_support_t)* rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__srv__GetParameterTypes_Response() @nogc nothrow;
+
+        const(rosidl_service_type_support_t)* rosidl_typesupport_c__get_service_type_support_handle__rcl_interfaces__srv__GetParameterTypes() @nogc nothrow;
+        /// Initialize srv/GetParameters message.
+        /**
+ * If the init function is called twice for the same message without
+ * calling fini inbetween previously allocated memory will be leaked.
+ * \param[in,out] msg The previously allocated message pointer.
+ * Fields without a default value will not be initialized by this function.
+ * You might want to call memset(msg, 0, sizeof(
+ * rcl_interfaces__srv__GetParameters_Request
+ * )) before or use
+ * rcl_interfaces__srv__GetParameters_Request__create()
+ * to allocate and initialize the message.
+ * \return true if initialization was successful, otherwise false
+ */
+        bool rcl_interfaces__srv__GetParameters_Request__init(
+                rcl_interfaces__srv__GetParameters_Request*) @nogc nothrow;
+        /// Finalize srv/GetParameters message.
+        /**
+ * \param[in,out] msg The allocated message pointer.
+ */
+        void rcl_interfaces__srv__GetParameters_Request__fini(
+                rcl_interfaces__srv__GetParameters_Request*) @nogc nothrow;
+        /// Create srv/GetParameters message.
+        /**
+ * It allocates the memory for the message, sets the memory to zero, and
+ * calls
+ * rcl_interfaces__srv__GetParameters_Request__init().
+ * \return The pointer to the initialized message if successful,
+ * otherwise NULL
+ */
+        rcl_interfaces__srv__GetParameters_Request* rcl_interfaces__srv__GetParameters_Request__create() @nogc nothrow;
+        /// Destroy srv/GetParameters message.
+        /**
+ * It calls
+ * rcl_interfaces__srv__GetParameters_Request__fini()
+ * and frees the memory of the message.
+ * \param[in,out] msg The allocated message pointer.
+ */
+        void rcl_interfaces__srv__GetParameters_Request__destroy(
+                rcl_interfaces__srv__GetParameters_Request*) @nogc nothrow;
+        /// Initialize array of srv/GetParameters messages.
+        /**
+ * It allocates the memory for the number of elements and calls
+ * rcl_interfaces__srv__GetParameters_Request__init()
+ * for each element of the array.
+ * \param[in,out] array The allocated array pointer.
+ * \param[in] size The size / capacity of the array.
+ * \return true if initialization was successful, otherwise false
+ * If the array pointer is valid and the size is zero it is guaranteed
+ # to return true.
+ */
+        bool rcl_interfaces__srv__GetParameters_Request__Sequence__init(
+                rcl_interfaces__srv__GetParameters_Request__Sequence*, c_ulong) @nogc nothrow;
+        /// Finalize array of srv/GetParameters messages.
+        /**
+ * It calls
+ * rcl_interfaces__srv__GetParameters_Request__fini()
+ * for each element of the array and frees the memory for the number of
+ * elements.
+ * \param[in,out] array The initialized array pointer.
+ */
+        void rcl_interfaces__srv__GetParameters_Request__Sequence__fini(
+                rcl_interfaces__srv__GetParameters_Request__Sequence*) @nogc nothrow;
+        /// Create array of srv/GetParameters messages.
+        /**
+ * It allocates the memory for the array and calls
+ * rcl_interfaces__srv__GetParameters_Request__Sequence__init().
+ * \param[in] size The size / capacity of the array.
+ * \return The pointer to the initialized array if successful, otherwise NULL
+ */
+        rcl_interfaces__srv__GetParameters_Request__Sequence* rcl_interfaces__srv__GetParameters_Request__Sequence__create(
+                c_ulong) @nogc nothrow;
+        /// Destroy array of srv/GetParameters messages.
+        /**
+ * It calls
+ * rcl_interfaces__srv__GetParameters_Request__Sequence__fini()
+ * on the array,
+ * and frees the memory of the array.
+ * \param[in,out] array The initialized array pointer.
+ */
+        void rcl_interfaces__srv__GetParameters_Request__Sequence__destroy(
+                rcl_interfaces__srv__GetParameters_Request__Sequence*) @nogc nothrow;
+        /// Initialize srv/GetParameters message.
+        /**
+ * If the init function is called twice for the same message without
+ * calling fini inbetween previously allocated memory will be leaked.
+ * \param[in,out] msg The previously allocated message pointer.
+ * Fields without a default value will not be initialized by this function.
+ * You might want to call memset(msg, 0, sizeof(
+ * rcl_interfaces__srv__GetParameters_Response
+ * )) before or use
+ * rcl_interfaces__srv__GetParameters_Response__create()
+ * to allocate and initialize the message.
+ * \return true if initialization was successful, otherwise false
+ */
+        bool rcl_interfaces__srv__GetParameters_Response__init(
+                rcl_interfaces__srv__GetParameters_Response*) @nogc nothrow;
+        /// Finalize srv/GetParameters message.
+        /**
+ * \param[in,out] msg The allocated message pointer.
+ */
+        void rcl_interfaces__srv__GetParameters_Response__fini(
+                rcl_interfaces__srv__GetParameters_Response*) @nogc nothrow;
+        /// Create srv/GetParameters message.
+        /**
+ * It allocates the memory for the message, sets the memory to zero, and
+ * calls
+ * rcl_interfaces__srv__GetParameters_Response__init().
+ * \return The pointer to the initialized message if successful,
+ * otherwise NULL
+ */
+        rcl_interfaces__srv__GetParameters_Response* rcl_interfaces__srv__GetParameters_Response__create() @nogc nothrow;
+        /// Destroy srv/GetParameters message.
+        /**
+ * It calls
+ * rcl_interfaces__srv__GetParameters_Response__fini()
+ * and frees the memory of the message.
+ * \param[in,out] msg The allocated message pointer.
+ */
+        void rcl_interfaces__srv__GetParameters_Response__destroy(
+                rcl_interfaces__srv__GetParameters_Response*) @nogc nothrow;
+        /// Initialize array of srv/GetParameters messages.
+        /**
+ * It allocates the memory for the number of elements and calls
+ * rcl_interfaces__srv__GetParameters_Response__init()
+ * for each element of the array.
+ * \param[in,out] array The allocated array pointer.
+ * \param[in] size The size / capacity of the array.
+ * \return true if initialization was successful, otherwise false
+ * If the array pointer is valid and the size is zero it is guaranteed
+ # to return true.
+ */
+        bool rcl_interfaces__srv__GetParameters_Response__Sequence__init(
+                rcl_interfaces__srv__GetParameters_Response__Sequence*, c_ulong) @nogc nothrow;
+        /// Finalize array of srv/GetParameters messages.
+        /**
+ * It calls
+ * rcl_interfaces__srv__GetParameters_Response__fini()
+ * for each element of the array and frees the memory for the number of
+ * elements.
+ * \param[in,out] array The initialized array pointer.
+ */
+        void rcl_interfaces__srv__GetParameters_Response__Sequence__fini(
+                rcl_interfaces__srv__GetParameters_Response__Sequence*) @nogc nothrow;
+        /// Create array of srv/GetParameters messages.
+        /**
+ * It allocates the memory for the array and calls
+ * rcl_interfaces__srv__GetParameters_Response__Sequence__init().
+ * \param[in] size The size / capacity of the array.
+ * \return The pointer to the initialized array if successful, otherwise NULL
+ */
+        rcl_interfaces__srv__GetParameters_Response__Sequence* rcl_interfaces__srv__GetParameters_Response__Sequence__create(
+                c_ulong) @nogc nothrow;
+        /// Destroy array of srv/GetParameters messages.
+        /**
+ * It calls
+ * rcl_interfaces__srv__GetParameters_Response__Sequence__fini()
+ * on the array,
+ * and frees the memory of the array.
+ * \param[in,out] array The initialized array pointer.
+ */
+        void rcl_interfaces__srv__GetParameters_Response__Sequence__destroy(
+                rcl_interfaces__srv__GetParameters_Response__Sequence*) @nogc nothrow;
+
+        struct rcl_interfaces__srv__GetParameters_Request
+        {
+
+            rosidl_runtime_c__String__Sequence names;
+        }
+
+        struct rcl_interfaces__srv__GetParameters_Request__Sequence
+        {
+
+            rcl_interfaces__srv__GetParameters_Request* data;
+            /// The number of valid items in data
+            c_ulong size;
+            /// The number of allocated items in data
+            c_ulong capacity;
+        }
+
+        struct rcl_interfaces__srv__GetParameters_Response
+        {
+
+            rcl_interfaces__msg__ParameterValue__Sequence values;
+        }
+
+        struct rcl_interfaces__srv__GetParameters_Response__Sequence
+        {
+
+            rcl_interfaces__srv__GetParameters_Response* data;
+            /// The number of valid items in data
+            c_ulong size;
+            /// The number of allocated items in data
+            c_ulong capacity;
+        }
+
+        const(rosidl_message_type_support_t)* rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__srv__GetParameters_Request() @nogc nothrow;
+
+        const(rosidl_message_type_support_t)* rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__srv__GetParameters_Response() @nogc nothrow;
+
+        const(rosidl_service_type_support_t)* rosidl_typesupport_c__get_service_type_support_handle__rcl_interfaces__srv__GetParameters() @nogc nothrow;
+
+        alias _Float64x = real;
+        /// Initialize srv/ListParameters message.
+        /**
+ * If the init function is called twice for the same message without
+ * calling fini inbetween previously allocated memory will be leaked.
+ * \param[in,out] msg The previously allocated message pointer.
+ * Fields without a default value will not be initialized by this function.
+ * You might want to call memset(msg, 0, sizeof(
+ * rcl_interfaces__srv__ListParameters_Request
+ * )) before or use
+ * rcl_interfaces__srv__ListParameters_Request__create()
+ * to allocate and initialize the message.
+ * \return true if initialization was successful, otherwise false
+ */
+        bool rcl_interfaces__srv__ListParameters_Request__init(
+                rcl_interfaces__srv__ListParameters_Request*) @nogc nothrow;
+        /// Finalize srv/ListParameters message.
+        /**
+ * \param[in,out] msg The allocated message pointer.
+ */
+        void rcl_interfaces__srv__ListParameters_Request__fini(
+                rcl_interfaces__srv__ListParameters_Request*) @nogc nothrow;
+        /// Create srv/ListParameters message.
+        /**
+ * It allocates the memory for the message, sets the memory to zero, and
+ * calls
+ * rcl_interfaces__srv__ListParameters_Request__init().
+ * \return The pointer to the initialized message if successful,
+ * otherwise NULL
+ */
+        rcl_interfaces__srv__ListParameters_Request* rcl_interfaces__srv__ListParameters_Request__create() @nogc nothrow;
+        /// Destroy srv/ListParameters message.
+        /**
+ * It calls
+ * rcl_interfaces__srv__ListParameters_Request__fini()
+ * and frees the memory of the message.
+ * \param[in,out] msg The allocated message pointer.
+ */
+        void rcl_interfaces__srv__ListParameters_Request__destroy(
+                rcl_interfaces__srv__ListParameters_Request*) @nogc nothrow;
+        /// Initialize array of srv/ListParameters messages.
+        /**
+ * It allocates the memory for the number of elements and calls
+ * rcl_interfaces__srv__ListParameters_Request__init()
+ * for each element of the array.
+ * \param[in,out] array The allocated array pointer.
+ * \param[in] size The size / capacity of the array.
+ * \return true if initialization was successful, otherwise false
+ * If the array pointer is valid and the size is zero it is guaranteed
+ # to return true.
+ */
+        bool rcl_interfaces__srv__ListParameters_Request__Sequence__init(
+                rcl_interfaces__srv__ListParameters_Request__Sequence*, c_ulong) @nogc nothrow;
+        /// Finalize array of srv/ListParameters messages.
+        /**
+ * It calls
+ * rcl_interfaces__srv__ListParameters_Request__fini()
+ * for each element of the array and frees the memory for the number of
+ * elements.
+ * \param[in,out] array The initialized array pointer.
+ */
+        void rcl_interfaces__srv__ListParameters_Request__Sequence__fini(
+                rcl_interfaces__srv__ListParameters_Request__Sequence*) @nogc nothrow;
+        /// Create array of srv/ListParameters messages.
+        /**
+ * It allocates the memory for the array and calls
+ * rcl_interfaces__srv__ListParameters_Request__Sequence__init().
+ * \param[in] size The size / capacity of the array.
+ * \return The pointer to the initialized array if successful, otherwise NULL
+ */
+        rcl_interfaces__srv__ListParameters_Request__Sequence* rcl_interfaces__srv__ListParameters_Request__Sequence__create(
+                c_ulong) @nogc nothrow;
+        /// Destroy array of srv/ListParameters messages.
+        /**
+ * It calls
+ * rcl_interfaces__srv__ListParameters_Request__Sequence__fini()
+ * on the array,
+ * and frees the memory of the array.
+ * \param[in,out] array The initialized array pointer.
+ */
+        void rcl_interfaces__srv__ListParameters_Request__Sequence__destroy(
+                rcl_interfaces__srv__ListParameters_Request__Sequence*) @nogc nothrow;
+        /// Initialize srv/ListParameters message.
+        /**
+ * If the init function is called twice for the same message without
+ * calling fini inbetween previously allocated memory will be leaked.
+ * \param[in,out] msg The previously allocated message pointer.
+ * Fields without a default value will not be initialized by this function.
+ * You might want to call memset(msg, 0, sizeof(
+ * rcl_interfaces__srv__ListParameters_Response
+ * )) before or use
+ * rcl_interfaces__srv__ListParameters_Response__create()
+ * to allocate and initialize the message.
+ * \return true if initialization was successful, otherwise false
+ */
+        bool rcl_interfaces__srv__ListParameters_Response__init(
+                rcl_interfaces__srv__ListParameters_Response*) @nogc nothrow;
+        /// Finalize srv/ListParameters message.
+        /**
+ * \param[in,out] msg The allocated message pointer.
+ */
+        void rcl_interfaces__srv__ListParameters_Response__fini(
+                rcl_interfaces__srv__ListParameters_Response*) @nogc nothrow;
+        /// Create srv/ListParameters message.
+        /**
+ * It allocates the memory for the message, sets the memory to zero, and
+ * calls
+ * rcl_interfaces__srv__ListParameters_Response__init().
+ * \return The pointer to the initialized message if successful,
+ * otherwise NULL
+ */
+        rcl_interfaces__srv__ListParameters_Response* rcl_interfaces__srv__ListParameters_Response__create() @nogc nothrow;
+        /// Destroy srv/ListParameters message.
+        /**
+ * It calls
+ * rcl_interfaces__srv__ListParameters_Response__fini()
+ * and frees the memory of the message.
+ * \param[in,out] msg The allocated message pointer.
+ */
+        void rcl_interfaces__srv__ListParameters_Response__destroy(
+                rcl_interfaces__srv__ListParameters_Response*) @nogc nothrow;
+        /// Initialize array of srv/ListParameters messages.
+        /**
+ * It allocates the memory for the number of elements and calls
+ * rcl_interfaces__srv__ListParameters_Response__init()
+ * for each element of the array.
+ * \param[in,out] array The allocated array pointer.
+ * \param[in] size The size / capacity of the array.
+ * \return true if initialization was successful, otherwise false
+ * If the array pointer is valid and the size is zero it is guaranteed
+ # to return true.
+ */
+        bool rcl_interfaces__srv__ListParameters_Response__Sequence__init(
+                rcl_interfaces__srv__ListParameters_Response__Sequence*, c_ulong) @nogc nothrow;
+        /// Finalize array of srv/ListParameters messages.
+        /**
+ * It calls
+ * rcl_interfaces__srv__ListParameters_Response__fini()
+ * for each element of the array and frees the memory for the number of
+ * elements.
+ * \param[in,out] array The initialized array pointer.
+ */
+        void rcl_interfaces__srv__ListParameters_Response__Sequence__fini(
+                rcl_interfaces__srv__ListParameters_Response__Sequence*) @nogc nothrow;
+        /// Create array of srv/ListParameters messages.
+        /**
+ * It allocates the memory for the array and calls
+ * rcl_interfaces__srv__ListParameters_Response__Sequence__init().
+ * \param[in] size The size / capacity of the array.
+ * \return The pointer to the initialized array if successful, otherwise NULL
+ */
+        rcl_interfaces__srv__ListParameters_Response__Sequence* rcl_interfaces__srv__ListParameters_Response__Sequence__create(
+                c_ulong) @nogc nothrow;
+        /// Destroy array of srv/ListParameters messages.
+        /**
+ * It calls
+ * rcl_interfaces__srv__ListParameters_Response__Sequence__fini()
+ * on the array,
+ * and frees the memory of the array.
+ * \param[in,out] array The initialized array pointer.
+ */
+        void rcl_interfaces__srv__ListParameters_Response__Sequence__destroy(
+                rcl_interfaces__srv__ListParameters_Response__Sequence*) @nogc nothrow;
+        /// Constant 'DEPTH_RECURSIVE'.
+        enum _Anonymous_77
+        {
+
+            rcl_interfaces__srv__ListParameters_Request__DEPTH_RECURSIVE = 0,
+        }
+
+        enum rcl_interfaces__srv__ListParameters_Request__DEPTH_RECURSIVE = _Anonymous_77
+                .rcl_interfaces__srv__ListParameters_Request__DEPTH_RECURSIVE;
+
+        struct rcl_interfaces__srv__ListParameters_Request
+        {
+
+            rosidl_runtime_c__String__Sequence prefixes;
+
+            c_ulong depth;
+        }
+
+        struct rcl_interfaces__srv__ListParameters_Request__Sequence
+        {
+
+            rcl_interfaces__srv__ListParameters_Request* data;
+            /// The number of valid items in data
+            c_ulong size;
+            /// The number of allocated items in data
+            c_ulong capacity;
+        }
+
+        struct rcl_interfaces__srv__ListParameters_Response
+        {
+
+            rcl_interfaces__msg__ListParametersResult result;
+        }
+
+        struct rcl_interfaces__srv__ListParameters_Response__Sequence
+        {
+
+            rcl_interfaces__srv__ListParameters_Response* data;
+            /// The number of valid items in data
+            c_ulong size;
+            /// The number of allocated items in data
+            c_ulong capacity;
+        }
+
+        const(rosidl_message_type_support_t)* rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__srv__ListParameters_Request() @nogc nothrow;
+
+        const(rosidl_message_type_support_t)* rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__srv__ListParameters_Response() @nogc nothrow;
+
+        const(rosidl_service_type_support_t)* rosidl_typesupport_c__get_service_type_support_handle__rcl_interfaces__srv__ListParameters() @nogc nothrow;
+        /// Initialize srv/SetParameters message.
+        /**
+ * If the init function is called twice for the same message without
+ * calling fini inbetween previously allocated memory will be leaked.
+ * \param[in,out] msg The previously allocated message pointer.
+ * Fields without a default value will not be initialized by this function.
+ * You might want to call memset(msg, 0, sizeof(
+ * rcl_interfaces__srv__SetParameters_Request
+ * )) before or use
+ * rcl_interfaces__srv__SetParameters_Request__create()
+ * to allocate and initialize the message.
+ * \return true if initialization was successful, otherwise false
+ */
+        bool rcl_interfaces__srv__SetParameters_Request__init(
+                rcl_interfaces__srv__SetParameters_Request*) @nogc nothrow;
+        /// Finalize srv/SetParameters message.
+        /**
+ * \param[in,out] msg The allocated message pointer.
+ */
+        void rcl_interfaces__srv__SetParameters_Request__fini(
+                rcl_interfaces__srv__SetParameters_Request*) @nogc nothrow;
+        /// Create srv/SetParameters message.
+        /**
+ * It allocates the memory for the message, sets the memory to zero, and
+ * calls
+ * rcl_interfaces__srv__SetParameters_Request__init().
+ * \return The pointer to the initialized message if successful,
+ * otherwise NULL
+ */
+        rcl_interfaces__srv__SetParameters_Request* rcl_interfaces__srv__SetParameters_Request__create() @nogc nothrow;
+        /// Destroy srv/SetParameters message.
+        /**
+ * It calls
+ * rcl_interfaces__srv__SetParameters_Request__fini()
+ * and frees the memory of the message.
+ * \param[in,out] msg The allocated message pointer.
+ */
+        void rcl_interfaces__srv__SetParameters_Request__destroy(
+                rcl_interfaces__srv__SetParameters_Request*) @nogc nothrow;
+        /// Initialize array of srv/SetParameters messages.
+        /**
+ * It allocates the memory for the number of elements and calls
+ * rcl_interfaces__srv__SetParameters_Request__init()
+ * for each element of the array.
+ * \param[in,out] array The allocated array pointer.
+ * \param[in] size The size / capacity of the array.
+ * \return true if initialization was successful, otherwise false
+ * If the array pointer is valid and the size is zero it is guaranteed
+ # to return true.
+ */
+        bool rcl_interfaces__srv__SetParameters_Request__Sequence__init(
+                rcl_interfaces__srv__SetParameters_Request__Sequence*, c_ulong) @nogc nothrow;
+        /// Finalize array of srv/SetParameters messages.
+        /**
+ * It calls
+ * rcl_interfaces__srv__SetParameters_Request__fini()
+ * for each element of the array and frees the memory for the number of
+ * elements.
+ * \param[in,out] array The initialized array pointer.
+ */
+        void rcl_interfaces__srv__SetParameters_Request__Sequence__fini(
+                rcl_interfaces__srv__SetParameters_Request__Sequence*) @nogc nothrow;
+        /// Create array of srv/SetParameters messages.
+        /**
+ * It allocates the memory for the array and calls
+ * rcl_interfaces__srv__SetParameters_Request__Sequence__init().
+ * \param[in] size The size / capacity of the array.
+ * \return The pointer to the initialized array if successful, otherwise NULL
+ */
+        rcl_interfaces__srv__SetParameters_Request__Sequence* rcl_interfaces__srv__SetParameters_Request__Sequence__create(
+                c_ulong) @nogc nothrow;
+        /// Destroy array of srv/SetParameters messages.
+        /**
+ * It calls
+ * rcl_interfaces__srv__SetParameters_Request__Sequence__fini()
+ * on the array,
+ * and frees the memory of the array.
+ * \param[in,out] array The initialized array pointer.
+ */
+        void rcl_interfaces__srv__SetParameters_Request__Sequence__destroy(
+                rcl_interfaces__srv__SetParameters_Request__Sequence*) @nogc nothrow;
+        /// Initialize srv/SetParameters message.
+        /**
+ * If the init function is called twice for the same message without
+ * calling fini inbetween previously allocated memory will be leaked.
+ * \param[in,out] msg The previously allocated message pointer.
+ * Fields without a default value will not be initialized by this function.
+ * You might want to call memset(msg, 0, sizeof(
+ * rcl_interfaces__srv__SetParameters_Response
+ * )) before or use
+ * rcl_interfaces__srv__SetParameters_Response__create()
+ * to allocate and initialize the message.
+ * \return true if initialization was successful, otherwise false
+ */
+        bool rcl_interfaces__srv__SetParameters_Response__init(
+                rcl_interfaces__srv__SetParameters_Response*) @nogc nothrow;
+        /// Finalize srv/SetParameters message.
+        /**
+ * \param[in,out] msg The allocated message pointer.
+ */
+        void rcl_interfaces__srv__SetParameters_Response__fini(
+                rcl_interfaces__srv__SetParameters_Response*) @nogc nothrow;
+        /// Create srv/SetParameters message.
+        /**
+ * It allocates the memory for the message, sets the memory to zero, and
+ * calls
+ * rcl_interfaces__srv__SetParameters_Response__init().
+ * \return The pointer to the initialized message if successful,
+ * otherwise NULL
+ */
+        rcl_interfaces__srv__SetParameters_Response* rcl_interfaces__srv__SetParameters_Response__create() @nogc nothrow;
+        /// Destroy srv/SetParameters message.
+        /**
+ * It calls
+ * rcl_interfaces__srv__SetParameters_Response__fini()
+ * and frees the memory of the message.
+ * \param[in,out] msg The allocated message pointer.
+ */
+        void rcl_interfaces__srv__SetParameters_Response__destroy(
+                rcl_interfaces__srv__SetParameters_Response*) @nogc nothrow;
+        /// Initialize array of srv/SetParameters messages.
+        /**
+ * It allocates the memory for the number of elements and calls
+ * rcl_interfaces__srv__SetParameters_Response__init()
+ * for each element of the array.
+ * \param[in,out] array The allocated array pointer.
+ * \param[in] size The size / capacity of the array.
+ * \return true if initialization was successful, otherwise false
+ * If the array pointer is valid and the size is zero it is guaranteed
+ # to return true.
+ */
+        bool rcl_interfaces__srv__SetParameters_Response__Sequence__init(
+                rcl_interfaces__srv__SetParameters_Response__Sequence*, c_ulong) @nogc nothrow;
+        /// Finalize array of srv/SetParameters messages.
+        /**
+ * It calls
+ * rcl_interfaces__srv__SetParameters_Response__fini()
+ * for each element of the array and frees the memory for the number of
+ * elements.
+ * \param[in,out] array The initialized array pointer.
+ */
+        void rcl_interfaces__srv__SetParameters_Response__Sequence__fini(
+                rcl_interfaces__srv__SetParameters_Response__Sequence*) @nogc nothrow;
+        /// Create array of srv/SetParameters messages.
+        /**
+ * It allocates the memory for the array and calls
+ * rcl_interfaces__srv__SetParameters_Response__Sequence__init().
+ * \param[in] size The size / capacity of the array.
+ * \return The pointer to the initialized array if successful, otherwise NULL
+ */
+        rcl_interfaces__srv__SetParameters_Response__Sequence* rcl_interfaces__srv__SetParameters_Response__Sequence__create(
+                c_ulong) @nogc nothrow;
+        /// Destroy array of srv/SetParameters messages.
+        /**
+ * It calls
+ * rcl_interfaces__srv__SetParameters_Response__Sequence__fini()
+ * on the array,
+ * and frees the memory of the array.
+ * \param[in,out] array The initialized array pointer.
+ */
+        void rcl_interfaces__srv__SetParameters_Response__Sequence__destroy(
+                rcl_interfaces__srv__SetParameters_Response__Sequence*) @nogc nothrow;
+
+        struct rcl_interfaces__srv__SetParameters_Request
+        {
+
+            rcl_interfaces__msg__Parameter__Sequence parameters;
+        }
+
+        struct rcl_interfaces__srv__SetParameters_Request__Sequence
+        {
+
+            rcl_interfaces__srv__SetParameters_Request* data;
+            /// The number of valid items in data
+            c_ulong size;
+            /// The number of allocated items in data
+            c_ulong capacity;
+        }
+
+        struct rcl_interfaces__srv__SetParameters_Response
+        {
+
+            rcl_interfaces__msg__SetParametersResult__Sequence results;
+        }
+
+        struct rcl_interfaces__srv__SetParameters_Response__Sequence
+        {
+
+            rcl_interfaces__srv__SetParameters_Response* data;
+            /// The number of valid items in data
+            c_ulong size;
+            /// The number of allocated items in data
+            c_ulong capacity;
+        }
+
+        alias _Float32x = double;
+
+        const(rosidl_message_type_support_t)* rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__srv__SetParameters_Request() @nogc nothrow;
+
+        const(rosidl_message_type_support_t)* rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__srv__SetParameters_Response() @nogc nothrow;
+
+        const(rosidl_service_type_support_t)* rosidl_typesupport_c__get_service_type_support_handle__rcl_interfaces__srv__SetParameters() @nogc nothrow;
+        /// Initialize srv/SetParametersAtomically message.
+        /**
+ * If the init function is called twice for the same message without
+ * calling fini inbetween previously allocated memory will be leaked.
+ * \param[in,out] msg The previously allocated message pointer.
+ * Fields without a default value will not be initialized by this function.
+ * You might want to call memset(msg, 0, sizeof(
+ * rcl_interfaces__srv__SetParametersAtomically_Request
+ * )) before or use
+ * rcl_interfaces__srv__SetParametersAtomically_Request__create()
+ * to allocate and initialize the message.
+ * \return true if initialization was successful, otherwise false
+ */
+        bool rcl_interfaces__srv__SetParametersAtomically_Request__init(
+                rcl_interfaces__srv__SetParametersAtomically_Request*) @nogc nothrow;
+        /// Finalize srv/SetParametersAtomically message.
+        /**
+ * \param[in,out] msg The allocated message pointer.
+ */
+        void rcl_interfaces__srv__SetParametersAtomically_Request__fini(
+                rcl_interfaces__srv__SetParametersAtomically_Request*) @nogc nothrow;
+        /// Create srv/SetParametersAtomically message.
+        /**
+ * It allocates the memory for the message, sets the memory to zero, and
+ * calls
+ * rcl_interfaces__srv__SetParametersAtomically_Request__init().
+ * \return The pointer to the initialized message if successful,
+ * otherwise NULL
+ */
+        rcl_interfaces__srv__SetParametersAtomically_Request* rcl_interfaces__srv__SetParametersAtomically_Request__create() @nogc nothrow;
+        /// Destroy srv/SetParametersAtomically message.
+        /**
+ * It calls
+ * rcl_interfaces__srv__SetParametersAtomically_Request__fini()
+ * and frees the memory of the message.
+ * \param[in,out] msg The allocated message pointer.
+ */
+        void rcl_interfaces__srv__SetParametersAtomically_Request__destroy(
+                rcl_interfaces__srv__SetParametersAtomically_Request*) @nogc nothrow;
+        /// Initialize array of srv/SetParametersAtomically messages.
+        /**
+ * It allocates the memory for the number of elements and calls
+ * rcl_interfaces__srv__SetParametersAtomically_Request__init()
+ * for each element of the array.
+ * \param[in,out] array The allocated array pointer.
+ * \param[in] size The size / capacity of the array.
+ * \return true if initialization was successful, otherwise false
+ * If the array pointer is valid and the size is zero it is guaranteed
+ # to return true.
+ */
+        bool rcl_interfaces__srv__SetParametersAtomically_Request__Sequence__init(
+                rcl_interfaces__srv__SetParametersAtomically_Request__Sequence*, c_ulong) @nogc nothrow;
+        /// Finalize array of srv/SetParametersAtomically messages.
+        /**
+ * It calls
+ * rcl_interfaces__srv__SetParametersAtomically_Request__fini()
+ * for each element of the array and frees the memory for the number of
+ * elements.
+ * \param[in,out] array The initialized array pointer.
+ */
+        void rcl_interfaces__srv__SetParametersAtomically_Request__Sequence__fini(
+                rcl_interfaces__srv__SetParametersAtomically_Request__Sequence*) @nogc nothrow;
+        /// Create array of srv/SetParametersAtomically messages.
+        /**
+ * It allocates the memory for the array and calls
+ * rcl_interfaces__srv__SetParametersAtomically_Request__Sequence__init().
+ * \param[in] size The size / capacity of the array.
+ * \return The pointer to the initialized array if successful, otherwise NULL
+ */
+        rcl_interfaces__srv__SetParametersAtomically_Request__Sequence* rcl_interfaces__srv__SetParametersAtomically_Request__Sequence__create(
+                c_ulong) @nogc nothrow;
+        /// Destroy array of srv/SetParametersAtomically messages.
+        /**
+ * It calls
+ * rcl_interfaces__srv__SetParametersAtomically_Request__Sequence__fini()
+ * on the array,
+ * and frees the memory of the array.
+ * \param[in,out] array The initialized array pointer.
+ */
+        void rcl_interfaces__srv__SetParametersAtomically_Request__Sequence__destroy(
+                rcl_interfaces__srv__SetParametersAtomically_Request__Sequence*) @nogc nothrow;
+        /// Initialize srv/SetParametersAtomically message.
+        /**
+ * If the init function is called twice for the same message without
+ * calling fini inbetween previously allocated memory will be leaked.
+ * \param[in,out] msg The previously allocated message pointer.
+ * Fields without a default value will not be initialized by this function.
+ * You might want to call memset(msg, 0, sizeof(
+ * rcl_interfaces__srv__SetParametersAtomically_Response
+ * )) before or use
+ * rcl_interfaces__srv__SetParametersAtomically_Response__create()
+ * to allocate and initialize the message.
+ * \return true if initialization was successful, otherwise false
+ */
+        bool rcl_interfaces__srv__SetParametersAtomically_Response__init(
+                rcl_interfaces__srv__SetParametersAtomically_Response*) @nogc nothrow;
+        /// Finalize srv/SetParametersAtomically message.
+        /**
+ * \param[in,out] msg The allocated message pointer.
+ */
+        void rcl_interfaces__srv__SetParametersAtomically_Response__fini(
+                rcl_interfaces__srv__SetParametersAtomically_Response*) @nogc nothrow;
+        /// Create srv/SetParametersAtomically message.
+        /**
+ * It allocates the memory for the message, sets the memory to zero, and
+ * calls
+ * rcl_interfaces__srv__SetParametersAtomically_Response__init().
+ * \return The pointer to the initialized message if successful,
+ * otherwise NULL
+ */
+        rcl_interfaces__srv__SetParametersAtomically_Response* rcl_interfaces__srv__SetParametersAtomically_Response__create() @nogc nothrow;
+        /// Destroy srv/SetParametersAtomically message.
+        /**
+ * It calls
+ * rcl_interfaces__srv__SetParametersAtomically_Response__fini()
+ * and frees the memory of the message.
+ * \param[in,out] msg The allocated message pointer.
+ */
+        void rcl_interfaces__srv__SetParametersAtomically_Response__destroy(
+                rcl_interfaces__srv__SetParametersAtomically_Response*) @nogc nothrow;
+        /// Initialize array of srv/SetParametersAtomically messages.
+        /**
+ * It allocates the memory for the number of elements and calls
+ * rcl_interfaces__srv__SetParametersAtomically_Response__init()
+ * for each element of the array.
+ * \param[in,out] array The allocated array pointer.
+ * \param[in] size The size / capacity of the array.
+ * \return true if initialization was successful, otherwise false
+ * If the array pointer is valid and the size is zero it is guaranteed
+ # to return true.
+ */
+        bool rcl_interfaces__srv__SetParametersAtomically_Response__Sequence__init(
+                rcl_interfaces__srv__SetParametersAtomically_Response__Sequence*, c_ulong) @nogc nothrow;
+        /// Finalize array of srv/SetParametersAtomically messages.
+        /**
+ * It calls
+ * rcl_interfaces__srv__SetParametersAtomically_Response__fini()
+ * for each element of the array and frees the memory for the number of
+ * elements.
+ * \param[in,out] array The initialized array pointer.
+ */
+        void rcl_interfaces__srv__SetParametersAtomically_Response__Sequence__fini(
+                rcl_interfaces__srv__SetParametersAtomically_Response__Sequence*) @nogc nothrow;
+        /// Create array of srv/SetParametersAtomically messages.
+        /**
+ * It allocates the memory for the array and calls
+ * rcl_interfaces__srv__SetParametersAtomically_Response__Sequence__init().
+ * \param[in] size The size / capacity of the array.
+ * \return The pointer to the initialized array if successful, otherwise NULL
+ */
+        rcl_interfaces__srv__SetParametersAtomically_Response__Sequence* rcl_interfaces__srv__SetParametersAtomically_Response__Sequence__create(
+                c_ulong) @nogc nothrow;
+        /// Destroy array of srv/SetParametersAtomically messages.
+        /**
+ * It calls
+ * rcl_interfaces__srv__SetParametersAtomically_Response__Sequence__fini()
+ * on the array,
+ * and frees the memory of the array.
+ * \param[in,out] array The initialized array pointer.
+ */
+        void rcl_interfaces__srv__SetParametersAtomically_Response__Sequence__destroy(
+                rcl_interfaces__srv__SetParametersAtomically_Response__Sequence*) @nogc nothrow;
+
+        struct rcl_interfaces__srv__SetParametersAtomically_Request
+        {
+
+            rcl_interfaces__msg__Parameter__Sequence parameters;
+        }
+
+        struct rcl_interfaces__srv__SetParametersAtomically_Request__Sequence
+        {
+
+            rcl_interfaces__srv__SetParametersAtomically_Request* data;
+            /// The number of valid items in data
+            c_ulong size;
+            /// The number of allocated items in data
+            c_ulong capacity;
+        }
+
+        struct rcl_interfaces__srv__SetParametersAtomically_Response
+        {
+
+            rcl_interfaces__msg__SetParametersResult result;
+        }
+
+        struct rcl_interfaces__srv__SetParametersAtomically_Response__Sequence
+        {
+
+            rcl_interfaces__srv__SetParametersAtomically_Response* data;
+            /// The number of valid items in data
+            c_ulong size;
+            /// The number of allocated items in data
+            c_ulong capacity;
+        }
+
+        const(rosidl_message_type_support_t)* rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__srv__SetParametersAtomically_Request() @nogc nothrow;
+
+        const(rosidl_message_type_support_t)* rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__srv__SetParametersAtomically_Response() @nogc nothrow;
+
+        const(rosidl_service_type_support_t)* rosidl_typesupport_c__get_service_type_support_handle__rcl_interfaces__srv__SetParametersAtomically() @nogc nothrow;
+
+        alias _Float64 = double;
+
+        alias _Float32 = float;
         /// Array of bool values
         alias rcl_bool_array_t = rcl_bool_array_s;
         /// Array of bool values
@@ -5678,8 +13548,6 @@ version (foxy)
             ///< Allocator used
             rcutils_allocator_t allocator;
         }
-
-        alias __int_least32_t = int;
         /// Encapsulation of an allocator.
         /**
  * The default allocator uses malloc(), free(), calloc(), and realloc().
@@ -5757,10 +13625,6 @@ version (foxy)
  * \param[in] allocator to be checked by the function
  */
         bool rcutils_allocator_is_valid(const(rcutils_allocator_t)*) @nogc nothrow;
-
-        alias __uint_least16_t = ushort;
-
-        alias __int_least16_t = short;
         /// Emulate the behavior of [reallocf](https://linux.die.net/man/3/reallocf).
         /**
  * This function will return `NULL` if the allocator is `NULL` or has `NULL` for
@@ -5770,20 +13634,6 @@ version (foxy)
  * \param[in] allocator to be used to allocate and deallocate memory
  */
         void* rcutils_reallocf(void*, c_ulong, rcutils_allocator_t*) @nogc nothrow;
-
-        alias __uint_least8_t = ubyte;
-
-        alias __int_least8_t = byte;
-
-        alias __uint64_t = c_ulong;
-
-        alias __int64_t = c_long;
-
-        alias __uint32_t = uint;
-
-        alias __int32_t = int;
-
-        alias __uint16_t = ushort;
         /// Struct wrapping a fixed-size c string used for returning the formatted error string.
         struct rcutils_error_string_t
         {
@@ -5855,16 +13705,6 @@ version (foxy)
  * \param[in] line_number The line number on which the error occurred.
  */
         void rcutils_set_error_state(const(char)*, const(char)*, c_ulong) @nogc nothrow;
-
-        alias __int16_t = short;
-
-        alias __uint8_t = ubyte;
-
-        alias __int8_t = byte;
-
-        alias __u_long = c_ulong;
-
-        alias __u_int = uint;
         /// Return `true` if the error is set, otherwise `false`.
         bool rcutils_error_is_set() @nogc nothrow;
         /// Return an rcutils_error_state_t which was set with rcutils_set_error_state().
@@ -5890,10 +13730,6 @@ version (foxy)
         rcutils_error_string_t rcutils_get_error_string() @nogc nothrow;
         /// Reset the error state by clearing any previously set error state.
         void rcutils_reset_error() @nogc nothrow;
-
-        alias __u_short = ushort;
-
-        alias __u_char = ubyte;
         /// The flag if the logging system has been initialized.
         extern __gshared bool g_rcutils_logging_initialized;
         /// Initialize the logging system using the specified allocator.
@@ -6298,115 +14134,9 @@ version (foxy)
         void rcutils_logging_console_output_handler(const(rcutils_log_location_t)*,
                 int, const(char)*, c_long, const(char)*, va_list**) @nogc nothrow;
 
-        struct __pthread_cond_s
-        {
+        static c_ulong __bswap_64(c_ulong) @nogc nothrow;
 
-            static union _Anonymous_2
-            {
-
-                ulong __wseq;
-
-                static struct _Anonymous_3
-                {
-
-                    uint __low;
-
-                    uint __high;
-                }
-
-                _Anonymous_3 __wseq32;
-            }
-
-            _Anonymous_2 _anonymous_4;
-            ref auto __wseq() @property @nogc pure nothrow
-            {
-                return _anonymous_4.__wseq;
-            }
-
-            void __wseq(_T_)(auto ref _T_ val) @property @nogc pure nothrow
-            {
-                _anonymous_4.__wseq = val;
-            }
-
-            ref auto __wseq32() @property @nogc pure nothrow
-            {
-                return _anonymous_4.__wseq32;
-            }
-
-            void __wseq32(_T_)(auto ref _T_ val) @property @nogc pure nothrow
-            {
-                _anonymous_4.__wseq32 = val;
-            }
-
-            static union _Anonymous_5
-            {
-
-                ulong __g1_start;
-
-                static struct _Anonymous_6
-                {
-
-                    uint __low;
-
-                    uint __high;
-                }
-
-                _Anonymous_6 __g1_start32;
-            }
-
-            _Anonymous_5 _anonymous_7;
-            ref auto __g1_start() @property @nogc pure nothrow
-            {
-                return _anonymous_7.__g1_start;
-            }
-
-            void __g1_start(_T_)(auto ref _T_ val) @property @nogc pure nothrow
-            {
-                _anonymous_7.__g1_start = val;
-            }
-
-            ref auto __g1_start32() @property @nogc pure nothrow
-            {
-                return _anonymous_7.__g1_start32;
-            }
-
-            void __g1_start32(_T_)(auto ref _T_ val) @property @nogc pure nothrow
-            {
-                _anonymous_7.__g1_start32 = val;
-            }
-
-            uint[2] __g_refs;
-
-            uint[2] __g_size;
-
-            uint __g1_orig_size;
-
-            uint __wrefs;
-
-            uint[2] __g_signals;
-        }
-
-        struct __pthread_internal_slist
-        {
-
-            __pthread_internal_slist* __next;
-        }
-
-        alias __pthread_slist_t = __pthread_internal_slist;
-
-        struct __pthread_internal_list
-        {
-
-            __pthread_internal_list* __prev;
-
-            __pthread_internal_list* __next;
-        }
-
-        alias __pthread_list_t = __pthread_internal_list;
-
-        extern __gshared const(const(char)*)[0] sys_errlist;
-
-        extern __gshared int sys_nerr;
+        static uint __bswap_32(uint) @nogc nothrow;
         /// Interface to qsort with rcutils-style argument validation.
         /**
  * This function changes the order of the elements in the array so that they
@@ -6452,33 +14182,7 @@ version (foxy)
         /// Format a string with va_list for arguments, see rcutils_snprintf().
         int rcutils_vsnprintf(char*, c_ulong, const(char)*, va_list*) @nogc nothrow;
 
-        struct __pthread_rwlock_arch_t
-        {
-
-            uint __readers;
-
-            uint __writers;
-
-            uint __wrphase_futex;
-
-            uint __writers_futex;
-
-            uint __pad3;
-
-            uint __pad4;
-
-            int __cur_writer;
-
-            int __shared;
-
-            byte __rwelision;
-
-            ubyte[7] __pad1;
-
-            c_ulong __pad2;
-
-            uint __flags;
-        }
+        static ushort __bswap_16(ushort) @nogc nothrow;
 
         bool rcutils_fault_injection_is_test_complete() @nogc nothrow;
         /**
@@ -6519,33 +14223,7 @@ version (foxy)
  */
         c_long _rcutils_fault_injection_maybe_fail() @nogc nothrow;
 
-        struct __pthread_mutex_s
-        {
-
-            int __lock;
-
-            uint __count;
-
-            int __owner;
-
-            uint __nusers;
-
-            int __kind;
-
-            short __spins;
-
-            short __elision;
-
-            __pthread_internal_list __list;
-        }
-
-        alias uint64_t = ulong;
-
-        alias uint32_t = uint;
-
-        alias uint16_t = ushort;
-
-        alias uint8_t = ubyte;
+        int strncasecmp_l(const(char)*, const(char)*, c_ulong, __locale_struct*) @nogc nothrow;
         /// A single point in time, measured in nanoseconds since the Unix epoch.
         alias rcutils_time_point_value_t = c_long;
         /// A duration of time, measured in nanoseconds.
@@ -6662,9 +14340,7 @@ version (foxy)
  */
         int rcutils_time_point_value_as_seconds_string(const(c_long)*, char*, c_ulong) @nogc nothrow;
 
-        alias int64_t = c_long;
-
-        alias int32_t = int;
+        int strcasecmp_l(const(char)*, const(char)*, __locale_struct*) @nogc nothrow;
         struct rcutils_array_list_impl_t;
 
         struct rcutils_array_list_t
@@ -6672,8 +14348,6 @@ version (foxy)
 
             rcutils_array_list_impl_t* impl;
         }
-
-        alias int16_t = short;
         /// Return an empty array_list struct.
         /**
  * This function returns an empty and zero initialized array_list struct.
@@ -6871,8 +14545,6 @@ version (foxy)
  * \return `RCUTILS_RET_ERROR` if an unknown error occurs
  */
         int rcutils_array_list_get_size(const(rcutils_array_list_t)*, c_ulong*) @nogc nothrow;
-
-        alias int8_t = byte;
 
         struct rcutils_char_array_t
         {
@@ -7319,31 +14991,15 @@ version (foxy)
 
         alias rcutils_ret_t = int;
 
-        union pthread_barrierattr_t
-        {
+        int strncasecmp(const(char)*, const(char)*, c_ulong) @nogc nothrow;
 
-            char[4] __size;
+        int strcasecmp(const(char)*, const(char)*) @nogc nothrow;
 
-            int __align;
-        }
+        int ffsll(long) @nogc nothrow;
 
-        union pthread_barrier_t
-        {
+        int ffsl(c_long) @nogc nothrow;
 
-            char[32] __size;
-
-            c_long __align;
-        }
-
-        alias pthread_spinlock_t = int;
-
-        union pthread_rwlockattr_t
-        {
-
-            char[8] __size;
-
-            c_long __align;
-        }
+        int ffs(int) @nogc nothrow;
 
         struct rcutils_string_array_t
         {
@@ -7797,16 +15453,6 @@ version (foxy)
  */
         int rcutils_string_map_copy(const(rcutils_string_map_t)*, rcutils_string_map_t*) @nogc nothrow;
 
-        union pthread_rwlock_t
-        {
-
-            __pthread_rwlock_arch_t __data;
-
-            char[56] __size;
-
-            c_long __align;
-        }
-
         struct rcutils_uint8_array_t
         {
 
@@ -7871,33 +15517,9 @@ version (foxy)
  */
         int rcutils_uint8_array_resize(rcutils_uint8_array_t*, c_ulong) @nogc nothrow;
 
-        union pthread_cond_t
-        {
+        char* rindex(const(char)*, int) @nogc nothrow;
 
-            __pthread_cond_s __data;
-
-            char[48] __size;
-
-            long __align;
-        }
-
-        union pthread_mutex_t
-        {
-
-            __pthread_mutex_s __data;
-
-            char[40] __size;
-
-            c_long __align;
-        }
-
-        union pthread_attr_t
-        {
-
-            char[56] __size;
-
-            c_long __align;
-        }
+        char* index(const(char)*, int) @nogc nothrow;
         /// Return all topic names and types in the ROS graph.
         /**
  * This function returns an array of all topic names and types in the ROS graph
@@ -7962,6 +15584,8 @@ version (foxy)
  */
         int rmw_get_topic_names_and_types(const(rmw_node_t)*,
                 rcutils_allocator_t*, bool, rmw_names_and_types_t*) @nogc nothrow;
+
+        void bzero(void*, c_ulong) @nogc nothrow;
         struct rmw_context_impl_t;
         /// Initialization context structure which is used to store init specific information.
         struct rmw_context_t
@@ -8074,8 +15698,6 @@ version (foxy)
  * \return `RMW_RET_ERROR` if an unspecified error occur.
  */
         int rmw_context_fini(rmw_context_t*) @nogc nothrow;
-
-        alias pthread_once_t = int;
         struct rmw_init_options_impl_t;
         /// Options structure used during rmw_init().
         struct rmw_init_options_t
@@ -8207,8 +15829,6 @@ version (foxy)
  * \return `RMW_RET_ERROR` if an unspecified error occurs.
  */
         int rmw_init_options_fini(rmw_init_options_t*) @nogc nothrow;
-
-        alias pthread_key_t = uint;
         /// Used to specify if the context can only communicate through localhost.
         enum rmw_localhost_only_t
         {
@@ -8224,13 +15844,7 @@ version (foxy)
         enum RMW_LOCALHOST_ONLY_ENABLED = rmw_localhost_only_t.RMW_LOCALHOST_ONLY_ENABLED;
         enum RMW_LOCALHOST_ONLY_DISABLED = rmw_localhost_only_t.RMW_LOCALHOST_ONLY_DISABLED;
 
-        union pthread_condattr_t
-        {
-
-            char[4] __size;
-
-            int __align;
-        }
+        void bcopy(const(void)*, void*, c_ulong) @nogc nothrow;
         /// Structure to hold a sequence of ROS messages.
         struct rmw_message_sequence_t
         {
@@ -8296,6 +15910,8 @@ version (foxy)
  * \param[inout] sequence sequence object to be finalized.
  */
         int rmw_message_info_sequence_fini(rmw_message_info_sequence_t*) @nogc nothrow;
+
+        int bcmp(const(void)*, const(void)*, c_ulong) @nogc nothrow;
         /// Associative array of topic or service names and types.
         struct rmw_names_and_types_t
         {
@@ -8391,14 +16007,6 @@ version (foxy)
  */
         int rmw_names_and_types_fini(rmw_names_and_types_t*) @nogc nothrow;
 
-        union pthread_mutexattr_t
-        {
-
-            char[4] __size;
-
-            int __align;
-        }
-
         extern __gshared const(rmw_qos_profile_t) rmw_qos_profile_sensor_data;
 
         extern __gshared const(rmw_qos_profile_t) rmw_qos_profile_parameters;
@@ -8412,8 +16020,6 @@ version (foxy)
         extern __gshared const(rmw_qos_profile_t) rmw_qos_profile_system_default;
 
         extern __gshared const(rmw_qos_profile_t) rmw_qos_profile_unknown;
-
-        alias pthread_t = c_ulong;
         /// Return code for rmw functions
         alias rmw_ret_t = int;
         /// Get the name of the rmw implementation being used
@@ -10811,6 +18417,8 @@ version (foxy)
  * \returns RMW_RET_OK
  */
         int rmw_security_options_fini(rmw_security_options_t*, const(rcutils_allocator_t)*) @nogc nothrow;
+
+        char* stpncpy(char*, const(char)*, c_ulong) @nogc nothrow;
         /**
  * \struct rmw_serialized_message_t
  *
@@ -10822,8 +18430,12 @@ version (foxy)
  *   \i \c buffer_capacity the capacity of internal storage, as an unsigned integer
  */
         alias rmw_serialized_message_t = rcutils_uint8_array_t;
+
+        char* __stpncpy(char*, const(char)*, c_ulong) @nogc nothrow;
         /// Return a rmw_subscription_options_t initialized with default values.
         rmw_subscription_options_t rmw_get_default_subscription_options() @nogc nothrow;
+
+        char* stpcpy(char*, const(char)*) @nogc nothrow;
         /// A data structure that encapsulates the node name, node namespace,
         /// topic_type, gid, and qos_profile of publishers and subscriptions
         /// for a topic.
@@ -11182,6 +18794,8 @@ version (foxy)
  */
         int rmw_topic_endpoint_info_array_fini(rmw_topic_endpoint_info_array_t*,
                 rcutils_allocator_t*) @nogc nothrow;
+
+        char* __stpcpy(char*, const(char)*) @nogc nothrow;
         /// Structure which encapsulates an rmw node
         struct rmw_node_t
         {
@@ -11506,6 +19120,8 @@ version (foxy)
                 .RMW_QOS_POLICY_DURABILITY_VOLATILE;
         enum RMW_QOS_POLICY_DURABILITY_UNKNOWN = rmw_qos_durability_policy_t
                 .RMW_QOS_POLICY_DURABILITY_UNKNOWN;
+
+        char* strsignal(int) @nogc nothrow;
         /// QoS liveliness enumerations that describe a publisher's reporting policy for its alive status.
         /// For a subscriber, these are its requirements for its topic's publishers.
         enum rmw_qos_liveliness_policy_t
@@ -11589,17 +19205,18 @@ version (foxy)
         rmw_message_info_t rmw_get_zero_initialized_message_info() @nogc nothrow;
         /// Default size of the rmw queue when history is set to RMW_QOS_POLICY_HISTORY_KEEP_LAST,
         /// 0 indicates it is currently not set
-        enum _Anonymous_8
+        enum _Anonymous_78
         {
 
             RMW_QOS_POLICY_DEPTH_SYSTEM_DEFAULT = 0,
         }
 
-        enum RMW_QOS_POLICY_DEPTH_SYSTEM_DEFAULT = _Anonymous_8.RMW_QOS_POLICY_DEPTH_SYSTEM_DEFAULT;
+        enum RMW_QOS_POLICY_DEPTH_SYSTEM_DEFAULT = _Anonymous_78
+                .RMW_QOS_POLICY_DEPTH_SYSTEM_DEFAULT;
         /// Type mapping of rcutils log severity types to rmw specific types.
-        alias rmw_log_severity_t = _Anonymous_9;
+        alias rmw_log_severity_t = _Anonymous_79;
         /// Type mapping of rcutils log severity types to rmw specific types.
-        enum _Anonymous_9
+        enum _Anonymous_79
         {
             /// Debug log severity, for pedantic messaging
             RMW_LOG_SEVERITY_DEBUG = 10,
@@ -11613,11 +19230,11 @@ version (foxy)
             RMW_LOG_SEVERITY_FATAL = 50,
         }
 
-        enum RMW_LOG_SEVERITY_DEBUG = _Anonymous_9.RMW_LOG_SEVERITY_DEBUG;
-        enum RMW_LOG_SEVERITY_INFO = _Anonymous_9.RMW_LOG_SEVERITY_INFO;
-        enum RMW_LOG_SEVERITY_WARN = _Anonymous_9.RMW_LOG_SEVERITY_WARN;
-        enum RMW_LOG_SEVERITY_ERROR = _Anonymous_9.RMW_LOG_SEVERITY_ERROR;
-        enum RMW_LOG_SEVERITY_FATAL = _Anonymous_9.RMW_LOG_SEVERITY_FATAL;
+        enum RMW_LOG_SEVERITY_DEBUG = _Anonymous_79.RMW_LOG_SEVERITY_DEBUG;
+        enum RMW_LOG_SEVERITY_INFO = _Anonymous_79.RMW_LOG_SEVERITY_INFO;
+        enum RMW_LOG_SEVERITY_WARN = _Anonymous_79.RMW_LOG_SEVERITY_WARN;
+        enum RMW_LOG_SEVERITY_ERROR = _Anonymous_79.RMW_LOG_SEVERITY_ERROR;
+        enum RMW_LOG_SEVERITY_FATAL = _Anonymous_79.RMW_LOG_SEVERITY_FATAL;
         /// QoS Liveliness Changed information provided by a subscription.
         struct rmw_liveliness_changed_status_t
         {
@@ -11683,6 +19300,107 @@ version (foxy)
             /// The change in total_count since the last time the status was last read.
             int total_count_change;
         }
+
+        char* strsep(char**, const(char)*) @nogc nothrow;
+
+        void explicit_bzero(void*, c_ulong) @nogc nothrow;
+
+        char* strerror_l(int, __locale_struct*) @nogc nothrow;
+        /// Initialize msg/Clock message.
+        /**
+ * If the init function is called twice for the same message without
+ * calling fini inbetween previously allocated memory will be leaked.
+ * \param[in,out] msg The previously allocated message pointer.
+ * Fields without a default value will not be initialized by this function.
+ * You might want to call memset(msg, 0, sizeof(
+ * rosgraph_msgs__msg__Clock
+ * )) before or use
+ * rosgraph_msgs__msg__Clock__create()
+ * to allocate and initialize the message.
+ * \return true if initialization was successful, otherwise false
+ */
+        bool rosgraph_msgs__msg__Clock__init(rosgraph_msgs__msg__Clock*) @nogc nothrow;
+        /// Finalize msg/Clock message.
+        /**
+ * \param[in,out] msg The allocated message pointer.
+ */
+        void rosgraph_msgs__msg__Clock__fini(rosgraph_msgs__msg__Clock*) @nogc nothrow;
+        /// Create msg/Clock message.
+        /**
+ * It allocates the memory for the message, sets the memory to zero, and
+ * calls
+ * rosgraph_msgs__msg__Clock__init().
+ * \return The pointer to the initialized message if successful,
+ * otherwise NULL
+ */
+        rosgraph_msgs__msg__Clock* rosgraph_msgs__msg__Clock__create() @nogc nothrow;
+        /// Destroy msg/Clock message.
+        /**
+ * It calls
+ * rosgraph_msgs__msg__Clock__fini()
+ * and frees the memory of the message.
+ * \param[in,out] msg The allocated message pointer.
+ */
+        void rosgraph_msgs__msg__Clock__destroy(rosgraph_msgs__msg__Clock*) @nogc nothrow;
+        /// Initialize array of msg/Clock messages.
+        /**
+ * It allocates the memory for the number of elements and calls
+ * rosgraph_msgs__msg__Clock__init()
+ * for each element of the array.
+ * \param[in,out] array The allocated array pointer.
+ * \param[in] size The size / capacity of the array.
+ * \return true if initialization was successful, otherwise false
+ * If the array pointer is valid and the size is zero it is guaranteed
+ # to return true.
+ */
+        bool rosgraph_msgs__msg__Clock__Sequence__init(rosgraph_msgs__msg__Clock__Sequence*,
+                c_ulong) @nogc nothrow;
+        /// Finalize array of msg/Clock messages.
+        /**
+ * It calls
+ * rosgraph_msgs__msg__Clock__fini()
+ * for each element of the array and frees the memory for the number of
+ * elements.
+ * \param[in,out] array The initialized array pointer.
+ */
+        void rosgraph_msgs__msg__Clock__Sequence__fini(rosgraph_msgs__msg__Clock__Sequence*) @nogc nothrow;
+        /// Create array of msg/Clock messages.
+        /**
+ * It allocates the memory for the array and calls
+ * rosgraph_msgs__msg__Clock__Sequence__init().
+ * \param[in] size The size / capacity of the array.
+ * \return The pointer to the initialized array if successful, otherwise NULL
+ */
+        rosgraph_msgs__msg__Clock__Sequence* rosgraph_msgs__msg__Clock__Sequence__create(c_ulong) @nogc nothrow;
+        /// Destroy array of msg/Clock messages.
+        /**
+ * It calls
+ * rosgraph_msgs__msg__Clock__Sequence__fini()
+ * on the array,
+ * and frees the memory of the array.
+ * \param[in,out] array The initialized array pointer.
+ */
+        void rosgraph_msgs__msg__Clock__Sequence__destroy(rosgraph_msgs__msg__Clock__Sequence*) @nogc nothrow;
+
+        struct rosgraph_msgs__msg__Clock
+        {
+
+            builtin_interfaces__msg__Time clock;
+        }
+
+        struct rosgraph_msgs__msg__Clock__Sequence
+        {
+
+            rosgraph_msgs__msg__Clock* data;
+            /// The number of valid items in data
+            c_ulong size;
+            /// The number of allocated items in data
+            c_ulong capacity;
+        }
+
+        const(rosidl_message_type_support_t)* rosidl_typesupport_c__get_message_type_support_handle__rosgraph_msgs__msg__Clock() @nogc nothrow;
+
+        int strerror_r(int, char*, c_ulong) @nogc nothrow;
         /// Contains rosidl action type support data.
         struct rosidl_action_type_support_t
         {
@@ -11697,6 +19415,8 @@ version (foxy)
 
             const(rosidl_message_type_support_t)* status_message_type_support;
         }
+
+        char* strerror(int) @nogc nothrow;
 
         enum rosidl_runtime_c__message_initialization
         {
@@ -11754,6 +19474,8 @@ version (foxy)
  */
         const(rosidl_message_type_support_t)* get_message_typesupport_handle_function(
                 const(rosidl_message_type_support_t)*, const(char)*) @nogc nothrow;
+
+        c_ulong strnlen(const(char)*, c_ulong) @nogc nothrow;
 
         struct rosidl_runtime_c__float__Sequence
         {
@@ -11913,29 +19635,27 @@ version (foxy)
 
         alias rosidl_runtime_c__float64__Sequence = rosidl_runtime_c__double__Sequence;
 
-        alias _Float64x = real;
+        void rosidl_runtime_c__float__Sequence__fini(rosidl_runtime_c__float__Sequence*) @nogc nothrow;
 
         bool rosidl_runtime_c__float__Sequence__init(rosidl_runtime_c__float__Sequence*, c_ulong) @nogc nothrow;
-
-        void rosidl_runtime_c__float__Sequence__fini(rosidl_runtime_c__float__Sequence*) @nogc nothrow;
 
         void rosidl_runtime_c__double__Sequence__fini(rosidl_runtime_c__double__Sequence*) @nogc nothrow;
 
         bool rosidl_runtime_c__double__Sequence__init(rosidl_runtime_c__double__Sequence*, c_ulong) @nogc nothrow;
 
-        bool rosidl_runtime_c__long_double__Sequence__init(
-                rosidl_runtime_c__long_double__Sequence*, c_ulong) @nogc nothrow;
-
         void rosidl_runtime_c__long_double__Sequence__fini(
                 rosidl_runtime_c__long_double__Sequence*) @nogc nothrow;
 
-        bool rosidl_runtime_c__char__Sequence__init(rosidl_runtime_c__char__Sequence*, c_ulong) @nogc nothrow;
+        bool rosidl_runtime_c__long_double__Sequence__init(
+                rosidl_runtime_c__long_double__Sequence*, c_ulong) @nogc nothrow;
 
         void rosidl_runtime_c__char__Sequence__fini(rosidl_runtime_c__char__Sequence*) @nogc nothrow;
 
-        bool rosidl_runtime_c__wchar__Sequence__init(rosidl_runtime_c__wchar__Sequence*, c_ulong) @nogc nothrow;
+        bool rosidl_runtime_c__char__Sequence__init(rosidl_runtime_c__char__Sequence*, c_ulong) @nogc nothrow;
 
         void rosidl_runtime_c__wchar__Sequence__fini(rosidl_runtime_c__wchar__Sequence*) @nogc nothrow;
+
+        bool rosidl_runtime_c__wchar__Sequence__init(rosidl_runtime_c__wchar__Sequence*, c_ulong) @nogc nothrow;
 
         bool rosidl_runtime_c__boolean__Sequence__init(rosidl_runtime_c__boolean__Sequence*,
                 c_ulong) @nogc nothrow;
@@ -11946,21 +19666,21 @@ version (foxy)
 
         void rosidl_runtime_c__octet__Sequence__fini(rosidl_runtime_c__octet__Sequence*) @nogc nothrow;
 
-        bool rosidl_runtime_c__uint8__Sequence__init(rosidl_runtime_c__uint8__Sequence*, c_ulong) @nogc nothrow;
-
         void rosidl_runtime_c__uint8__Sequence__fini(rosidl_runtime_c__uint8__Sequence*) @nogc nothrow;
 
-        bool rosidl_runtime_c__int8__Sequence__init(rosidl_runtime_c__int8__Sequence*, c_ulong) @nogc nothrow;
+        bool rosidl_runtime_c__uint8__Sequence__init(rosidl_runtime_c__uint8__Sequence*, c_ulong) @nogc nothrow;
 
         void rosidl_runtime_c__int8__Sequence__fini(rosidl_runtime_c__int8__Sequence*) @nogc nothrow;
 
-        void rosidl_runtime_c__uint16__Sequence__fini(rosidl_runtime_c__uint16__Sequence*) @nogc nothrow;
+        bool rosidl_runtime_c__int8__Sequence__init(rosidl_runtime_c__int8__Sequence*, c_ulong) @nogc nothrow;
 
         bool rosidl_runtime_c__uint16__Sequence__init(rosidl_runtime_c__uint16__Sequence*, c_ulong) @nogc nothrow;
 
-        void rosidl_runtime_c__int16__Sequence__fini(rosidl_runtime_c__int16__Sequence*) @nogc nothrow;
+        void rosidl_runtime_c__uint16__Sequence__fini(rosidl_runtime_c__uint16__Sequence*) @nogc nothrow;
 
         bool rosidl_runtime_c__int16__Sequence__init(rosidl_runtime_c__int16__Sequence*, c_ulong) @nogc nothrow;
+
+        void rosidl_runtime_c__int16__Sequence__fini(rosidl_runtime_c__int16__Sequence*) @nogc nothrow;
 
         bool rosidl_runtime_c__uint32__Sequence__init(rosidl_runtime_c__uint32__Sequence*, c_ulong) @nogc nothrow;
 
@@ -11970,9 +19690,9 @@ version (foxy)
 
         void rosidl_runtime_c__int32__Sequence__fini(rosidl_runtime_c__int32__Sequence*) @nogc nothrow;
 
-        bool rosidl_runtime_c__uint64__Sequence__init(rosidl_runtime_c__uint64__Sequence*, c_ulong) @nogc nothrow;
-
         void rosidl_runtime_c__uint64__Sequence__fini(rosidl_runtime_c__uint64__Sequence*) @nogc nothrow;
+
+        bool rosidl_runtime_c__uint64__Sequence__init(rosidl_runtime_c__uint64__Sequence*, c_ulong) @nogc nothrow;
 
         void rosidl_runtime_c__int64__Sequence__fini(rosidl_runtime_c__int64__Sequence*) @nogc nothrow;
 
@@ -11998,6 +19718,8 @@ version (foxy)
                 c_ulong) @nogc nothrow;
         /** See #ROSIDL_RUNTIME_C__DECLARE_PRIMITIVE_SEQUENCE_FINI(float64) */
         void rosidl_runtime_c__float64__Sequence__fini(rosidl_runtime_c__double__Sequence*) @nogc nothrow;
+
+        c_ulong strlen(const(char)*) @nogc nothrow;
 
         struct rosidl_runtime_c__Sequence__bound
         {
@@ -12073,7 +19795,7 @@ version (foxy)
         const(rosidl_service_type_support_t)* get_service_typesupport_handle_function(
                 const(rosidl_service_type_support_t)*, const(char)*) @nogc nothrow;
 
-        alias _Float32x = double;
+        char* strtok_r(char*, const(char)*, char**) @nogc nothrow;
         /// An array of 8-bit characters terminated by a null byte.
         struct rosidl_runtime_c__String
         {
@@ -12116,6 +19838,8 @@ version (foxy)
         rosidl_runtime_c__String__Sequence* rosidl_runtime_c__String__Sequence__create(c_ulong) @nogc nothrow;
         /// Destroy a rosidl_runtime_c__String__Sequence structure.
         void rosidl_runtime_c__String__Sequence__destroy(rosidl_runtime_c__String__Sequence*) @nogc nothrow;
+
+        char* __strtok_r(char*, const(char)*, char**) @nogc nothrow;
         /// An array of 16-bit characters terminated by a null character.
         struct rosidl_runtime_c__U16String
         {
@@ -12136,8 +19860,6 @@ version (foxy)
 
             c_ulong capacity;
         }
-
-        alias _Float64 = double;
         /// Initialize a rosidl_runtime_c__U16String structure.
         bool rosidl_runtime_c__U16String__init(rosidl_runtime_c__U16String*) @nogc nothrow;
         /// Deallocate the memory of the rosidl_runtime_c__U16String structure.
@@ -12165,8 +19887,480 @@ version (foxy)
         /// Destroy a U16 string sequence structure.
         void rosidl_runtime_c__U16String__Sequence__destroy(rosidl_runtime_c__U16String__Sequence*) @nogc nothrow;
 
-        alias _Float32 = float;
+        char* strtok(char*, const(char)*) @nogc nothrow;
+
+        char* strstr(const(char)*, const(char)*) @nogc nothrow;
+
+        char* strpbrk(const(char)*, const(char)*) @nogc nothrow;
+        /// Initialize msg/MetricsMessage message.
+        /**
+ * If the init function is called twice for the same message without
+ * calling fini inbetween previously allocated memory will be leaked.
+ * \param[in,out] msg The previously allocated message pointer.
+ * Fields without a default value will not be initialized by this function.
+ * You might want to call memset(msg, 0, sizeof(
+ * statistics_msgs__msg__MetricsMessage
+ * )) before or use
+ * statistics_msgs__msg__MetricsMessage__create()
+ * to allocate and initialize the message.
+ * \return true if initialization was successful, otherwise false
+ */
+        bool statistics_msgs__msg__MetricsMessage__init(statistics_msgs__msg__MetricsMessage*) @nogc nothrow;
+        /// Finalize msg/MetricsMessage message.
+        /**
+ * \param[in,out] msg The allocated message pointer.
+ */
+        void statistics_msgs__msg__MetricsMessage__fini(statistics_msgs__msg__MetricsMessage*) @nogc nothrow;
+        /// Create msg/MetricsMessage message.
+        /**
+ * It allocates the memory for the message, sets the memory to zero, and
+ * calls
+ * statistics_msgs__msg__MetricsMessage__init().
+ * \return The pointer to the initialized message if successful,
+ * otherwise NULL
+ */
+        statistics_msgs__msg__MetricsMessage* statistics_msgs__msg__MetricsMessage__create() @nogc nothrow;
+        /// Destroy msg/MetricsMessage message.
+        /**
+ * It calls
+ * statistics_msgs__msg__MetricsMessage__fini()
+ * and frees the memory of the message.
+ * \param[in,out] msg The allocated message pointer.
+ */
+        void statistics_msgs__msg__MetricsMessage__destroy(statistics_msgs__msg__MetricsMessage*) @nogc nothrow;
+        /// Initialize array of msg/MetricsMessage messages.
+        /**
+ * It allocates the memory for the number of elements and calls
+ * statistics_msgs__msg__MetricsMessage__init()
+ * for each element of the array.
+ * \param[in,out] array The allocated array pointer.
+ * \param[in] size The size / capacity of the array.
+ * \return true if initialization was successful, otherwise false
+ * If the array pointer is valid and the size is zero it is guaranteed
+ # to return true.
+ */
+        bool statistics_msgs__msg__MetricsMessage__Sequence__init(
+                statistics_msgs__msg__MetricsMessage__Sequence*, c_ulong) @nogc nothrow;
+        /// Finalize array of msg/MetricsMessage messages.
+        /**
+ * It calls
+ * statistics_msgs__msg__MetricsMessage__fini()
+ * for each element of the array and frees the memory for the number of
+ * elements.
+ * \param[in,out] array The initialized array pointer.
+ */
+        void statistics_msgs__msg__MetricsMessage__Sequence__fini(
+                statistics_msgs__msg__MetricsMessage__Sequence*) @nogc nothrow;
+        /// Create array of msg/MetricsMessage messages.
+        /**
+ * It allocates the memory for the array and calls
+ * statistics_msgs__msg__MetricsMessage__Sequence__init().
+ * \param[in] size The size / capacity of the array.
+ * \return The pointer to the initialized array if successful, otherwise NULL
+ */
+        statistics_msgs__msg__MetricsMessage__Sequence* statistics_msgs__msg__MetricsMessage__Sequence__create(
+                c_ulong) @nogc nothrow;
+        /// Destroy array of msg/MetricsMessage messages.
+        /**
+ * It calls
+ * statistics_msgs__msg__MetricsMessage__Sequence__fini()
+ * on the array,
+ * and frees the memory of the array.
+ * \param[in,out] array The initialized array pointer.
+ */
+        void statistics_msgs__msg__MetricsMessage__Sequence__destroy(
+                statistics_msgs__msg__MetricsMessage__Sequence*) @nogc nothrow;
+
+        struct statistics_msgs__msg__MetricsMessage
+        {
+
+            rosidl_runtime_c__String measurement_source_name;
+
+            rosidl_runtime_c__String metrics_source;
+
+            rosidl_runtime_c__String unit;
+
+            builtin_interfaces__msg__Time window_start;
+
+            builtin_interfaces__msg__Time window_stop;
+
+            statistics_msgs__msg__StatisticDataPoint__Sequence statistics;
+        }
+
+        struct statistics_msgs__msg__MetricsMessage__Sequence
+        {
+
+            statistics_msgs__msg__MetricsMessage* data;
+            /// The number of valid items in data
+            c_ulong size;
+            /// The number of allocated items in data
+            c_ulong capacity;
+        }
+
+        c_ulong strspn(const(char)*, const(char)*) @nogc nothrow;
+
+        const(rosidl_message_type_support_t)* rosidl_typesupport_c__get_message_type_support_handle__statistics_msgs__msg__MetricsMessage() @nogc nothrow;
+        /// Initialize msg/StatisticDataPoint message.
+        /**
+ * If the init function is called twice for the same message without
+ * calling fini inbetween previously allocated memory will be leaked.
+ * \param[in,out] msg The previously allocated message pointer.
+ * Fields without a default value will not be initialized by this function.
+ * You might want to call memset(msg, 0, sizeof(
+ * statistics_msgs__msg__StatisticDataPoint
+ * )) before or use
+ * statistics_msgs__msg__StatisticDataPoint__create()
+ * to allocate and initialize the message.
+ * \return true if initialization was successful, otherwise false
+ */
+        bool statistics_msgs__msg__StatisticDataPoint__init(
+                statistics_msgs__msg__StatisticDataPoint*) @nogc nothrow;
+        /// Finalize msg/StatisticDataPoint message.
+        /**
+ * \param[in,out] msg The allocated message pointer.
+ */
+        void statistics_msgs__msg__StatisticDataPoint__fini(
+                statistics_msgs__msg__StatisticDataPoint*) @nogc nothrow;
+        /// Create msg/StatisticDataPoint message.
+        /**
+ * It allocates the memory for the message, sets the memory to zero, and
+ * calls
+ * statistics_msgs__msg__StatisticDataPoint__init().
+ * \return The pointer to the initialized message if successful,
+ * otherwise NULL
+ */
+        statistics_msgs__msg__StatisticDataPoint* statistics_msgs__msg__StatisticDataPoint__create() @nogc nothrow;
+        /// Destroy msg/StatisticDataPoint message.
+        /**
+ * It calls
+ * statistics_msgs__msg__StatisticDataPoint__fini()
+ * and frees the memory of the message.
+ * \param[in,out] msg The allocated message pointer.
+ */
+        void statistics_msgs__msg__StatisticDataPoint__destroy(
+                statistics_msgs__msg__StatisticDataPoint*) @nogc nothrow;
+        /// Initialize array of msg/StatisticDataPoint messages.
+        /**
+ * It allocates the memory for the number of elements and calls
+ * statistics_msgs__msg__StatisticDataPoint__init()
+ * for each element of the array.
+ * \param[in,out] array The allocated array pointer.
+ * \param[in] size The size / capacity of the array.
+ * \return true if initialization was successful, otherwise false
+ * If the array pointer is valid and the size is zero it is guaranteed
+ # to return true.
+ */
+        bool statistics_msgs__msg__StatisticDataPoint__Sequence__init(
+                statistics_msgs__msg__StatisticDataPoint__Sequence*, c_ulong) @nogc nothrow;
+        /// Finalize array of msg/StatisticDataPoint messages.
+        /**
+ * It calls
+ * statistics_msgs__msg__StatisticDataPoint__fini()
+ * for each element of the array and frees the memory for the number of
+ * elements.
+ * \param[in,out] array The initialized array pointer.
+ */
+        void statistics_msgs__msg__StatisticDataPoint__Sequence__fini(
+                statistics_msgs__msg__StatisticDataPoint__Sequence*) @nogc nothrow;
+        /// Create array of msg/StatisticDataPoint messages.
+        /**
+ * It allocates the memory for the array and calls
+ * statistics_msgs__msg__StatisticDataPoint__Sequence__init().
+ * \param[in] size The size / capacity of the array.
+ * \return The pointer to the initialized array if successful, otherwise NULL
+ */
+        statistics_msgs__msg__StatisticDataPoint__Sequence* statistics_msgs__msg__StatisticDataPoint__Sequence__create(
+                c_ulong) @nogc nothrow;
+        /// Destroy array of msg/StatisticDataPoint messages.
+        /**
+ * It calls
+ * statistics_msgs__msg__StatisticDataPoint__Sequence__fini()
+ * on the array,
+ * and frees the memory of the array.
+ * \param[in,out] array The initialized array pointer.
+ */
+        void statistics_msgs__msg__StatisticDataPoint__Sequence__destroy(
+                statistics_msgs__msg__StatisticDataPoint__Sequence*) @nogc nothrow;
+
+        struct statistics_msgs__msg__StatisticDataPoint
+        {
+
+            ubyte data_type;
+
+            double data;
+        }
+
+        struct statistics_msgs__msg__StatisticDataPoint__Sequence
+        {
+
+            statistics_msgs__msg__StatisticDataPoint* data;
+            /// The number of valid items in data
+            c_ulong size;
+            /// The number of allocated items in data
+            c_ulong capacity;
+        }
+
+        const(rosidl_message_type_support_t)* rosidl_typesupport_c__get_message_type_support_handle__statistics_msgs__msg__StatisticDataPoint() @nogc nothrow;
+
+        c_ulong strcspn(const(char)*, const(char)*) @nogc nothrow;
+        /// Initialize msg/StatisticDataType message.
+        /**
+ * If the init function is called twice for the same message without
+ * calling fini inbetween previously allocated memory will be leaked.
+ * \param[in,out] msg The previously allocated message pointer.
+ * Fields without a default value will not be initialized by this function.
+ * You might want to call memset(msg, 0, sizeof(
+ * statistics_msgs__msg__StatisticDataType
+ * )) before or use
+ * statistics_msgs__msg__StatisticDataType__create()
+ * to allocate and initialize the message.
+ * \return true if initialization was successful, otherwise false
+ */
+        bool statistics_msgs__msg__StatisticDataType__init(
+                statistics_msgs__msg__StatisticDataType*) @nogc nothrow;
+        /// Finalize msg/StatisticDataType message.
+        /**
+ * \param[in,out] msg The allocated message pointer.
+ */
+        void statistics_msgs__msg__StatisticDataType__fini(
+                statistics_msgs__msg__StatisticDataType*) @nogc nothrow;
+        /// Create msg/StatisticDataType message.
+        /**
+ * It allocates the memory for the message, sets the memory to zero, and
+ * calls
+ * statistics_msgs__msg__StatisticDataType__init().
+ * \return The pointer to the initialized message if successful,
+ * otherwise NULL
+ */
+        statistics_msgs__msg__StatisticDataType* statistics_msgs__msg__StatisticDataType__create() @nogc nothrow;
+        /// Destroy msg/StatisticDataType message.
+        /**
+ * It calls
+ * statistics_msgs__msg__StatisticDataType__fini()
+ * and frees the memory of the message.
+ * \param[in,out] msg The allocated message pointer.
+ */
+        void statistics_msgs__msg__StatisticDataType__destroy(
+                statistics_msgs__msg__StatisticDataType*) @nogc nothrow;
+        /// Initialize array of msg/StatisticDataType messages.
+        /**
+ * It allocates the memory for the number of elements and calls
+ * statistics_msgs__msg__StatisticDataType__init()
+ * for each element of the array.
+ * \param[in,out] array The allocated array pointer.
+ * \param[in] size The size / capacity of the array.
+ * \return true if initialization was successful, otherwise false
+ * If the array pointer is valid and the size is zero it is guaranteed
+ # to return true.
+ */
+        bool statistics_msgs__msg__StatisticDataType__Sequence__init(
+                statistics_msgs__msg__StatisticDataType__Sequence*, c_ulong) @nogc nothrow;
+        /// Finalize array of msg/StatisticDataType messages.
+        /**
+ * It calls
+ * statistics_msgs__msg__StatisticDataType__fini()
+ * for each element of the array and frees the memory for the number of
+ * elements.
+ * \param[in,out] array The initialized array pointer.
+ */
+        void statistics_msgs__msg__StatisticDataType__Sequence__fini(
+                statistics_msgs__msg__StatisticDataType__Sequence*) @nogc nothrow;
+        /// Create array of msg/StatisticDataType messages.
+        /**
+ * It allocates the memory for the array and calls
+ * statistics_msgs__msg__StatisticDataType__Sequence__init().
+ * \param[in] size The size / capacity of the array.
+ * \return The pointer to the initialized array if successful, otherwise NULL
+ */
+        statistics_msgs__msg__StatisticDataType__Sequence* statistics_msgs__msg__StatisticDataType__Sequence__create(
+                c_ulong) @nogc nothrow;
+        /// Destroy array of msg/StatisticDataType messages.
+        /**
+ * It calls
+ * statistics_msgs__msg__StatisticDataType__Sequence__fini()
+ * on the array,
+ * and frees the memory of the array.
+ * \param[in,out] array The initialized array pointer.
+ */
+        void statistics_msgs__msg__StatisticDataType__Sequence__destroy(
+                statistics_msgs__msg__StatisticDataType__Sequence*) @nogc nothrow;
+        /// Constant 'STATISTICS_DATA_TYPE_UNINITIALIZED'.
+        enum _Anonymous_80
+        {
+
+            statistics_msgs__msg__StatisticDataType__STATISTICS_DATA_TYPE_UNINITIALIZED = 0,
+        }
+
+        enum statistics_msgs__msg__StatisticDataType__STATISTICS_DATA_TYPE_UNINITIALIZED = _Anonymous_80
+                .statistics_msgs__msg__StatisticDataType__STATISTICS_DATA_TYPE_UNINITIALIZED;
+        /// Constant 'STATISTICS_DATA_TYPE_AVERAGE'.
+        enum _Anonymous_81
+        {
+
+            statistics_msgs__msg__StatisticDataType__STATISTICS_DATA_TYPE_AVERAGE = 1,
+        }
+
+        enum statistics_msgs__msg__StatisticDataType__STATISTICS_DATA_TYPE_AVERAGE = _Anonymous_81
+                .statistics_msgs__msg__StatisticDataType__STATISTICS_DATA_TYPE_AVERAGE;
+        /// Constant 'STATISTICS_DATA_TYPE_MINIMUM'.
+        enum _Anonymous_82
+        {
+
+            statistics_msgs__msg__StatisticDataType__STATISTICS_DATA_TYPE_MINIMUM = 2,
+        }
+
+        enum statistics_msgs__msg__StatisticDataType__STATISTICS_DATA_TYPE_MINIMUM = _Anonymous_82
+                .statistics_msgs__msg__StatisticDataType__STATISTICS_DATA_TYPE_MINIMUM;
+        /// Constant 'STATISTICS_DATA_TYPE_MAXIMUM'.
+        enum _Anonymous_83
+        {
+
+            statistics_msgs__msg__StatisticDataType__STATISTICS_DATA_TYPE_MAXIMUM = 3,
+        }
+
+        enum statistics_msgs__msg__StatisticDataType__STATISTICS_DATA_TYPE_MAXIMUM = _Anonymous_83
+                .statistics_msgs__msg__StatisticDataType__STATISTICS_DATA_TYPE_MAXIMUM;
+        /// Constant 'STATISTICS_DATA_TYPE_STDDEV'.
+        enum _Anonymous_84
+        {
+
+            statistics_msgs__msg__StatisticDataType__STATISTICS_DATA_TYPE_STDDEV = 4,
+        }
+
+        enum statistics_msgs__msg__StatisticDataType__STATISTICS_DATA_TYPE_STDDEV = _Anonymous_84
+                .statistics_msgs__msg__StatisticDataType__STATISTICS_DATA_TYPE_STDDEV;
+        /// Constant 'STATISTICS_DATA_TYPE_SAMPLE_COUNT'.
+        enum _Anonymous_85
+        {
+
+            statistics_msgs__msg__StatisticDataType__STATISTICS_DATA_TYPE_SAMPLE_COUNT = 5,
+        }
+
+        enum statistics_msgs__msg__StatisticDataType__STATISTICS_DATA_TYPE_SAMPLE_COUNT = _Anonymous_85
+                .statistics_msgs__msg__StatisticDataType__STATISTICS_DATA_TYPE_SAMPLE_COUNT;
+
+        struct statistics_msgs__msg__StatisticDataType
+        {
+
+            ubyte structure_needs_at_least_one_member;
+        }
+
+        struct statistics_msgs__msg__StatisticDataType__Sequence
+        {
+
+            statistics_msgs__msg__StatisticDataType* data;
+            /// The number of valid items in data
+            c_ulong size;
+            /// The number of allocated items in data
+            c_ulong capacity;
+        }
+
+        const(rosidl_message_type_support_t)* rosidl_typesupport_c__get_message_type_support_handle__statistics_msgs__msg__StatisticDataType() @nogc nothrow;
+
+        char* strrchr(const(char)*, int) @nogc nothrow;
+
+        char* strchr(const(char)*, int) @nogc nothrow;
+        /// Initialize msg/UUID message.
+        /**
+ * If the init function is called twice for the same message without
+ * calling fini inbetween previously allocated memory will be leaked.
+ * \param[in,out] msg The previously allocated message pointer.
+ * Fields without a default value will not be initialized by this function.
+ * You might want to call memset(msg, 0, sizeof(
+ * unique_identifier_msgs__msg__UUID
+ * )) before or use
+ * unique_identifier_msgs__msg__UUID__create()
+ * to allocate and initialize the message.
+ * \return true if initialization was successful, otherwise false
+ */
+        bool unique_identifier_msgs__msg__UUID__init(unique_identifier_msgs__msg__UUID*) @nogc nothrow;
+        /// Finalize msg/UUID message.
+        /**
+ * \param[in,out] msg The allocated message pointer.
+ */
+        void unique_identifier_msgs__msg__UUID__fini(unique_identifier_msgs__msg__UUID*) @nogc nothrow;
+        /// Create msg/UUID message.
+        /**
+ * It allocates the memory for the message, sets the memory to zero, and
+ * calls
+ * unique_identifier_msgs__msg__UUID__init().
+ * \return The pointer to the initialized message if successful,
+ * otherwise NULL
+ */
+        unique_identifier_msgs__msg__UUID* unique_identifier_msgs__msg__UUID__create() @nogc nothrow;
+        /// Destroy msg/UUID message.
+        /**
+ * It calls
+ * unique_identifier_msgs__msg__UUID__fini()
+ * and frees the memory of the message.
+ * \param[in,out] msg The allocated message pointer.
+ */
+        void unique_identifier_msgs__msg__UUID__destroy(unique_identifier_msgs__msg__UUID*) @nogc nothrow;
+        /// Initialize array of msg/UUID messages.
+        /**
+ * It allocates the memory for the number of elements and calls
+ * unique_identifier_msgs__msg__UUID__init()
+ * for each element of the array.
+ * \param[in,out] array The allocated array pointer.
+ * \param[in] size The size / capacity of the array.
+ * \return true if initialization was successful, otherwise false
+ * If the array pointer is valid and the size is zero it is guaranteed
+ # to return true.
+ */
+        bool unique_identifier_msgs__msg__UUID__Sequence__init(
+                unique_identifier_msgs__msg__UUID__Sequence*, c_ulong) @nogc nothrow;
+        /// Finalize array of msg/UUID messages.
+        /**
+ * It calls
+ * unique_identifier_msgs__msg__UUID__fini()
+ * for each element of the array and frees the memory for the number of
+ * elements.
+ * \param[in,out] array The initialized array pointer.
+ */
+        void unique_identifier_msgs__msg__UUID__Sequence__fini(
+                unique_identifier_msgs__msg__UUID__Sequence*) @nogc nothrow;
+        /// Create array of msg/UUID messages.
+        /**
+ * It allocates the memory for the array and calls
+ * unique_identifier_msgs__msg__UUID__Sequence__init().
+ * \param[in] size The size / capacity of the array.
+ * \return The pointer to the initialized array if successful, otherwise NULL
+ */
+        unique_identifier_msgs__msg__UUID__Sequence* unique_identifier_msgs__msg__UUID__Sequence__create(
+                c_ulong) @nogc nothrow;
+        /// Destroy array of msg/UUID messages.
+        /**
+ * It calls
+ * unique_identifier_msgs__msg__UUID__Sequence__fini()
+ * on the array,
+ * and frees the memory of the array.
+ * \param[in,out] array The initialized array pointer.
+ */
+        void unique_identifier_msgs__msg__UUID__Sequence__destroy(
+                unique_identifier_msgs__msg__UUID__Sequence*) @nogc nothrow;
+
+        struct unique_identifier_msgs__msg__UUID
+        {
+
+            ubyte[16] uuid;
+        }
+
+        struct unique_identifier_msgs__msg__UUID__Sequence
+        {
+
+            unique_identifier_msgs__msg__UUID* data;
+            /// The number of valid items in data
+            c_ulong size;
+            /// The number of allocated items in data
+            c_ulong capacity;
+        }
+
+        const(rosidl_message_type_support_t)* rosidl_typesupport_c__get_message_type_support_handle__unique_identifier_msgs__msg__UUID() @nogc nothrow;
+
+        char* strndup(const(char)*, c_ulong) @nogc nothrow;
         pragma(mangle, "alloca") void* alloca_(c_ulong) @nogc nothrow;
+
+        char* strdup(const(char)*) @nogc nothrow;
 
         void __assert_fail(const(char)*, const(char)*, uint, const(char)*) @nogc nothrow;
 
@@ -12174,21 +20368,35 @@ version (foxy)
 
         void __assert(const(char)*, const(char)*, int) @nogc nothrow;
 
-        static c_ulong __bswap_64(c_ulong) @nogc nothrow;
+        c_ulong strxfrm_l(char*, const(char)*, c_ulong, __locale_struct*) @nogc nothrow;
 
-        static uint __bswap_32(uint) @nogc nothrow;
+        int strcoll_l(const(char)*, const(char)*, __locale_struct*) @nogc nothrow;
 
-        static ushort __bswap_16(ushort) @nogc nothrow;
+        c_ulong strxfrm(char*, const(char)*, c_ulong) @nogc nothrow;
 
-        int strncasecmp_l(const(char)*, const(char)*, c_ulong, __locale_struct*) @nogc nothrow;
+        int strcoll(const(char)*, const(char)*) @nogc nothrow;
 
-        int strcasecmp_l(const(char)*, const(char)*, __locale_struct*) @nogc nothrow;
+        int strncmp(const(char)*, const(char)*, c_ulong) @nogc nothrow;
 
-        int strncasecmp(const(char)*, const(char)*, c_ulong) @nogc nothrow;
+        int strcmp(const(char)*, const(char)*) @nogc nothrow;
 
-        int strcasecmp(const(char)*, const(char)*) @nogc nothrow;
+        char* strncat(char*, const(char)*, c_ulong) @nogc nothrow;
 
-        int ffsll(long) @nogc nothrow;
+        char* strcat(char*, const(char)*) @nogc nothrow;
+
+        char* strncpy(char*, const(char)*, c_ulong) @nogc nothrow;
+
+        char* strcpy(char*, const(char)*) @nogc nothrow;
+
+        void* memchr(const(void)*, int, c_ulong) @nogc nothrow;
+
+        int memcmp(const(void)*, const(void)*, c_ulong) @nogc nothrow;
+
+        void* memset(void*, int, c_ulong) @nogc nothrow;
+
+        void* memccpy(void*, const(void)*, int, c_ulong) @nogc nothrow;
+
+        void* memmove(void*, const(void)*, c_ulong) @nogc nothrow;
 
         alias int_least8_t = byte;
 
@@ -12224,55 +20432,53 @@ version (foxy)
 
         alias intptr_t = c_long;
 
+        void* memcpy(void*, const(void)*, c_ulong) @nogc nothrow;
+
         alias uintptr_t = c_ulong;
 
         alias intmax_t = c_long;
 
         alias uintmax_t = c_ulong;
 
-        int ffsl(c_long) @nogc nothrow;
+        int getloadavg(double*, int) @nogc nothrow;
 
-        int ffs(int) @nogc nothrow;
+        int getsubopt(char**, char**, char**) @nogc nothrow;
 
-        char* rindex(const(char)*, int) @nogc nothrow;
+        int rpmatch(const(char)*) @nogc nothrow;
 
-        char* index(const(char)*, int) @nogc nothrow;
+        c_ulong wcstombs(char*, const(int)*, c_ulong) @nogc nothrow;
 
-        void bzero(void*, c_ulong) @nogc nothrow;
+        c_ulong mbstowcs(int*, const(char)*, c_ulong) @nogc nothrow;
 
-        void bcopy(const(void)*, void*, c_ulong) @nogc nothrow;
+        int wctomb(char*, int) @nogc nothrow;
 
-        int bcmp(const(void)*, const(void)*, c_ulong) @nogc nothrow;
+        int mbtowc(int*, const(char)*, c_ulong) @nogc nothrow;
 
-        char* stpncpy(char*, const(char)*, c_ulong) @nogc nothrow;
+        int mblen(const(char)*, c_ulong) @nogc nothrow;
 
-        char* __stpncpy(char*, const(char)*, c_ulong) @nogc nothrow;
+        int qfcvt_r(real, int, int*, int*, char*, c_ulong) @nogc nothrow;
 
-        char* stpcpy(char*, const(char)*) @nogc nothrow;
+        int qecvt_r(real, int, int*, int*, char*, c_ulong) @nogc nothrow;
 
-        char* __stpcpy(char*, const(char)*) @nogc nothrow;
+        int fcvt_r(double, int, int*, int*, char*, c_ulong) @nogc nothrow;
 
-        char* strsignal(int) @nogc nothrow;
+        int ecvt_r(double, int, int*, int*, char*, c_ulong) @nogc nothrow;
 
-        char* strsep(char**, const(char)*) @nogc nothrow;
+        char* qgcvt(real, int, char*) @nogc nothrow;
 
-        void explicit_bzero(void*, c_ulong) @nogc nothrow;
+        char* qfcvt(real, int, int*, int*) @nogc nothrow;
 
-        char* strerror_l(int, __locale_struct*) @nogc nothrow;
+        char* qecvt(real, int, int*, int*) @nogc nothrow;
 
-        int strerror_r(int, char*, c_ulong) @nogc nothrow;
+        char* gcvt(double, int, char*) @nogc nothrow;
 
-        char* strerror(int) @nogc nothrow;
-
-        alias off_t = c_long;
-
-        alias ssize_t = c_long;
+        char* fcvt(double, int, int*, int*) @nogc nothrow;
 
         alias fpos_t = _G_fpos_t;
 
-        c_ulong strnlen(const(char)*, c_ulong) @nogc nothrow;
+        char* ecvt(double, int, int*, int*) @nogc nothrow;
 
-        c_ulong strlen(const(char)*) @nogc nothrow;
+        lldiv_t lldiv(long, long) @nogc nothrow;
 
         extern __gshared _IO_FILE* stdin;
 
@@ -12280,7 +20486,7 @@ version (foxy)
 
         extern __gshared _IO_FILE* stderr;
 
-        char* strtok_r(char*, const(char)*, char**) @nogc nothrow;
+        ldiv_t ldiv(c_long, c_long) @nogc nothrow;
 
         int remove(const(char)*) @nogc nothrow;
 
@@ -12450,11 +20656,13 @@ version (foxy)
 
         int __overflow(_IO_FILE*, int) @nogc nothrow;
 
-        char* __strtok_r(char*, const(char)*, char**) @nogc nothrow;
+        div_t div(int, int) @nogc nothrow;
 
-        char* strtok(char*, const(char)*) @nogc nothrow;
+        long llabs(long) @nogc nothrow;
 
-        char* strstr(const(char)*, const(char)*) @nogc nothrow;
+        c_long labs(c_long) @nogc nothrow;
+
+        int abs(int) @nogc nothrow;
 
         struct div_t
         {
@@ -12472,8 +20680,6 @@ version (foxy)
             c_long rem;
         }
 
-        char* strpbrk(const(char)*, const(char)*) @nogc nothrow;
-
         struct lldiv_t
         {
 
@@ -12482,7 +20688,11 @@ version (foxy)
             long rem;
         }
 
-        c_ulong strspn(const(char)*, const(char)*) @nogc nothrow;
+        void qsort(void*, c_ulong, c_ulong, int function(const(void)*, const(void)*)) @nogc nothrow;
+
+        void* bsearch(const(void)*, const(void)*, c_ulong, c_ulong,
+                int function(const(void)*, const(void)*)) @nogc nothrow;
+        alias __compar_fn_t = int function(const(void)*, const(void)*);
 
         c_ulong __ctype_get_mb_cur_max() @nogc nothrow;
 
@@ -12657,110 +20867,6 @@ version (foxy)
         int system(const(char)*) @nogc nothrow;
 
         char* realpath(const(char)*, char*) @nogc nothrow;
-        alias __compar_fn_t = int function(const(void)*, const(void)*);
-
-        void* bsearch(const(void)*, const(void)*, c_ulong, c_ulong,
-                int function(const(void)*, const(void)*)) @nogc nothrow;
-
-        void qsort(void*, c_ulong, c_ulong, int function(const(void)*, const(void)*)) @nogc nothrow;
-
-        int abs(int) @nogc nothrow;
-
-        c_long labs(c_long) @nogc nothrow;
-
-        long llabs(long) @nogc nothrow;
-
-        div_t div(int, int) @nogc nothrow;
-
-        ldiv_t ldiv(c_long, c_long) @nogc nothrow;
-
-        lldiv_t lldiv(long, long) @nogc nothrow;
-
-        char* ecvt(double, int, int*, int*) @nogc nothrow;
-
-        char* fcvt(double, int, int*, int*) @nogc nothrow;
-
-        char* gcvt(double, int, char*) @nogc nothrow;
-
-        char* qecvt(real, int, int*, int*) @nogc nothrow;
-
-        char* qfcvt(real, int, int*, int*) @nogc nothrow;
-
-        char* qgcvt(real, int, char*) @nogc nothrow;
-
-        int ecvt_r(double, int, int*, int*, char*, c_ulong) @nogc nothrow;
-
-        int fcvt_r(double, int, int*, int*, char*, c_ulong) @nogc nothrow;
-
-        int qecvt_r(real, int, int*, int*, char*, c_ulong) @nogc nothrow;
-
-        int qfcvt_r(real, int, int*, int*, char*, c_ulong) @nogc nothrow;
-
-        int mblen(const(char)*, c_ulong) @nogc nothrow;
-
-        int mbtowc(int*, const(char)*, c_ulong) @nogc nothrow;
-
-        int wctomb(char*, int) @nogc nothrow;
-
-        c_ulong mbstowcs(int*, const(char)*, c_ulong) @nogc nothrow;
-
-        c_ulong wcstombs(char*, const(int)*, c_ulong) @nogc nothrow;
-
-        int rpmatch(const(char)*) @nogc nothrow;
-
-        int getsubopt(char**, char**, char**) @nogc nothrow;
-
-        int getloadavg(double*, int) @nogc nothrow;
-
-        c_ulong strcspn(const(char)*, const(char)*) @nogc nothrow;
-
-        void* memcpy(void*, const(void)*, c_ulong) @nogc nothrow;
-
-        void* memmove(void*, const(void)*, c_ulong) @nogc nothrow;
-
-        void* memccpy(void*, const(void)*, int, c_ulong) @nogc nothrow;
-
-        void* memset(void*, int, c_ulong) @nogc nothrow;
-
-        int memcmp(const(void)*, const(void)*, c_ulong) @nogc nothrow;
-
-        void* memchr(const(void)*, int, c_ulong) @nogc nothrow;
-
-        char* strcpy(char*, const(char)*) @nogc nothrow;
-
-        char* strncpy(char*, const(char)*, c_ulong) @nogc nothrow;
-
-        char* strcat(char*, const(char)*) @nogc nothrow;
-
-        char* strncat(char*, const(char)*, c_ulong) @nogc nothrow;
-
-        int strcmp(const(char)*, const(char)*) @nogc nothrow;
-
-        int strncmp(const(char)*, const(char)*, c_ulong) @nogc nothrow;
-
-        int strcoll(const(char)*, const(char)*) @nogc nothrow;
-
-        c_ulong strxfrm(char*, const(char)*, c_ulong) @nogc nothrow;
-
-        int strcoll_l(const(char)*, const(char)*, __locale_struct*) @nogc nothrow;
-
-        c_ulong strxfrm_l(char*, const(char)*, c_ulong, __locale_struct*) @nogc nothrow;
-
-        char* strdup(const(char)*) @nogc nothrow;
-
-        char* strndup(const(char)*, c_ulong) @nogc nothrow;
-
-        char* strchr(const(char)*, int) @nogc nothrow;
-
-        char* strrchr(const(char)*, int) @nogc nothrow;
-        static if (!is(typeof(_STRING_H)))
-        {
-            private enum enumMixinStr__STRING_H = `enum _STRING_H = 1;`;
-            static if (is(typeof({ mixin(enumMixinStr__STRING_H); })))
-            {
-                mixin(enumMixinStr__STRING_H);
-            }
-        }
 
         static if (!is(typeof(MB_CUR_MAX)))
         {
@@ -12823,7 +20929,6 @@ version (foxy)
                 mixin(enumMixinStr__STDLIB_H);
             }
         }
-
         static if (!is(typeof(stderr)))
         {
             private enum enumMixinStr_stderr = `enum stderr = stderr;`;
@@ -13137,15 +21242,6 @@ version (foxy)
             }
         }
 
-        static if (!is(typeof(_STRINGS_H)))
-        {
-            private enum enumMixinStr__STRINGS_H = `enum _STRINGS_H = 1;`;
-            static if (is(typeof({ mixin(enumMixinStr__STRINGS_H); })))
-            {
-                mixin(enumMixinStr__STRINGS_H);
-            }
-        }
-
         static if (!is(typeof(INT_FAST8_MAX)))
         {
             private enum enumMixinStr_INT_FAST8_MAX = `enum INT_FAST8_MAX = ( 127 );`;
@@ -13380,6 +21476,15 @@ version (foxy)
             }
         }
 
+        static if (!is(typeof(_STRING_H)))
+        {
+            private enum enumMixinStr__STRING_H = `enum _STRING_H = 1;`;
+            static if (is(typeof({ mixin(enumMixinStr__STRING_H); })))
+            {
+                mixin(enumMixinStr__STRING_H);
+            }
+        }
+
         static if (!is(typeof(INT32_MIN)))
         {
             private enum enumMixinStr_INT32_MIN = `enum INT32_MIN = ( - 2147483647 - 1 );`;
@@ -13608,15 +21713,6 @@ version (foxy)
             }
         }
 
-        static if (!is(typeof(_BITS_BYTESWAP_H)))
-        {
-            private enum enumMixinStr__BITS_BYTESWAP_H = `enum _BITS_BYTESWAP_H = 1;`;
-            static if (is(typeof({ mixin(enumMixinStr__BITS_BYTESWAP_H); })))
-            {
-                mixin(enumMixinStr__BITS_BYTESWAP_H);
-            }
-        }
-
         static if (!is(typeof(__USE_ISOC11)))
         {
             private enum enumMixinStr___USE_ISOC11 = `enum __USE_ISOC11 = 1;`;
@@ -13651,193 +21747,9 @@ version (foxy)
                 mixin(enumMixinStr__FEATURES_H);
             }
         }
-
-        static if (!is(typeof(_BITS_ENDIAN_H)))
-        {
-            private enum enumMixinStr__BITS_ENDIAN_H = `enum _BITS_ENDIAN_H = 1;`;
-            static if (is(typeof({ mixin(enumMixinStr__BITS_ENDIAN_H); })))
-            {
-                mixin(enumMixinStr__BITS_ENDIAN_H);
-            }
-        }
-
-        static if (!is(typeof(__LITTLE_ENDIAN)))
-        {
-            private enum enumMixinStr___LITTLE_ENDIAN = `enum __LITTLE_ENDIAN = 1234;`;
-            static if (is(typeof({ mixin(enumMixinStr___LITTLE_ENDIAN); })))
-            {
-                mixin(enumMixinStr___LITTLE_ENDIAN);
-            }
-        }
-
-        static if (!is(typeof(__BIG_ENDIAN)))
-        {
-            private enum enumMixinStr___BIG_ENDIAN = `enum __BIG_ENDIAN = 4321;`;
-            static if (is(typeof({ mixin(enumMixinStr___BIG_ENDIAN); })))
-            {
-                mixin(enumMixinStr___BIG_ENDIAN);
-            }
-        }
-
-        static if (!is(typeof(__PDP_ENDIAN)))
-        {
-            private enum enumMixinStr___PDP_ENDIAN = `enum __PDP_ENDIAN = 3412;`;
-            static if (is(typeof({ mixin(enumMixinStr___PDP_ENDIAN); })))
-            {
-                mixin(enumMixinStr___PDP_ENDIAN);
-            }
-        }
-
-        static if (!is(typeof(__FLOAT_WORD_ORDER)))
-        {
-            private enum enumMixinStr___FLOAT_WORD_ORDER = `enum __FLOAT_WORD_ORDER = __BYTE_ORDER;`;
-            static if (is(typeof({ mixin(enumMixinStr___FLOAT_WORD_ORDER); })))
-            {
-                mixin(enumMixinStr___FLOAT_WORD_ORDER);
-            }
-        }
-        static if (!is(typeof(_BITS_ENDIANNESS_H)))
-        {
-            private enum enumMixinStr__BITS_ENDIANNESS_H = `enum _BITS_ENDIANNESS_H = 1;`;
-            static if (is(typeof({ mixin(enumMixinStr__BITS_ENDIANNESS_H); })))
-            {
-                mixin(enumMixinStr__BITS_ENDIANNESS_H);
-            }
-        }
-
-        static if (!is(typeof(__BYTE_ORDER)))
-        {
-            private enum enumMixinStr___BYTE_ORDER = `enum __BYTE_ORDER = 1234;`;
-            static if (is(typeof({ mixin(enumMixinStr___BYTE_ORDER); })))
-            {
-                mixin(enumMixinStr___BYTE_ORDER);
-            }
-        }
-        static if (!is(typeof(__HAVE_FLOAT16)))
-        {
-            private enum enumMixinStr___HAVE_FLOAT16 = `enum __HAVE_FLOAT16 = 0;`;
-            static if (is(typeof({ mixin(enumMixinStr___HAVE_FLOAT16); })))
-            {
-                mixin(enumMixinStr___HAVE_FLOAT16);
-            }
-        }
-
-        static if (!is(typeof(__HAVE_FLOAT32)))
-        {
-            private enum enumMixinStr___HAVE_FLOAT32 = `enum __HAVE_FLOAT32 = 1;`;
-            static if (is(typeof({ mixin(enumMixinStr___HAVE_FLOAT32); })))
-            {
-                mixin(enumMixinStr___HAVE_FLOAT32);
-            }
-        }
-
-        static if (!is(typeof(__HAVE_FLOAT64)))
-        {
-            private enum enumMixinStr___HAVE_FLOAT64 = `enum __HAVE_FLOAT64 = 1;`;
-            static if (is(typeof({ mixin(enumMixinStr___HAVE_FLOAT64); })))
-            {
-                mixin(enumMixinStr___HAVE_FLOAT64);
-            }
-        }
-
-        static if (!is(typeof(__HAVE_FLOAT32X)))
-        {
-            private enum enumMixinStr___HAVE_FLOAT32X = `enum __HAVE_FLOAT32X = 1;`;
-            static if (is(typeof({ mixin(enumMixinStr___HAVE_FLOAT32X); })))
-            {
-                mixin(enumMixinStr___HAVE_FLOAT32X);
-            }
-        }
-
-        static if (!is(typeof(__HAVE_FLOAT128X)))
-        {
-            private enum enumMixinStr___HAVE_FLOAT128X = `enum __HAVE_FLOAT128X = 0;`;
-            static if (is(typeof({ mixin(enumMixinStr___HAVE_FLOAT128X); })))
-            {
-                mixin(enumMixinStr___HAVE_FLOAT128X);
-            }
-        }
-
-        static if (!is(typeof(__HAVE_DISTINCT_FLOAT16)))
-        {
-            private enum enumMixinStr___HAVE_DISTINCT_FLOAT16 = `enum __HAVE_DISTINCT_FLOAT16 = 0;`;
-            static if (is(typeof({ mixin(enumMixinStr___HAVE_DISTINCT_FLOAT16); })))
-            {
-                mixin(enumMixinStr___HAVE_DISTINCT_FLOAT16);
-            }
-        }
-
-        static if (!is(typeof(__HAVE_DISTINCT_FLOAT32)))
-        {
-            private enum enumMixinStr___HAVE_DISTINCT_FLOAT32 = `enum __HAVE_DISTINCT_FLOAT32 = 0;`;
-            static if (is(typeof({ mixin(enumMixinStr___HAVE_DISTINCT_FLOAT32); })))
-            {
-                mixin(enumMixinStr___HAVE_DISTINCT_FLOAT32);
-            }
-        }
-
-        static if (!is(typeof(__HAVE_DISTINCT_FLOAT64)))
-        {
-            private enum enumMixinStr___HAVE_DISTINCT_FLOAT64 = `enum __HAVE_DISTINCT_FLOAT64 = 0;`;
-            static if (is(typeof({ mixin(enumMixinStr___HAVE_DISTINCT_FLOAT64); })))
-            {
-                mixin(enumMixinStr___HAVE_DISTINCT_FLOAT64);
-            }
-        }
-
-        static if (!is(typeof(__HAVE_DISTINCT_FLOAT32X)))
-        {
-            private enum enumMixinStr___HAVE_DISTINCT_FLOAT32X = `enum __HAVE_DISTINCT_FLOAT32X = 0;`;
-            static if (is(typeof({ mixin(enumMixinStr___HAVE_DISTINCT_FLOAT32X); })))
-            {
-                mixin(enumMixinStr___HAVE_DISTINCT_FLOAT32X);
-            }
-        }
-
-        static if (!is(typeof(__HAVE_DISTINCT_FLOAT64X)))
-        {
-            private enum enumMixinStr___HAVE_DISTINCT_FLOAT64X = `enum __HAVE_DISTINCT_FLOAT64X = 0;`;
-            static if (is(typeof({ mixin(enumMixinStr___HAVE_DISTINCT_FLOAT64X); })))
-            {
-                mixin(enumMixinStr___HAVE_DISTINCT_FLOAT64X);
-            }
-        }
-
-        static if (!is(typeof(__HAVE_DISTINCT_FLOAT128X)))
-        {
-            private enum enumMixinStr___HAVE_DISTINCT_FLOAT128X = `enum __HAVE_DISTINCT_FLOAT128X = 0;`;
-            static if (is(typeof({
-                        mixin(enumMixinStr___HAVE_DISTINCT_FLOAT128X);
-                    })))
-            {
-                mixin(enumMixinStr___HAVE_DISTINCT_FLOAT128X);
-            }
-        }
-
-        static if (!is(typeof(__HAVE_FLOAT128_UNLIKE_LDBL)))
-        {
-            private enum enumMixinStr___HAVE_FLOAT128_UNLIKE_LDBL = `enum __HAVE_FLOAT128_UNLIKE_LDBL = ( __HAVE_DISTINCT_FLOAT128 && 64 != 113 );`;
-            static if (is(typeof({
-                        mixin(enumMixinStr___HAVE_FLOAT128_UNLIKE_LDBL);
-                    })))
-            {
-                mixin(enumMixinStr___HAVE_FLOAT128_UNLIKE_LDBL);
-            }
-        }
-
-        static if (!is(typeof(__HAVE_FLOATN_NOT_TYPEDEF)))
-        {
-            private enum enumMixinStr___HAVE_FLOATN_NOT_TYPEDEF = `enum __HAVE_FLOATN_NOT_TYPEDEF = 0;`;
-            static if (is(typeof({
-                        mixin(enumMixinStr___HAVE_FLOATN_NOT_TYPEDEF);
-                    })))
-            {
-                mixin(enumMixinStr___HAVE_FLOATN_NOT_TYPEDEF);
-            }
-        }
         static if (!is(typeof(BYTE_ORDER)))
         {
-            private enum enumMixinStr_BYTE_ORDER = `enum BYTE_ORDER = 1234;`;
+            private enum enumMixinStr_BYTE_ORDER = `enum BYTE_ORDER = __BYTE_ORDER;`;
             static if (is(typeof({ mixin(enumMixinStr_BYTE_ORDER); })))
             {
                 mixin(enumMixinStr_BYTE_ORDER);
@@ -13846,7 +21758,7 @@ version (foxy)
 
         static if (!is(typeof(PDP_ENDIAN)))
         {
-            private enum enumMixinStr_PDP_ENDIAN = `enum PDP_ENDIAN = 3412;`;
+            private enum enumMixinStr_PDP_ENDIAN = `enum PDP_ENDIAN = __PDP_ENDIAN;`;
             static if (is(typeof({ mixin(enumMixinStr_PDP_ENDIAN); })))
             {
                 mixin(enumMixinStr_PDP_ENDIAN);
@@ -13855,7 +21767,7 @@ version (foxy)
 
         static if (!is(typeof(BIG_ENDIAN)))
         {
-            private enum enumMixinStr_BIG_ENDIAN = `enum BIG_ENDIAN = 4321;`;
+            private enum enumMixinStr_BIG_ENDIAN = `enum BIG_ENDIAN = __BIG_ENDIAN;`;
             static if (is(typeof({ mixin(enumMixinStr_BIG_ENDIAN); })))
             {
                 mixin(enumMixinStr_BIG_ENDIAN);
@@ -13864,7 +21776,7 @@ version (foxy)
 
         static if (!is(typeof(LITTLE_ENDIAN)))
         {
-            private enum enumMixinStr_LITTLE_ENDIAN = `enum LITTLE_ENDIAN = 1234;`;
+            private enum enumMixinStr_LITTLE_ENDIAN = `enum LITTLE_ENDIAN = __LITTLE_ENDIAN;`;
             static if (is(typeof({ mixin(enumMixinStr_LITTLE_ENDIAN); })))
             {
                 mixin(enumMixinStr_LITTLE_ENDIAN);
@@ -13906,30 +21818,12 @@ version (foxy)
             }
         }
 
-        static if (!is(typeof(__CFLOAT32)))
-        {
-            private enum enumMixinStr___CFLOAT32 = `enum __CFLOAT32 = _Complex float;`;
-            static if (is(typeof({ mixin(enumMixinStr___CFLOAT32); })))
-            {
-                mixin(enumMixinStr___CFLOAT32);
-            }
-        }
-
         static if (!is(typeof(_ASSERT_H)))
         {
             private enum enumMixinStr__ASSERT_H = `enum _ASSERT_H = 1;`;
             static if (is(typeof({ mixin(enumMixinStr__ASSERT_H); })))
             {
                 mixin(enumMixinStr__ASSERT_H);
-            }
-        }
-
-        static if (!is(typeof(__CFLOAT64)))
-        {
-            private enum enumMixinStr___CFLOAT64 = `enum __CFLOAT64 = _Complex double;`;
-            static if (is(typeof({ mixin(enumMixinStr___CFLOAT64); })))
-            {
-                mixin(enumMixinStr___CFLOAT64);
             }
         }
 
@@ -13942,20 +21836,46 @@ version (foxy)
             }
         }
 
-        static if (!is(typeof(__CFLOAT32X)))
+        static if (!is(typeof(ROSIDL_GENERATOR_C_PUBLIC_unique_identifier_msgs)))
         {
-            private enum enumMixinStr___CFLOAT32X = `enum __CFLOAT32X = _Complex double;`;
-            static if (is(typeof({ mixin(enumMixinStr___CFLOAT32X); })))
+            private enum enumMixinStr_ROSIDL_GENERATOR_C_PUBLIC_unique_identifier_msgs = `enum ROSIDL_GENERATOR_C_PUBLIC_unique_identifier_msgs = __attribute__ ( ( visibility ( "default" ) ) );`;
+            static if (is(typeof({
+                        mixin(enumMixinStr_ROSIDL_GENERATOR_C_PUBLIC_unique_identifier_msgs);
+                    })))
             {
-                mixin(enumMixinStr___CFLOAT32X);
+                mixin(enumMixinStr_ROSIDL_GENERATOR_C_PUBLIC_unique_identifier_msgs);
             }
         }
-        static if (!is(typeof(__CFLOAT64X)))
+
+        static if (!is(typeof(ROSIDL_GENERATOR_C_EXPORT_unique_identifier_msgs)))
         {
-            private enum enumMixinStr___CFLOAT64X = `enum __CFLOAT64X = _Complex long double;`;
-            static if (is(typeof({ mixin(enumMixinStr___CFLOAT64X); })))
+            private enum enumMixinStr_ROSIDL_GENERATOR_C_EXPORT_unique_identifier_msgs = `enum ROSIDL_GENERATOR_C_EXPORT_unique_identifier_msgs = __attribute__ ( ( visibility ( "default" ) ) );`;
+            static if (is(typeof({
+                        mixin(enumMixinStr_ROSIDL_GENERATOR_C_EXPORT_unique_identifier_msgs);
+                    })))
             {
-                mixin(enumMixinStr___CFLOAT64X);
+                mixin(enumMixinStr_ROSIDL_GENERATOR_C_EXPORT_unique_identifier_msgs);
+            }
+        }
+        static if (!is(typeof(ROSIDL_GENERATOR_C_PUBLIC_statistics_msgs)))
+        {
+            private enum enumMixinStr_ROSIDL_GENERATOR_C_PUBLIC_statistics_msgs = `enum ROSIDL_GENERATOR_C_PUBLIC_statistics_msgs = __attribute__ ( ( visibility ( "default" ) ) );`;
+            static if (is(typeof({
+                        mixin(enumMixinStr_ROSIDL_GENERATOR_C_PUBLIC_statistics_msgs);
+                    })))
+            {
+                mixin(enumMixinStr_ROSIDL_GENERATOR_C_PUBLIC_statistics_msgs);
+            }
+        }
+
+        static if (!is(typeof(ROSIDL_GENERATOR_C_EXPORT_statistics_msgs)))
+        {
+            private enum enumMixinStr_ROSIDL_GENERATOR_C_EXPORT_statistics_msgs = `enum ROSIDL_GENERATOR_C_EXPORT_statistics_msgs = __attribute__ ( ( visibility ( "default" ) ) );`;
+            static if (is(typeof({
+                        mixin(enumMixinStr_ROSIDL_GENERATOR_C_EXPORT_statistics_msgs);
+                    })))
+            {
+                mixin(enumMixinStr_ROSIDL_GENERATOR_C_EXPORT_statistics_msgs);
             }
         }
         static if (!is(typeof(ROSIDL_GENERATOR_C_LOCAL)))
@@ -13977,6 +21897,7 @@ version (foxy)
                 mixin(enumMixinStr_ROSIDL_GENERATOR_C_PUBLIC);
             }
         }
+
         static if (!is(typeof(ROSIDL_GENERATOR_C_EXPORT)))
         {
             private enum enumMixinStr_ROSIDL_GENERATOR_C_EXPORT = `enum ROSIDL_GENERATOR_C_EXPORT = __attribute__ ( ( visibility ( "default" ) ) );`;
@@ -13987,41 +21908,25 @@ version (foxy)
                 mixin(enumMixinStr_ROSIDL_GENERATOR_C_EXPORT);
             }
         }
-        static if (!is(typeof(__HAVE_FLOAT128)))
+        static if (!is(typeof(ROSIDL_GENERATOR_C_PUBLIC_rosgraph_msgs)))
         {
-            private enum enumMixinStr___HAVE_FLOAT128 = `enum __HAVE_FLOAT128 = 0;`;
-            static if (is(typeof({ mixin(enumMixinStr___HAVE_FLOAT128); })))
-            {
-                mixin(enumMixinStr___HAVE_FLOAT128);
-            }
-        }
-
-        static if (!is(typeof(__HAVE_DISTINCT_FLOAT128)))
-        {
-            private enum enumMixinStr___HAVE_DISTINCT_FLOAT128 = `enum __HAVE_DISTINCT_FLOAT128 = 0;`;
-            static if (is(typeof({ mixin(enumMixinStr___HAVE_DISTINCT_FLOAT128); })))
-            {
-                mixin(enumMixinStr___HAVE_DISTINCT_FLOAT128);
-            }
-        }
-
-        static if (!is(typeof(__HAVE_FLOAT64X)))
-        {
-            private enum enumMixinStr___HAVE_FLOAT64X = `enum __HAVE_FLOAT64X = 1;`;
-            static if (is(typeof({ mixin(enumMixinStr___HAVE_FLOAT64X); })))
-            {
-                mixin(enumMixinStr___HAVE_FLOAT64X);
-            }
-        }
-
-        static if (!is(typeof(__HAVE_FLOAT64X_LONG_DOUBLE)))
-        {
-            private enum enumMixinStr___HAVE_FLOAT64X_LONG_DOUBLE = `enum __HAVE_FLOAT64X_LONG_DOUBLE = 1;`;
+            private enum enumMixinStr_ROSIDL_GENERATOR_C_PUBLIC_rosgraph_msgs = `enum ROSIDL_GENERATOR_C_PUBLIC_rosgraph_msgs = __attribute__ ( ( visibility ( "default" ) ) );`;
             static if (is(typeof({
-                        mixin(enumMixinStr___HAVE_FLOAT64X_LONG_DOUBLE);
+                        mixin(enumMixinStr_ROSIDL_GENERATOR_C_PUBLIC_rosgraph_msgs);
                     })))
             {
-                mixin(enumMixinStr___HAVE_FLOAT64X_LONG_DOUBLE);
+                mixin(enumMixinStr_ROSIDL_GENERATOR_C_PUBLIC_rosgraph_msgs);
+            }
+        }
+
+        static if (!is(typeof(ROSIDL_GENERATOR_C_EXPORT_rosgraph_msgs)))
+        {
+            private enum enumMixinStr_ROSIDL_GENERATOR_C_EXPORT_rosgraph_msgs = `enum ROSIDL_GENERATOR_C_EXPORT_rosgraph_msgs = __attribute__ ( ( visibility ( "default" ) ) );`;
+            static if (is(typeof({
+                        mixin(enumMixinStr_ROSIDL_GENERATOR_C_EXPORT_rosgraph_msgs);
+                    })))
+            {
+                mixin(enumMixinStr_ROSIDL_GENERATOR_C_EXPORT_rosgraph_msgs);
             }
         }
         static if (!is(typeof(RMW_LOCAL)))
@@ -14080,26 +21985,6 @@ version (foxy)
             }
         }
 
-        static if (!is(typeof(__GLIBC_USE_LIB_EXT2)))
-        {
-            private enum enumMixinStr___GLIBC_USE_LIB_EXT2 = `enum __GLIBC_USE_LIB_EXT2 = 0;`;
-            static if (is(typeof({ mixin(enumMixinStr___GLIBC_USE_LIB_EXT2); })))
-            {
-                mixin(enumMixinStr___GLIBC_USE_LIB_EXT2);
-            }
-        }
-
-        static if (!is(typeof(__GLIBC_USE_IEC_60559_BFP_EXT)))
-        {
-            private enum enumMixinStr___GLIBC_USE_IEC_60559_BFP_EXT = `enum __GLIBC_USE_IEC_60559_BFP_EXT = 0;`;
-            static if (is(typeof({
-                        mixin(enumMixinStr___GLIBC_USE_IEC_60559_BFP_EXT);
-                    })))
-            {
-                mixin(enumMixinStr___GLIBC_USE_IEC_60559_BFP_EXT);
-            }
-        }
-
         static if (!is(typeof(RMW_QOS_POLICY_LIVELINESS_MANUAL_BY_NODE_DEPRECATED_MSG)))
         {
             private enum enumMixinStr_RMW_QOS_POLICY_LIVELINESS_MANUAL_BY_NODE_DEPRECATED_MSG = `enum RMW_QOS_POLICY_LIVELINESS_MANUAL_BY_NODE_DEPRECATED_MSG = "RMW_QOS_POLICY_LIVELINESS_MANUAL_BY_NODE is deprecated. " "Use RMW_QOS_POLICY_LIVELINESS_MANUAL_BY_TOPIC if manually asserted liveliness is needed.";`;
@@ -14119,28 +22004,6 @@ version (foxy)
                 mixin(enumMixinStr_RMW_GID_STORAGE_SIZE);
             }
         }
-        static if (!is(typeof(__GLIBC_USE_IEC_60559_BFP_EXT_C2X)))
-        {
-            private enum enumMixinStr___GLIBC_USE_IEC_60559_BFP_EXT_C2X = `enum __GLIBC_USE_IEC_60559_BFP_EXT_C2X = 0;`;
-            static if (is(typeof({
-                        mixin(enumMixinStr___GLIBC_USE_IEC_60559_BFP_EXT_C2X);
-                    })))
-            {
-                mixin(enumMixinStr___GLIBC_USE_IEC_60559_BFP_EXT_C2X);
-            }
-        }
-
-        static if (!is(typeof(__GLIBC_USE_IEC_60559_FUNCS_EXT)))
-        {
-            private enum enumMixinStr___GLIBC_USE_IEC_60559_FUNCS_EXT = `enum __GLIBC_USE_IEC_60559_FUNCS_EXT = 0;`;
-            static if (is(typeof({
-                        mixin(enumMixinStr___GLIBC_USE_IEC_60559_FUNCS_EXT);
-                    })))
-            {
-                mixin(enumMixinStr___GLIBC_USE_IEC_60559_FUNCS_EXT);
-            }
-        }
-
         static if (!is(typeof(rmw_get_zero_initialized_serialized_message)))
         {
             private enum enumMixinStr_rmw_get_zero_initialized_serialized_message = `enum rmw_get_zero_initialized_serialized_message = rcutils_get_zero_initialized_uint8_array;`;
@@ -14182,56 +22045,21 @@ version (foxy)
             }
         }
 
-        static if (!is(typeof(__GLIBC_USE_IEC_60559_FUNCS_EXT_C2X)))
-        {
-            private enum enumMixinStr___GLIBC_USE_IEC_60559_FUNCS_EXT_C2X = `enum __GLIBC_USE_IEC_60559_FUNCS_EXT_C2X = 0;`;
-            static if (is(typeof({
-                        mixin(enumMixinStr___GLIBC_USE_IEC_60559_FUNCS_EXT_C2X);
-                    })))
-            {
-                mixin(enumMixinStr___GLIBC_USE_IEC_60559_FUNCS_EXT_C2X);
-            }
-        }
-
-        static if (!is(typeof(__GLIBC_USE_IEC_60559_TYPES_EXT)))
-        {
-            private enum enumMixinStr___GLIBC_USE_IEC_60559_TYPES_EXT = `enum __GLIBC_USE_IEC_60559_TYPES_EXT = 0;`;
-            static if (is(typeof({
-                        mixin(enumMixinStr___GLIBC_USE_IEC_60559_TYPES_EXT);
-                    })))
-            {
-                mixin(enumMixinStr___GLIBC_USE_IEC_60559_TYPES_EXT);
-            }
-        }
-
-        static if (!is(typeof(__LONG_DOUBLE_USES_FLOAT128)))
-        {
-            private enum enumMixinStr___LONG_DOUBLE_USES_FLOAT128 = `enum __LONG_DOUBLE_USES_FLOAT128 = 0;`;
-            static if (is(typeof({
-                        mixin(enumMixinStr___LONG_DOUBLE_USES_FLOAT128);
-                    })))
-            {
-                mixin(enumMixinStr___LONG_DOUBLE_USES_FLOAT128);
-            }
-        }
-
-        static if (!is(typeof(_BITS_PTHREADTYPES_ARCH_H)))
-        {
-            private enum enumMixinStr__BITS_PTHREADTYPES_ARCH_H = `enum _BITS_PTHREADTYPES_ARCH_H = 1;`;
-            static if (is(typeof({
-                        mixin(enumMixinStr__BITS_PTHREADTYPES_ARCH_H);
-                    })))
-            {
-                mixin(enumMixinStr__BITS_PTHREADTYPES_ARCH_H);
-            }
-        }
-
         static if (!is(typeof(RMW_RET_BAD_ALLOC)))
         {
             private enum enumMixinStr_RMW_RET_BAD_ALLOC = `enum RMW_RET_BAD_ALLOC = 10;`;
             static if (is(typeof({ mixin(enumMixinStr_RMW_RET_BAD_ALLOC); })))
             {
                 mixin(enumMixinStr_RMW_RET_BAD_ALLOC);
+            }
+        }
+
+        static if (!is(typeof(_STRINGS_H)))
+        {
+            private enum enumMixinStr__STRINGS_H = `enum _STRINGS_H = 1;`;
+            static if (is(typeof({ mixin(enumMixinStr__STRINGS_H); })))
+            {
+                mixin(enumMixinStr__STRINGS_H);
             }
         }
 
@@ -14253,115 +22081,12 @@ version (foxy)
             }
         }
 
-        static if (!is(typeof(__SIZEOF_PTHREAD_MUTEX_T)))
-        {
-            private enum enumMixinStr___SIZEOF_PTHREAD_MUTEX_T = `enum __SIZEOF_PTHREAD_MUTEX_T = 40;`;
-            static if (is(typeof({ mixin(enumMixinStr___SIZEOF_PTHREAD_MUTEX_T); })))
-            {
-                mixin(enumMixinStr___SIZEOF_PTHREAD_MUTEX_T);
-            }
-        }
-
-        static if (!is(typeof(__SIZEOF_PTHREAD_ATTR_T)))
-        {
-            private enum enumMixinStr___SIZEOF_PTHREAD_ATTR_T = `enum __SIZEOF_PTHREAD_ATTR_T = 56;`;
-            static if (is(typeof({ mixin(enumMixinStr___SIZEOF_PTHREAD_ATTR_T); })))
-            {
-                mixin(enumMixinStr___SIZEOF_PTHREAD_ATTR_T);
-            }
-        }
-
-        static if (!is(typeof(__SIZEOF_PTHREAD_RWLOCK_T)))
-        {
-            private enum enumMixinStr___SIZEOF_PTHREAD_RWLOCK_T = `enum __SIZEOF_PTHREAD_RWLOCK_T = 56;`;
-            static if (is(typeof({
-                        mixin(enumMixinStr___SIZEOF_PTHREAD_RWLOCK_T);
-                    })))
-            {
-                mixin(enumMixinStr___SIZEOF_PTHREAD_RWLOCK_T);
-            }
-        }
-
-        static if (!is(typeof(__SIZEOF_PTHREAD_BARRIER_T)))
-        {
-            private enum enumMixinStr___SIZEOF_PTHREAD_BARRIER_T = `enum __SIZEOF_PTHREAD_BARRIER_T = 32;`;
-            static if (is(typeof({
-                        mixin(enumMixinStr___SIZEOF_PTHREAD_BARRIER_T);
-                    })))
-            {
-                mixin(enumMixinStr___SIZEOF_PTHREAD_BARRIER_T);
-            }
-        }
-
-        static if (!is(typeof(__SIZEOF_PTHREAD_MUTEXATTR_T)))
-        {
-            private enum enumMixinStr___SIZEOF_PTHREAD_MUTEXATTR_T = `enum __SIZEOF_PTHREAD_MUTEXATTR_T = 4;`;
-            static if (is(typeof({
-                        mixin(enumMixinStr___SIZEOF_PTHREAD_MUTEXATTR_T);
-                    })))
-            {
-                mixin(enumMixinStr___SIZEOF_PTHREAD_MUTEXATTR_T);
-            }
-        }
-
-        static if (!is(typeof(__SIZEOF_PTHREAD_COND_T)))
-        {
-            private enum enumMixinStr___SIZEOF_PTHREAD_COND_T = `enum __SIZEOF_PTHREAD_COND_T = 48;`;
-            static if (is(typeof({ mixin(enumMixinStr___SIZEOF_PTHREAD_COND_T); })))
-            {
-                mixin(enumMixinStr___SIZEOF_PTHREAD_COND_T);
-            }
-        }
-
-        static if (!is(typeof(__SIZEOF_PTHREAD_CONDATTR_T)))
-        {
-            private enum enumMixinStr___SIZEOF_PTHREAD_CONDATTR_T = `enum __SIZEOF_PTHREAD_CONDATTR_T = 4;`;
-            static if (is(typeof({
-                        mixin(enumMixinStr___SIZEOF_PTHREAD_CONDATTR_T);
-                    })))
-            {
-                mixin(enumMixinStr___SIZEOF_PTHREAD_CONDATTR_T);
-            }
-        }
-
-        static if (!is(typeof(__SIZEOF_PTHREAD_RWLOCKATTR_T)))
-        {
-            private enum enumMixinStr___SIZEOF_PTHREAD_RWLOCKATTR_T = `enum __SIZEOF_PTHREAD_RWLOCKATTR_T = 8;`;
-            static if (is(typeof({
-                        mixin(enumMixinStr___SIZEOF_PTHREAD_RWLOCKATTR_T);
-                    })))
-            {
-                mixin(enumMixinStr___SIZEOF_PTHREAD_RWLOCKATTR_T);
-            }
-        }
-
-        static if (!is(typeof(__SIZEOF_PTHREAD_BARRIERATTR_T)))
-        {
-            private enum enumMixinStr___SIZEOF_PTHREAD_BARRIERATTR_T = `enum __SIZEOF_PTHREAD_BARRIERATTR_T = 4;`;
-            static if (is(typeof({
-                        mixin(enumMixinStr___SIZEOF_PTHREAD_BARRIERATTR_T);
-                    })))
-            {
-                mixin(enumMixinStr___SIZEOF_PTHREAD_BARRIERATTR_T);
-            }
-        }
         static if (!is(typeof(RMW_RET_ERROR)))
         {
             private enum enumMixinStr_RMW_RET_ERROR = `enum RMW_RET_ERROR = 1;`;
             static if (is(typeof({ mixin(enumMixinStr_RMW_RET_ERROR); })))
             {
                 mixin(enumMixinStr_RMW_RET_ERROR);
-            }
-        }
-
-        static if (!is(typeof(_BITS_PTHREADTYPES_COMMON_H)))
-        {
-            private enum enumMixinStr__BITS_PTHREADTYPES_COMMON_H = `enum _BITS_PTHREADTYPES_COMMON_H = 1;`;
-            static if (is(typeof({
-                        mixin(enumMixinStr__BITS_PTHREADTYPES_COMMON_H);
-                    })))
-            {
-                mixin(enumMixinStr__BITS_PTHREADTYPES_COMMON_H);
             }
         }
 
@@ -14387,15 +22112,6 @@ version (foxy)
             static if (is(typeof({ mixin(enumMixinStr_RMW_DEFAULT_DOMAIN_ID); })))
             {
                 mixin(enumMixinStr_RMW_DEFAULT_DOMAIN_ID);
-            }
-        }
-
-        static if (!is(typeof(__have_pthread_attr_t)))
-        {
-            private enum enumMixinStr___have_pthread_attr_t = `enum __have_pthread_attr_t = 1;`;
-            static if (is(typeof({ mixin(enumMixinStr___have_pthread_attr_t); })))
-            {
-                mixin(enumMixinStr___have_pthread_attr_t);
             }
         }
 
@@ -14576,6 +22292,785 @@ version (foxy)
                 mixin(enumMixinStr_RCUTILS_RET_OK);
             }
         }
+        static if (!is(typeof(RCUTILS_STEADY_TIME)))
+        {
+            private enum enumMixinStr_RCUTILS_STEADY_TIME = `enum RCUTILS_STEADY_TIME = rcutils_steady_time_now;`;
+            static if (is(typeof({ mixin(enumMixinStr_RCUTILS_STEADY_TIME); })))
+            {
+                mixin(enumMixinStr_RCUTILS_STEADY_TIME);
+            }
+        }
+        static if (!is(typeof(_BITS_BYTESWAP_H)))
+        {
+            private enum enumMixinStr__BITS_BYTESWAP_H = `enum _BITS_BYTESWAP_H = 1;`;
+            static if (is(typeof({ mixin(enumMixinStr__BITS_BYTESWAP_H); })))
+            {
+                mixin(enumMixinStr__BITS_BYTESWAP_H);
+            }
+        }
+
+        static if (!is(typeof(RCUTILS_FAULT_INJECTION_FAIL_NOW)))
+        {
+            private enum enumMixinStr_RCUTILS_FAULT_INJECTION_FAIL_NOW = `enum RCUTILS_FAULT_INJECTION_FAIL_NOW = 0;`;
+            static if (is(typeof({
+                        mixin(enumMixinStr_RCUTILS_FAULT_INJECTION_FAIL_NOW);
+                    })))
+            {
+                mixin(enumMixinStr_RCUTILS_FAULT_INJECTION_FAIL_NOW);
+            }
+        }
+
+        static if (!is(typeof(RCUTILS_FAULT_INJECTION_NEVER_FAIL)))
+        {
+            private enum enumMixinStr_RCUTILS_FAULT_INJECTION_NEVER_FAIL = `enum RCUTILS_FAULT_INJECTION_NEVER_FAIL = - 1;`;
+            static if (is(typeof({
+                        mixin(enumMixinStr_RCUTILS_FAULT_INJECTION_NEVER_FAIL);
+                    })))
+            {
+                mixin(enumMixinStr_RCUTILS_FAULT_INJECTION_NEVER_FAIL);
+            }
+        }
+        static if (!is(typeof(_BITS_ENDIAN_H)))
+        {
+            private enum enumMixinStr__BITS_ENDIAN_H = `enum _BITS_ENDIAN_H = 1;`;
+            static if (is(typeof({ mixin(enumMixinStr__BITS_ENDIAN_H); })))
+            {
+                mixin(enumMixinStr__BITS_ENDIAN_H);
+            }
+        }
+
+        static if (!is(typeof(__LITTLE_ENDIAN)))
+        {
+            private enum enumMixinStr___LITTLE_ENDIAN = `enum __LITTLE_ENDIAN = 1234;`;
+            static if (is(typeof({ mixin(enumMixinStr___LITTLE_ENDIAN); })))
+            {
+                mixin(enumMixinStr___LITTLE_ENDIAN);
+            }
+        }
+
+        static if (!is(typeof(__BIG_ENDIAN)))
+        {
+            private enum enumMixinStr___BIG_ENDIAN = `enum __BIG_ENDIAN = 4321;`;
+            static if (is(typeof({ mixin(enumMixinStr___BIG_ENDIAN); })))
+            {
+                mixin(enumMixinStr___BIG_ENDIAN);
+            }
+        }
+
+        static if (!is(typeof(__PDP_ENDIAN)))
+        {
+            private enum enumMixinStr___PDP_ENDIAN = `enum __PDP_ENDIAN = 3412;`;
+            static if (is(typeof({ mixin(enumMixinStr___PDP_ENDIAN); })))
+            {
+                mixin(enumMixinStr___PDP_ENDIAN);
+            }
+        }
+
+        static if (!is(typeof(RCUTILS_DEPRECATED)))
+        {
+            private enum enumMixinStr_RCUTILS_DEPRECATED = `enum RCUTILS_DEPRECATED = __attribute__ ( ( deprecated ) );`;
+            static if (is(typeof({ mixin(enumMixinStr_RCUTILS_DEPRECATED); })))
+            {
+                mixin(enumMixinStr_RCUTILS_DEPRECATED);
+            }
+        }
+
+        static if (!is(typeof(__FLOAT_WORD_ORDER)))
+        {
+            private enum enumMixinStr___FLOAT_WORD_ORDER = `enum __FLOAT_WORD_ORDER = __BYTE_ORDER;`;
+            static if (is(typeof({ mixin(enumMixinStr___FLOAT_WORD_ORDER); })))
+            {
+                mixin(enumMixinStr___FLOAT_WORD_ORDER);
+            }
+        }
+        static if (!is(typeof(_BITS_ENDIANNESS_H)))
+        {
+            private enum enumMixinStr__BITS_ENDIANNESS_H = `enum _BITS_ENDIANNESS_H = 1;`;
+            static if (is(typeof({ mixin(enumMixinStr__BITS_ENDIANNESS_H); })))
+            {
+                mixin(enumMixinStr__BITS_ENDIANNESS_H);
+            }
+        }
+
+        static if (!is(typeof(__BYTE_ORDER)))
+        {
+            private enum enumMixinStr___BYTE_ORDER = `enum __BYTE_ORDER = 1234;`;
+            static if (is(typeof({ mixin(enumMixinStr___BYTE_ORDER); })))
+            {
+                mixin(enumMixinStr___BYTE_ORDER);
+            }
+        }
+        static if (!is(typeof(__HAVE_FLOAT16)))
+        {
+            private enum enumMixinStr___HAVE_FLOAT16 = `enum __HAVE_FLOAT16 = 0;`;
+            static if (is(typeof({ mixin(enumMixinStr___HAVE_FLOAT16); })))
+            {
+                mixin(enumMixinStr___HAVE_FLOAT16);
+            }
+        }
+
+        static if (!is(typeof(__HAVE_FLOAT32)))
+        {
+            private enum enumMixinStr___HAVE_FLOAT32 = `enum __HAVE_FLOAT32 = 1;`;
+            static if (is(typeof({ mixin(enumMixinStr___HAVE_FLOAT32); })))
+            {
+                mixin(enumMixinStr___HAVE_FLOAT32);
+            }
+        }
+
+        static if (!is(typeof(__HAVE_FLOAT64)))
+        {
+            private enum enumMixinStr___HAVE_FLOAT64 = `enum __HAVE_FLOAT64 = 1;`;
+            static if (is(typeof({ mixin(enumMixinStr___HAVE_FLOAT64); })))
+            {
+                mixin(enumMixinStr___HAVE_FLOAT64);
+            }
+        }
+
+        static if (!is(typeof(__HAVE_FLOAT32X)))
+        {
+            private enum enumMixinStr___HAVE_FLOAT32X = `enum __HAVE_FLOAT32X = 1;`;
+            static if (is(typeof({ mixin(enumMixinStr___HAVE_FLOAT32X); })))
+            {
+                mixin(enumMixinStr___HAVE_FLOAT32X);
+            }
+        }
+
+        static if (!is(typeof(__HAVE_FLOAT128X)))
+        {
+            private enum enumMixinStr___HAVE_FLOAT128X = `enum __HAVE_FLOAT128X = 0;`;
+            static if (is(typeof({ mixin(enumMixinStr___HAVE_FLOAT128X); })))
+            {
+                mixin(enumMixinStr___HAVE_FLOAT128X);
+            }
+        }
+
+        static if (!is(typeof(__HAVE_DISTINCT_FLOAT16)))
+        {
+            private enum enumMixinStr___HAVE_DISTINCT_FLOAT16 = `enum __HAVE_DISTINCT_FLOAT16 = 0;`;
+            static if (is(typeof({ mixin(enumMixinStr___HAVE_DISTINCT_FLOAT16); })))
+            {
+                mixin(enumMixinStr___HAVE_DISTINCT_FLOAT16);
+            }
+        }
+
+        static if (!is(typeof(__HAVE_DISTINCT_FLOAT32)))
+        {
+            private enum enumMixinStr___HAVE_DISTINCT_FLOAT32 = `enum __HAVE_DISTINCT_FLOAT32 = 0;`;
+            static if (is(typeof({ mixin(enumMixinStr___HAVE_DISTINCT_FLOAT32); })))
+            {
+                mixin(enumMixinStr___HAVE_DISTINCT_FLOAT32);
+            }
+        }
+
+        static if (!is(typeof(__HAVE_DISTINCT_FLOAT64)))
+        {
+            private enum enumMixinStr___HAVE_DISTINCT_FLOAT64 = `enum __HAVE_DISTINCT_FLOAT64 = 0;`;
+            static if (is(typeof({ mixin(enumMixinStr___HAVE_DISTINCT_FLOAT64); })))
+            {
+                mixin(enumMixinStr___HAVE_DISTINCT_FLOAT64);
+            }
+        }
+
+        static if (!is(typeof(__HAVE_DISTINCT_FLOAT32X)))
+        {
+            private enum enumMixinStr___HAVE_DISTINCT_FLOAT32X = `enum __HAVE_DISTINCT_FLOAT32X = 0;`;
+            static if (is(typeof({ mixin(enumMixinStr___HAVE_DISTINCT_FLOAT32X); })))
+            {
+                mixin(enumMixinStr___HAVE_DISTINCT_FLOAT32X);
+            }
+        }
+
+        static if (!is(typeof(__HAVE_DISTINCT_FLOAT64X)))
+        {
+            private enum enumMixinStr___HAVE_DISTINCT_FLOAT64X = `enum __HAVE_DISTINCT_FLOAT64X = 0;`;
+            static if (is(typeof({ mixin(enumMixinStr___HAVE_DISTINCT_FLOAT64X); })))
+            {
+                mixin(enumMixinStr___HAVE_DISTINCT_FLOAT64X);
+            }
+        }
+
+        static if (!is(typeof(__HAVE_DISTINCT_FLOAT128X)))
+        {
+            private enum enumMixinStr___HAVE_DISTINCT_FLOAT128X = `enum __HAVE_DISTINCT_FLOAT128X = 0;`;
+            static if (is(typeof({
+                        mixin(enumMixinStr___HAVE_DISTINCT_FLOAT128X);
+                    })))
+            {
+                mixin(enumMixinStr___HAVE_DISTINCT_FLOAT128X);
+            }
+        }
+
+        static if (!is(typeof(__HAVE_FLOAT128_UNLIKE_LDBL)))
+        {
+            private enum enumMixinStr___HAVE_FLOAT128_UNLIKE_LDBL = `enum __HAVE_FLOAT128_UNLIKE_LDBL = ( __HAVE_DISTINCT_FLOAT128 && 64 != 113 );`;
+            static if (is(typeof({
+                        mixin(enumMixinStr___HAVE_FLOAT128_UNLIKE_LDBL);
+                    })))
+            {
+                mixin(enumMixinStr___HAVE_FLOAT128_UNLIKE_LDBL);
+            }
+        }
+
+        static if (!is(typeof(__HAVE_FLOATN_NOT_TYPEDEF)))
+        {
+            private enum enumMixinStr___HAVE_FLOATN_NOT_TYPEDEF = `enum __HAVE_FLOATN_NOT_TYPEDEF = 0;`;
+            static if (is(typeof({
+                        mixin(enumMixinStr___HAVE_FLOATN_NOT_TYPEDEF);
+                    })))
+            {
+                mixin(enumMixinStr___HAVE_FLOATN_NOT_TYPEDEF);
+            }
+        }
+
+        static if (!is(typeof(RCUTILS_THREAD_LOCAL)))
+        {
+            private enum enumMixinStr_RCUTILS_THREAD_LOCAL = `enum RCUTILS_THREAD_LOCAL = _Thread_local;`;
+            static if (is(typeof({ mixin(enumMixinStr_RCUTILS_THREAD_LOCAL); })))
+            {
+                mixin(enumMixinStr_RCUTILS_THREAD_LOCAL);
+            }
+        }
+
+        static if (!is(typeof(RCUTILS_WARN_UNUSED)))
+        {
+            private enum enumMixinStr_RCUTILS_WARN_UNUSED = `enum RCUTILS_WARN_UNUSED = __attribute__ ( ( warn_unused_result ) );`;
+            static if (is(typeof({ mixin(enumMixinStr_RCUTILS_WARN_UNUSED); })))
+            {
+                mixin(enumMixinStr_RCUTILS_WARN_UNUSED);
+            }
+        }
+        static if (!is(typeof(RCUTILS_LOGGING_AUTOINIT)))
+        {
+            private enum enumMixinStr_RCUTILS_LOGGING_AUTOINIT = `enum RCUTILS_LOGGING_AUTOINIT = if ( __builtin_expect ( ( ! g_rcutils_logging_initialized ) , 0 ) ) { rcutils_ret_t ret = rcutils_logging_initialize ( ) ; if ( ret != 0 ) { RCUTILS_SAFE_FWRITE_TO_STDERR ( "[rcutils|" "/tmp/package.d.tmp" ":" "22367" "] error initializing logging: " ) ; RCUTILS_SAFE_FWRITE_TO_STDERR ( rcutils_get_error_string ( ) . str ) ; RCUTILS_SAFE_FWRITE_TO_STDERR ( "\n" ) ; rcutils_reset_error ( ) ; } };`;
+            static if (is(typeof({ mixin(enumMixinStr_RCUTILS_LOGGING_AUTOINIT); })))
+            {
+                mixin(enumMixinStr_RCUTILS_LOGGING_AUTOINIT);
+            }
+        }
+
+        static if (!is(typeof(RCUTILS_DEFAULT_LOGGER_DEFAULT_LEVEL)))
+        {
+            private enum enumMixinStr_RCUTILS_DEFAULT_LOGGER_DEFAULT_LEVEL = `enum RCUTILS_DEFAULT_LOGGER_DEFAULT_LEVEL = RCUTILS_LOG_SEVERITY_INFO;`;
+            static if (is(typeof({
+                        mixin(enumMixinStr_RCUTILS_DEFAULT_LOGGER_DEFAULT_LEVEL);
+                    })))
+            {
+                mixin(enumMixinStr_RCUTILS_DEFAULT_LOGGER_DEFAULT_LEVEL);
+            }
+        }
+
+        static if (!is(typeof(RCUTILS_LOGGING_SEPARATOR_STRING)))
+        {
+            private enum enumMixinStr_RCUTILS_LOGGING_SEPARATOR_STRING = `enum RCUTILS_LOGGING_SEPARATOR_STRING = ".";`;
+            static if (is(typeof({
+                        mixin(enumMixinStr_RCUTILS_LOGGING_SEPARATOR_STRING);
+                    })))
+            {
+                mixin(enumMixinStr_RCUTILS_LOGGING_SEPARATOR_STRING);
+            }
+        }
+
+        static if (!is(typeof(RCUTILS_LOGGING_SEPARATOR_CHAR)))
+        {
+            private enum enumMixinStr_RCUTILS_LOGGING_SEPARATOR_CHAR = `enum RCUTILS_LOGGING_SEPARATOR_CHAR = '.';`;
+            static if (is(typeof({
+                        mixin(enumMixinStr_RCUTILS_LOGGING_SEPARATOR_CHAR);
+                    })))
+            {
+                mixin(enumMixinStr_RCUTILS_LOGGING_SEPARATOR_CHAR);
+            }
+        }
+        static if (!is(typeof(RCUTILS_ERROR_STATE_FILE_MAX_LENGTH)))
+        {
+            private enum enumMixinStr_RCUTILS_ERROR_STATE_FILE_MAX_LENGTH = `enum RCUTILS_ERROR_STATE_FILE_MAX_LENGTH = ( RCUTILS_ERROR_MESSAGE_MAX_LENGTH - RCUTILS_ERROR_STATE_MESSAGE_MAX_LENGTH - RCUTILS_ERROR_STATE_LINE_NUMBER_STR_MAX_LENGTH - RCUTILS_ERROR_FORMATTING_CHARACTERS - 1 );`;
+            static if (is(typeof({
+                        mixin(enumMixinStr_RCUTILS_ERROR_STATE_FILE_MAX_LENGTH);
+                    })))
+            {
+                mixin(enumMixinStr_RCUTILS_ERROR_STATE_FILE_MAX_LENGTH);
+            }
+        }
+
+        static if (!is(typeof(__CFLOAT32)))
+        {
+            private enum enumMixinStr___CFLOAT32 = `enum __CFLOAT32 = _Complex float;`;
+            static if (is(typeof({ mixin(enumMixinStr___CFLOAT32); })))
+            {
+                mixin(enumMixinStr___CFLOAT32);
+            }
+        }
+
+        static if (!is(typeof(RCUTILS_ERROR_STATE_MESSAGE_MAX_LENGTH)))
+        {
+            private enum enumMixinStr_RCUTILS_ERROR_STATE_MESSAGE_MAX_LENGTH = `enum RCUTILS_ERROR_STATE_MESSAGE_MAX_LENGTH = 768;`;
+            static if (is(typeof({
+                        mixin(enumMixinStr_RCUTILS_ERROR_STATE_MESSAGE_MAX_LENGTH);
+                    })))
+            {
+                mixin(enumMixinStr_RCUTILS_ERROR_STATE_MESSAGE_MAX_LENGTH);
+            }
+        }
+
+        static if (!is(typeof(RCUTILS_ERROR_MESSAGE_MAX_LENGTH)))
+        {
+            private enum enumMixinStr_RCUTILS_ERROR_MESSAGE_MAX_LENGTH = `enum RCUTILS_ERROR_MESSAGE_MAX_LENGTH = 1024;`;
+            static if (is(typeof({
+                        mixin(enumMixinStr_RCUTILS_ERROR_MESSAGE_MAX_LENGTH);
+                    })))
+            {
+                mixin(enumMixinStr_RCUTILS_ERROR_MESSAGE_MAX_LENGTH);
+            }
+        }
+
+        static if (!is(typeof(__CFLOAT64)))
+        {
+            private enum enumMixinStr___CFLOAT64 = `enum __CFLOAT64 = _Complex double;`;
+            static if (is(typeof({ mixin(enumMixinStr___CFLOAT64); })))
+            {
+                mixin(enumMixinStr___CFLOAT64);
+            }
+        }
+
+        static if (!is(typeof(RCUTILS_ERROR_FORMATTING_CHARACTERS)))
+        {
+            private enum enumMixinStr_RCUTILS_ERROR_FORMATTING_CHARACTERS = `enum RCUTILS_ERROR_FORMATTING_CHARACTERS = 6;`;
+            static if (is(typeof({
+                        mixin(enumMixinStr_RCUTILS_ERROR_FORMATTING_CHARACTERS);
+                    })))
+            {
+                mixin(enumMixinStr_RCUTILS_ERROR_FORMATTING_CHARACTERS);
+            }
+        }
+
+        static if (!is(typeof(RCUTILS_ERROR_STATE_LINE_NUMBER_STR_MAX_LENGTH)))
+        {
+            private enum enumMixinStr_RCUTILS_ERROR_STATE_LINE_NUMBER_STR_MAX_LENGTH = `enum RCUTILS_ERROR_STATE_LINE_NUMBER_STR_MAX_LENGTH = 20;`;
+            static if (is(typeof({
+                        mixin(enumMixinStr_RCUTILS_ERROR_STATE_LINE_NUMBER_STR_MAX_LENGTH);
+                    })))
+            {
+                mixin(enumMixinStr_RCUTILS_ERROR_STATE_LINE_NUMBER_STR_MAX_LENGTH);
+            }
+        }
+
+        static if (!is(typeof(__CFLOAT32X)))
+        {
+            private enum enumMixinStr___CFLOAT32X = `enum __CFLOAT32X = _Complex double;`;
+            static if (is(typeof({ mixin(enumMixinStr___CFLOAT32X); })))
+            {
+                mixin(enumMixinStr___CFLOAT32X);
+            }
+        }
+        static if (!is(typeof(__CFLOAT64X)))
+        {
+            private enum enumMixinStr___CFLOAT64X = `enum __CFLOAT64X = _Complex long double;`;
+            static if (is(typeof({ mixin(enumMixinStr___CFLOAT64X); })))
+            {
+                mixin(enumMixinStr___CFLOAT64X);
+            }
+        }
+        static if (!is(typeof(__HAVE_FLOAT128)))
+        {
+            private enum enumMixinStr___HAVE_FLOAT128 = `enum __HAVE_FLOAT128 = 0;`;
+            static if (is(typeof({ mixin(enumMixinStr___HAVE_FLOAT128); })))
+            {
+                mixin(enumMixinStr___HAVE_FLOAT128);
+            }
+        }
+
+        static if (!is(typeof(__HAVE_DISTINCT_FLOAT128)))
+        {
+            private enum enumMixinStr___HAVE_DISTINCT_FLOAT128 = `enum __HAVE_DISTINCT_FLOAT128 = 0;`;
+            static if (is(typeof({ mixin(enumMixinStr___HAVE_DISTINCT_FLOAT128); })))
+            {
+                mixin(enumMixinStr___HAVE_DISTINCT_FLOAT128);
+            }
+        }
+
+        static if (!is(typeof(__HAVE_FLOAT64X)))
+        {
+            private enum enumMixinStr___HAVE_FLOAT64X = `enum __HAVE_FLOAT64X = 1;`;
+            static if (is(typeof({ mixin(enumMixinStr___HAVE_FLOAT64X); })))
+            {
+                mixin(enumMixinStr___HAVE_FLOAT64X);
+            }
+        }
+
+        static if (!is(typeof(__HAVE_FLOAT64X_LONG_DOUBLE)))
+        {
+            private enum enumMixinStr___HAVE_FLOAT64X_LONG_DOUBLE = `enum __HAVE_FLOAT64X_LONG_DOUBLE = 1;`;
+            static if (is(typeof({
+                        mixin(enumMixinStr___HAVE_FLOAT64X_LONG_DOUBLE);
+                    })))
+            {
+                mixin(enumMixinStr___HAVE_FLOAT64X_LONG_DOUBLE);
+            }
+        }
+        static if (!is(typeof(ROSIDL_GENERATOR_C_PUBLIC_rcl_interfaces)))
+        {
+            private enum enumMixinStr_ROSIDL_GENERATOR_C_PUBLIC_rcl_interfaces = `enum ROSIDL_GENERATOR_C_PUBLIC_rcl_interfaces = __attribute__ ( ( visibility ( "default" ) ) );`;
+            static if (is(typeof({
+                        mixin(enumMixinStr_ROSIDL_GENERATOR_C_PUBLIC_rcl_interfaces);
+                    })))
+            {
+                mixin(enumMixinStr_ROSIDL_GENERATOR_C_PUBLIC_rcl_interfaces);
+            }
+        }
+
+        static if (!is(typeof(ROSIDL_GENERATOR_C_EXPORT_rcl_interfaces)))
+        {
+            private enum enumMixinStr_ROSIDL_GENERATOR_C_EXPORT_rcl_interfaces = `enum ROSIDL_GENERATOR_C_EXPORT_rcl_interfaces = __attribute__ ( ( visibility ( "default" ) ) );`;
+            static if (is(typeof({
+                        mixin(enumMixinStr_ROSIDL_GENERATOR_C_EXPORT_rcl_interfaces);
+                    })))
+            {
+                mixin(enumMixinStr_ROSIDL_GENERATOR_C_EXPORT_rcl_interfaces);
+            }
+        }
+        static if (!is(typeof(__GLIBC_USE_LIB_EXT2)))
+        {
+            private enum enumMixinStr___GLIBC_USE_LIB_EXT2 = `enum __GLIBC_USE_LIB_EXT2 = 0;`;
+            static if (is(typeof({ mixin(enumMixinStr___GLIBC_USE_LIB_EXT2); })))
+            {
+                mixin(enumMixinStr___GLIBC_USE_LIB_EXT2);
+            }
+        }
+
+        static if (!is(typeof(__GLIBC_USE_IEC_60559_BFP_EXT)))
+        {
+            private enum enumMixinStr___GLIBC_USE_IEC_60559_BFP_EXT = `enum __GLIBC_USE_IEC_60559_BFP_EXT = 0;`;
+            static if (is(typeof({
+                        mixin(enumMixinStr___GLIBC_USE_IEC_60559_BFP_EXT);
+                    })))
+            {
+                mixin(enumMixinStr___GLIBC_USE_IEC_60559_BFP_EXT);
+            }
+        }
+        static if (!is(typeof(__GLIBC_USE_IEC_60559_BFP_EXT_C2X)))
+        {
+            private enum enumMixinStr___GLIBC_USE_IEC_60559_BFP_EXT_C2X = `enum __GLIBC_USE_IEC_60559_BFP_EXT_C2X = 0;`;
+            static if (is(typeof({
+                        mixin(enumMixinStr___GLIBC_USE_IEC_60559_BFP_EXT_C2X);
+                    })))
+            {
+                mixin(enumMixinStr___GLIBC_USE_IEC_60559_BFP_EXT_C2X);
+            }
+        }
+
+        static if (!is(typeof(__GLIBC_USE_IEC_60559_FUNCS_EXT)))
+        {
+            private enum enumMixinStr___GLIBC_USE_IEC_60559_FUNCS_EXT = `enum __GLIBC_USE_IEC_60559_FUNCS_EXT = 0;`;
+            static if (is(typeof({
+                        mixin(enumMixinStr___GLIBC_USE_IEC_60559_FUNCS_EXT);
+                    })))
+            {
+                mixin(enumMixinStr___GLIBC_USE_IEC_60559_FUNCS_EXT);
+            }
+        }
+        static if (!is(typeof(__GLIBC_USE_IEC_60559_FUNCS_EXT_C2X)))
+        {
+            private enum enumMixinStr___GLIBC_USE_IEC_60559_FUNCS_EXT_C2X = `enum __GLIBC_USE_IEC_60559_FUNCS_EXT_C2X = 0;`;
+            static if (is(typeof({
+                        mixin(enumMixinStr___GLIBC_USE_IEC_60559_FUNCS_EXT_C2X);
+                    })))
+            {
+                mixin(enumMixinStr___GLIBC_USE_IEC_60559_FUNCS_EXT_C2X);
+            }
+        }
+
+        static if (!is(typeof(__GLIBC_USE_IEC_60559_TYPES_EXT)))
+        {
+            private enum enumMixinStr___GLIBC_USE_IEC_60559_TYPES_EXT = `enum __GLIBC_USE_IEC_60559_TYPES_EXT = 0;`;
+            static if (is(typeof({
+                        mixin(enumMixinStr___GLIBC_USE_IEC_60559_TYPES_EXT);
+                    })))
+            {
+                mixin(enumMixinStr___GLIBC_USE_IEC_60559_TYPES_EXT);
+            }
+        }
+
+        static if (!is(typeof(__LONG_DOUBLE_USES_FLOAT128)))
+        {
+            private enum enumMixinStr___LONG_DOUBLE_USES_FLOAT128 = `enum __LONG_DOUBLE_USES_FLOAT128 = 0;`;
+            static if (is(typeof({
+                        mixin(enumMixinStr___LONG_DOUBLE_USES_FLOAT128);
+                    })))
+            {
+                mixin(enumMixinStr___LONG_DOUBLE_USES_FLOAT128);
+            }
+        }
+
+        static if (!is(typeof(_BITS_PTHREADTYPES_ARCH_H)))
+        {
+            private enum enumMixinStr__BITS_PTHREADTYPES_ARCH_H = `enum _BITS_PTHREADTYPES_ARCH_H = 1;`;
+            static if (is(typeof({
+                        mixin(enumMixinStr__BITS_PTHREADTYPES_ARCH_H);
+                    })))
+            {
+                mixin(enumMixinStr__BITS_PTHREADTYPES_ARCH_H);
+            }
+        }
+        static if (!is(typeof(__SIZEOF_PTHREAD_MUTEX_T)))
+        {
+            private enum enumMixinStr___SIZEOF_PTHREAD_MUTEX_T = `enum __SIZEOF_PTHREAD_MUTEX_T = 40;`;
+            static if (is(typeof({ mixin(enumMixinStr___SIZEOF_PTHREAD_MUTEX_T); })))
+            {
+                mixin(enumMixinStr___SIZEOF_PTHREAD_MUTEX_T);
+            }
+        }
+
+        static if (!is(typeof(__SIZEOF_PTHREAD_ATTR_T)))
+        {
+            private enum enumMixinStr___SIZEOF_PTHREAD_ATTR_T = `enum __SIZEOF_PTHREAD_ATTR_T = 56;`;
+            static if (is(typeof({ mixin(enumMixinStr___SIZEOF_PTHREAD_ATTR_T); })))
+            {
+                mixin(enumMixinStr___SIZEOF_PTHREAD_ATTR_T);
+            }
+        }
+
+        static if (!is(typeof(__SIZEOF_PTHREAD_RWLOCK_T)))
+        {
+            private enum enumMixinStr___SIZEOF_PTHREAD_RWLOCK_T = `enum __SIZEOF_PTHREAD_RWLOCK_T = 56;`;
+            static if (is(typeof({
+                        mixin(enumMixinStr___SIZEOF_PTHREAD_RWLOCK_T);
+                    })))
+            {
+                mixin(enumMixinStr___SIZEOF_PTHREAD_RWLOCK_T);
+            }
+        }
+
+        static if (!is(typeof(__SIZEOF_PTHREAD_BARRIER_T)))
+        {
+            private enum enumMixinStr___SIZEOF_PTHREAD_BARRIER_T = `enum __SIZEOF_PTHREAD_BARRIER_T = 32;`;
+            static if (is(typeof({
+                        mixin(enumMixinStr___SIZEOF_PTHREAD_BARRIER_T);
+                    })))
+            {
+                mixin(enumMixinStr___SIZEOF_PTHREAD_BARRIER_T);
+            }
+        }
+
+        static if (!is(typeof(__SIZEOF_PTHREAD_MUTEXATTR_T)))
+        {
+            private enum enumMixinStr___SIZEOF_PTHREAD_MUTEXATTR_T = `enum __SIZEOF_PTHREAD_MUTEXATTR_T = 4;`;
+            static if (is(typeof({
+                        mixin(enumMixinStr___SIZEOF_PTHREAD_MUTEXATTR_T);
+                    })))
+            {
+                mixin(enumMixinStr___SIZEOF_PTHREAD_MUTEXATTR_T);
+            }
+        }
+
+        static if (!is(typeof(__SIZEOF_PTHREAD_COND_T)))
+        {
+            private enum enumMixinStr___SIZEOF_PTHREAD_COND_T = `enum __SIZEOF_PTHREAD_COND_T = 48;`;
+            static if (is(typeof({ mixin(enumMixinStr___SIZEOF_PTHREAD_COND_T); })))
+            {
+                mixin(enumMixinStr___SIZEOF_PTHREAD_COND_T);
+            }
+        }
+
+        static if (!is(typeof(__SIZEOF_PTHREAD_CONDATTR_T)))
+        {
+            private enum enumMixinStr___SIZEOF_PTHREAD_CONDATTR_T = `enum __SIZEOF_PTHREAD_CONDATTR_T = 4;`;
+            static if (is(typeof({
+                        mixin(enumMixinStr___SIZEOF_PTHREAD_CONDATTR_T);
+                    })))
+            {
+                mixin(enumMixinStr___SIZEOF_PTHREAD_CONDATTR_T);
+            }
+        }
+
+        static if (!is(typeof(__SIZEOF_PTHREAD_RWLOCKATTR_T)))
+        {
+            private enum enumMixinStr___SIZEOF_PTHREAD_RWLOCKATTR_T = `enum __SIZEOF_PTHREAD_RWLOCKATTR_T = 8;`;
+            static if (is(typeof({
+                        mixin(enumMixinStr___SIZEOF_PTHREAD_RWLOCKATTR_T);
+                    })))
+            {
+                mixin(enumMixinStr___SIZEOF_PTHREAD_RWLOCKATTR_T);
+            }
+        }
+
+        static if (!is(typeof(__SIZEOF_PTHREAD_BARRIERATTR_T)))
+        {
+            private enum enumMixinStr___SIZEOF_PTHREAD_BARRIERATTR_T = `enum __SIZEOF_PTHREAD_BARRIERATTR_T = 4;`;
+            static if (is(typeof({
+                        mixin(enumMixinStr___SIZEOF_PTHREAD_BARRIERATTR_T);
+                    })))
+            {
+                mixin(enumMixinStr___SIZEOF_PTHREAD_BARRIERATTR_T);
+            }
+        }
+        static if (!is(typeof(_BITS_PTHREADTYPES_COMMON_H)))
+        {
+            private enum enumMixinStr__BITS_PTHREADTYPES_COMMON_H = `enum _BITS_PTHREADTYPES_COMMON_H = 1;`;
+            static if (is(typeof({
+                        mixin(enumMixinStr__BITS_PTHREADTYPES_COMMON_H);
+                    })))
+            {
+                mixin(enumMixinStr__BITS_PTHREADTYPES_COMMON_H);
+            }
+        }
+        static if (!is(typeof(__have_pthread_attr_t)))
+        {
+            private enum enumMixinStr___have_pthread_attr_t = `enum __have_pthread_attr_t = 1;`;
+            static if (is(typeof({ mixin(enumMixinStr___have_pthread_attr_t); })))
+            {
+                mixin(enumMixinStr___have_pthread_attr_t);
+            }
+        }
+        static if (!is(typeof(RCL_ACTION_LOCAL)))
+        {
+            private enum enumMixinStr_RCL_ACTION_LOCAL = `enum RCL_ACTION_LOCAL = __attribute__ ( ( visibility ( "hidden" ) ) );`;
+            static if (is(typeof({ mixin(enumMixinStr_RCL_ACTION_LOCAL); })))
+            {
+                mixin(enumMixinStr_RCL_ACTION_LOCAL);
+            }
+        }
+
+        static if (!is(typeof(RCL_ACTION_PUBLIC)))
+        {
+            private enum enumMixinStr_RCL_ACTION_PUBLIC = `enum RCL_ACTION_PUBLIC = __attribute__ ( ( visibility ( "default" ) ) );`;
+            static if (is(typeof({ mixin(enumMixinStr_RCL_ACTION_PUBLIC); })))
+            {
+                mixin(enumMixinStr_RCL_ACTION_PUBLIC);
+            }
+        }
+
+        static if (!is(typeof(RCL_ACTION_EXPORT)))
+        {
+            private enum enumMixinStr_RCL_ACTION_EXPORT = `enum RCL_ACTION_EXPORT = __attribute__ ( ( visibility ( "default" ) ) );`;
+            static if (is(typeof({ mixin(enumMixinStr_RCL_ACTION_EXPORT); })))
+            {
+                mixin(enumMixinStr_RCL_ACTION_EXPORT);
+            }
+        }
+
+        static if (!is(typeof(GOAL_STATE_NUM_STATES)))
+        {
+            private enum enumMixinStr_GOAL_STATE_NUM_STATES = `enum GOAL_STATE_NUM_STATES = 7;`;
+            static if (is(typeof({ mixin(enumMixinStr_GOAL_STATE_NUM_STATES); })))
+            {
+                mixin(enumMixinStr_GOAL_STATE_NUM_STATES);
+            }
+        }
+
+        static if (!is(typeof(GOAL_STATE_ABORTED)))
+        {
+            private enum enumMixinStr_GOAL_STATE_ABORTED = `enum GOAL_STATE_ABORTED = action_msgs__msg__GoalStatus__STATUS_ABORTED;`;
+            static if (is(typeof({ mixin(enumMixinStr_GOAL_STATE_ABORTED); })))
+            {
+                mixin(enumMixinStr_GOAL_STATE_ABORTED);
+            }
+        }
+
+        static if (!is(typeof(GOAL_STATE_CANCELED)))
+        {
+            private enum enumMixinStr_GOAL_STATE_CANCELED = `enum GOAL_STATE_CANCELED = action_msgs__msg__GoalStatus__STATUS_CANCELED;`;
+            static if (is(typeof({ mixin(enumMixinStr_GOAL_STATE_CANCELED); })))
+            {
+                mixin(enumMixinStr_GOAL_STATE_CANCELED);
+            }
+        }
+
+        static if (!is(typeof(GOAL_STATE_SUCCEEDED)))
+        {
+            private enum enumMixinStr_GOAL_STATE_SUCCEEDED = `enum GOAL_STATE_SUCCEEDED = action_msgs__msg__GoalStatus__STATUS_SUCCEEDED;`;
+            static if (is(typeof({ mixin(enumMixinStr_GOAL_STATE_SUCCEEDED); })))
+            {
+                mixin(enumMixinStr_GOAL_STATE_SUCCEEDED);
+            }
+        }
+
+        static if (!is(typeof(GOAL_STATE_CANCELING)))
+        {
+            private enum enumMixinStr_GOAL_STATE_CANCELING = `enum GOAL_STATE_CANCELING = action_msgs__msg__GoalStatus__STATUS_CANCELING;`;
+            static if (is(typeof({ mixin(enumMixinStr_GOAL_STATE_CANCELING); })))
+            {
+                mixin(enumMixinStr_GOAL_STATE_CANCELING);
+            }
+        }
+
+        static if (!is(typeof(GOAL_STATE_EXECUTING)))
+        {
+            private enum enumMixinStr_GOAL_STATE_EXECUTING = `enum GOAL_STATE_EXECUTING = action_msgs__msg__GoalStatus__STATUS_EXECUTING;`;
+            static if (is(typeof({ mixin(enumMixinStr_GOAL_STATE_EXECUTING); })))
+            {
+                mixin(enumMixinStr_GOAL_STATE_EXECUTING);
+            }
+        }
+
+        static if (!is(typeof(GOAL_STATE_ACCEPTED)))
+        {
+            private enum enumMixinStr_GOAL_STATE_ACCEPTED = `enum GOAL_STATE_ACCEPTED = action_msgs__msg__GoalStatus__STATUS_ACCEPTED;`;
+            static if (is(typeof({ mixin(enumMixinStr_GOAL_STATE_ACCEPTED); })))
+            {
+                mixin(enumMixinStr_GOAL_STATE_ACCEPTED);
+            }
+        }
+
+        static if (!is(typeof(GOAL_STATE_UNKNOWN)))
+        {
+            private enum enumMixinStr_GOAL_STATE_UNKNOWN = `enum GOAL_STATE_UNKNOWN = action_msgs__msg__GoalStatus__STATUS_UNKNOWN;`;
+            static if (is(typeof({ mixin(enumMixinStr_GOAL_STATE_UNKNOWN); })))
+            {
+                mixin(enumMixinStr_GOAL_STATE_UNKNOWN);
+            }
+        }
+
+        static if (!is(typeof(zerouuid)))
+        {
+            private enum enumMixinStr_zerouuid = `enum zerouuid = ( uint8_t [ UUID_SIZE ] ) { 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 };`;
+            static if (is(typeof({ mixin(enumMixinStr_zerouuid); })))
+            {
+                mixin(enumMixinStr_zerouuid);
+            }
+        }
+
+        static if (!is(typeof(UUID_SIZE)))
+        {
+            private enum enumMixinStr_UUID_SIZE = `enum UUID_SIZE = 16;`;
+            static if (is(typeof({ mixin(enumMixinStr_UUID_SIZE); })))
+            {
+                mixin(enumMixinStr_UUID_SIZE);
+            }
+        }
+
+        static if (!is(typeof(RCL_RET_ACTION_GOAL_EVENT_INVALID)))
+        {
+            private enum enumMixinStr_RCL_RET_ACTION_GOAL_EVENT_INVALID = `enum RCL_RET_ACTION_GOAL_EVENT_INVALID = 2301;`;
+            static if (is(typeof({
+                        mixin(enumMixinStr_RCL_RET_ACTION_GOAL_EVENT_INVALID);
+                    })))
+            {
+                mixin(enumMixinStr_RCL_RET_ACTION_GOAL_EVENT_INVALID);
+            }
+        }
+
+        static if (!is(typeof(RCL_RET_ACTION_GOAL_HANDLE_INVALID)))
+        {
+            private enum enumMixinStr_RCL_RET_ACTION_GOAL_HANDLE_INVALID = `enum RCL_RET_ACTION_GOAL_HANDLE_INVALID = 2300;`;
+            static if (is(typeof({
+                        mixin(enumMixinStr_RCL_RET_ACTION_GOAL_HANDLE_INVALID);
+                    })))
+            {
+                mixin(enumMixinStr_RCL_RET_ACTION_GOAL_HANDLE_INVALID);
+            }
+        }
+
+        static if (!is(typeof(RCL_RET_ACTION_SERVER_TAKE_FAILED)))
+        {
+            private enum enumMixinStr_RCL_RET_ACTION_SERVER_TAKE_FAILED = `enum RCL_RET_ACTION_SERVER_TAKE_FAILED = 2201;`;
+            static if (is(typeof({
+                        mixin(enumMixinStr_RCL_RET_ACTION_SERVER_TAKE_FAILED);
+                    })))
+            {
+                mixin(enumMixinStr_RCL_RET_ACTION_SERVER_TAKE_FAILED);
+            }
+        }
+
         static if (!is(typeof(__FD_ZERO_STOS)))
         {
             private enum enumMixinStr___FD_ZERO_STOS = `enum __FD_ZERO_STOS = "stosq";`;
@@ -14592,6 +23087,62 @@ version (foxy)
                 mixin(enumMixinStr__BITS_STDINT_INTN_H);
             }
         }
+
+        static if (!is(typeof(RCL_RET_ACTION_SERVER_INVALID)))
+        {
+            private enum enumMixinStr_RCL_RET_ACTION_SERVER_INVALID = `enum RCL_RET_ACTION_SERVER_INVALID = 2200;`;
+            static if (is(typeof({
+                        mixin(enumMixinStr_RCL_RET_ACTION_SERVER_INVALID);
+                    })))
+            {
+                mixin(enumMixinStr_RCL_RET_ACTION_SERVER_INVALID);
+            }
+        }
+
+        static if (!is(typeof(RCL_RET_ACTION_CLIENT_TAKE_FAILED)))
+        {
+            private enum enumMixinStr_RCL_RET_ACTION_CLIENT_TAKE_FAILED = `enum RCL_RET_ACTION_CLIENT_TAKE_FAILED = 2103;`;
+            static if (is(typeof({
+                        mixin(enumMixinStr_RCL_RET_ACTION_CLIENT_TAKE_FAILED);
+                    })))
+            {
+                mixin(enumMixinStr_RCL_RET_ACTION_CLIENT_TAKE_FAILED);
+            }
+        }
+
+        static if (!is(typeof(RCL_RET_ACTION_CLIENT_INVALID)))
+        {
+            private enum enumMixinStr_RCL_RET_ACTION_CLIENT_INVALID = `enum RCL_RET_ACTION_CLIENT_INVALID = 2102;`;
+            static if (is(typeof({
+                        mixin(enumMixinStr_RCL_RET_ACTION_CLIENT_INVALID);
+                    })))
+            {
+                mixin(enumMixinStr_RCL_RET_ACTION_CLIENT_INVALID);
+            }
+        }
+
+        static if (!is(typeof(RCL_RET_ACTION_GOAL_REJECTED)))
+        {
+            private enum enumMixinStr_RCL_RET_ACTION_GOAL_REJECTED = `enum RCL_RET_ACTION_GOAL_REJECTED = 2101;`;
+            static if (is(typeof({
+                        mixin(enumMixinStr_RCL_RET_ACTION_GOAL_REJECTED);
+                    })))
+            {
+                mixin(enumMixinStr_RCL_RET_ACTION_GOAL_REJECTED);
+            }
+        }
+
+        static if (!is(typeof(RCL_RET_ACTION_GOAL_ACCEPTED)))
+        {
+            private enum enumMixinStr_RCL_RET_ACTION_GOAL_ACCEPTED = `enum RCL_RET_ACTION_GOAL_ACCEPTED = 2100;`;
+            static if (is(typeof({
+                        mixin(enumMixinStr_RCL_RET_ACTION_GOAL_ACCEPTED);
+                    })))
+            {
+                mixin(enumMixinStr_RCL_RET_ACTION_GOAL_ACCEPTED);
+            }
+        }
+
         static if (!is(typeof(_BITS_STDINT_UINTN_H)))
         {
             private enum enumMixinStr__BITS_STDINT_UINTN_H = `enum _BITS_STDINT_UINTN_H = 1;`;
@@ -14601,12 +23152,14 @@ version (foxy)
             }
         }
 
-        static if (!is(typeof(RCUTILS_STEADY_TIME)))
+        static if (!is(typeof(RCL_RET_ACTION_NAME_INVALID)))
         {
-            private enum enumMixinStr_RCUTILS_STEADY_TIME = `enum RCUTILS_STEADY_TIME = rcutils_steady_time_now;`;
-            static if (is(typeof({ mixin(enumMixinStr_RCUTILS_STEADY_TIME); })))
+            private enum enumMixinStr_RCL_RET_ACTION_NAME_INVALID = `enum RCL_RET_ACTION_NAME_INVALID = 2000;`;
+            static if (is(typeof({
+                        mixin(enumMixinStr_RCL_RET_ACTION_NAME_INVALID);
+                    })))
             {
-                mixin(enumMixinStr_RCUTILS_STEADY_TIME);
+                mixin(enumMixinStr_RCL_RET_ACTION_NAME_INVALID);
             }
         }
         static if (!is(typeof(_BITS_STDIO_LIM_H)))
@@ -14671,6 +23224,15 @@ version (foxy)
                 mixin(enumMixinStr__THREAD_MUTEX_INTERNAL_H);
             }
         }
+        static if (!is(typeof(RCL_LOCAL)))
+        {
+            private enum enumMixinStr_RCL_LOCAL = `enum RCL_LOCAL = __attribute__ ( ( visibility ( "hidden" ) ) );`;
+            static if (is(typeof({ mixin(enumMixinStr_RCL_LOCAL); })))
+            {
+                mixin(enumMixinStr_RCL_LOCAL);
+            }
+        }
+
         static if (!is(typeof(__PTHREAD_MUTEX_HAVE_PREV)))
         {
             private enum enumMixinStr___PTHREAD_MUTEX_HAVE_PREV = `enum __PTHREAD_MUTEX_HAVE_PREV = 1;`;
@@ -14682,24 +23244,20 @@ version (foxy)
             }
         }
 
-        static if (!is(typeof(RCUTILS_FAULT_INJECTION_FAIL_NOW)))
+        static if (!is(typeof(RCL_PUBLIC)))
         {
-            private enum enumMixinStr_RCUTILS_FAULT_INJECTION_FAIL_NOW = `enum RCUTILS_FAULT_INJECTION_FAIL_NOW = 0;`;
-            static if (is(typeof({
-                        mixin(enumMixinStr_RCUTILS_FAULT_INJECTION_FAIL_NOW);
-                    })))
+            private enum enumMixinStr_RCL_PUBLIC = `enum RCL_PUBLIC = __attribute__ ( ( visibility ( "default" ) ) );`;
+            static if (is(typeof({ mixin(enumMixinStr_RCL_PUBLIC); })))
             {
-                mixin(enumMixinStr_RCUTILS_FAULT_INJECTION_FAIL_NOW);
+                mixin(enumMixinStr_RCL_PUBLIC);
             }
         }
-        static if (!is(typeof(RCUTILS_FAULT_INJECTION_NEVER_FAIL)))
+        static if (!is(typeof(RCL_EXPORT)))
         {
-            private enum enumMixinStr_RCUTILS_FAULT_INJECTION_NEVER_FAIL = `enum RCUTILS_FAULT_INJECTION_NEVER_FAIL = - 1;`;
-            static if (is(typeof({
-                        mixin(enumMixinStr_RCUTILS_FAULT_INJECTION_NEVER_FAIL);
-                    })))
+            private enum enumMixinStr_RCL_EXPORT = `enum RCL_EXPORT = __attribute__ ( ( visibility ( "default" ) ) );`;
+            static if (is(typeof({ mixin(enumMixinStr_RCL_EXPORT); })))
             {
-                mixin(enumMixinStr_RCUTILS_FAULT_INJECTION_NEVER_FAIL);
+                mixin(enumMixinStr_RCL_EXPORT);
             }
         }
 
@@ -14713,198 +23271,6 @@ version (foxy)
                 mixin(enumMixinStr___PTHREAD_RWLOCK_ELISION_EXTRA);
             }
         }
-        static if (!is(typeof(_THREAD_SHARED_TYPES_H)))
-        {
-            private enum enumMixinStr__THREAD_SHARED_TYPES_H = `enum _THREAD_SHARED_TYPES_H = 1;`;
-            static if (is(typeof({ mixin(enumMixinStr__THREAD_SHARED_TYPES_H); })))
-            {
-                mixin(enumMixinStr__THREAD_SHARED_TYPES_H);
-            }
-        }
-        static if (!is(typeof(RCUTILS_DEPRECATED)))
-        {
-            private enum enumMixinStr_RCUTILS_DEPRECATED = `enum RCUTILS_DEPRECATED = __attribute__ ( ( deprecated ) );`;
-            static if (is(typeof({ mixin(enumMixinStr_RCUTILS_DEPRECATED); })))
-            {
-                mixin(enumMixinStr_RCUTILS_DEPRECATED);
-            }
-        }
-        static if (!is(typeof(RCUTILS_THREAD_LOCAL)))
-        {
-            private enum enumMixinStr_RCUTILS_THREAD_LOCAL = `enum RCUTILS_THREAD_LOCAL = _Thread_local;`;
-            static if (is(typeof({ mixin(enumMixinStr_RCUTILS_THREAD_LOCAL); })))
-            {
-                mixin(enumMixinStr_RCUTILS_THREAD_LOCAL);
-            }
-        }
-
-        static if (!is(typeof(_BITS_TIME64_H)))
-        {
-            private enum enumMixinStr__BITS_TIME64_H = `enum _BITS_TIME64_H = 1;`;
-            static if (is(typeof({ mixin(enumMixinStr__BITS_TIME64_H); })))
-            {
-                mixin(enumMixinStr__BITS_TIME64_H);
-            }
-        }
-
-        static if (!is(typeof(RCUTILS_WARN_UNUSED)))
-        {
-            private enum enumMixinStr_RCUTILS_WARN_UNUSED = `enum RCUTILS_WARN_UNUSED = __attribute__ ( ( warn_unused_result ) );`;
-            static if (is(typeof({ mixin(enumMixinStr_RCUTILS_WARN_UNUSED); })))
-            {
-                mixin(enumMixinStr_RCUTILS_WARN_UNUSED);
-            }
-        }
-
-        static if (!is(typeof(__TIME64_T_TYPE)))
-        {
-            private enum enumMixinStr___TIME64_T_TYPE = `enum __TIME64_T_TYPE = __TIME_T_TYPE;`;
-            static if (is(typeof({ mixin(enumMixinStr___TIME64_T_TYPE); })))
-            {
-                mixin(enumMixinStr___TIME64_T_TYPE);
-            }
-        }
-
-        static if (!is(typeof(__TIMESIZE)))
-        {
-            private enum enumMixinStr___TIMESIZE = `enum __TIMESIZE = __WORDSIZE;`;
-            static if (is(typeof({ mixin(enumMixinStr___TIMESIZE); })))
-            {
-                mixin(enumMixinStr___TIMESIZE);
-            }
-        }
-
-        static if (!is(typeof(_BITS_TYPES_H)))
-        {
-            private enum enumMixinStr__BITS_TYPES_H = `enum _BITS_TYPES_H = 1;`;
-            static if (is(typeof({ mixin(enumMixinStr__BITS_TYPES_H); })))
-            {
-                mixin(enumMixinStr__BITS_TYPES_H);
-            }
-        }
-
-        static if (!is(typeof(RCUTILS_LOGGING_AUTOINIT)))
-        {
-            private enum enumMixinStr_RCUTILS_LOGGING_AUTOINIT = `enum RCUTILS_LOGGING_AUTOINIT = if ( __builtin_expect ( ( ! g_rcutils_logging_initialized ) , 0 ) ) { rcutils_ret_t ret = rcutils_logging_initialize ( ) ; if ( ret != 0 ) { RCUTILS_SAFE_FWRITE_TO_STDERR ( "[rcutils|" "/tmp/package.d.tmp" ":" "15118" "] error initializing logging: " ) ; RCUTILS_SAFE_FWRITE_TO_STDERR ( rcutils_get_error_string ( ) . str ) ; RCUTILS_SAFE_FWRITE_TO_STDERR ( "\n" ) ; rcutils_reset_error ( ) ; } };`;
-            static if (is(typeof({ mixin(enumMixinStr_RCUTILS_LOGGING_AUTOINIT); })))
-            {
-                mixin(enumMixinStr_RCUTILS_LOGGING_AUTOINIT);
-            }
-        }
-
-        static if (!is(typeof(RCUTILS_DEFAULT_LOGGER_DEFAULT_LEVEL)))
-        {
-            private enum enumMixinStr_RCUTILS_DEFAULT_LOGGER_DEFAULT_LEVEL = `enum RCUTILS_DEFAULT_LOGGER_DEFAULT_LEVEL = RCUTILS_LOG_SEVERITY_INFO;`;
-            static if (is(typeof({
-                        mixin(enumMixinStr_RCUTILS_DEFAULT_LOGGER_DEFAULT_LEVEL);
-                    })))
-            {
-                mixin(enumMixinStr_RCUTILS_DEFAULT_LOGGER_DEFAULT_LEVEL);
-            }
-        }
-
-        static if (!is(typeof(RCUTILS_LOGGING_SEPARATOR_STRING)))
-        {
-            private enum enumMixinStr_RCUTILS_LOGGING_SEPARATOR_STRING = `enum RCUTILS_LOGGING_SEPARATOR_STRING = ".";`;
-            static if (is(typeof({
-                        mixin(enumMixinStr_RCUTILS_LOGGING_SEPARATOR_STRING);
-                    })))
-            {
-                mixin(enumMixinStr_RCUTILS_LOGGING_SEPARATOR_STRING);
-            }
-        }
-
-        static if (!is(typeof(RCUTILS_LOGGING_SEPARATOR_CHAR)))
-        {
-            private enum enumMixinStr_RCUTILS_LOGGING_SEPARATOR_CHAR = `enum RCUTILS_LOGGING_SEPARATOR_CHAR = '.';`;
-            static if (is(typeof({
-                        mixin(enumMixinStr_RCUTILS_LOGGING_SEPARATOR_CHAR);
-                    })))
-            {
-                mixin(enumMixinStr_RCUTILS_LOGGING_SEPARATOR_CHAR);
-            }
-        }
-        static if (!is(typeof(RCUTILS_ERROR_STATE_FILE_MAX_LENGTH)))
-        {
-            private enum enumMixinStr_RCUTILS_ERROR_STATE_FILE_MAX_LENGTH = `enum RCUTILS_ERROR_STATE_FILE_MAX_LENGTH = ( RCUTILS_ERROR_MESSAGE_MAX_LENGTH - RCUTILS_ERROR_STATE_MESSAGE_MAX_LENGTH - RCUTILS_ERROR_STATE_LINE_NUMBER_STR_MAX_LENGTH - RCUTILS_ERROR_FORMATTING_CHARACTERS - 1 );`;
-            static if (is(typeof({
-                        mixin(enumMixinStr_RCUTILS_ERROR_STATE_FILE_MAX_LENGTH);
-                    })))
-            {
-                mixin(enumMixinStr_RCUTILS_ERROR_STATE_FILE_MAX_LENGTH);
-            }
-        }
-
-        static if (!is(typeof(RCUTILS_ERROR_STATE_MESSAGE_MAX_LENGTH)))
-        {
-            private enum enumMixinStr_RCUTILS_ERROR_STATE_MESSAGE_MAX_LENGTH = `enum RCUTILS_ERROR_STATE_MESSAGE_MAX_LENGTH = 768;`;
-            static if (is(typeof({
-                        mixin(enumMixinStr_RCUTILS_ERROR_STATE_MESSAGE_MAX_LENGTH);
-                    })))
-            {
-                mixin(enumMixinStr_RCUTILS_ERROR_STATE_MESSAGE_MAX_LENGTH);
-            }
-        }
-
-        static if (!is(typeof(RCUTILS_ERROR_MESSAGE_MAX_LENGTH)))
-        {
-            private enum enumMixinStr_RCUTILS_ERROR_MESSAGE_MAX_LENGTH = `enum RCUTILS_ERROR_MESSAGE_MAX_LENGTH = 1024;`;
-            static if (is(typeof({
-                        mixin(enumMixinStr_RCUTILS_ERROR_MESSAGE_MAX_LENGTH);
-                    })))
-            {
-                mixin(enumMixinStr_RCUTILS_ERROR_MESSAGE_MAX_LENGTH);
-            }
-        }
-
-        static if (!is(typeof(RCUTILS_ERROR_FORMATTING_CHARACTERS)))
-        {
-            private enum enumMixinStr_RCUTILS_ERROR_FORMATTING_CHARACTERS = `enum RCUTILS_ERROR_FORMATTING_CHARACTERS = 6;`;
-            static if (is(typeof({
-                        mixin(enumMixinStr_RCUTILS_ERROR_FORMATTING_CHARACTERS);
-                    })))
-            {
-                mixin(enumMixinStr_RCUTILS_ERROR_FORMATTING_CHARACTERS);
-            }
-        }
-
-        static if (!is(typeof(RCUTILS_ERROR_STATE_LINE_NUMBER_STR_MAX_LENGTH)))
-        {
-            private enum enumMixinStr_RCUTILS_ERROR_STATE_LINE_NUMBER_STR_MAX_LENGTH = `enum RCUTILS_ERROR_STATE_LINE_NUMBER_STR_MAX_LENGTH = 20;`;
-            static if (is(typeof({
-                        mixin(enumMixinStr_RCUTILS_ERROR_STATE_LINE_NUMBER_STR_MAX_LENGTH);
-                    })))
-            {
-                mixin(enumMixinStr_RCUTILS_ERROR_STATE_LINE_NUMBER_STR_MAX_LENGTH);
-            }
-        }
-        static if (!is(typeof(RCL_LOCAL)))
-        {
-            private enum enumMixinStr_RCL_LOCAL = `enum RCL_LOCAL = __attribute__ ( ( visibility ( "hidden" ) ) );`;
-            static if (is(typeof({ mixin(enumMixinStr_RCL_LOCAL); })))
-            {
-                mixin(enumMixinStr_RCL_LOCAL);
-            }
-        }
-
-        static if (!is(typeof(RCL_PUBLIC)))
-        {
-            private enum enumMixinStr_RCL_PUBLIC = `enum RCL_PUBLIC = __attribute__ ( ( visibility ( "default" ) ) );`;
-            static if (is(typeof({ mixin(enumMixinStr_RCL_PUBLIC); })))
-            {
-                mixin(enumMixinStr_RCL_PUBLIC);
-            }
-        }
-
-        static if (!is(typeof(RCL_EXPORT)))
-        {
-            private enum enumMixinStr_RCL_EXPORT = `enum RCL_EXPORT = __attribute__ ( ( visibility ( "default" ) ) );`;
-            static if (is(typeof({ mixin(enumMixinStr_RCL_EXPORT); })))
-            {
-                mixin(enumMixinStr_RCL_EXPORT);
-            }
-        }
-
         static if (!is(typeof(RCL_RET_EVENT_TAKE_FAILED)))
         {
             private enum enumMixinStr_RCL_RET_EVENT_TAKE_FAILED = `enum RCL_RET_EVENT_TAKE_FAILED = 2001;`;
@@ -14913,60 +23279,6 @@ version (foxy)
                     })))
             {
                 mixin(enumMixinStr_RCL_RET_EVENT_TAKE_FAILED);
-            }
-        }
-
-        static if (!is(typeof(__S16_TYPE)))
-        {
-            private enum enumMixinStr___S16_TYPE = `enum __S16_TYPE = short int;`;
-            static if (is(typeof({ mixin(enumMixinStr___S16_TYPE); })))
-            {
-                mixin(enumMixinStr___S16_TYPE);
-            }
-        }
-
-        static if (!is(typeof(__U16_TYPE)))
-        {
-            private enum enumMixinStr___U16_TYPE = `enum __U16_TYPE = unsigned short int;`;
-            static if (is(typeof({ mixin(enumMixinStr___U16_TYPE); })))
-            {
-                mixin(enumMixinStr___U16_TYPE);
-            }
-        }
-
-        static if (!is(typeof(__S32_TYPE)))
-        {
-            private enum enumMixinStr___S32_TYPE = `enum __S32_TYPE = int;`;
-            static if (is(typeof({ mixin(enumMixinStr___S32_TYPE); })))
-            {
-                mixin(enumMixinStr___S32_TYPE);
-            }
-        }
-
-        static if (!is(typeof(__U32_TYPE)))
-        {
-            private enum enumMixinStr___U32_TYPE = `enum __U32_TYPE = unsigned int;`;
-            static if (is(typeof({ mixin(enumMixinStr___U32_TYPE); })))
-            {
-                mixin(enumMixinStr___U32_TYPE);
-            }
-        }
-
-        static if (!is(typeof(__SLONGWORD_TYPE)))
-        {
-            private enum enumMixinStr___SLONGWORD_TYPE = `enum __SLONGWORD_TYPE = long int;`;
-            static if (is(typeof({ mixin(enumMixinStr___SLONGWORD_TYPE); })))
-            {
-                mixin(enumMixinStr___SLONGWORD_TYPE);
-            }
-        }
-
-        static if (!is(typeof(__ULONGWORD_TYPE)))
-        {
-            private enum enumMixinStr___ULONGWORD_TYPE = `enum __ULONGWORD_TYPE = unsigned long int;`;
-            static if (is(typeof({ mixin(enumMixinStr___ULONGWORD_TYPE); })))
-            {
-                mixin(enumMixinStr___ULONGWORD_TYPE);
             }
         }
 
@@ -14990,87 +23302,6 @@ version (foxy)
             }
         }
 
-        static if (!is(typeof(__SQUAD_TYPE)))
-        {
-            private enum enumMixinStr___SQUAD_TYPE = `enum __SQUAD_TYPE = long int;`;
-            static if (is(typeof({ mixin(enumMixinStr___SQUAD_TYPE); })))
-            {
-                mixin(enumMixinStr___SQUAD_TYPE);
-            }
-        }
-
-        static if (!is(typeof(__UQUAD_TYPE)))
-        {
-            private enum enumMixinStr___UQUAD_TYPE = `enum __UQUAD_TYPE = unsigned long int;`;
-            static if (is(typeof({ mixin(enumMixinStr___UQUAD_TYPE); })))
-            {
-                mixin(enumMixinStr___UQUAD_TYPE);
-            }
-        }
-
-        static if (!is(typeof(__SWORD_TYPE)))
-        {
-            private enum enumMixinStr___SWORD_TYPE = `enum __SWORD_TYPE = long int;`;
-            static if (is(typeof({ mixin(enumMixinStr___SWORD_TYPE); })))
-            {
-                mixin(enumMixinStr___SWORD_TYPE);
-            }
-        }
-
-        static if (!is(typeof(__UWORD_TYPE)))
-        {
-            private enum enumMixinStr___UWORD_TYPE = `enum __UWORD_TYPE = unsigned long int;`;
-            static if (is(typeof({ mixin(enumMixinStr___UWORD_TYPE); })))
-            {
-                mixin(enumMixinStr___UWORD_TYPE);
-            }
-        }
-
-        static if (!is(typeof(__SLONG32_TYPE)))
-        {
-            private enum enumMixinStr___SLONG32_TYPE = `enum __SLONG32_TYPE = int;`;
-            static if (is(typeof({ mixin(enumMixinStr___SLONG32_TYPE); })))
-            {
-                mixin(enumMixinStr___SLONG32_TYPE);
-            }
-        }
-
-        static if (!is(typeof(__ULONG32_TYPE)))
-        {
-            private enum enumMixinStr___ULONG32_TYPE = `enum __ULONG32_TYPE = unsigned int;`;
-            static if (is(typeof({ mixin(enumMixinStr___ULONG32_TYPE); })))
-            {
-                mixin(enumMixinStr___ULONG32_TYPE);
-            }
-        }
-
-        static if (!is(typeof(__S64_TYPE)))
-        {
-            private enum enumMixinStr___S64_TYPE = `enum __S64_TYPE = long int;`;
-            static if (is(typeof({ mixin(enumMixinStr___S64_TYPE); })))
-            {
-                mixin(enumMixinStr___S64_TYPE);
-            }
-        }
-
-        static if (!is(typeof(__U64_TYPE)))
-        {
-            private enum enumMixinStr___U64_TYPE = `enum __U64_TYPE = unsigned long int;`;
-            static if (is(typeof({ mixin(enumMixinStr___U64_TYPE); })))
-            {
-                mixin(enumMixinStr___U64_TYPE);
-            }
-        }
-
-        static if (!is(typeof(__STD_TYPE)))
-        {
-            private enum enumMixinStr___STD_TYPE = `enum __STD_TYPE = typedef;`;
-            static if (is(typeof({ mixin(enumMixinStr___STD_TYPE); })))
-            {
-                mixin(enumMixinStr___STD_TYPE);
-            }
-        }
-
         static if (!is(typeof(RCL_RET_INVALID_PARAM_RULE)))
         {
             private enum enumMixinStr_RCL_RET_INVALID_PARAM_RULE = `enum RCL_RET_INVALID_PARAM_RULE = 1010;`;
@@ -15079,6 +23310,15 @@ version (foxy)
                     })))
             {
                 mixin(enumMixinStr_RCL_RET_INVALID_PARAM_RULE);
+            }
+        }
+
+        static if (!is(typeof(_THREAD_SHARED_TYPES_H)))
+        {
+            private enum enumMixinStr__THREAD_SHARED_TYPES_H = `enum _THREAD_SHARED_TYPES_H = 1;`;
+            static if (is(typeof({ mixin(enumMixinStr__THREAD_SHARED_TYPES_H); })))
+            {
+                mixin(enumMixinStr__THREAD_SHARED_TYPES_H);
             }
         }
 
@@ -15176,6 +23416,15 @@ version (foxy)
             }
         }
 
+        static if (!is(typeof(_BITS_TIME64_H)))
+        {
+            private enum enumMixinStr__BITS_TIME64_H = `enum _BITS_TIME64_H = 1;`;
+            static if (is(typeof({ mixin(enumMixinStr__BITS_TIME64_H); })))
+            {
+                mixin(enumMixinStr__BITS_TIME64_H);
+            }
+        }
+
         static if (!is(typeof(RCL_RET_CLIENT_TAKE_FAILED)))
         {
             private enum enumMixinStr_RCL_RET_CLIENT_TAKE_FAILED = `enum RCL_RET_CLIENT_TAKE_FAILED = 501;`;
@@ -15187,12 +23436,39 @@ version (foxy)
             }
         }
 
+        static if (!is(typeof(__TIME64_T_TYPE)))
+        {
+            private enum enumMixinStr___TIME64_T_TYPE = `enum __TIME64_T_TYPE = __TIME_T_TYPE;`;
+            static if (is(typeof({ mixin(enumMixinStr___TIME64_T_TYPE); })))
+            {
+                mixin(enumMixinStr___TIME64_T_TYPE);
+            }
+        }
+
         static if (!is(typeof(RCL_RET_CLIENT_INVALID)))
         {
             private enum enumMixinStr_RCL_RET_CLIENT_INVALID = `enum RCL_RET_CLIENT_INVALID = 500;`;
             static if (is(typeof({ mixin(enumMixinStr_RCL_RET_CLIENT_INVALID); })))
             {
                 mixin(enumMixinStr_RCL_RET_CLIENT_INVALID);
+            }
+        }
+
+        static if (!is(typeof(__TIMESIZE)))
+        {
+            private enum enumMixinStr___TIMESIZE = `enum __TIMESIZE = __WORDSIZE;`;
+            static if (is(typeof({ mixin(enumMixinStr___TIMESIZE); })))
+            {
+                mixin(enumMixinStr___TIMESIZE);
+            }
+        }
+
+        static if (!is(typeof(_BITS_TYPES_H)))
+        {
+            private enum enumMixinStr__BITS_TYPES_H = `enum _BITS_TYPES_H = 1;`;
+            static if (is(typeof({ mixin(enumMixinStr__BITS_TYPES_H); })))
+            {
+                mixin(enumMixinStr__BITS_TYPES_H);
             }
         }
 
@@ -15448,6 +23724,140 @@ version (foxy)
                 mixin(enumMixinStr_RCL_S_TO_NS);
             }
         }
+        static if (!is(typeof(__S16_TYPE)))
+        {
+            private enum enumMixinStr___S16_TYPE = `enum __S16_TYPE = short int;`;
+            static if (is(typeof({ mixin(enumMixinStr___S16_TYPE); })))
+            {
+                mixin(enumMixinStr___S16_TYPE);
+            }
+        }
+
+        static if (!is(typeof(__U16_TYPE)))
+        {
+            private enum enumMixinStr___U16_TYPE = `enum __U16_TYPE = unsigned short int;`;
+            static if (is(typeof({ mixin(enumMixinStr___U16_TYPE); })))
+            {
+                mixin(enumMixinStr___U16_TYPE);
+            }
+        }
+
+        static if (!is(typeof(__S32_TYPE)))
+        {
+            private enum enumMixinStr___S32_TYPE = `enum __S32_TYPE = int;`;
+            static if (is(typeof({ mixin(enumMixinStr___S32_TYPE); })))
+            {
+                mixin(enumMixinStr___S32_TYPE);
+            }
+        }
+
+        static if (!is(typeof(__U32_TYPE)))
+        {
+            private enum enumMixinStr___U32_TYPE = `enum __U32_TYPE = unsigned int;`;
+            static if (is(typeof({ mixin(enumMixinStr___U32_TYPE); })))
+            {
+                mixin(enumMixinStr___U32_TYPE);
+            }
+        }
+
+        static if (!is(typeof(__SLONGWORD_TYPE)))
+        {
+            private enum enumMixinStr___SLONGWORD_TYPE = `enum __SLONGWORD_TYPE = long int;`;
+            static if (is(typeof({ mixin(enumMixinStr___SLONGWORD_TYPE); })))
+            {
+                mixin(enumMixinStr___SLONGWORD_TYPE);
+            }
+        }
+
+        static if (!is(typeof(__ULONGWORD_TYPE)))
+        {
+            private enum enumMixinStr___ULONGWORD_TYPE = `enum __ULONGWORD_TYPE = unsigned long int;`;
+            static if (is(typeof({ mixin(enumMixinStr___ULONGWORD_TYPE); })))
+            {
+                mixin(enumMixinStr___ULONGWORD_TYPE);
+            }
+        }
+        static if (!is(typeof(__SQUAD_TYPE)))
+        {
+            private enum enumMixinStr___SQUAD_TYPE = `enum __SQUAD_TYPE = long int;`;
+            static if (is(typeof({ mixin(enumMixinStr___SQUAD_TYPE); })))
+            {
+                mixin(enumMixinStr___SQUAD_TYPE);
+            }
+        }
+
+        static if (!is(typeof(__UQUAD_TYPE)))
+        {
+            private enum enumMixinStr___UQUAD_TYPE = `enum __UQUAD_TYPE = unsigned long int;`;
+            static if (is(typeof({ mixin(enumMixinStr___UQUAD_TYPE); })))
+            {
+                mixin(enumMixinStr___UQUAD_TYPE);
+            }
+        }
+
+        static if (!is(typeof(__SWORD_TYPE)))
+        {
+            private enum enumMixinStr___SWORD_TYPE = `enum __SWORD_TYPE = long int;`;
+            static if (is(typeof({ mixin(enumMixinStr___SWORD_TYPE); })))
+            {
+                mixin(enumMixinStr___SWORD_TYPE);
+            }
+        }
+
+        static if (!is(typeof(__UWORD_TYPE)))
+        {
+            private enum enumMixinStr___UWORD_TYPE = `enum __UWORD_TYPE = unsigned long int;`;
+            static if (is(typeof({ mixin(enumMixinStr___UWORD_TYPE); })))
+            {
+                mixin(enumMixinStr___UWORD_TYPE);
+            }
+        }
+
+        static if (!is(typeof(__SLONG32_TYPE)))
+        {
+            private enum enumMixinStr___SLONG32_TYPE = `enum __SLONG32_TYPE = int;`;
+            static if (is(typeof({ mixin(enumMixinStr___SLONG32_TYPE); })))
+            {
+                mixin(enumMixinStr___SLONG32_TYPE);
+            }
+        }
+
+        static if (!is(typeof(__ULONG32_TYPE)))
+        {
+            private enum enumMixinStr___ULONG32_TYPE = `enum __ULONG32_TYPE = unsigned int;`;
+            static if (is(typeof({ mixin(enumMixinStr___ULONG32_TYPE); })))
+            {
+                mixin(enumMixinStr___ULONG32_TYPE);
+            }
+        }
+
+        static if (!is(typeof(__S64_TYPE)))
+        {
+            private enum enumMixinStr___S64_TYPE = `enum __S64_TYPE = long int;`;
+            static if (is(typeof({ mixin(enumMixinStr___S64_TYPE); })))
+            {
+                mixin(enumMixinStr___S64_TYPE);
+            }
+        }
+
+        static if (!is(typeof(__U64_TYPE)))
+        {
+            private enum enumMixinStr___U64_TYPE = `enum __U64_TYPE = unsigned long int;`;
+            static if (is(typeof({ mixin(enumMixinStr___U64_TYPE); })))
+            {
+                mixin(enumMixinStr___U64_TYPE);
+            }
+        }
+
+        static if (!is(typeof(__STD_TYPE)))
+        {
+            private enum enumMixinStr___STD_TYPE = `enum __STD_TYPE = typedef;`;
+            static if (is(typeof({ mixin(enumMixinStr___STD_TYPE); })))
+            {
+                mixin(enumMixinStr___STD_TYPE);
+            }
+        }
+
         static if (!is(typeof(RCL_NODE_OPTIONS_DEFAULT_DOMAIN_ID)))
         {
             private enum enumMixinStr_RCL_NODE_OPTIONS_DEFAULT_DOMAIN_ID = `enum RCL_NODE_OPTIONS_DEFAULT_DOMAIN_ID = RCL_DEFAULT_DOMAIN_ID;`;
@@ -15671,6 +24081,90 @@ version (foxy)
                 mixin(enumMixinStr_rcl_get_default_allocator);
             }
         }
+        static if (!is(typeof(ROSIDL_GENERATOR_C_PUBLIC_lifecycle_msgs)))
+        {
+            private enum enumMixinStr_ROSIDL_GENERATOR_C_PUBLIC_lifecycle_msgs = `enum ROSIDL_GENERATOR_C_PUBLIC_lifecycle_msgs = __attribute__ ( ( visibility ( "default" ) ) );`;
+            static if (is(typeof({
+                        mixin(enumMixinStr_ROSIDL_GENERATOR_C_PUBLIC_lifecycle_msgs);
+                    })))
+            {
+                mixin(enumMixinStr_ROSIDL_GENERATOR_C_PUBLIC_lifecycle_msgs);
+            }
+        }
+
+        static if (!is(typeof(ROSIDL_GENERATOR_C_EXPORT_lifecycle_msgs)))
+        {
+            private enum enumMixinStr_ROSIDL_GENERATOR_C_EXPORT_lifecycle_msgs = `enum ROSIDL_GENERATOR_C_EXPORT_lifecycle_msgs = __attribute__ ( ( visibility ( "default" ) ) );`;
+            static if (is(typeof({
+                        mixin(enumMixinStr_ROSIDL_GENERATOR_C_EXPORT_lifecycle_msgs);
+                    })))
+            {
+                mixin(enumMixinStr_ROSIDL_GENERATOR_C_EXPORT_lifecycle_msgs);
+            }
+        }
+        static if (!is(typeof(ROSIDL_GENERATOR_C_PUBLIC_composition_interfaces)))
+        {
+            private enum enumMixinStr_ROSIDL_GENERATOR_C_PUBLIC_composition_interfaces = `enum ROSIDL_GENERATOR_C_PUBLIC_composition_interfaces = __attribute__ ( ( visibility ( "default" ) ) );`;
+            static if (is(typeof({
+                        mixin(enumMixinStr_ROSIDL_GENERATOR_C_PUBLIC_composition_interfaces);
+                    })))
+            {
+                mixin(enumMixinStr_ROSIDL_GENERATOR_C_PUBLIC_composition_interfaces);
+            }
+        }
+
+        static if (!is(typeof(ROSIDL_GENERATOR_C_EXPORT_composition_interfaces)))
+        {
+            private enum enumMixinStr_ROSIDL_GENERATOR_C_EXPORT_composition_interfaces = `enum ROSIDL_GENERATOR_C_EXPORT_composition_interfaces = __attribute__ ( ( visibility ( "default" ) ) );`;
+            static if (is(typeof({
+                        mixin(enumMixinStr_ROSIDL_GENERATOR_C_EXPORT_composition_interfaces);
+                    })))
+            {
+                mixin(enumMixinStr_ROSIDL_GENERATOR_C_EXPORT_composition_interfaces);
+            }
+        }
+        static if (!is(typeof(ROSIDL_GENERATOR_C_PUBLIC_builtin_interfaces)))
+        {
+            private enum enumMixinStr_ROSIDL_GENERATOR_C_PUBLIC_builtin_interfaces = `enum ROSIDL_GENERATOR_C_PUBLIC_builtin_interfaces = __attribute__ ( ( visibility ( "default" ) ) );`;
+            static if (is(typeof({
+                        mixin(enumMixinStr_ROSIDL_GENERATOR_C_PUBLIC_builtin_interfaces);
+                    })))
+            {
+                mixin(enumMixinStr_ROSIDL_GENERATOR_C_PUBLIC_builtin_interfaces);
+            }
+        }
+
+        static if (!is(typeof(ROSIDL_GENERATOR_C_EXPORT_builtin_interfaces)))
+        {
+            private enum enumMixinStr_ROSIDL_GENERATOR_C_EXPORT_builtin_interfaces = `enum ROSIDL_GENERATOR_C_EXPORT_builtin_interfaces = __attribute__ ( ( visibility ( "default" ) ) );`;
+            static if (is(typeof({
+                        mixin(enumMixinStr_ROSIDL_GENERATOR_C_EXPORT_builtin_interfaces);
+                    })))
+            {
+                mixin(enumMixinStr_ROSIDL_GENERATOR_C_EXPORT_builtin_interfaces);
+            }
+        }
+        static if (!is(typeof(ROSIDL_GENERATOR_C_PUBLIC_action_msgs)))
+        {
+            private enum enumMixinStr_ROSIDL_GENERATOR_C_PUBLIC_action_msgs = `enum ROSIDL_GENERATOR_C_PUBLIC_action_msgs = __attribute__ ( ( visibility ( "default" ) ) );`;
+            static if (is(typeof({
+                        mixin(enumMixinStr_ROSIDL_GENERATOR_C_PUBLIC_action_msgs);
+                    })))
+            {
+                mixin(enumMixinStr_ROSIDL_GENERATOR_C_PUBLIC_action_msgs);
+            }
+        }
+
+        static if (!is(typeof(ROSIDL_GENERATOR_C_EXPORT_action_msgs)))
+        {
+            private enum enumMixinStr_ROSIDL_GENERATOR_C_EXPORT_action_msgs = `enum ROSIDL_GENERATOR_C_EXPORT_action_msgs = __attribute__ ( ( visibility ( "default" ) ) );`;
+            static if (is(typeof({
+                        mixin(enumMixinStr_ROSIDL_GENERATOR_C_EXPORT_action_msgs);
+                    })))
+            {
+                mixin(enumMixinStr_ROSIDL_GENERATOR_C_EXPORT_action_msgs);
+            }
+        }
 
         static if (!is(typeof(__FILE_defined)))
         {
@@ -15689,7 +24183,6 @@ version (foxy)
                 mixin(enumMixinStr_____FILE_defined);
             }
         }
-
         static if (!is(typeof(_____fpos64_t_defined)))
         {
             private enum enumMixinStr______fpos64_t_defined = `enum _____fpos64_t_defined = 1;`;
@@ -15698,7 +24191,6 @@ version (foxy)
                 mixin(enumMixinStr______fpos64_t_defined);
             }
         }
-
         static if (!is(typeof(_____fpos_t_defined)))
         {
             private enum enumMixinStr______fpos_t_defined = `enum _____fpos_t_defined = 1;`;
@@ -15707,7 +24199,6 @@ version (foxy)
                 mixin(enumMixinStr______fpos_t_defined);
             }
         }
-
         static if (!is(typeof(_BITS_TYPES___LOCALE_T_H)))
         {
             private enum enumMixinStr__BITS_TYPES___LOCALE_T_H = `enum _BITS_TYPES___LOCALE_T_H = 1;`;
