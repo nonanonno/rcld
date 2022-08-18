@@ -1,8 +1,6 @@
-import jcli;
+import argparse;
 import msg_gen.commands;
 
-int main(string[] args)
-{
-    auto executor = new CommandLineInterface!(msg_gen.commands);
-    return executor.parseAndExecute(args);
-}
+mixin CLI!GenerateMessagePackages.main!((args, unparsed) {
+    return args.onExecute();
+});

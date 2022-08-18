@@ -19,3 +19,14 @@ enum string[string] partsTemplates = [
         "d/messages": import("parts/d/messages.mustache"),
         "d/services": import("parts/d/services.mustache"),
     ];
+
+enum string[] ignorePackages = [
+        "action_msgs",
+        "builtin_interfaces",
+        "composition_interfaces",
+        "lifecycle_msgs",
+        "rcl_interfaces",
+        "rosgraph_msgs",
+        "statistics_msgs",
+        "unique_identifier_msgs"
+    ];
