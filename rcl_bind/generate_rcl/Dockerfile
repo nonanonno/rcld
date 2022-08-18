@@ -27,7 +27,8 @@ RUN . `find ~/dlang -name activate | head -n1` && \
     CC=clang dub build -y dfmt
 
 COPY generate_rcl.d /tmp/
+COPY config.json /tmp/
 COPY .editorconfig ./
 
 ARG ROS_DISTRO
-CMD . `find ~/dlang -name activate | head -n1` && CC=clang rdmd /tmp/generate_rcl.d ${ROS_DISTRO}
+CMD . `find ~/dlang -name activate | head -n1` && CC=clang rdmd /tmp/generate_rcl.d ${ROS_DISTRO} /tmp/config.json

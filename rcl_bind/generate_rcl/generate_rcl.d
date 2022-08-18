@@ -7,28 +7,19 @@ import std.process;
 import std.format;
 import std.algorithm;
 import std.exception;
+import std.json;
+import std.array;
 
 /// ditto
-const(string)[] selectIncludes(string rosDistro)
+const(string)[] selectIncludes(string rosDistro, string[] includes)
 {
-    return [
-        "humble": [
-            "/opt/ros/%s/include/rcl",
-            "/opt/ros/%s/include/rcl_yaml_param_parser",
-            "/opt/ros/%s/include/rcutils",
-            "/opt/ros/%s/include/rosidl_runtime_c",
-            "/opt/ros/%s/include/rosidl_typesupport_interface",
-            "/opt/ros/%s/include/rmw",
-        ],
-        "rolling": [
-            "/opt/ros/%s/include/rcl",
-            "/opt/ros/%s/include/rcl_yaml_param_parser",
-            "/opt/ros/%s/include/rcutils",
-            "/opt/ros/%s/include/rosidl_runtime_c",
-            "/opt/ros/%s/include/rosidl_typesupport_interface",
-            "/opt/ros/%s/include/rmw",
-        ],
-    ].get(rosDistro, ["/opt/ros/%s/include"]);
+    switch (rosDistro)
+    {
+    case "humble", "rolling":
+        return includes.map!(s => "/opt/ros/%s/include/" ~ s).array;
+    default:
+        return ["/opt/ros/%s/include"];
+    }
 }
 
 /// ditto
@@ -41,34 +32,41 @@ template run()
     }
 }
 
+/// ditto
+string[] makeHeaders(JSONValue j, string[] left = [])
+{
+    switch (j.type())
+    {
+    case JSONType.object:
+        return j.object().keys.map!((k) => makeHeaders(j.object()[k], left ~ [k])).array.join;
+    case JSONType.array:
+        return j.array().map!((v) => makeHeaders(v, left)).array.join;
+    case JSONType.string:
+        return [(left ~ [j.str()]).join("/")];
+    default:
+        assert(0);
+    }
+}
+
 void main(string[] args)
 {
+    immutable rosDistro = args[1];
+    immutable config = args[2];
     immutable tmpl = `
 module rcl.%s;
 
-#include <rcl/rcl.h>
-#include <rcl/graph.h>
-#include <rosidl_runtime_c/action_type_support_struct.h>
-#include <rosidl_runtime_c/message_type_support_struct.h>
-#include <rosidl_runtime_c/primitives_sequence.h>
-#include <rosidl_runtime_c/service_type_support_struct.h>
-#include <rosidl_runtime_c/string_functions.h>
-#include <rosidl_runtime_c/u16string_functions.h>
-#include <rosidl_runtime_c/visibility_control.h>
-#include <rosidl_runtime_c/message_initialization.h>
-#include <rosidl_runtime_c/primitives_sequence_functions.h>
-#include <rosidl_runtime_c/sequence_bound.h>
-#include <rosidl_runtime_c/string_bound.h>
-#include <rosidl_runtime_c/string.h>
-#include <rosidl_runtime_c/u16string.h>
+%-(#include <%s>%|
+%)
 `;
 
-    immutable rosDistro = args[1];
+    auto j = parseJSON(readText(config));
+    auto includes = j.object().keys;
+    auto headers = makeHeaders(j);
 
-    std.file.write("/tmp/package.dpp", format!tmpl(rosDistro));
+    std.file.write("/tmp/package.dpp", format(tmpl, rosDistro, headers));
 
     "CC=clang dub run -y -q dpp -- --preprocess-only %-(%s %) /tmp/package.dpp".format(
-        selectIncludes(rosDistro).map!(inc => "--include-path " ~ format(inc, rosDistro))
+        selectIncludes(rosDistro, includes).map!(inc => "--include-path " ~ format(inc, rosDistro))
     ).run;
     "sed -i -e '/struct _IO_FILE/,/}/d' /tmp/package.d".run;
     "sed -i -e '/module rcl/a import core.stdc.stdio;' /tmp/package.d".run;

@@ -1,6 +1,7 @@
 {
 	"fileVersion": 1,
 	"versions": {
+		"argparse": "1.0.0",
 		"color": "0.0.9",
 		"colored": "0.0.27",
 		"dshould": "1.5.2",
@@ -11,6 +12,6 @@
 		"prettyprint": "1.0.8",
 		"rcld": {"path":"../"},
 		"silly": "1.1.1",
-		"unit-threaded": "2.1.0"
+		"unit-threaded": "2.0.5"
 	}
 }

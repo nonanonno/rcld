@@ -4,29 +4,37 @@ import std.conv;
 import std.path;
 import std.stdio;
 import std.file;
+import std.algorithm;
 
-import jcli;
+import argparse;
 import rosidl_parser;
 import msg_gen.generator;
+import msg_gen.templates;
 import colored;
 
-@CommandDefault("Generate ROS2 message packages as DUB.")
+@(Command("").Description("Generate ROS2 message packages as DUB."))
 struct GenerateMessagePackages
 {
-    @ArgPositional("output", "Output directory.")
-    string output = "~/.rcld/messages";
+    @(PositionalArgument(0).Description("Output directory."))
+    string output;
 
-    @ArgNamed("r|regenerate", "Clean `output` directory first before generating packages.")
-    Nullable!bool regenerate;
+    @(NamedArgument("r", "regenerate")
+            .Description("Clean `output` directory first before generating packages"))
+    bool regenerate;
 
-    @ArgNamed("dry_run", "Parse ROS2 message packages without generating DUB.")
-    Nullable!bool dry_run;
+    @(NamedArgument("d", "dry-run")
+            .Description("Parse ROS2 message packages without generating DUB."))
+    bool dry_run;
+
+    @(NamedArgument("p", "packages")
+            .Description("Specify package names to be generated."))
+    string[] packages;
 
     int onExecute()
     {
         const manifests = findROSIDLPackagesFromEnvironmentVariable();
 
-        if (dry_run.get(false))
+        if (dry_run)
         {
             string[][] matrix;
             foreach (m; manifests)
@@ -37,11 +45,21 @@ struct GenerateMessagePackages
                 const srvNum = m.services.length.to!string;
                 const actionNum = m.actions.length.to!string;
 
+                if (packages.length > 0 && !packages.canFind(packageName))
+                {
+                    continue;
+                }
+                if (ignorePackages.canFind(packageName))
+                {
+                    continue;
+                }
+
                 matrix ~= [
                     "Found", packageName.bold().to!string, "at", packagePath,
                     "with", msgNum,
                     "msgs", srvNum, "srvs", actionNum, "actions",
                 ];
+
             }
             foreach (line; formatMatrix(matrix))
             {
@@ -50,13 +68,22 @@ struct GenerateMessagePackages
         }
         else
         {
-            if (regenerate.get(false) && exists(output))
+            if (regenerate && exists(output))
             {
                 rmdirRecurse(output);
             }
 
             foreach (m; manifests)
             {
+                if (packages.length > 0 && !packages.canFind(m.packageName))
+                {
+                    continue;
+                }
+                if (ignorePackages.canFind(m.packageName))
+                {
+                    continue;
+                }
+                writeln("Generating ", m.packageName);
                 generateDUBPackage(m, output);
             }
         }
@@ -71,6 +98,11 @@ string[] formatMatrix(string[][] matrix)
     import std.array;
     import std.range;
     import std.algorithm;
+
+    if (matrix.length == 0)
+    {
+        return [];
+    }
 
     auto sizes = new ulong[matrix[0].length];
     foreach (line; matrix)

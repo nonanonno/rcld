@@ -2,9 +2,9 @@ module {{package_name}}.c.{{if_type}};
 
 import core.stdc.stdint;
 import rcl;
-{{#dependencies}}
+{{#c_dependencies}}
 import {{package_name}}.c.{{if_type}};
-{{/dependencies}}
+{{/c_dependencies}}
 
 extern (C):
 @nogc:

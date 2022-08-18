@@ -29,6 +29,10 @@ string renderManifest(in Manifest manifest, in string key)
     auto uniqIncludes = makeUnuquePackages(allIncludes, [manifest.packageName]);
     foreach (inc; uniqIncludes)
     {
+        if (ignorePackages.canFind(inc))
+        {
+            continue;
+        }
         context.addSubContext("dependencies")["name"] = inc;
     }
     return Mustache().renderString(manifestsTemplates[key], context);
@@ -56,11 +60,16 @@ void addContext(Mustache.Context context, in Message message, const(AbstractType
 
     foreach (member; struct_.members)
     {
+        string name = member.name;
+        if (name == "function")
+        {
+            name = "function_";
+        }
         auto memberContext = messageContext.addSubContext("members");
         auto solvedType = solveType(struct_.namespacedType.namespaces, member.type, typedefMap);
         memberContext["type"] = solvedType.toDTypeName;
         memberContext["c_type"] = solvedType.toCTypeName;
-        memberContext["name"] = member.name;
+        memberContext["name"] = name;
 
         if (member.hasAnnotation("default"))
         {
@@ -70,10 +79,8 @@ void addContext(Mustache.Context context, in Message message, const(AbstractType
             memberContext["value"] = annotation.split("=")[1].solveLiteral;
         }
 
-        memberContext["assign_d_to_c"] = solvedType.createAssignFmtDtoC.format(member.name, member
-                .name);
-        memberContext["assign_c_to_d"] = solvedType.createAssignFmtCtoD.format(member.name, member
-                .name);
+        memberContext["assign_d_to_c"] = solvedType.createAssignFmtDtoC.format(name, name);
+        memberContext["assign_c_to_d"] = solvedType.createAssignFmtCtoD.format(name, name);
 
     }
 
@@ -160,6 +167,12 @@ string renderSources(T)(string packageName, string ifType, const(IdlFile!T[]) id
         assert(tmp.length == 2);
         dependContext["package_name"] = tmp[0];
         dependContext["if_type"] = tmp[1];
+        if (!ignorePackages.canFind(tmp[0]))
+        {
+            auto cDependContext = context.addSubContext("c_dependencies");
+            cDependContext["package_name"] = tmp[0];
+            cDependContext["if_type"] = tmp[1];
+        }
     }
 
     foreach (idl; idls)
