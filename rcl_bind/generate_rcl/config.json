@@ -1,0 +1,105 @@
+{
+    "rcl": [
+        "rcl.h",
+        "graph.h"
+    ],
+    "rosidl_runtime_c": [
+        "action_type_support_struct.h",
+        "message_type_support_struct.h",
+        "primitives_sequence.h",
+        "service_type_support_struct.h",
+        "string_functions.h",
+        "u16string_functions.h",
+        "visibility_control.h",
+        "message_initialization.h",
+        "primitives_sequence_functions.h",
+        "sequence_bound.h",
+        "string_bound.h",
+        "string.h",
+        "u16string.h"
+    ],
+    "rcl_action": [
+        "rcl_action.h"
+    ],
+    "action_msgs": {
+        "msg": [
+            "goal_info.h",
+            "goal_status_array.h",
+            "goal_status.h"
+        ],
+        "srv": [
+            "cancel_goal.h"
+        ]
+    },
+    "builtin_interfaces": {
+        "msg": [
+            "duration.h",
+            "time.h"
+        ]
+    },
+    "composition_interfaces": {
+        "srv": [
+            "list_nodes.h",
+            "load_node.h",
+            "unload_node.h"
+        ]
+    },
+    "lifecycle_msgs": {
+        "msg": [
+            "state.h",
+            "transition.h",
+            "transition_description.h",
+            "transition_event.h"
+        ],
+        "srv": [
+            "change_state.h",
+            "get_available_states.h",
+            "get_available_transitions.h",
+            "get_state.h"
+        ]
+    },
+    "rcl_interfaces": {
+        "msg": [
+            "floating_point_range.h",
+            "integer_range.h",
+            "list_parameters_result.h",
+            "log.h",
+            "parameter.h",
+            "parameter_descriptor.h",
+            "parameter_event.h",
+            "parameter_event_descriptors.h",
+            "parameter_type.h",
+            "parameter_value.h",
+            "set_parameters_result.h"
+        ],
+        "srv": [
+            "describe_parameters.h",
+            "get_parameter_types.h",
+            "get_parameters.h",
+            "list_parameters.h",
+            "set_parameters.h",
+            "set_parameters_atomically.h"
+        ]
+    },
+    "rosgraph_msgs": {
+        "msg": [
+            "clock.h"
+        ]
+    },
+    "statistics_msgs": {
+        "msg": [
+            "metrics_message.h",
+            "statistic_data_point.h",
+            "statistic_data_type.h"
+        ]
+    },
+    "unique_identifier_msgs": {
+        "msg": [
+            "uuid.h"
+        ]
+    },
+    "rcl_yaml_param_parser": [],
+    "rcutils": [],
+    "rosidl_typesupport_interface": [],
+    "rmw": []
+}
