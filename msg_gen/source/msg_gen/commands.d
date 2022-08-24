@@ -45,13 +45,20 @@ struct GenerateMessagePackages
                 const srvNum = m.services.length.to!string;
                 const actionNum = m.actions.length.to!string;
 
-                if (packages.length > 0 && !packages.canFind(packageName))
+                if (packages.length > 0)
                 {
-                    continue;
+                    if (!packages.canFind(packageName))
+                    {
+                        continue;
+                    }
                 }
-                if (ignorePackages.canFind(packageName))
+                else
                 {
-                    continue;
+                    if (ignorePackages.canFind(packageName))
+                    {
+                        continue;
+                    }
+
                 }
 
                 matrix ~= [
@@ -75,13 +82,20 @@ struct GenerateMessagePackages
 
             foreach (m; manifests)
             {
-                if (packages.length > 0 && !packages.canFind(m.packageName))
+                if (packages.length > 0)
                 {
-                    continue;
+                    if (!packages.canFind(m.packageName))
+                    {
+                        continue;
+                    }
                 }
-                if (ignorePackages.canFind(m.packageName))
+                else
                 {
-                    continue;
+                    if (ignorePackages.canFind(m.packageName))
+                    {
+                        continue;
+                    }
+
                 }
                 writeln("Generating ", m.packageName);
                 generateDUBPackage(m, output);
