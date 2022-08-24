@@ -10,7 +10,6 @@
 		"mustache-d": "0.1.5",
 		"pegged": "0.4.5",
 		"prettyprint": "1.0.8",
-		"rcld": {"path":"../"},
 		"silly": "1.1.1",
 		"unit-threaded": "2.0.5"
 	}
