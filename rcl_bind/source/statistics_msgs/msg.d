@@ -3,6 +3,7 @@ module statistics_msgs.msg;
 import std.string;
 import std.utf;
 import rcl;
+
 import builtin_interfaces.msg;
 
 struct StatisticDataType
@@ -91,18 +92,18 @@ struct MetricsMessage
 
     static void convert(in MetricsMessage src, ref MetricsMessage.CType dst)
     {
-        rosidl_runtime_c__String__assign(&dst.measurement_source_name, toStringz(
-                src.measurement_source_name));
+        rosidl_runtime_c__String__assign(&dst.measurement_source_name,
+                toStringz(src.measurement_source_name));
         rosidl_runtime_c__String__assign(&dst.metrics_source, toStringz(src.metrics_source));
         rosidl_runtime_c__String__assign(&dst.unit, toStringz(src.unit));
         builtin_interfaces.msg.Time.convert(src.window_start, dst.window_start);
         builtin_interfaces.msg.Time.convert(src.window_stop, dst.window_stop);
-        statistics_msgs__msg__StatisticDataPoint__Sequence__init(&dst.statistics, src
-                .statistics.length);
+        statistics_msgs__msg__StatisticDataPoint__Sequence__init(&dst.statistics,
+                src.statistics.length);
         foreach (i; 0U .. src.statistics.length)
         {
-            statistics_msgs.msg.StatisticDataPoint.convert(src.statistics[i], dst
-                    .statistics.data[i]);
+            statistics_msgs.msg.StatisticDataPoint.convert(src.statistics[i],
+                    dst.statistics.data[i]);
         }
     }
 
@@ -116,8 +117,8 @@ struct MetricsMessage
         dst.statistics.length = src.statistics.size;
         foreach (i; 0U .. dst.statistics.length)
         {
-            statistics_msgs.msg.StatisticDataPoint.convert(src.statistics.data[i], dst
-                    .statistics[i]);
+            statistics_msgs.msg.StatisticDataPoint.convert(src.statistics.data[i],
+                    dst.statistics[i]);
         }
     }
 }

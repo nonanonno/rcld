@@ -3,6 +3,7 @@ module action_msgs.srv;
 import std.string;
 import std.utf;
 import rcl;
+
 import action_msgs.msg;
 
 struct CancelGoal
@@ -99,7 +100,8 @@ struct CancelGoal_Response
     static void convert(in CancelGoal_Response src, ref CancelGoal_Response.CType dst)
     {
         dst.return_code = src.return_code;
-        action_msgs__msg__GoalInfo__Sequence__init(&dst.goals_canceling, src.goals_canceling.length);
+        action_msgs__msg__GoalInfo__Sequence__init(&dst.goals_canceling,
+                src.goals_canceling.length);
         foreach (i; 0U .. src.goals_canceling.length)
         {
             action_msgs.msg.GoalInfo.convert(src.goals_canceling[i], dst.goals_canceling.data[i]);

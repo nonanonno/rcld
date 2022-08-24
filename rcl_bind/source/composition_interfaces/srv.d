@@ -3,6 +3,7 @@ module composition_interfaces.srv;
 import std.string;
 import std.utf;
 import rcl;
+
 import rcl_interfaces.msg;
 
 struct UnloadNode
@@ -182,19 +183,20 @@ struct LoadNode_Request
         rosidl_runtime_c__String__Sequence__init(&dst.remap_rules, src.remap_rules.length);
         foreach (i; 0U .. src.remap_rules.length)
         {
-            rosidl_runtime_c__String__assign(&dst.remap_rules.data[i], toStringz(src.remap_rules[i]));
+            rosidl_runtime_c__String__assign(&dst.remap_rules.data[i],
+                    toStringz(src.remap_rules[i]));
         }
         rcl_interfaces__msg__Parameter__Sequence__init(&dst.parameters, src.parameters.length);
         foreach (i; 0U .. src.parameters.length)
         {
             rcl_interfaces.msg.Parameter.convert(src.parameters[i], dst.parameters.data[i]);
         }
-        rcl_interfaces__msg__Parameter__Sequence__init(&dst.extra_arguments, src
-                .extra_arguments.length);
+        rcl_interfaces__msg__Parameter__Sequence__init(&dst.extra_arguments,
+                src.extra_arguments.length);
         foreach (i; 0U .. src.extra_arguments.length)
         {
-            rcl_interfaces.msg.Parameter.convert(src.extra_arguments[i], dst
-                    .extra_arguments.data[i]);
+            rcl_interfaces.msg.Parameter.convert(src.extra_arguments[i],
+                    dst.extra_arguments.data[i]);
         }
     }
 
@@ -218,8 +220,8 @@ struct LoadNode_Request
         dst.extra_arguments.length = src.extra_arguments.size;
         foreach (i; 0U .. dst.extra_arguments.length)
         {
-            rcl_interfaces.msg.Parameter.convert(src.extra_arguments.data[i], dst
-                    .extra_arguments[i]);
+            rcl_interfaces.msg.Parameter.convert(src.extra_arguments.data[i],
+                    dst.extra_arguments[i]);
         }
     }
 }
@@ -363,8 +365,8 @@ struct ListNodes_Response
         rosidl_runtime_c__String__Sequence__init(&dst.full_node_names, src.full_node_names.length);
         foreach (i; 0U .. src.full_node_names.length)
         {
-            rosidl_runtime_c__String__assign(&dst.full_node_names.data[i], toStringz(
-                    src.full_node_names[i]));
+            rosidl_runtime_c__String__assign(&dst.full_node_names.data[i],
+                    toStringz(src.full_node_names[i]));
         }
         rosidl_runtime_c__uint64__Sequence__init(&dst.unique_ids, src.unique_ids.length);
         foreach (i; 0U .. src.unique_ids.length)

@@ -3,6 +3,7 @@ module rcl_interfaces.srv;
 import std.string;
 import std.utf;
 import rcl;
+
 import rcl_interfaces.msg;
 
 struct GetParameters
@@ -211,8 +212,8 @@ struct SetParametersAtomically_Request
         array = null;
     }
 
-    static void convert(in SetParametersAtomically_Request src, ref SetParametersAtomically_Request
-            .CType dst)
+    static void convert(in SetParametersAtomically_Request src,
+            ref SetParametersAtomically_Request.CType dst)
     {
         rcl_interfaces__msg__Parameter__Sequence__init(&dst.parameters, src.parameters.length);
         foreach (i; 0U .. src.parameters.length)
@@ -221,7 +222,8 @@ struct SetParametersAtomically_Request
         }
     }
 
-    static void convert(in SetParametersAtomically_Request.CType src, ref SetParametersAtomically_Request dst)
+    static void convert(in SetParametersAtomically_Request.CType src,
+            ref SetParametersAtomically_Request dst)
     {
         dst.parameters.length = src.parameters.size;
         foreach (i; 0U .. dst.parameters.length)
@@ -265,13 +267,14 @@ struct SetParametersAtomically_Response
         array = null;
     }
 
-    static void convert(in SetParametersAtomically_Response src, ref SetParametersAtomically_Response
-            .CType dst)
+    static void convert(in SetParametersAtomically_Response src,
+            ref SetParametersAtomically_Response.CType dst)
     {
         rcl_interfaces.msg.SetParametersResult.convert(src.result, dst.result);
     }
 
-    static void convert(in SetParametersAtomically_Response.CType src, ref SetParametersAtomically_Response dst)
+    static void convert(in SetParametersAtomically_Response.CType src,
+            ref SetParametersAtomically_Response dst)
     {
         rcl_interfaces.msg.SetParametersResult.convert(src.result, dst.result);
     }
@@ -574,12 +577,12 @@ struct DescribeParameters_Response
     static void convert(in DescribeParameters_Response src, ref DescribeParameters_Response
             .CType dst)
     {
-        rcl_interfaces__msg__ParameterDescriptor__Sequence__init(&dst.descriptors, src
-                .descriptors.length);
+        rcl_interfaces__msg__ParameterDescriptor__Sequence__init(&dst.descriptors,
+                src.descriptors.length);
         foreach (i; 0U .. src.descriptors.length)
         {
-            rcl_interfaces.msg.ParameterDescriptor.convert(src.descriptors[i], dst
-                    .descriptors.data[i]);
+            rcl_interfaces.msg.ParameterDescriptor.convert(src.descriptors[i],
+                    dst.descriptors.data[i]);
         }
     }
 
@@ -588,8 +591,8 @@ struct DescribeParameters_Response
         dst.descriptors.length = src.descriptors.size;
         foreach (i; 0U .. dst.descriptors.length)
         {
-            rcl_interfaces.msg.ParameterDescriptor.convert(src.descriptors.data[i], dst
-                    .descriptors[i]);
+            rcl_interfaces.msg.ParameterDescriptor.convert(src.descriptors.data[i],
+                    dst.descriptors[i]);
         }
     }
 }
