@@ -73,7 +73,7 @@ private:
 @("construct")
 unittest
 {
-    import test_helper;
+    import test_helper.utils;
 
     assertNotThrown(new Node("node", uniqueString(), new Context()));
 }
