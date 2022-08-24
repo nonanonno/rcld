@@ -3,6 +3,7 @@ module lifecycle_msgs.srv;
 import std.string;
 import std.utf;
 import rcl;
+
 import lifecycle_msgs.msg;
 
 struct GetState
@@ -173,13 +174,14 @@ struct GetAvailableTransitions_Request
         array = null;
     }
 
-    static void convert(in GetAvailableTransitions_Request src, ref GetAvailableTransitions_Request
-            .CType dst)
+    static void convert(in GetAvailableTransitions_Request src,
+            ref GetAvailableTransitions_Request.CType dst)
     {
         dst.structure_needs_at_least_one_member = src.structure_needs_at_least_one_member;
     }
 
-    static void convert(in GetAvailableTransitions_Request.CType src, ref GetAvailableTransitions_Request dst)
+    static void convert(in GetAvailableTransitions_Request.CType src,
+            ref GetAvailableTransitions_Request dst)
     {
         dst.structure_needs_at_least_one_member = src.structure_needs_at_least_one_member;
     }
@@ -219,25 +221,26 @@ struct GetAvailableTransitions_Response
         array = null;
     }
 
-    static void convert(in GetAvailableTransitions_Response src, ref GetAvailableTransitions_Response
-            .CType dst)
+    static void convert(in GetAvailableTransitions_Response src,
+            ref GetAvailableTransitions_Response.CType dst)
     {
         lifecycle_msgs__msg__TransitionDescription__Sequence__init(
-            &dst.available_transitions, src.available_transitions.length);
+                &dst.available_transitions, src.available_transitions.length);
         foreach (i; 0U .. src.available_transitions.length)
         {
-            lifecycle_msgs.msg.TransitionDescription.convert(src.available_transitions[i], dst
-                    .available_transitions.data[i]);
+            lifecycle_msgs.msg.TransitionDescription.convert(src.available_transitions[i],
+                    dst.available_transitions.data[i]);
         }
     }
 
-    static void convert(in GetAvailableTransitions_Response.CType src, ref GetAvailableTransitions_Response dst)
+    static void convert(in GetAvailableTransitions_Response.CType src,
+            ref GetAvailableTransitions_Response dst)
     {
         dst.available_transitions.length = src.available_transitions.size;
         foreach (i; 0U .. dst.available_transitions.length)
         {
-            lifecycle_msgs.msg.TransitionDescription.convert(src.available_transitions.data[i], dst
-                    .available_transitions[i]);
+            lifecycle_msgs.msg.TransitionDescription.convert(src.available_transitions.data[i],
+                    dst.available_transitions[i]);
         }
     }
 }
@@ -324,8 +327,8 @@ struct GetAvailableStates_Response
     static void convert(in GetAvailableStates_Response src, ref GetAvailableStates_Response
             .CType dst)
     {
-        lifecycle_msgs__msg__State__Sequence__init(&dst.available_states, src
-                .available_states.length);
+        lifecycle_msgs__msg__State__Sequence__init(&dst.available_states,
+                src.available_states.length);
         foreach (i; 0U .. src.available_states.length)
         {
             lifecycle_msgs.msg.State.convert(src.available_states[i], dst.available_states.data[i]);

@@ -21,14 +21,4 @@ configuration "unittest" {
     dependency "dshould" version="~>1.5.0"
     dependency "rcld:test_helper" version="*"
     targetPath ".dub/unittest"
-    postRunCommands "bash test/setup.sh"
-    postRunCommands "dub test --root test"
-}
-
-configuration "clean" {
-    targetType "none"
-    preGenerateCommands "dub clean"
-    preGenerateCommands "find . -name '.dub' -type d | xargs rm -rf"
-    preGenerateCommands "find . -name '*.a' | xargs rm -rf"
-    preGenerateCommands "find . -name '*-unittest' | xargs rm -rf"
 }

@@ -3,6 +3,7 @@ module rosgraph_msgs.msg;
 import std.string;
 import std.utf;
 import rcl;
+
 import builtin_interfaces.msg;
 
 struct Clock
