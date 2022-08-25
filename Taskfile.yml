@@ -3,28 +3,27 @@ version: '3'
 tasks:
   default:
     deps:
-      - task: build-all
+      - task: build:all
 
-  build-all:
-    cmds:
-      - dub build
-      - dub build :msg_gen
-      - dub build :rcl_bind
-      - dub build :rosidl_parser
-      - dub build :test_helper
-      - dub build --root test
+  build:all:
+    - dub build
+    - dub build :msg_gen
+    - dub build :rcl_bind
+    - dub build :rosidl_parser
+    - dub build :test_helper
+    - bash test/rcld_test/setup.sh
+    - dub build --root test/rcld_test
+
+  test:all:
+    - dub test
+    - dub test :msg_gen
+    - dub test :test_helper
+    - dub test :rosidl_parser
+    - bash test/rcld_test/setup.sh
+    - dub test --root test/rcld_test
 
   clean:
-    cmds:
-      - dub clean
-      - find . -name '.dub' -type d | xargs rm -rf
-      - find . -name '*.a' -or -name '*-unittest' | xargs rm -rf
-
-  test-all:
-    cmds:
-      - dub test
-      - bash test/setup.sh
-      - dub test --root test
-      - dub test :msg_gen
-      - dub test :test_helper
-      - dub test :rosidl_parser
+    - dub clean
+    - rm -rf test_helper/ament/install
+    - find . -name '.dub' -type d | xargs rm -rf
+    - find . -name '*.a' -or -name '*-unittest' | xargs rm -rf
