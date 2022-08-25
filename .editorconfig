@@ -3,12 +3,21 @@
 # top-most EditorConfig file
 root = true
 
+[*]
+trim_trailing_whitespace = true
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+
 [*.d]
 indent_style = space
 indent_size = 4
-end_of_line = lf
-charset = utf-8
-trim_trailing_whitespace = true
-insert_final_newline = true
 max_line_length = 120
 dfmt_soft_max_line_length = 80
+
+[*.sh]
+indent_style = space
+indent_size = 4
+
+[Taskfile.yml]
+indent_size = 2
