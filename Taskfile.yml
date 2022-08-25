@@ -27,3 +27,4 @@ tasks:
     - rm -rf test_helper/ament/install
     - find . -name '.dub' -type d | xargs rm -rf
     - find . -name '*.a' -or -name '*-unittest' | xargs rm -rf
+    - find . -name 'dub.selections.json' | grep -v msg_gen | xargs rm -rf
