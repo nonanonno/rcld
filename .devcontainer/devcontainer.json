@@ -4,7 +4,7 @@
         "dockerfile": "../docker/Dockerfile",
         "args": {
             "ROS_DISTRO": "galactic",
-            "DC": "ldc-1.29.0"
+            "DC": "ldc-1.30.0"
         }
     },
     "remoteUser": "vscode",
