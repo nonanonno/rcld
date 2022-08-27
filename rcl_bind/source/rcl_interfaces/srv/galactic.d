@@ -1,9 +1,8 @@
-module rcl_interfaces.srv;
+module rcl_interfaces.srv.galactic;
 
 import std.string;
 import std.utf;
 import rcl;
-
 import rcl_interfaces.msg;
 
 struct GetParameters

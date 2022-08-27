@@ -1,4 +1,4 @@
-module lifecycle_msgs.msg;
+module lifecycle_msgs.msg.galactic;
 
 import std.string;
 import std.utf;

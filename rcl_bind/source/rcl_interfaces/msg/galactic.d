@@ -1,9 +1,8 @@
-module rcl_interfaces.msg;
+module rcl_interfaces.msg.galactic;
 
 import std.string;
 import std.utf;
 import rcl;
-
 import builtin_interfaces.msg;
 
 struct ParameterEventDescriptors

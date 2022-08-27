@@ -1,9 +1,8 @@
-module rosgraph_msgs.msg;
+module rosgraph_msgs.msg.galactic;
 
 import std.string;
 import std.utf;
 import rcl;
-
 import builtin_interfaces.msg;
 
 struct Clock

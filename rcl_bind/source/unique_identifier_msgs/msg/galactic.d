@@ -1,4 +1,4 @@
-module unique_identifier_msgs.msg;
+module unique_identifier_msgs.msg.galactic;
 
 import std.string;
 import std.utf;

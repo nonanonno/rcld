@@ -1,4 +1,4 @@
-module builtin_interfaces.msg;
+module builtin_interfaces.msg.galactic;
 
 import std.string;
 import std.utf;

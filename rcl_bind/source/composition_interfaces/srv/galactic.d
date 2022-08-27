@@ -1,9 +1,8 @@
-module composition_interfaces.srv;
+module composition_interfaces.srv.galactic;
 
 import std.string;
 import std.utf;
 import rcl;
-
 import rcl_interfaces.msg;
 
 struct UnloadNode

@@ -1,9 +1,8 @@
-module action_msgs.msg;
+module action_msgs.msg.galactic;
 
 import std.string;
 import std.utf;
 import rcl;
-
 import builtin_interfaces.msg;
 import unique_identifier_msgs.msg;
 

@@ -1,9 +1,8 @@
-module action_msgs.srv;
+module action_msgs.srv.galactic;
 
 import std.string;
 import std.utf;
 import rcl;
-
 import action_msgs.msg;
 
 struct CancelGoal

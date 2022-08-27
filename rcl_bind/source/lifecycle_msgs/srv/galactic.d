@@ -1,9 +1,8 @@
-module lifecycle_msgs.srv;
+module lifecycle_msgs.srv.galactic;
 
 import std.string;
 import std.utf;
 import rcl;
-
 import lifecycle_msgs.msg;
 
 struct GetState
