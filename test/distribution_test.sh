@@ -24,7 +24,6 @@ DEFAULT_D_COMPILERS=(
     ldc
 )
 
-TEMPDIR=$(mktemp -d)
 function finally() {
     # Delete temporary resources even if the process is interrupted.
     # `temp_dir` and `container_id` is set in function `run`.
