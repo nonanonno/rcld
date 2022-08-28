@@ -1,5 +1,5 @@
-module rcl_interfaces.srv.galactic;
-version (galactic)
+module rcl_interfaces.srv.foxy;
+version (foxy)
 {
 
     import std.string;

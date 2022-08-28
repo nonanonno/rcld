@@ -1,5 +1,5 @@
-module builtin_interfaces.msg.galactic;
-version (galactic)
+module builtin_interfaces.msg.foxy;
+version (foxy)
 {
 
     import std.string;

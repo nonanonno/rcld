@@ -1,5 +1,5 @@
-module rosgraph_msgs.msg.galactic;
-version (galactic)
+module rosgraph_msgs.msg.foxy;
+version (foxy)
 {
 
     import std.string;

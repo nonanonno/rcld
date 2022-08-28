@@ -1,5 +1,5 @@
-module rcl_interfaces.msg.galactic;
-version (galactic)
+module rcl_interfaces.msg.humble;
+version (humble)
 {
 
     import std.string;

@@ -1,5 +1,5 @@
-module lifecycle_msgs.srv.galactic;
-version (galactic)
+module lifecycle_msgs.srv.foxy;
+version (foxy)
 {
 
     import std.string;

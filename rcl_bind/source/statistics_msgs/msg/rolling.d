@@ -1,5 +1,5 @@
-module statistics_msgs.msg.galactic;
-version (galactic)
+module statistics_msgs.msg.rolling;
+version (rolling)
 {
 
     import std.string;

@@ -1,5 +1,5 @@
-module composition_interfaces.srv.galactic;
-version (galactic)
+module composition_interfaces.srv.rolling;
+version (rolling)
 {
 
     import std.string;

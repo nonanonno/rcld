@@ -1,5 +1,5 @@
-module lifecycle_msgs.msg.galactic;
-version (galactic)
+module lifecycle_msgs.msg.humble;
+version (humble)
 {
 
     import std.string;

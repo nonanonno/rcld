@@ -1,5 +1,5 @@
-module builtin_interfaces.msg.galactic;
-version (galactic)
+module builtin_interfaces.msg.rolling;
+version (rolling)
 {
 
     import std.string;

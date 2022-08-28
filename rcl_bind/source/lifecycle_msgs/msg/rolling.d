@@ -1,5 +1,5 @@
-module lifecycle_msgs.msg.galactic;
-version (galactic)
+module lifecycle_msgs.msg.rolling;
+version (rolling)
 {
 
     import std.string;

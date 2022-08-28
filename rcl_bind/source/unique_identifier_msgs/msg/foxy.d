@@ -1,5 +1,5 @@
-module unique_identifier_msgs.msg.galactic;
-version (galactic)
+module unique_identifier_msgs.msg.foxy;
+version (foxy)
 {
 
     import std.string;

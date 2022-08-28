@@ -1,5 +1,5 @@
-module rcl_interfaces.msg.galactic;
-version (galactic)
+module rcl_interfaces.msg.foxy;
+version (foxy)
 {
 
     import std.string;
@@ -563,7 +563,6 @@ version (galactic)
         string description;
         string additional_constraints;
         bool read_only = false;
-        bool dynamic_typing = false;
         rcl_interfaces.msg.FloatingPointRange[] floating_point_range;
         rcl_interfaces.msg.IntegerRange[] integer_range;
 
@@ -605,7 +604,6 @@ version (galactic)
             rosidl_runtime_c__String__assign(&dst.additional_constraints,
                     toStringz(src.additional_constraints));
             dst.read_only = src.read_only;
-            dst.dynamic_typing = src.dynamic_typing;
             rcl_interfaces__msg__FloatingPointRange__Sequence__init(&dst.floating_point_range,
                     src.floating_point_range.length);
             foreach (i; 0U .. src.floating_point_range.length)
@@ -629,7 +627,6 @@ version (galactic)
             dst.description = fromStringz(src.description.data).dup();
             dst.additional_constraints = fromStringz(src.additional_constraints.data).dup();
             dst.read_only = src.read_only;
-            dst.dynamic_typing = src.dynamic_typing;
             dst.floating_point_range.length = src.floating_point_range.size;
             foreach (i; 0U .. dst.floating_point_range.length)
             {

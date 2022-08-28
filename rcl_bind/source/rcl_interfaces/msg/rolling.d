@@ -1,5 +1,5 @@
-module rcl_interfaces.msg.galactic;
-version (galactic)
+module rcl_interfaces.msg.rolling;
+version (rolling)
 {
 
     import std.string;

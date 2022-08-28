@@ -1,5 +1,5 @@
-module rosgraph_msgs.msg.galactic;
-version (galactic)
+module rosgraph_msgs.msg.rolling;
+version (rolling)
 {
 
     import std.string;

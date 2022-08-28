@@ -1,5 +1,5 @@
-module composition_interfaces.srv.galactic;
-version (galactic)
+module composition_interfaces.srv.humble;
+version (humble)
 {
 
     import std.string;
