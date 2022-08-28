@@ -7,6 +7,15 @@ import rcld.node;
 
 version (unittest) import std.exception;
 
+version (foxy)
+{
+    enum featureDomainId = false;
+}
+else
+{
+    enum featureDomainId = true;
+}
+
 class InitOptions
 {
     alias This = typeof(this);
@@ -79,7 +88,15 @@ class Context
 
     bool isValid() const
     {
-        return rcl_context_is_valid(&_context);
+        version (foxy)
+        {
+            return rcl_context_is_valid(constHandle());
+        }
+        else
+        {
+            return rcl_context_is_valid(&_context);
+
+        }
     }
 
     void shutdown()
@@ -96,11 +113,14 @@ class Context
         return &_context;
     }
 
-    size_t getDomainId() const
+    static if (featureDomainId)
     {
-        size_t domainId;
-        safeCall(rcl_context_get_domain_id(constHandle(), &domainId));
-        return domainId;
+        size_t getDomainId() const
+        {
+            size_t domainId;
+            safeCall(rcl_context_get_domain_id(constHandle(), &domainId));
+            return domainId;
+        }
     }
 
 package:
@@ -123,19 +143,22 @@ unittest
     assertNotThrown(destroy(new Context(CArgs(0, null), new InitOptions())));
 }
 
-@("default domain_id")
-unittest
+static if (featureDomainId)
 {
-    import dshould;
-    import std.process : environment;
-
-    foreach (env, expect; ["": 0, "123": 123])
+    @("default domain_id")
+    unittest
     {
-        environment["ROS_DOMAIN_ID"] = env; // set environment variable
-        auto o = new InitOptions().useDefaultDomainId();
-        auto c = new Context(CArgs(0, null), o);
+        import dshould;
+        import std.process : environment;
 
-        c.getDomainId().should.be(expect);
+        foreach (env, expect; ["": 0, "123": 123])
+        {
+            environment["ROS_DOMAIN_ID"] = env; // set environment variable
+            auto o = new InitOptions().useDefaultDomainId();
+            auto c = new Context(CArgs(0, null), o);
+
+            c.getDomainId().should.be(expect);
+        }
     }
 }
 
@@ -149,7 +172,10 @@ unittest
     auto o = new InitOptions().setDomainId(123);
     auto c = new Context(CArgs(0, null), o);
 
-    c.getDomainId().should.be(123);
+    static if (featureDomainId)
+    {
+        c.getDomainId().should.be(123);
+    }
 }
 
 @("shutdown")
