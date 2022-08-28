@@ -43,6 +43,8 @@ function generate() {
     find ${tmpd} -name '*.d' | grep '/c/' | xargs rm -rf
     find ${tmpd} -name '*.d' | xargs -n 1 sed -i -E "1s/\\.(\w+);/.\1.${ros_distro};/g"
     find ${tmpd} -name '*.d' | xargs -n 1 sed -i -e "/.*\.c\..*/d"
+    find ${tmpd} -name '*.d' | xargs -n 1 sed -i "1a version(${ros_distro}) {"
+    find ${tmpd} -name '*.d' | xargs -n 1 sed -i "$ a }"
     find ${tmpd} -name '*.d' | xargs dub run -y -q dfmt -- -i -c ${rcld}
 
     for target in ${TARGETS[@]}; do

@@ -41,7 +41,7 @@ function run() {
     container_id=$(docker run -dt --rm ${tag})
     docker cp ${temp_dir} ${container_id}:/rcld
     docker exec -it -w /rcld ${container_id} bash -c -l -i \
-        ". /opt/ros/${ROS_DISTRO}/setup.sh && bash rcl_bind/generate_common_msgs/generate_common_msgs.sh -r ${ROS_DISTRO}"
+        ". /opt/ros/${ros_distro}/setup.sh && bash rcl_bind/generate_common_msgs/generate_common_msgs.sh -r ${ros_distro}"
     docker cp ${container_id}:/rcld/rcl_bind/source ../../rcl_bind/
     docker stop ${container_id}
     unset container_id
