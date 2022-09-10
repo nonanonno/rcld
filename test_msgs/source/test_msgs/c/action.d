@@ -1,0 +1,220 @@
+module test_msgs.c.action;
+
+import core.stdc.stdint;
+import rcl;
+
+extern (C):
+@nogc:
+nothrow:
+// for Fibonacci_Goal
+struct test_msgs__action__Fibonacci_Goal
+{
+    int32_t order;
+}
+
+struct test_msgs__action__Fibonacci_Goal__Sequence
+{
+    test_msgs__action__Fibonacci_Goal *data;
+    size_t size;
+    size_t capacity;
+}
+
+// for Fibonacci_Result
+struct test_msgs__action__Fibonacci_Result
+{
+    rosidl_runtime_c__int32__Sequence sequence;
+}
+
+struct test_msgs__action__Fibonacci_Result__Sequence
+{
+    test_msgs__action__Fibonacci_Result *data;
+    size_t size;
+    size_t capacity;
+}
+
+// for Fibonacci_Feedback
+struct test_msgs__action__Fibonacci_Feedback
+{
+    rosidl_runtime_c__int32__Sequence sequence;
+}
+
+struct test_msgs__action__Fibonacci_Feedback__Sequence
+{
+    test_msgs__action__Fibonacci_Feedback *data;
+    size_t size;
+    size_t capacity;
+}
+
+// for Fibonacci_SendGoal_Request
+struct test_msgs__action__Fibonacci_SendGoal_Request
+{
+    unique_identifier_msgs__msg__UUID goal_id;
+    test_msgs__action__Fibonacci_Goal goal;
+}
+
+struct test_msgs__action__Fibonacci_SendGoal_Request__Sequence
+{
+    test_msgs__action__Fibonacci_SendGoal_Request *data;
+    size_t size;
+    size_t capacity;
+}
+
+// for Fibonacci_SendGoal_Response
+struct test_msgs__action__Fibonacci_SendGoal_Response
+{
+    bool accepted;
+    builtin_interfaces__msg__Time stamp;
+}
+
+struct test_msgs__action__Fibonacci_SendGoal_Response__Sequence
+{
+    test_msgs__action__Fibonacci_SendGoal_Response *data;
+    size_t size;
+    size_t capacity;
+}
+
+// for Fibonacci_GetResult_Request
+struct test_msgs__action__Fibonacci_GetResult_Request
+{
+    unique_identifier_msgs__msg__UUID goal_id;
+}
+
+struct test_msgs__action__Fibonacci_GetResult_Request__Sequence
+{
+    test_msgs__action__Fibonacci_GetResult_Request *data;
+    size_t size;
+    size_t capacity;
+}
+
+// for Fibonacci_GetResult_Response
+struct test_msgs__action__Fibonacci_GetResult_Response
+{
+    int8_t status;
+    test_msgs__action__Fibonacci_Result result;
+}
+
+struct test_msgs__action__Fibonacci_GetResult_Response__Sequence
+{
+    test_msgs__action__Fibonacci_GetResult_Response *data;
+    size_t size;
+    size_t capacity;
+}
+
+// for Fibonacci_FeedbackMessage
+struct test_msgs__action__Fibonacci_FeedbackMessage
+{
+    unique_identifier_msgs__msg__UUID goal_id;
+    test_msgs__action__Fibonacci_Feedback feedback;
+}
+
+struct test_msgs__action__Fibonacci_FeedbackMessage__Sequence
+{
+    test_msgs__action__Fibonacci_FeedbackMessage *data;
+    size_t size;
+    size_t capacity;
+}
+
+
+// for Fibonacci_Goal
+bool test_msgs__action__Fibonacci_Goal__init(test_msgs__action__Fibonacci_Goal * msg);
+void test_msgs__action__Fibonacci_Goal__fini(test_msgs__action__Fibonacci_Goal * msg);
+test_msgs__action__Fibonacci_Goal * test_msgs__action__Fibonacci_Goal__create();
+void test_msgs__action__Fibonacci_Goal__destroy(test_msgs__action__Fibonacci_Goal * msg);
+
+bool test_msgs__action__Fibonacci_Goal__Sequence__init(test_msgs__action__Fibonacci_Goal__Sequence * array, size_t size);
+void test_msgs__action__Fibonacci_Goal__Sequence__fini(test_msgs__action__Fibonacci_Goal__Sequence * array);
+test_msgs__action__Fibonacci_Goal__Sequence * test_msgs__action__Fibonacci_Goal__Sequence__create(size_t size);
+void test_msgs__action__Fibonacci_Goal__Sequence__destroy(test_msgs__action__Fibonacci_Goal__Sequence * array);
+
+// for Fibonacci_Result
+bool test_msgs__action__Fibonacci_Result__init(test_msgs__action__Fibonacci_Result * msg);
+void test_msgs__action__Fibonacci_Result__fini(test_msgs__action__Fibonacci_Result * msg);
+test_msgs__action__Fibonacci_Result * test_msgs__action__Fibonacci_Result__create();
+void test_msgs__action__Fibonacci_Result__destroy(test_msgs__action__Fibonacci_Result * msg);
+
+bool test_msgs__action__Fibonacci_Result__Sequence__init(test_msgs__action__Fibonacci_Result__Sequence * array, size_t size);
+void test_msgs__action__Fibonacci_Result__Sequence__fini(test_msgs__action__Fibonacci_Result__Sequence * array);
+test_msgs__action__Fibonacci_Result__Sequence * test_msgs__action__Fibonacci_Result__Sequence__create(size_t size);
+void test_msgs__action__Fibonacci_Result__Sequence__destroy(test_msgs__action__Fibonacci_Result__Sequence * array);
+
+// for Fibonacci_Feedback
+bool test_msgs__action__Fibonacci_Feedback__init(test_msgs__action__Fibonacci_Feedback * msg);
+void test_msgs__action__Fibonacci_Feedback__fini(test_msgs__action__Fibonacci_Feedback * msg);
+test_msgs__action__Fibonacci_Feedback * test_msgs__action__Fibonacci_Feedback__create();
+void test_msgs__action__Fibonacci_Feedback__destroy(test_msgs__action__Fibonacci_Feedback * msg);
+
+bool test_msgs__action__Fibonacci_Feedback__Sequence__init(test_msgs__action__Fibonacci_Feedback__Sequence * array, size_t size);
+void test_msgs__action__Fibonacci_Feedback__Sequence__fini(test_msgs__action__Fibonacci_Feedback__Sequence * array);
+test_msgs__action__Fibonacci_Feedback__Sequence * test_msgs__action__Fibonacci_Feedback__Sequence__create(size_t size);
+void test_msgs__action__Fibonacci_Feedback__Sequence__destroy(test_msgs__action__Fibonacci_Feedback__Sequence * array);
+
+// for Fibonacci_SendGoal_Request
+bool test_msgs__action__Fibonacci_SendGoal_Request__init(test_msgs__action__Fibonacci_SendGoal_Request * msg);
+void test_msgs__action__Fibonacci_SendGoal_Request__fini(test_msgs__action__Fibonacci_SendGoal_Request * msg);
+test_msgs__action__Fibonacci_SendGoal_Request * test_msgs__action__Fibonacci_SendGoal_Request__create();
+void test_msgs__action__Fibonacci_SendGoal_Request__destroy(test_msgs__action__Fibonacci_SendGoal_Request * msg);
+
+bool test_msgs__action__Fibonacci_SendGoal_Request__Sequence__init(test_msgs__action__Fibonacci_SendGoal_Request__Sequence * array, size_t size);
+void test_msgs__action__Fibonacci_SendGoal_Request__Sequence__fini(test_msgs__action__Fibonacci_SendGoal_Request__Sequence * array);
+test_msgs__action__Fibonacci_SendGoal_Request__Sequence * test_msgs__action__Fibonacci_SendGoal_Request__Sequence__create(size_t size);
+void test_msgs__action__Fibonacci_SendGoal_Request__Sequence__destroy(test_msgs__action__Fibonacci_SendGoal_Request__Sequence * array);
+
+// for Fibonacci_SendGoal_Response
+bool test_msgs__action__Fibonacci_SendGoal_Response__init(test_msgs__action__Fibonacci_SendGoal_Response * msg);
+void test_msgs__action__Fibonacci_SendGoal_Response__fini(test_msgs__action__Fibonacci_SendGoal_Response * msg);
+test_msgs__action__Fibonacci_SendGoal_Response * test_msgs__action__Fibonacci_SendGoal_Response__create();
+void test_msgs__action__Fibonacci_SendGoal_Response__destroy(test_msgs__action__Fibonacci_SendGoal_Response * msg);
+
+bool test_msgs__action__Fibonacci_SendGoal_Response__Sequence__init(test_msgs__action__Fibonacci_SendGoal_Response__Sequence * array, size_t size);
+void test_msgs__action__Fibonacci_SendGoal_Response__Sequence__fini(test_msgs__action__Fibonacci_SendGoal_Response__Sequence * array);
+test_msgs__action__Fibonacci_SendGoal_Response__Sequence * test_msgs__action__Fibonacci_SendGoal_Response__Sequence__create(size_t size);
+void test_msgs__action__Fibonacci_SendGoal_Response__Sequence__destroy(test_msgs__action__Fibonacci_SendGoal_Response__Sequence * array);
+
+// for Fibonacci_GetResult_Request
+bool test_msgs__action__Fibonacci_GetResult_Request__init(test_msgs__action__Fibonacci_GetResult_Request * msg);
+void test_msgs__action__Fibonacci_GetResult_Request__fini(test_msgs__action__Fibonacci_GetResult_Request * msg);
+test_msgs__action__Fibonacci_GetResult_Request * test_msgs__action__Fibonacci_GetResult_Request__create();
+void test_msgs__action__Fibonacci_GetResult_Request__destroy(test_msgs__action__Fibonacci_GetResult_Request * msg);
+
+bool test_msgs__action__Fibonacci_GetResult_Request__Sequence__init(test_msgs__action__Fibonacci_GetResult_Request__Sequence * array, size_t size);
+void test_msgs__action__Fibonacci_GetResult_Request__Sequence__fini(test_msgs__action__Fibonacci_GetResult_Request__Sequence * array);
+test_msgs__action__Fibonacci_GetResult_Request__Sequence * test_msgs__action__Fibonacci_GetResult_Request__Sequence__create(size_t size);
+void test_msgs__action__Fibonacci_GetResult_Request__Sequence__destroy(test_msgs__action__Fibonacci_GetResult_Request__Sequence * array);
+
+// for Fibonacci_GetResult_Response
+bool test_msgs__action__Fibonacci_GetResult_Response__init(test_msgs__action__Fibonacci_GetResult_Response * msg);
+void test_msgs__action__Fibonacci_GetResult_Response__fini(test_msgs__action__Fibonacci_GetResult_Response * msg);
+test_msgs__action__Fibonacci_GetResult_Response * test_msgs__action__Fibonacci_GetResult_Response__create();
+void test_msgs__action__Fibonacci_GetResult_Response__destroy(test_msgs__action__Fibonacci_GetResult_Response * msg);
+
+bool test_msgs__action__Fibonacci_GetResult_Response__Sequence__init(test_msgs__action__Fibonacci_GetResult_Response__Sequence * array, size_t size);
+void test_msgs__action__Fibonacci_GetResult_Response__Sequence__fini(test_msgs__action__Fibonacci_GetResult_Response__Sequence * array);
+test_msgs__action__Fibonacci_GetResult_Response__Sequence * test_msgs__action__Fibonacci_GetResult_Response__Sequence__create(size_t size);
+void test_msgs__action__Fibonacci_GetResult_Response__Sequence__destroy(test_msgs__action__Fibonacci_GetResult_Response__Sequence * array);
+
+// for Fibonacci_FeedbackMessage
+bool test_msgs__action__Fibonacci_FeedbackMessage__init(test_msgs__action__Fibonacci_FeedbackMessage * msg);
+void test_msgs__action__Fibonacci_FeedbackMessage__fini(test_msgs__action__Fibonacci_FeedbackMessage * msg);
+test_msgs__action__Fibonacci_FeedbackMessage * test_msgs__action__Fibonacci_FeedbackMessage__create();
+void test_msgs__action__Fibonacci_FeedbackMessage__destroy(test_msgs__action__Fibonacci_FeedbackMessage * msg);
+
+bool test_msgs__action__Fibonacci_FeedbackMessage__Sequence__init(test_msgs__action__Fibonacci_FeedbackMessage__Sequence * array, size_t size);
+void test_msgs__action__Fibonacci_FeedbackMessage__Sequence__fini(test_msgs__action__Fibonacci_FeedbackMessage__Sequence * array);
+test_msgs__action__Fibonacci_FeedbackMessage__Sequence * test_msgs__action__Fibonacci_FeedbackMessage__Sequence__create(size_t size);
+void test_msgs__action__Fibonacci_FeedbackMessage__Sequence__destroy(test_msgs__action__Fibonacci_FeedbackMessage__Sequence * array);
+
+
+const(rosidl_message_type_support_t) * rosidl_typesupport_c__get_message_type_support_handle__test_msgs__action__Fibonacci_Goal();
+const(rosidl_message_type_support_t) * rosidl_typesupport_c__get_message_type_support_handle__test_msgs__action__Fibonacci_Result();
+const(rosidl_message_type_support_t) * rosidl_typesupport_c__get_message_type_support_handle__test_msgs__action__Fibonacci_Feedback();
+const(rosidl_message_type_support_t) * rosidl_typesupport_c__get_message_type_support_handle__test_msgs__action__Fibonacci_SendGoal_Request();
+const(rosidl_message_type_support_t) * rosidl_typesupport_c__get_message_type_support_handle__test_msgs__action__Fibonacci_SendGoal_Response();
+const(rosidl_message_type_support_t) * rosidl_typesupport_c__get_message_type_support_handle__test_msgs__action__Fibonacci_GetResult_Request();
+const(rosidl_message_type_support_t) * rosidl_typesupport_c__get_message_type_support_handle__test_msgs__action__Fibonacci_GetResult_Response();
+const(rosidl_message_type_support_t) * rosidl_typesupport_c__get_message_type_support_handle__test_msgs__action__Fibonacci_FeedbackMessage();
+
+const(rosidl_service_type_support_t) * rosidl_typesupport_c__get_service_type_support_handle__test_msgs__action__Fibonacci_SendGoal();
+const(rosidl_service_type_support_t) * rosidl_typesupport_c__get_service_type_support_handle__test_msgs__action__Fibonacci_GetResult();
+
+const(rosidl_action_type_support_t) * rosidl_typesupport_c__get_action_type_support_handle__test_msgs__action__Fibonacci();
+
