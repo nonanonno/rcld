@@ -11,7 +11,7 @@ import test_helper.utils;
 
 import rcld;
 import rcl;
-import std_srvs.srv : SetBool;
+import test_msgs.srv : BasicTypes;
 
 @("check if the service created by the server can be found")
 unittest
@@ -20,7 +20,7 @@ unittest
 
     auto context = new Context();
     auto node = new Node("server", ns, context);
-    auto srv = new Service!SetBool(node, "set_bool");
+    auto srv = new Service!BasicTypes(node, "basic_types");
 
     bool found = false;
     foreach (_; 0 .. 5)
@@ -28,7 +28,7 @@ unittest
         Thread.sleep(200.msecs);
         auto ret = executeShell("ros2 service list");
         assert(ret.status == 0);
-        found = ret.output.canFind(ns ~ "/set_bool");
+        found = ret.output.canFind(ns ~ "/basic_types");
         if (found)
         {
             break;
@@ -37,8 +37,8 @@ unittest
     assert(found);
 
     auto proc = spawnShell(format(
-            `ros2 service call /%s/set_bool std_srvs/srv/SetBool '{data: True}' > /dev/null`, ns));
-    SetBool.Request req;
+            `ros2 service call /%s/basic_types test_msgs/srv/BasicTypes '{int32_value: 123}' > /dev/null`, ns));
+    BasicTypes.Request req;
     rmw_request_id_t reqId;
     bool taken = false;
     foreach (_; 0 .. 5)
@@ -51,8 +51,9 @@ unittest
         }
     }
     assert(taken);
-    assert(req.data);
-    auto res = SetBool.Response(true, "response");
+    assert(req.int32_value == 123);
+    auto res = BasicTypes.Response();
+    res.bool_value = true;
     srv.sendResponse(res, reqId);
     assert(proc.wait == 0);
 }

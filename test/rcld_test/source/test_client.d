@@ -13,7 +13,7 @@ import test_helper.utils;
 
 import rcld;
 import rcl;
-import std_srvs.srv : SetBool;
+import test_msgs.srv : BasicTypes;
 
 unittest
 {
@@ -22,16 +22,17 @@ unittest
     auto server = spawn((string ns) {
         auto context = new Context();
         auto node = new Node("server", ns, context);
-        auto srv = new Service!SetBool(node, "set_bool");
+        auto srv = new Service!BasicTypes(node, "basic_types");
         foreach (_; 0 .. 10)
         {
             Thread.sleep(100.msecs);
-            SetBool.Request req;
+            BasicTypes.Request req;
             rmw_request_id_t reqId;
             auto ret = srv.takeRequest(req, reqId);
             if (ret)
             {
-                auto res = SetBool.Response(true, "Requested: " ~ req.data.to!string);
+                auto res = BasicTypes.Response();
+                res.int32_value = req.int32_value + 1;
                 srv.sendResponse(res, reqId);
                 break;
             }
@@ -41,7 +42,7 @@ unittest
     // client
     auto context = new Context();
     auto node = new Node("client", ns, context);
-    auto cli = new Client!SetBool(node, "set_bool");
+    auto cli = new Client!BasicTypes(node, "basic_types");
     foreach (_; 0 .. 10)
     {
         Thread.sleep(100.msecs);
@@ -50,9 +51,10 @@ unittest
             break;
         }
     }
-    auto req = SetBool.Request(true);
+    auto req = BasicTypes.Request();
+    req.int32_value = 123;
     cli.sendRequest(req);
-    auto res = SetBool.Response();
+    auto res = BasicTypes.Response();
     bool taken = false;
     foreach (_; 0 .. 10)
     {
@@ -64,5 +66,5 @@ unittest
         }
     }
     assert(taken);
-    assert(res.success);
+    assert(res.int32_value == 123 + 1);
 }
