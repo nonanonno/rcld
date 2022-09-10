@@ -7,6 +7,7 @@ subPackage "./rcl_bind"
 subPackage "./rosidl_parser"
 subPackage "./test_helper"
 subPackage "./msg_gen"
+subPackage "./test_msgs"
 versions "$ROS_DISTRO"
 
 configuration "library" {

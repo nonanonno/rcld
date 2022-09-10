@@ -1,0 +1,6 @@
+name "test_msgs"
+license "Apache License 2.0"
+versions "$ROS_DISTRO"
+dependency "rcld:rcl_bind" version="*" path="../"
+lflags "-L$PACKAGE_DIR/../test_helper/ament/install/test_msgs/lib"
+libs "test_msgs__rosidl_typesupport_c" "test_msgs__rosidl_generator_c"

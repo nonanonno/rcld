@@ -11,7 +11,7 @@ tasks:
     - dub build :rcl_bind
     - dub build :rosidl_parser
     - dub build :test_helper
-    - bash test/rcld_test/setup.sh
+    - dub build :test_msgs
     - dub build --root test/rcld_test
 
   test:all:
@@ -19,8 +19,9 @@ tasks:
     - dub test :msg_gen
     - dub test :test_helper
     - dub test :rosidl_parser
-    - bash test/rcld_test/setup.sh
-    - dub test --root test/rcld_test
+    - |
+      . test_helper/ament/install/setup.sh
+      dub test --root test/rcld_test
 
   clean:
     - dub clean
