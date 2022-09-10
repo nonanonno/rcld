@@ -75,13 +75,12 @@ struct GenerateMessagePackages
         }
         else
         {
-            if (regenerate && exists(output))
-            {
-                rmdirRecurse(output);
-            }
-
             foreach (m; manifests)
             {
+                if (m.packageName.length == 0)
+                {
+                    writeln("Unknown package found.");
+                }
                 if (packages.length > 0)
                 {
                     if (!packages.canFind(m.packageName))
@@ -96,6 +95,11 @@ struct GenerateMessagePackages
                         continue;
                     }
 
+                }
+                const packagePath = buildPath(output, m.packageName);
+                if (regenerate && exists(packagePath))
+                {
+                    rmdirRecurse(packagePath);
                 }
                 writeln("Generating ", m.packageName);
                 generateDUBPackage(m, output);
