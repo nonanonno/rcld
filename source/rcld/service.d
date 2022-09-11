@@ -64,3 +64,62 @@ class Service(T) : BaseService
 package:
     rcl_service_t _handle;
 }
+
+@("Check if the service created by the server can be found")
+unittest
+{
+    import rcld;
+    import rcl : rmw_request_id_t;
+
+    import std.algorithm : canFind;
+    import std.format : format;
+    import std.process : executeShell, spawnShell, wait;
+
+    import core.thread : Thread, msecs;
+
+    import test_helper.utils;
+    import test_msgs.srv : BasicTypes;
+
+    auto ns = uniqueString();
+
+    auto context = new Context();
+    auto node = new Node("server", ns, context);
+    auto srv = new Service!BasicTypes(node, "basic_types");
+
+    bool found = false;
+    foreach (_; 0 .. 10)
+    {
+        Thread.sleep(100.msecs);
+        auto ret = executeShell("ros2 service list");
+        assert(ret.status == 0);
+        found = ret.output.canFind(ns ~ "/basic_types");
+        if (found)
+        {
+            break;
+        }
+    }
+    assert(found);
+
+    auto ros2ServiceCall = spawnShell(format(
+            `ros2 service call /%s/basic_types test_msgs/srv/BasicTypes '{int32_value: 123}' > /dev/null`, ns
+    ));
+    BasicTypes.Request req;
+    rmw_request_id_t reqId;
+    bool taken = false;
+    foreach (_; 0 .. 10)
+    {
+        Thread.sleep(100.msecs);
+        taken = srv.takeRequest(req, reqId);
+        if (taken)
+        {
+            break;
+        }
+    }
+    // ToDo: ros2 service call process alives when some error happens before replying.
+    assert(taken);
+    assert(req.int32_value == 123);
+    auto res = BasicTypes.Response();
+    res.bool_value = true;
+    srv.sendResponse(res, reqId);
+    assert(wait(ros2ServiceCall) == 0);
+}
