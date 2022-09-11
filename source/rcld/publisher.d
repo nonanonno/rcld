@@ -52,3 +52,40 @@ class Publisher(T) : BasePublisher
 package:
     rcl_publisher_t _handle;
 }
+
+@("Check if the topic created by the publisher found")
+unittest
+{
+    import rcld;
+
+    import std.algorithm : canFind;
+    import std.exception : assertNotThrown;
+    import std.process : executeShell;
+
+    import core.thread;
+
+    import test_helper.utils;
+    import test_msgs.msg : BasicTypes;
+
+    auto ns = uniqueString();
+
+    auto context = new Context();
+    auto node = new Node("talker", ns, context);
+    auto pub = new Publisher!BasicTypes(node, "basic_types");
+
+    bool found = false;
+    foreach (_; 0 .. 10)
+    {
+        Thread.sleep(100.msecs);
+        auto ret = executeShell("ros2 topic list");
+        assert(ret.status == 0);
+        found = ret.output.canFind(ns ~ "/basic_types");
+        if (found)
+        {
+            break;
+        }
+    }
+    assert(found);
+
+    assertNotThrown(pub.publish(BasicTypes()));
+}

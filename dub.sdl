@@ -9,17 +9,18 @@ subPackage "./test_helper"
 subPackage "./msg_gen"
 subPackage "./test_msgs"
 versions "$ROS_DISTRO"
+dependency "rcld:rcl_bind" version="*"
+
 
 configuration "library" {
     targetType "library"
-    dependency "rcld:rcl_bind" version="*"
 }
 
 configuration "unittest" {
     targetType "library"
-    dependency "rcld:rcl_bind" version="*"
     dependency "silly" version="~>1.1.1"
     dependency "dshould" version="~>1.5.0"
     dependency "rcld:test_helper" version="*"
+    dependency "rcld:test_msgs" version="*"
     targetPath ".dub/unittest"
 }
