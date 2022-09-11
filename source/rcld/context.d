@@ -25,10 +25,12 @@ class InitOptions
         _allocator = allocator;
         _options = rcl_get_zero_initialized_init_options();
         safeCall(rcl_init_options_init(&_options, _allocator));
+        safeCall(rcl_clock_init(RCL_STEADY_TIME, &_clock, &_allocator));
     }
 
     ~this()
     {
+        safeCall(rcl_clock_fini(&_clock));
         safeCall(rcl_init_options_fini(&_options));
     }
 
@@ -60,9 +62,15 @@ class InitOptions
         return &_options;
     }
 
+    rcl_clock_t* getClockRef()
+    {
+        return &_clock;
+    }
+
 private:
     rcutils_allocator_t _allocator;
     rcl_init_options_t _options;
+    rcl_clock_t _clock;
 }
 
 /**
