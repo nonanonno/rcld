@@ -10,18 +10,20 @@ tasks:
     - dub build :msg_gen
     - dub build :rcl_bind
     - dub build :rosidl_parser
-    - dub build :test_helper
+    - |
+      . /opt/ros/$ROS_DISTRO/setup.sh
+      dub build :test_helper
     - dub build :test_msgs
-    - dub build --root test/rcld_test
 
   test:all:
-    - dub test
+    - |
+      . /opt/ros/$ROS_DISTRO/setup.sh
+      dub build :test_helper
+      . test_helper/ament/install/setup.sh
+      dub test
     - dub test :msg_gen
     - dub test :test_helper
     - dub test :rosidl_parser
-    - |
-      . test_helper/ament/install/setup.sh
-      dub test --root test/rcld_test
 
   clean:
     - dub clean
