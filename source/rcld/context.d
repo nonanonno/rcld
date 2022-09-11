@@ -145,36 +145,19 @@ unittest
 
 static if (featureDomainId)
 {
-    @("default domain_id")
+    @("set domain_id")
     unittest
     {
         import dshould;
         import std.process : environment;
 
-        foreach (env, expect; ["": 0, "123": 123])
+        auto o = new InitOptions().setDomainId(123);
+        auto c = new Context(CArgs(0, null), o);
+
+        static if (featureDomainId)
         {
-            environment["ROS_DOMAIN_ID"] = env; // set environment variable
-            auto o = new InitOptions().useDefaultDomainId();
-            auto c = new Context(CArgs(0, null), o);
-
-            c.getDomainId().should.be(expect);
+            c.getDomainId().should.be(123);
         }
-    }
-}
-
-@("set domain_id")
-unittest
-{
-    import dshould;
-    import std.process : environment;
-
-    environment["ROS_DOMAIN_ID"] = ""; // force reset
-    auto o = new InitOptions().setDomainId(123);
-    auto c = new Context(CArgs(0, null), o);
-
-    static if (featureDomainId)
-    {
-        c.getDomainId().should.be(123);
     }
 }
 
