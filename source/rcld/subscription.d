@@ -56,3 +56,58 @@ class Subscription(T) : BaseSubscription
 package:
     rcl_subscription_t _handle;
 }
+
+@("Check if the topic created by the subscription can be found")
+unittest
+{
+    import rcld;
+
+    import std.algorithm : canFind;
+    import std.format : format;
+    import std.process : executeShell, spawnShell, wait;
+
+    import core.thread;
+
+    import test_helper.utils;
+    import test_msgs.msg : BasicTypes;
+
+    auto ns = uniqueString();
+
+    auto context = new Context();
+    auto node = new Node("listener", ns, context);
+    auto sub = new Subscription!BasicTypes(node, "basic_types");
+
+    bool found = false;
+    foreach (_; 0 .. 10)
+    {
+        Thread.sleep(100.msecs);
+        auto ret = executeShell("ros2 topic list");
+        assert(ret.status == 0);
+        found = ret.output.canFind(ns ~ "/basic_types");
+        if (found)
+        {
+            break;
+        }
+    }
+    assert(found);
+    // ToDo: should use `-1` option.
+    // `-1` waits for at least 1 subscriptino found (from galactic)
+    auto ros2TopicPub = spawnShell(format(
+            `ros2 topic pub /%s/basic_types test_msgs/msg/BasicTypes '{int32_value: 123}' -r 10 -t 10 > /dev/null`, ns
+    ));
+    bool taken = false;
+    BasicTypes msg;
+    foreach (_; 0 .. 10)
+    {
+        Thread.sleep(100.msecs);
+        taken = sub.take(msg);
+        if (taken)
+        {
+            break;
+        }
+    }
+    assert(taken);
+    assert(msg.int32_value == 123);
+    assert(wait(ros2TopicPub) == 0);
+
+}
