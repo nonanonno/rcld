@@ -3,6 +3,7 @@ module rcld.node;
 import rcl;
 import rcld.context;
 import std.string;
+import rcld.action_server;
 import rcld.util;
 import rcld.publisher;
 import rcld.subscription;
@@ -37,6 +38,7 @@ class Node
             terminateItems(_subscriptions);
             terminateItems(_services);
             terminateItems(_clients);
+            terminateItems(_action_servers);
             safeCall(rcl_node_fini(&_handle));
         }
     }
@@ -57,6 +59,7 @@ package:
     BaseSubscription[] _subscriptions;
     BaseService[] _services;
     BaseClient[] _clients;
+    BaseActionServer[] _action_servers;
 
 private:
     void terminateItems(T)(ref T[] items)
