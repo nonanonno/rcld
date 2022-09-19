@@ -73,19 +73,10 @@ unittest
     auto node = new Node("talker", ns, context);
     auto pub = new Publisher!BasicTypes(node, "basic_types");
 
-    bool found = false;
-    foreach (_; 0 .. 10)
-    {
-        Thread.sleep(100.msecs);
-        auto ret = executeShell("ros2 topic list");
-        assert(ret.status == 0);
-        found = ret.output.canFind(ns ~ "/basic_types");
-        if (found)
-        {
-            break;
-        }
-    }
-    assert(found);
-
+    assert(tryUntilTimeout(() {
+            const ret = executeShell("ros2 topic list");
+            assert(ret.status == 0);
+            return ret.output.canFind(ns ~ "/basic_types");
+        }));
     assertNotThrown(pub.publish(BasicTypes()));
 }

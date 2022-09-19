@@ -75,6 +75,8 @@ class Context
         _options = options;
         _context = rcl_context_t();
         safeCall(rcl_init(args.argc, args.argv, _options.getInitOptionsRef(), &_context));
+        safeCall(rcl_clock_init(RCL_STEADY_TIME, &_clock, _options.getAllocatorRef()));
+
     }
 
     ~this()
@@ -105,6 +107,7 @@ class Context
         {
             node.terminate();
         }
+        safeCall(rcl_clock_fini(&_clock));
         safeCall(rcl_shutdown(&_context));
     }
 
@@ -123,11 +126,17 @@ class Context
         }
     }
 
+    rcl_clock_t* getClockRef()
+    {
+        return &_clock;
+    }
+
 package:
     Node[] _nodes;
 
 private:
     rcl_context_t _context;
+    rcl_clock_t _clock;
     InitOptions _options;
 
     rcl_context_t* constHandle() const

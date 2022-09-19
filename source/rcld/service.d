@@ -86,37 +86,19 @@ unittest
     auto node = new Node("server", ns, context);
     auto srv = new Service!BasicTypes(node, "basic_types");
 
-    bool found = false;
-    foreach (_; 0 .. 10)
-    {
-        Thread.sleep(100.msecs);
-        auto ret = executeShell("ros2 service list");
-        assert(ret.status == 0);
-        found = ret.output.canFind(ns ~ "/basic_types");
-        if (found)
-        {
-            break;
-        }
-    }
-    assert(found);
+    assert(tryUntilTimeout(() {
+            const ret = executeShell("ros2 service list");
+            assert(ret.status == 0);
+            return ret.output.canFind(ns ~ "/basic_types");
+        }));
 
     auto ros2ServiceCall = spawnShell(format(
             `ros2 service call /%s/basic_types test_msgs/srv/BasicTypes '{int32_value: 123}' > /dev/null`, ns
     ));
     BasicTypes.Request req;
     rmw_request_id_t reqId;
-    bool taken = false;
-    foreach (_; 0 .. 10)
-    {
-        Thread.sleep(100.msecs);
-        taken = srv.takeRequest(req, reqId);
-        if (taken)
-        {
-            break;
-        }
-    }
-    // ToDo: ros2 service call process alives when some error happens before replying.
-    assert(taken);
+    assert(tryUntilTimeout(() { return srv.takeRequest(req, reqId); }));
+
     assert(req.int32_value == 123);
     auto res = BasicTypes.Response();
     res.bool_value = true;
