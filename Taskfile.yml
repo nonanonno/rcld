@@ -8,7 +8,9 @@ tasks:
   build:all:
     - dub build
     - dub build :msg_gen
-    - dub build :rcl_bind
+    - |
+      . /opt/ros/$ROS_DISTRO/setup.sh
+      dub build :rcl_bind
     - dub build :rosidl_parser
     - |
       . /opt/ros/$ROS_DISTRO/setup.sh
@@ -35,6 +37,9 @@ tasks:
   clean:
     - dub clean
     - rm -rf test_helper/ament/install
+    - rm -rf rcl_bind/generated_source/*
+    - rm -rf test_msgs/generated_source/*
+    - rm -rf msg_gen/msg_gen
     - find . -name '.dub' -type d | xargs rm -rf
     - find . -name '*.a' -or -name '*-unittest' | xargs rm -rf
     - find . -name 'dub.selections.json' | grep -v msg_gen | xargs rm -rf
