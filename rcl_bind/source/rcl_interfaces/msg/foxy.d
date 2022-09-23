@@ -214,7 +214,7 @@ version (foxy)
         long integer_value;
         double double_value;
         string string_value;
-        byte[] byte_array_value;
+        ubyte[] byte_array_value;
         bool[] bool_array_value;
         long[] integer_array_value;
         double[] double_array_value;
@@ -425,6 +425,17 @@ version (foxy)
     {
         ubyte structure_needs_at_least_one_member;
 
+        enum ubyte PARAMETER_NOT_SET = 0;
+        enum ubyte PARAMETER_BOOL = 1;
+        enum ubyte PARAMETER_INTEGER = 2;
+        enum ubyte PARAMETER_DOUBLE = 3;
+        enum ubyte PARAMETER_STRING = 4;
+        enum ubyte PARAMETER_BYTE_ARRAY = 5;
+        enum ubyte PARAMETER_BOOL_ARRAY = 6;
+        enum ubyte PARAMETER_INTEGER_ARRAY = 7;
+        enum ubyte PARAMETER_DOUBLE_ARRAY = 8;
+        enum ubyte PARAMETER_STRING_ARRAY = 9;
+
         alias CType = rcl_interfaces__msg__ParameterType;
         alias CArrayType = rcl_interfaces__msg__ParameterType__Sequence;
 
@@ -563,6 +574,7 @@ version (foxy)
         string description;
         string additional_constraints;
         bool read_only = false;
+        bool dynamic_typing = false;
         rcl_interfaces.msg.FloatingPointRange[] floating_point_range;
         rcl_interfaces.msg.IntegerRange[] integer_range;
 
@@ -604,6 +616,7 @@ version (foxy)
             rosidl_runtime_c__String__assign(&dst.additional_constraints,
                     toStringz(src.additional_constraints));
             dst.read_only = src.read_only;
+            dst.dynamic_typing = src.dynamic_typing;
             rcl_interfaces__msg__FloatingPointRange__Sequence__init(&dst.floating_point_range,
                     src.floating_point_range.length);
             foreach (i; 0U .. src.floating_point_range.length)
@@ -627,6 +640,7 @@ version (foxy)
             dst.description = fromStringz(src.description.data).dup();
             dst.additional_constraints = fromStringz(src.additional_constraints.data).dup();
             dst.read_only = src.read_only;
+            dst.dynamic_typing = src.dynamic_typing;
             dst.floating_point_range.length = src.floating_point_range.size;
             foreach (i; 0U .. dst.floating_point_range.length)
             {
@@ -702,6 +716,12 @@ version (foxy)
         string file;
         string function_;
         uint line;
+
+        enum ubyte DEBUG = 10;
+        enum ubyte INFO = 20;
+        enum ubyte WARN = 30;
+        enum ubyte ERROR = 40;
+        enum ubyte FATAL = 50;
 
         alias CType = rcl_interfaces__msg__Log;
         alias CArrayType = rcl_interfaces__msg__Log__Sequence;

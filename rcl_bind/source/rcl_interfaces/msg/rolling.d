@@ -214,7 +214,7 @@ version (rolling)
         long integer_value;
         double double_value;
         string string_value;
-        byte[] byte_array_value;
+        ubyte[] byte_array_value;
         bool[] bool_array_value;
         long[] integer_array_value;
         double[] double_array_value;
@@ -424,6 +424,17 @@ version (rolling)
     struct ParameterType
     {
         ubyte structure_needs_at_least_one_member;
+
+        enum ubyte PARAMETER_NOT_SET = 0;
+        enum ubyte PARAMETER_BOOL = 1;
+        enum ubyte PARAMETER_INTEGER = 2;
+        enum ubyte PARAMETER_DOUBLE = 3;
+        enum ubyte PARAMETER_STRING = 4;
+        enum ubyte PARAMETER_BYTE_ARRAY = 5;
+        enum ubyte PARAMETER_BOOL_ARRAY = 6;
+        enum ubyte PARAMETER_INTEGER_ARRAY = 7;
+        enum ubyte PARAMETER_DOUBLE_ARRAY = 8;
+        enum ubyte PARAMETER_STRING_ARRAY = 9;
 
         alias CType = rcl_interfaces__msg__ParameterType;
         alias CArrayType = rcl_interfaces__msg__ParameterType__Sequence;
@@ -705,6 +716,12 @@ version (rolling)
         string file;
         string function_;
         uint line;
+
+        enum ubyte DEBUG = 10;
+        enum ubyte INFO = 20;
+        enum ubyte WARN = 30;
+        enum ubyte ERROR = 40;
+        enum ubyte FATAL = 50;
 
         alias CType = rcl_interfaces__msg__Log;
         alias CArrayType = rcl_interfaces__msg__Log__Sequence;

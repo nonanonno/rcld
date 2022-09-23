@@ -13,6 +13,14 @@ version (galactic)
         action_msgs.msg.GoalInfo goal_info;
         byte status;
 
+        enum byte STATUS_UNKNOWN = 0;
+        enum byte STATUS_ACCEPTED = 1;
+        enum byte STATUS_EXECUTING = 2;
+        enum byte STATUS_CANCELING = 3;
+        enum byte STATUS_SUCCEEDED = 4;
+        enum byte STATUS_CANCELED = 5;
+        enum byte STATUS_ABORTED = 6;
+
         alias CType = action_msgs__msg__GoalStatus;
         alias CArrayType = action_msgs__msg__GoalStatus__Sequence;
 

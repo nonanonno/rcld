@@ -68,6 +68,11 @@ version (rolling)
         byte return_code;
         action_msgs.msg.GoalInfo[] goals_canceling;
 
+        enum byte ERROR_NONE = 0;
+        enum byte ERROR_REJECTED = 1;
+        enum byte ERROR_UNKNOWN_GOAL_ID = 2;
+        enum byte ERROR_GOAL_TERMINATED = 3;
+
         alias CType = action_msgs__srv__CancelGoal_Response;
         alias CArrayType = action_msgs__srv__CancelGoal_Response__Sequence;
 
