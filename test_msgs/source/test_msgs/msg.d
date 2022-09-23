@@ -679,6 +679,19 @@ struct Constants
 {
     ubyte structure_needs_at_least_one_member;
 
+    enum bool BOOL_CONST = true;
+    enum ubyte BYTE_CONST = 50;
+    enum ubyte CHAR_CONST = 100;
+    enum float FLOAT32_CONST = 1.125;
+    enum double FLOAT64_CONST = 1.125;
+    enum byte INT8_CONST = -50;
+    enum ubyte UINT8_CONST = 200;
+    enum short INT16_CONST = -1000;
+    enum ushort UINT16_CONST = 2000;
+    enum int INT32_CONST = -30000;
+    enum uint UINT32_CONST = 60000;
+    enum long INT64_CONST = -40000000;
+    enum ulong UINT64_CONST = 50000000;
 
     alias CType = test_msgs__msg__Constants;
     alias CArrayType = test_msgs__msg__Constants__Sequence;
@@ -736,6 +749,7 @@ struct Strings
     string bounded_string_value_default4 = "Hello'world!";
     string bounded_string_value_default5 = "Hello\"world!";
 
+    enum string STRING_CONST = "Hello world!";
 
     alias CType = test_msgs__msg__Strings;
     alias CArrayType = test_msgs__msg__Strings__Sequence;
