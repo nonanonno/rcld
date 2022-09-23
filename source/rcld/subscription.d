@@ -76,7 +76,7 @@ unittest
 
     auto ns = uniqueString();
 
-    auto context = new Context();
+    auto context = Context.create();
     auto node = new Node("listener", ns, context);
     scope (exit)
         node.terminate();

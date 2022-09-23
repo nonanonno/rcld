@@ -24,10 +24,10 @@ class Node
         safeCall(rcl_node_init(
                 &_handle, name.toStringz,
                 namespace.toStringz,
-                context.getRclContextRef(),
+                context.getContextRef(),
                 &options
         ));
-        context._nodes ~= this;
+        context.addNode(this);
     }
 
     void terminate()
@@ -78,5 +78,5 @@ unittest
 {
     import test_helper.utils;
 
-    assertNotThrown(new Node("node", uniqueString(), new Context()));
+    assertNotThrown(new Node("node", uniqueString(), Context.create()));
 }
