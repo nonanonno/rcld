@@ -14,46 +14,17 @@ void generateDUBPackage(in Manifest manifest, string outDir)
 {
     const packageName = manifest.packageName;
 
-    if (manifest.messages)
-    {
-        foreach (path; sourcesTepmlates.keys)
-        {
-            forceWrite(
-                buildPath(outDir, renderPath(packageName, "msg", path)),
-                renderSources(packageName, "msg", manifest.messages, path)
-            );
-        }
-    }
-
-    if (manifest.services)
-    {
-        foreach (path; sourcesTepmlates.keys)
-        {
-            forceWrite(
-                buildPath(outDir, renderPath(packageName, "srv", path)),
-                renderSources(packageName, "srv", manifest.services, path)
-            );
-        }
-    }
-
-    if (manifest.actions)
-    {
-        foreach (path; sourcesTepmlates.keys)
-        {
-            forceWrite(
-                buildPath(outDir, renderPath(packageName, "action", path)),
-                renderSources(packageName, "action", manifest.actions, path)
-            );
-        }
-    }
+    generateIdls!"msg"(packageName, manifest.messages, manifest.messageFiles, outDir);
+    generateIdls!"srv"(packageName, manifest.services, manifest.serviceFiles, outDir);
+    generateIdls!"action"(packageName, manifest.actions, manifest.actionFiles, outDir);
 
     if (manifest.messages.length > 0 || manifest.services.length > 0 || manifest.actions.length > 0)
     {
-        foreach (path; manifestsTemplates.keys)
+        foreach (key; manifestsTemplates.keys)
         {
             forceWrite(
-                buildPath(outDir, renderPath(packageName, "_", path)),
-                renderManifest(manifest, path),
+                buildPath(outDir, renderPath(packageName, "_", manifestsPaths[key])),
+                renderManifest(manifest, key),
             );
         }
     }
@@ -86,4 +57,31 @@ void forceWrite(string output, string text)
     mkdirRecurse(output.dirName);
 
     write(output, text);
+}
+
+void generateIdls(string ifType, T)(string packageName, const T[] idls, const string[] deps, string outDir)
+{
+    if (!idls)
+    {
+        return;
+    }
+    foreach (key; sourcesTepmlates.keys)
+    {
+
+        const target = buildPath(outDir, renderPath(packageName, ifType, sourcesPaths[key]));
+        bool doGenerate = !exists(target);
+        foreach (dep; deps)
+        {
+            if (doGenerate)
+            {
+                break;
+            }
+            doGenerate = timeLastModified(dep) > timeLastModified(target);
+        }
+        if (doGenerate)
+        {
+            forceWrite(target, renderSources(packageName, ifType, idls, key));
+        }
+
+    }
 }

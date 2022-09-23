@@ -42,7 +42,7 @@ string deleteMatched(string text, string pattern)
 
 void make(string ifType, T)(string packageName, const T[] idls, const string[] deps, string outDir)
 {
-    immutable key = "{{package_name}}/source/{{package_name}}/{{if_type}}.d";
+    immutable key = "d";
 
     if (!idls)
     {

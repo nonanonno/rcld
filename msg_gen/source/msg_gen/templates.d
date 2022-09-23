@@ -1,14 +1,21 @@
 module msg_gen.templates;
 
+enum string[string] manifestsPaths = [
+        "dub": "{{package_name}}/dub.sdl",
+    ];
+
 enum string[string] manifestsTemplates = [
-        "{{package_name}}/dub.sdl": import("{{package_name}}/dub.sdl.mustache"),
+        "dub": import("{{package_name}}/dub.sdl.mustache"),
+    ];
+
+enum string[string] sourcesPaths = [
+        "c": "{{package_name}}/source/{{package_name}}/c/{{if_type}}.d",
+        "d": "{{package_name}}/source/{{package_name}}/{{if_type}}.d",
     ];
 
 enum string[string] sourcesTepmlates = [
-        "{{package_name}}/source/{{package_name}}/c/{{if_type}}.d": import(
-            "{{package_name}}/source/{{package_name}}/c/{{if_type}}.d.mustache"),
-        "{{package_name}}/source/{{package_name}}/{{if_type}}.d": import(
-            "{{package_name}}/source/{{package_name}}/{{if_type}}.d.mustache"),
+        "c": import("{{package_name}}/source/{{package_name}}/c/{{if_type}}.d.mustache"),
+        "d": import("{{package_name}}/source/{{package_name}}/{{if_type}}.d.mustache"),
     ];
 
 enum string[string] partsTemplates = [
