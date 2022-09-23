@@ -1,0 +1,4 @@
+name "generator"
+dependency "rcld:msg_gen" version="*" path="../../../"
+dependency "rcld:rosidl_parser" version="*" path="../../../"
+targetPath ".dub/bin"
