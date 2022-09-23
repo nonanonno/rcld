@@ -122,7 +122,7 @@ unittest
 
     auto ns = uniqueString();
 
-    auto context = new Context();
+    auto context = Context.create();
     auto node = new Node("action_server", ns, context);
     auto action = new ActionServer!Fibonacci(node, "fibonacci", context);
 

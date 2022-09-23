@@ -25,6 +25,13 @@ tasks:
     - dub test :test_helper
     - dub test :rosidl_parser
 
+  test:
+    - |
+      . /opt/ros/$ROS_DISTRO/setup.sh
+      dub build :test_helper
+      . test_helper/ament/install/setup.sh
+      dub test -- {{.CLI_ARGS}}
+
   clean:
     - dub clean
     - rm -rf test_helper/ament/install

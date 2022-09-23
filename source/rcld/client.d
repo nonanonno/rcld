@@ -91,7 +91,7 @@ unittest
     auto ns = uniqueString();
 
     auto server = spawn((string ns) {
-        auto context = new Context();
+        auto context = Context.create();
         auto node = new Node("server", ns, context);
         auto srv = new Service!BasicTypes(node, "basic_types");
 
@@ -110,7 +110,7 @@ unittest
     }, ns);
 
     // client
-    auto context = new Context();
+    auto context = Context.create();
     auto node = new Node("client", ns, context);
     auto cli = new Client!BasicTypes(node, "basic_types");
 

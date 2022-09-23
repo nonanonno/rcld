@@ -3,24 +3,22 @@ description "ROS2 client library for Dlang"
 authors "nonanonno"
 copyright "Copyright © 2022, nonanonno"
 license "Apache-2.0"
+dependency "rcld:rcl_bind" version=">=0.0.0"
+dependency "automem" version="~>0.6.7"
+versions "$ROS_DISTRO"
+configuration "library" {
+	targetType "library"
+}
+configuration "unittest" {
+	dependency "silly" version="~>1.1.1"
+	dependency "dshould" version="~>1.5.0"
+	dependency "rcld:test_helper" version=">=0.0.0"
+	dependency "rcld:test_msgs" version=">=0.0.0"
+	targetType "library"
+	targetPath ".dub/unittest"
+}
 subPackage "./rcl_bind"
 subPackage "./rosidl_parser"
 subPackage "./test_helper"
 subPackage "./msg_gen"
 subPackage "./test_msgs"
-versions "$ROS_DISTRO"
-dependency "rcld:rcl_bind" version="*"
-
-
-configuration "library" {
-    targetType "library"
-}
-
-configuration "unittest" {
-    targetType "library"
-    dependency "silly" version="~>1.1.1"
-    dependency "dshould" version="~>1.5.0"
-    dependency "rcld:test_helper" version="*"
-    dependency "rcld:test_msgs" version="*"
-    targetPath ".dub/unittest"
-}

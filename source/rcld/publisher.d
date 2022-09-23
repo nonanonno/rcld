@@ -69,7 +69,7 @@ unittest
 
     auto ns = uniqueString();
 
-    auto context = new Context();
+    auto context = Context.create();
     auto node = new Node("talker", ns, context);
     auto pub = new Publisher!BasicTypes(node, "basic_types");
 

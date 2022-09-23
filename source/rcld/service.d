@@ -82,7 +82,7 @@ unittest
 
     auto ns = uniqueString();
 
-    auto context = new Context();
+    auto context = Context.create();
     auto node = new Node("server", ns, context);
     auto srv = new Service!BasicTypes(node, "basic_types");
 
