@@ -84,6 +84,14 @@ void addContext(Mustache.Context context, in Message message, const(AbstractType
 
     }
 
+    foreach (constant; message.constants)
+    {
+        auto constantContext = messageContext.addSubContext("constants");
+        constantContext["type"] = constant.type.toDTypeName();
+        constantContext["name"] = constant.name;
+        constantContext["value"] = constant.value.solveLiteral();
+    }
+
 }
 
 unittest
