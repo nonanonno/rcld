@@ -12,20 +12,20 @@ ROS_DISTROS=(
 )
 
 function generate() {
-    cp ../../.editorconfig ./
+    cp ../../../.editorconfig ./
     local ros_distro=${1}
     echo Executing ${ros_distro} ...
     docker build . -t rcl_builder:${ros_distro} --build-arg ROS_DISTRO=${ros_distro}
-    docker run -it --rm rcl_builder:${ros_distro} > ../source/rcl/${ros_distro}.d
+    docker run -it --rm rcl_builder:${ros_distro} > ../../source/rcl/${ros_distro}.d
     echo Done ${ros_distro}
 }
 
 function usage_exit() {
     local ros_distro
     echo "Usage: $0 target (all|ROS_DISTRO)" 1>&2
-    echo 
+    echo
     echo "  Generate rcl header for Dlang with specific ROS2 distribution."
-    echo "  The output D header will be placed to '../source/rcl/<ros_distro>.d'."
+    echo "  The output D header will be placed to '../../source/rcl/<ros_distro>.d'."
     echo "  Supported ROS_DISTROs:" 1>&2
     for ros_distro in ${ROS_DISTROS[@]}; do
         echo "    - " $ros_distro
