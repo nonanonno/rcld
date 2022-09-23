@@ -75,7 +75,6 @@ unittest
 
     assert(tryUntilTimeout(() {
             const ret = executeShell("ros2 topic list");
-            assert(ret.status == 0);
             return ret.output.canFind(ns ~ "/basic_types");
         }));
     assertNotThrown(pub.publish(BasicTypes()));

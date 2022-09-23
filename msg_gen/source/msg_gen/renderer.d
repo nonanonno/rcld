@@ -46,7 +46,7 @@ unittest
 
     import std;
 
-    renderManifest(manifests[0], "{{package_name}}/dub.sdl");
+    renderManifest(manifests[0], "dub");
 }
 
 void addContext(Mustache.Context context, in Message message, const(AbstractType[AbstractType]) typedefMap)
@@ -218,7 +218,7 @@ unittest
         parseAsMessage(TestMsgs.Msg.WStrings),
     ];
 
-    renderSources(TestMsgs.name, "msg", messages, "{{package_name}}/source/{{package_name}}/c/{{if_type}}.d");
+    renderSources(TestMsgs.name, "msg", messages, "c");
 }
 
 @("render messages for D")
@@ -241,7 +241,7 @@ unittest
         parseAsMessage(TestMsgs.Msg.WStrings),
     ];
 
-    renderSources(TestMsgs.name, "msg", messages, "{{package_name}}/source/{{package_name}}/{{if_type}}.d");
+    renderSources(TestMsgs.name, "msg", messages, "d");
 }
 
 @("render services for C")
@@ -257,7 +257,7 @@ unittest
         parseAsService(TestMsgs.Srv.Empty),
     ];
 
-    renderSources(TestMsgs.name, "srv", services, "{{package_name}}/source/{{package_name}}/c/{{if_type}}.d");
+    renderSources(TestMsgs.name, "srv", services, "c");
 }
 
 @("render services for D")
@@ -273,7 +273,7 @@ unittest
         parseAsService(TestMsgs.Srv.Empty),
     ];
 
-    renderSources(TestMsgs.name, "srv", services, "{{package_name}}/source/{{package_name}}/{{if_type}}.d");
+    renderSources(TestMsgs.name, "srv", services, "d");
 }
 
 @("render actions for C")
@@ -287,7 +287,7 @@ unittest
         parseAsAction(TestMsgs.Action.Fibonacci),
     ];
 
-    renderSources(TestMsgs.name, "action", services, "{{package_name}}/source/{{package_name}}/c/{{if_type}}.d");
+    renderSources(TestMsgs.name, "action", services, "c");
 }
 
 @("render actions for D")
@@ -301,7 +301,7 @@ unittest
         parseAsAction(TestMsgs.Action.Fibonacci),
     ];
 
-    renderSources(TestMsgs.name, "action", services, "{{package_name}}/source/{{package_name}}/{{if_type}}.d");
+    renderSources(TestMsgs.name, "action", services, "d");
 }
 
 string renderPath(string packageName, string ifType, string path)

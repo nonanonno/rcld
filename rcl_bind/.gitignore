@@ -14,4 +14,4 @@ rcl_bind-test-*
 *.obj
 *.lst
 *.a
-generate_rcl/.editorconfig
+.editorconfig
