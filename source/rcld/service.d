@@ -101,6 +101,10 @@ unittest
     assert(req.int32_value == 123);
     auto res = BasicTypes.Response();
     res.bool_value = true;
+    // https://github.com/ros2/rosidl_python/pull/167/files
+    res.float32_value = 0.0;
+    res.float64_value = 0.0;
+
     srv.sendResponse(res, reqId);
     wait(ros2ServiceCall);
 }
