@@ -4,6 +4,7 @@ import rcl;
 import rcld.context;
 import std.string;
 import rcld.action_server;
+import rcld.action_client;
 import rcld.util;
 import rcld.publisher;
 import rcld.subscription;
@@ -39,6 +40,7 @@ class Node
             terminateItems(_services);
             terminateItems(_clients);
             terminateItems(_action_servers);
+            terminateItems(_action_clients);
             safeCall(rcl_node_fini(&_handle));
         }
     }
@@ -60,6 +62,7 @@ package:
     BaseService[] _services;
     BaseClient[] _clients;
     BaseActionServer[] _action_servers;
+    BaseActionClient[] _action_clients;
 
 private:
     void terminateItems(T)(ref T[] items)
