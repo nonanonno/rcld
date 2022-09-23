@@ -119,6 +119,7 @@ unittest
 
     import test_helper.utils;
     import test_msgs.action : Fibonacci;
+    import action_msgs.msg : GoalStatus;
 
     auto ns = uniqueString();
 
@@ -167,7 +168,8 @@ unittest
         assert(tryUntilTimeout(() {
                 return action.takeResultRequest(getResultRequest, requestId);
             }));
-        auto response = Fibonacci.GetResult.Response(4, Fibonacci.Result(fibo));
+        auto response = Fibonacci.GetResult.Response(GoalStatus.STATUS_SUCCEEDED, Fibonacci.Result(
+                fibo));
         action.sendResultResponse(response, requestId);
     }
 

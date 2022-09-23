@@ -134,6 +134,7 @@ unittest
     import test_helper.utils;
     import test_msgs.action : Fibonacci;
     import unique_identifier_msgs.msg : UUID;
+    import action_msgs.msg : GoalStatus;
 
     import std : writeln;
 
@@ -169,7 +170,8 @@ unittest
             assert(tryUntilTimeout(() {
                     return actionServer.takeResultRequest(getResultRequest, requestId);
                 }));
-            auto response = Fibonacci.GetResult.Response(4, Fibonacci.Result(fibo));
+            auto response = Fibonacci.GetResult.Response(GoalStatus.STATUS_SUCCEEDED, Fibonacci.Result(
+                fibo));
             actionServer.sendResultResponse(response, requestId);
         }
     }, ns);
