@@ -61,7 +61,6 @@ unittest
     import std.algorithm : canFind;
     import std.exception : assertNotThrown;
     import std.process : executeShell;
-    import std.conv;
 
     import core.thread;
 
@@ -76,7 +75,6 @@ unittest
 
     assert(tryUntilTimeout(() {
             const ret = executeShell("ros2 topic list");
-            assert(ret.status == 0, ret.to!string);
             return ret.output.canFind(ns ~ "/basic_types");
         }));
     assertNotThrown(pub.publish(BasicTypes()));
