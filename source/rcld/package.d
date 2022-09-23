@@ -1,5 +1,6 @@
 module rcld;
 
+public import rcld.action_client;
 public import rcld.action_server;
 public import rcld.context;
 public import rcld.node;
