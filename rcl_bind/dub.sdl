@@ -4,7 +4,15 @@ authors "nonanonno"
 copyright "Copyright © 2022, nonanonno"
 license "Apache-2.0"
 lflags "-L/opt/ros/$ROS_DISTRO/lib"
-libs "rcl" "rcl_action" "rcutils" "rosidl_typesupport_c" "rosidl_runtime_c"
+libs "rcl" "rcl_action" "rcutils" "rosidl_typesupport_c" "rosidl_runtime_c" \
+  "action_msgs__rosidl_typesupport_c" "action_msgs__rosidl_generator_c" \
+  "builtin_interfaces__rosidl_typesupport_c" "builtin_interfaces__rosidl_generator_c" \
+  "composition_interfaces__rosidl_typesupport_c" "composition_interfaces__rosidl_generator_c" \
+  "lifecycle_msgs__rosidl_typesupport_c" "lifecycle_msgs__rosidl_generator_c" \
+  "rcl_interfaces__rosidl_typesupport_c" "rcl_interfaces__rosidl_generator_c" \
+  "rosgraph_msgs__rosidl_typesupport_c" "rosgraph_msgs__rosidl_generator_c" \
+  "statistics_msgs__rosidl_typesupport_c" "statistics_msgs__rosidl_generator_c" \
+  "unique_identifier_msgs__rosidl_typesupport_c" "unique_identifier_msgs__rosidl_generator_c"
 targetType "staticLibrary"
 targetName "rcl_bind"
 versions "$ROS_DISTRO"
