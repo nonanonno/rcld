@@ -11,6 +11,13 @@ version (galactic)
     {
         ubyte structure_needs_at_least_one_member;
 
+        enum ubyte STATISTICS_DATA_TYPE_UNINITIALIZED = 0;
+        enum ubyte STATISTICS_DATA_TYPE_AVERAGE = 1;
+        enum ubyte STATISTICS_DATA_TYPE_MINIMUM = 2;
+        enum ubyte STATISTICS_DATA_TYPE_MAXIMUM = 3;
+        enum ubyte STATISTICS_DATA_TYPE_STDDEV = 4;
+        enum ubyte STATISTICS_DATA_TYPE_SAMPLE_COUNT = 5;
+
         alias CType = statistics_msgs__msg__StatisticDataType;
         alias CArrayType = statistics_msgs__msg__StatisticDataType__Sequence;
 

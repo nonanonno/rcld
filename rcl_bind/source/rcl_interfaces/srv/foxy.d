@@ -286,6 +286,8 @@ version (foxy)
         string[] prefixes;
         ulong depth;
 
+        enum ulong DEPTH_RECURSIVE = 0;
+
         alias CType = rcl_interfaces__srv__ListParameters_Request;
         alias CArrayType = rcl_interfaces__srv__ListParameters_Request__Sequence;
 
